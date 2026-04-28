@@ -227,18 +227,15 @@ const DEMO_BANK = {
   }
 };
 
-function getDemoFeedback(criteria, stepId, situation, moduleId) {
+function getDemoFeedback(criteria, stepId, situation, modId) {
   // Determine which demo feedback to use based on context
   let base;
   const sit = (situation || '').toLowerCase();
   const step = (stepId || '').toLowerCase();
+  const mid = (modId || '').toLowerCase();
 
-  // Primary match — use moduleId first (most reliable signal)
-  const mod = (situation || '').toLowerCase();
-  const moduleId = (req?.body?.moduleId || '').toLowerCase();
-
-  // Scenario 1 detection — moduleId is 's1' OR situation mentions first day / classroom 8B / meeting students
-  const isS1 = moduleId === 's1' || step === '' || step === 'undefined' || !step ||
+  // Scenario 1 detection — mid is 's1' OR situation mentions first day / classroom 8B / meeting students
+  const isS1 = mid === 's1' || step === '' || step === 'undefined' || !step ||
     sit.includes('first day') || sit.includes('classroom 8b') ||
     sit.includes('14 students') || sit.includes('cautious curiosity') ||
     sit.includes('first time') || sit.includes('meet you') ||
