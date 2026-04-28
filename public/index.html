@@ -218,12 +218,12 @@ button{cursor:pointer;font-family:inherit}
 @keyframes sp{to{transform:rotate(360deg)}}
 
 /* BLOCK */
-.block-box{display:none;background:rgba(80,20,10,.6);border:2px solid rgba(231,111,81,.4);border-radius:11px;padding:1rem}
+.block-box{display:none;background:rgba(20,15,10,.8);border:1px solid rgba(186,117,23,.35);border-radius:11px;padding:1rem;border-left:3px solid #ba7517}
 .block-box.on{display:block}
-.block-title{font-size:13px;font-weight:500;color:#e76f51;margin-bottom:.5rem}
+.block-title{font-size:13px;font-weight:500;color:#e9c46a;margin-bottom:.7rem;display:flex;align-items:center;gap:7px}
 .block-body{font-size:12px;color:#c0876a;line-height:1.65;margin-bottom:.8rem}
-.block-retry{width:100%;background:rgba(231,111,81,.15);color:#e76f51;border:1px solid rgba(231,111,81,.3);border-radius:9px;padding:9px;font-size:12px;font-weight:500;transition:background .2s}
-.block-retry:hover{background:rgba(231,111,81,.25)}
+.block-retry{width:100%;background:rgba(99,153,34,.1);color:#97c459;border:1px solid rgba(99,153,34,.25);border-radius:9px;padding:9px;font-size:12px;font-weight:500;transition:background .2s}
+.block-retry:hover{background:rgba(99,153,34,.2)}
 
 /* FEEDBACK */
 .fb-wrap{display:none;flex-direction:column;gap:.7rem}
@@ -1236,7 +1236,11 @@ function renderStepPhase(wrap) {
   const blockBox = document.createElement('div');
   blockBox.className = 'block-box';
   blockBox.id = 'block-box';
-  blockBox.innerHTML = `<div class="block-title">⛔ Response cannot be submitted</div><div class="block-body" id="block-body"></div><button class="block-retry" id="block-retry">Clear and try again →</button>`;
+  blockBox.innerHTML = `
+    <div class="block-title">👩‍🏫 Your Mentor needs a word with you</div>
+    <div class="block-body" id="block-body"></div>
+    <div style="background:rgba(15,110,86,.1);border-left:3px solid #0f6e56;padding:8px 12px;border-radius:0 6px 6px 0;font-size:12px;font-style:italic;color:#c8e4de;line-height:1.7;margin-bottom:.8rem">"Words land differently in a classroom than they do anywhere else. Students remember how a teacher made them feel long after they've forgotten the lesson content. That's why the language we choose matters so much — every single time."</div>
+    <button class="block-retry" id="block-retry">✏️ Rewrite your response →</button>`;
   wrap.appendChild(blockBox);
 
   // Feedback panel (hidden initially)
@@ -1295,7 +1299,7 @@ async function submitStep(step) {
 
     if (p.inappropriate) {
       document.getElementById('resp-ta').classList.add('bad');
-      document.getElementById('block-body').innerHTML = `<p style="margin-bottom:.5rem"><strong>Reason:</strong> ${p.inappropriateReason}</p><p>Professional teaching requires respectful, relevant language. Review the Language Cards for guidance, then try again.</p>`;
+      document.getElementById('block-body').innerHTML = getBlockMessage(p.inappropriateReason);
       document.getElementById('block-box').className = 'block-box on';
       document.getElementById('block-box').scrollIntoView({ behavior: 'smooth', block: 'start' });
       return;
@@ -1625,7 +1629,11 @@ function renderSingleResponsePhase(wrap, sc) {
   const blockBox = document.createElement('div');
   blockBox.className = 'block-box';
   blockBox.id = 'block-box-s1';
-  blockBox.innerHTML = `<div class="block-title">⛔ Response cannot be submitted</div><div class="block-body" id="block-body-s1"></div><button class="block-retry" id="block-retry-s1">Clear and try again →</button>`;
+  blockBox.innerHTML = `
+    <div class="block-title">👩‍🏫 Your Mentor needs a word with you</div>
+    <div class="block-body" id="block-body-s1"></div>
+    <div style="background:rgba(15,110,86,.1);border-left:3px solid #0f6e56;padding:8px 12px;border-radius:0 6px 6px 0;font-size:12px;font-style:italic;color:#c8e4de;line-height:1.7;margin-bottom:.8rem">"Words land differently in a classroom than they do anywhere else. Students remember how a teacher made them feel long after they've forgotten the lesson content. That's why the language we choose matters so much — every single time."</div>
+    <button class="block-retry" id="block-retry-s1">✏️ Rewrite your response →</button>`;
   wrap.appendChild(blockBox);
 
   const fbWrap = document.createElement('div');
@@ -1659,7 +1667,7 @@ function renderSingleResponsePhase(wrap, sc) {
 
       if (p.inappropriate) {
         document.getElementById('resp-ta-s1').classList.add('bad');
-        document.getElementById('block-body-s1').innerHTML = `<p style="margin-bottom:.5rem"><strong>Reason:</strong> ${p.inappropriateReason}</p><p>Professional teaching requires respectful, relevant language. Review the Language Cards, then try again.</p>`;
+        document.getElementById('block-body-s1').innerHTML = getBlockMessage(p.inappropriateReason);
         document.getElementById('block-box-s1').className = 'block-box on';
         return;
       }
@@ -1878,6 +1886,60 @@ function completeScenario() {
       }
     }, 800);
   }
+}
+
+// ═══════════════════════════════════════
+// BLOCK MESSAGE SYSTEM
+// ═══════════════════════════════════════
+function getBlockMessage(reason) {
+  const r = (reason || '').toLowerCase();
+
+  // Profanity / offensive language
+  if (r.includes('profanity') || r.includes('offensive') || r.includes('language')) {
+    return `<p style="margin-bottom:.6rem;color:#e8e4dc;font-weight:500">This response contains language that has no place in a classroom.</p>
+    <p style="margin-bottom:.6rem;color:#c0876a;line-height:1.65">Even in a frustrating moment, a teacher's words must remain professional. Students notice everything — including how their teacher speaks when things don't go to plan. The language you use under pressure tells students far more about the classroom culture than any rules you post on the wall.</p>
+    <p style="color:#c0876a;line-height:1.65">Open the <strong style="color:#e9c46a">Language Cards</strong> for phrases that are warm, direct, and professionally appropriate — then try again.</p>`;
+  }
+
+  // Insults / name-calling / personal attacks
+  if (r.includes('insult') || r.includes('name') || r.includes('attack') || r.includes('personal')) {
+    return `<p style="margin-bottom:.6rem;color:#e8e4dc;font-weight:500">This response attacks a student personally — that is never acceptable in a professional classroom.</p>
+    <p style="margin-bottom:.6rem;color:#c0876a;line-height:1.65">A student who is insulted or mocked by their teacher does not learn from it — they shut down, disconnect, and remember that moment for years. The goal is always to address the behaviour, never to attack the person. "That kind of language isn't okay here" is professional. "You're being stupid" is not.</p>
+    <p style="color:#c0876a;line-height:1.65">Rewrite your response focusing on what you want to happen next — not on what went wrong.</p>`;
+  }
+
+  // Threats / intimidation
+  if (r.includes('threat') || r.includes('intimidat')) {
+    return `<p style="margin-bottom:.6rem;color:#e8e4dc;font-weight:500">This response uses threatening or intimidating language.</p>
+    <p style="margin-bottom:.6rem;color:#c0876a;line-height:1.65">Threats may produce short-term compliance, but they destroy the trust you need for real learning to happen. A student who is afraid of their teacher can follow rules — but they will not take risks, ask questions, or speak up when they don't understand. And those are exactly the things that make language learning work.</p>
+    <p style="color:#c0876a;line-height:1.65">Think about what outcome you actually want — and write a response that invites it rather than demands it.</p>`;
+  }
+
+  // Dismissiveness / sarcasm
+  if (r.includes('sarcas') || r.includes('dismiss') || r.includes('condescend')) {
+    return `<p style="margin-bottom:.6rem;color:#e8e4dc;font-weight:500">This response is sarcastic or dismissive — and students feel both very acutely.</p>
+    <p style="margin-bottom:.6rem;color:#c0876a;line-height:1.65">Sarcasm directed at a student is a form of mockery, even when it feels like humour. Teenagers especially are skilled at reading the difference between a teacher who is genuinely warm and one who is performing warmth — or using irony as a weapon. A dismissive response tells students that their contributions don't matter. Once that message lands, it's very hard to undo.</p>
+    <p style="color:#c0876a;line-height:1.65">Try again with directness instead of irony — say exactly what you mean, warmly and clearly.</p>`;
+  }
+
+  // Aggression
+  if (r.includes('aggress') || r.includes('angry') || r.includes('shout')) {
+    return `<p style="margin-bottom:.6rem;color:#e8e4dc;font-weight:500">This response is aggressive — it escalates rather than resolves the situation.</p>
+    <p style="margin-bottom:.6rem;color:#c0876a;line-height:1.65">When a teacher raises their voice or responds with aggression, two things happen simultaneously: the immediate problem gets worse, and the whole class's stress level rises. Every student in the room recalibrates their sense of safety. The students who were already anxious become more so. The student who caused the problem becomes defensive rather than reflective.</p>
+    <p style="color:#c0876a;line-height:1.65">Lower the temperature before you respond. Write as if you are calm — because in a real classroom, that calm is what makes everything else possible.</p>`;
+  }
+
+  // Off-topic / gibberish
+  if (r.includes('off-topic') || r.includes('irrelevant') || r.includes('gibberish') || r.includes('unrelated')) {
+    return `<p style="margin-bottom:.6rem;color:#e8e4dc;font-weight:500">This response doesn't address the classroom situation.</p>
+    <p style="margin-bottom:.6rem;color:#c0876a;line-height:1.65">In a real classroom, students are watching and waiting for your response. Going off-topic, staying silent, or responding to the wrong thing creates confusion and signals that the teacher is not present in the moment. Every response needs to acknowledge what just happened and move things forward purposefully.</p>
+    <p style="color:#c0876a;line-height:1.65">Read the situation description again carefully — then write a response that speaks directly to what is happening in that specific moment.</p>`;
+  }
+
+  // Generic fallback — covers anything else
+  return `<p style="margin-bottom:.6rem;color:#e8e4dc;font-weight:500">This response isn't appropriate for a professional classroom context.</p>
+  <p style="margin-bottom:.6rem;color:#c0876a;line-height:1.65">Every word a teacher says in the classroom either builds or damages the learning environment. This response — even if it felt natural in the moment — would damage the trust, safety, or dignity that students need in order to learn and speak. Professional communicative competence means choosing language that serves the student and the learning goal, even — especially — when the situation is difficult.</p>
+  <p style="color:#c0876a;line-height:1.65">Open the <strong style="color:#e9c46a">Language Cards</strong> for guidance, think about what outcome you want for this student, and rewrite your response from that starting point.</p>`;
 }
 
 // ═══════════════════════════════════════
