@@ -1,0 +1,1950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson Breakthrough</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#0e1117;color:#e8e4dc;min-height:100vh;overflow-x:hidden}
+button{cursor:pointer;font-family:inherit}
+.screen{display:none;min-height:100vh;flex-direction:column}
+.screen.active{display:flex}
+
+/* WELCOME */
+#s-welcome{align-items:center;justify-content:center;padding:2rem;text-align:center;background:linear-gradient(160deg,#0d1b2a,#1b2838,#0d2137)}
+.w-badge{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#639922;border:1px solid rgba(99,153,34,.35);border-radius:20px;padding:3px 13px;margin-bottom:1.4rem;display:inline-block}
+.w-title{font-size:clamp(1.8rem,5vw,2.8rem);font-weight:300;color:#f2ede4;line-height:1.2;margin-bottom:.4rem}
+.w-title em{font-style:italic;color:#97c459}
+.w-sub{font-size:14px;color:#6a6860;line-height:1.7;max-width:420px;margin:0 auto 2rem}
+.w-form{max-width:320px;width:100%;margin:0 auto}
+.w-lbl{font-size:11px;color:#5a5855;text-align:left;margin-bottom:5px;text-transform:uppercase;letter-spacing:.1em}
+.w-err{font-size:11px;color:#e76f51;margin-bottom:5px;display:none}
+.w-inp{width:100%;background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.15);border-radius:9px;padding:12px 14px;color:#e8e4dc;font-size:15px;outline:none;transition:border-color .2s;-webkit-appearance:none;margin-bottom:8px}
+.w-inp:focus{border-color:rgba(99,153,34,.5)}
+.w-inp::placeholder{color:#3a3835}
+.w-btn{width:100%;background:#3b6d11;color:#c0dd97;border:none;border-radius:9px;padding:13px;font-size:14px;font-weight:500;transition:background .2s}
+.w-btn:hover{background:#4a8a15}
+.w-note{font-size:10px;color:#3a3835;margin-top:8px;line-height:1.5}
+.w-ret{margin-top:12px;font-size:12px;color:#639922;background:rgba(99,153,34,.08);border:1px solid rgba(99,153,34,.2);border-radius:8px;padding:8px 12px;display:none;text-align:left}
+
+/* TOPBAR */
+.topbar{display:flex;align-items:center;gap:10px;padding:.7rem 1rem;border-bottom:1px solid rgba(255,255,255,.06);flex-shrink:0;background:#0e1117}
+.tb-back{background:none;border:none;color:#5a5855;font-size:20px;padding:2px 6px;line-height:1;transition:color .2s}
+.tb-back:hover{color:#e8e4dc}
+.tb-info{flex:1;min-width:0}
+.tb-lbl{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#5a5855}
+.tb-ttl{font-size:13px;font-weight:500;color:#e8e4dc;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tb-pill{font-size:11px;color:#639922;background:rgba(99,153,34,.1);border:1px solid rgba(99,153,34,.2);border-radius:7px;padding:3px 9px;white-space:nowrap;flex-shrink:0}
+
+/* MAP */
+#s-map{background:#0e1117}
+.map-body{padding:1.1rem;max-width:680px;width:100%;margin:0 auto;flex:1;overflow-y:auto}
+.xp-row{margin-bottom:1.1rem}
+.xp-meta{display:flex;justify-content:space-between;font-size:11px;color:#5a5855;margin-bottom:5px}
+.xp-track{height:4px;background:rgba(255,255,255,.06);border-radius:4px;overflow:hidden}
+.xp-fill{height:100%;background:linear-gradient(90deg,#3b6d11,#97c459);border-radius:4px;transition:width .8s ease}
+.folders-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:1.2rem}
+.folder-btn{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:10px;padding:.7rem .9rem;display:flex;align-items:center;gap:9px;transition:all .2s;text-align:left;position:relative}
+.folder-btn:hover{background:rgba(255,255,255,.08)}
+.f-ico{font-size:18px;flex-shrink:0;width:28px;text-align:center}
+.f-ttl{font-size:12px;font-weight:500;color:#e8e4dc}
+.f-sub{font-size:10px;color:#5a5855;margin-top:1px}
+.f-badge{margin-left:auto;font-size:10px;color:#639922;background:rgba(99,153,34,.1);border:1px solid rgba(99,153,34,.2);border-radius:20px;padding:2px 7px;flex-shrink:0}
+.new-dot{position:absolute;top:6px;right:6px;width:8px;height:8px;border-radius:50%;background:#e9c46a;font-size:8px;display:flex;align-items:center;justify-content:center;color:#1a1a1a;font-weight:700}
+.module-section{margin-bottom:1.2rem}
+.mod-section-lbl{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#3a3835;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.mod-section-lbl::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.05)}
+.mod-list{display:flex;flex-direction:column;gap:7px}
+.mod-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:11px;padding:.85rem 1rem;display:flex;align-items:center;gap:10px;transition:all .2s}
+.mod-card.playable{cursor:pointer}
+.mod-card.playable:hover{background:rgba(255,255,255,.06);border-color:rgba(99,153,34,.28)}
+.mod-card.locked{opacity:.28;cursor:not-allowed}
+.mod-card.done{border-color:rgba(99,153,34,.18)}
+.mod-card.current{border-color:rgba(99,153,34,.4);background:rgba(99,153,34,.05)}
+.mod-ico{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.mod-info{flex:1;min-width:0}
+.mod-wk{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#5a5855}
+.mod-name{font-size:13px;font-weight:500;color:#e8e4dc;margin:2px 0}
+.mod-desc{font-size:11px;color:#5a5650;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mod-right{font-size:11px;color:#639922;flex-shrink:0;text-align:right;line-height:1.4}
+
+/* FOLDERS */
+#s-achievements,#s-cards{background:#0e1117}
+.folder-body{padding:1.1rem;max-width:680px;width:100%;margin:0 auto;flex:1;overflow-y:auto}
+.folder-intro{font-size:12px;color:#5a5855;margin-bottom:1rem;line-height:1.6}
+.ach-list{display:flex;flex-direction:column;gap:8px}
+.ach-item{display:flex;align-items:center;gap:11px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:.8rem .9rem}
+.ach-item.earned{border-color:rgba(249,168,37,.25);background:rgba(249,168,37,.05)}
+.ach-item.locked-a{opacity:.3}
+.ach-ico-wrap{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07)}
+.ach-item.earned .ach-ico-wrap{background:rgba(249,168,37,.12);border-color:rgba(249,168,37,.3)}
+.ach-name{font-size:13px;font-weight:500;color:#e8e4dc}
+.ach-desc{font-size:11px;color:#5a5855;margin-top:2px;line-height:1.4}
+.ach-st{margin-left:auto;font-size:10px;flex-shrink:0;color:#639922}
+.ach-st.pend{color:#3a3835}
+.ctabs{display:flex;gap:6px;margin-bottom:1rem;flex-wrap:wrap}
+.ctab{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:8px;padding:5px 12px;font-size:11px;color:#5a5855;transition:all .2s}
+.ctab.active{background:rgba(99,153,34,.15);border-color:rgba(99,153,34,.35);color:#97c459}
+.card-list{display:flex;flex-direction:column;gap:8px}
+.lang-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:.9rem 1rem;cursor:pointer}
+.lang-card:hover{background:rgba(255,255,255,.06)}
+.lang-card.open{border-color:rgba(99,153,34,.25)}
+.lc-head{display:flex;align-items:center;gap:8px}
+.lc-tag{font-size:10px;padding:2px 8px;border-radius:20px;border:1px solid rgba(99,153,34,.25);color:#639922;background:rgba(99,153,34,.07);white-space:nowrap}
+.lc-ttl{font-size:13px;font-weight:500;color:#e8e4dc;flex:1}
+.lc-tog{font-size:11px;color:#5a5855;margin-left:auto;flex-shrink:0}
+.lc-body{display:none;margin-top:.8rem;border-top:1px solid rgba(255,255,255,.06);padding-top:.8rem}
+.lang-card.open .lc-body{display:block}
+.lc-tip{font-size:12px;color:#8a8470;line-height:1.7;margin-bottom:.6rem}
+.lc-exs{display:flex;flex-direction:column;gap:4px}
+.lc-ex{font-size:12px;color:#97c459;background:rgba(99,153,34,.07);border:1px solid rgba(99,153,34,.12);border-radius:6px;padding:5px 9px;font-style:italic}
+.ped-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:.9rem 1rem;margin-bottom:8px;cursor:pointer}
+.ped-card.open{border-color:rgba(15,110,86,.4)}
+.ped-card.locked-c{opacity:.3;cursor:not-allowed}
+.pc-head{display:flex;align-items:center;gap:8px}
+.pc-ico{font-size:18px;flex-shrink:0}
+.pc-ttl{font-size:13px;font-weight:500;color:#e8e4dc;flex:1}
+.pc-tog{font-size:11px;color:#5a5855;margin-left:auto;flex-shrink:0}
+.pc-body{display:none;margin-top:.8rem;border-top:1px solid rgba(255,255,255,.06);padding-top:.8rem}
+.ped-card.open .pc-body{display:block}
+.pc-mentor{background:rgba(15,110,86,.1);border-left:3px solid #0f6e56;padding:8px 12px;border-radius:0 6px 6px 0;font-size:12px;font-style:italic;color:#c8e4de;line-height:1.7;margin-bottom:.7rem}
+.pc-principle{background:rgba(59,109,17,.15);border:1px solid rgba(99,153,34,.25);border-radius:6px;padding:8px 12px;font-size:12px;font-weight:500;color:#97c459;margin-bottom:.7rem}
+.pc-section-lbl{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:#5a5855;margin-bottom:4px;margin-top:8px}
+.pc-warning{background:rgba(231,111,81,.08);border-left:3px solid #e76f51;padding:7px 10px;border-radius:0 6px 6px 0;font-size:12px;color:#c8876a;line-height:1.6}
+
+/* SCENARIO */
+#s-scenario{background:#0e1117;overflow-y:auto}
+.sc-wrap{padding:1rem;max-width:680px;width:100%;margin:0 auto;display:flex;flex-direction:column;gap:.85rem}
+
+/* BARS */
+.bars-panel{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:11px;padding:.9rem 1rem}
+.bars-hdr{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#5a5855;margin-bottom:.8rem;display:flex;justify-content:space-between}
+.bars-hdr span{font-size:10px;color:#3a3835;text-transform:none;letter-spacing:0}
+.bar-grp{margin-bottom:.7rem}
+.bar-grp:last-child{margin-bottom:0}
+.bar-grp-lbl{font-size:10px;color:#5a5650;margin-bottom:5px;font-weight:500}
+.bar-row{display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.bar-row:last-child{margin-bottom:0}
+.bar-nm{font-size:11px;color:#5a5650;width:110px;flex-shrink:0}
+.bar-track{flex:1;height:8px;background:rgba(255,255,255,.06);border-radius:6px;overflow:hidden}
+.bar-fill{height:100%;border-radius:6px;transition:width .7s ease,background .5s ease}
+.bar-pct{font-size:10px;width:34px;text-align:right;flex-shrink:0;font-weight:500}
+
+/* MENTOR BOX */
+.mentor-box{background:rgba(15,110,86,.1);border:1px solid rgba(15,110,86,.25);border-radius:11px;padding:1rem;display:flex;gap:10px;align-items:flex-start}
+.mentor-ico{font-size:20px;flex-shrink:0}
+.mentor-text{font-size:13px;font-style:italic;color:#c8e4de;line-height:1.7;flex:1}
+.mentor-name{font-size:10px;color:#5a9a8a;margin-top:4px}
+
+/* CASE CARD */
+.case-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:11px;padding:1rem}
+.case-lbl{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#5a5855;margin-bottom:7px}
+.case-text{font-size:13px;line-height:1.75;color:#c8c0b0;font-style:italic}
+.chars-row{display:flex;gap:7px;flex-wrap:wrap}
+.char-chip{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:5px 9px}
+.char-av{width:25px;height:25px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:500;flex-shrink:0}
+.char-nm{font-size:11px;color:#b8b4ac}
+.char-md{font-size:10px;color:#5a5855}
+
+/* MCQ */
+.mcq-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:11px;padding:1rem}
+.mcq-q{font-size:13px;color:#e8e4dc;line-height:1.6;margin-bottom:.9rem;font-weight:500}
+.mcq-opts{display:flex;flex-direction:column;gap:6px}
+.mcq-opt{display:flex;align-items:flex-start;gap:9px;padding:8px 10px;border-radius:8px;border:1px solid rgba(255,255,255,.08);cursor:pointer;transition:all .2s;text-align:left;background:none;width:100%}
+.mcq-opt:hover{background:rgba(255,255,255,.05)}
+.mcq-opt.selected-correct{background:rgba(99,153,34,.1);border-color:rgba(99,153,34,.35)}
+.mcq-opt.selected-wrong{background:rgba(231,111,81,.08);border-color:rgba(231,111,81,.3)}
+.mcq-opt.revealed-correct{background:rgba(99,153,34,.07);border-color:rgba(99,153,34,.2)}
+.mcq-letter{width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;flex-shrink:0;color:#e8e4dc}
+.mcq-opt.selected-correct .mcq-letter{background:#639922;color:#fff}
+.mcq-opt.selected-wrong .mcq-letter{background:#e76f51;color:#fff}
+.mcq-opt.revealed-correct .mcq-letter{background:rgba(99,153,34,.3);color:#97c459}
+.mcq-opt-text{font-size:12px;color:#c8c0b0;line-height:1.5;flex:1;text-align:left}
+.mcq-why{font-size:11px;color:#5a5855;margin-top:3px;display:none}
+.mcq-opt.selected-correct .mcq-why,.mcq-opt.selected-wrong .mcq-why,.mcq-opt.revealed-correct .mcq-why{display:block}
+.mcq-next{margin-top:.8rem;width:100%;background:rgba(99,153,34,.12);color:#97c459;border:1px solid rgba(99,153,34,.28);border-radius:9px;padding:9px;font-size:12px;font-weight:500;transition:background .2s;display:none}
+.mcq-next:hover{background:rgba(99,153,34,.22)}
+
+/* TACTIC CHOICE */
+.tactic-choice{display:flex;flex-direction:column;gap:8px}
+.tactic-btn{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:11px;padding:1rem;text-align:left;transition:all .2s;display:flex;align-items:center;gap:12px}
+.tactic-btn:hover{background:rgba(255,255,255,.08);border-color:rgba(99,153,34,.3)}
+.tactic-num{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;flex-shrink:0}
+.tactic-info .tactic-ttl{font-size:13px;font-weight:500;color:#e8e4dc}
+.tactic-info .tactic-desc{font-size:11px;color:#5a5855;margin-top:2px}
+.tactic-arrow{margin-left:auto;color:#5a5855;font-size:16px}
+
+/* SUPPORT PANEL */
+.support-panel{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:11px;overflow:hidden}
+.support-hdr{display:flex;align-items:center;justify-content:space-between;padding:.7rem 1rem;cursor:pointer;user-select:none;transition:background .2s}
+.support-hdr:hover{background:rgba(255,255,255,.04)}
+.support-hdr-l{font-size:11px;color:#5a5855;display:flex;align-items:center;gap:7px}
+.support-tog{font-size:11px;color:#3a3835}
+.support-body{display:none;border-top:1px solid rgba(255,255,255,.06);padding:.9rem 1rem}
+.support-body.open{display:block}
+.cliche-group{margin-bottom:.8rem}
+.cliche-group:last-child{margin-bottom:0}
+.cg-lbl{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:#5a5855;margin-bottom:5px}
+.cliche-pill{display:inline-block;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:4px 10px;font-size:11px;font-style:italic;color:#c8c0b0;margin:2px;cursor:pointer;transition:all .2s}
+.cliche-pill:hover{background:rgba(99,153,34,.1);border-color:rgba(99,153,34,.25);color:#97c459}
+
+/* STEP */
+.step-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:11px;padding:1rem}
+.step-head{display:flex;align-items:center;gap:8px;margin-bottom:.7rem}
+.step-badge{font-size:10px;font-weight:500;padding:2px 8px;border-radius:20px}
+.must-b{background:rgba(59,109,17,.2);color:#97c459}
+.opt-b{background:rgba(186,117,23,.2);color:#e9c46a}
+.step-title{font-size:13px;font-weight:500;color:#e8e4dc}
+.step-desc{font-size:12px;color:#8a8470;line-height:1.6;margin-bottom:.8rem}
+.step-running{font-size:11px;color:#5a5855;margin-bottom:.5rem}
+.running-score{font-size:12px;color:#97c459;font-weight:500}
+
+/* RESPONSE */
+.resp-lbl{font-size:11px;color:#5a5855;margin-bottom:5px}
+.resp-ta{width:100%;background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.1);border-radius:9px;padding:10px 12px;color:#e8e4dc;font-family:inherit;font-size:13px;line-height:1.6;resize:none;min-height:80px;outline:none;transition:border-color .2s;-webkit-appearance:none}
+.resp-ta:focus{border-color:rgba(99,153,34,.4)}
+.resp-ta::placeholder{color:#2e2c28}
+.resp-ta.bad{border-color:rgba(231,111,81,.5)!important;background:rgba(80,20,10,.2)!important}
+.wc-row{display:flex;justify-content:space-between;margin-top:4px}
+.wc{font-size:10px;color:#3a3835}
+.sub-row{display:flex;align-items:center;gap:10px;margin-top:.7rem}
+.sub-btn{background:#3b6d11;color:#c0dd97;border:none;border-radius:9px;padding:10px 20px;font-size:13px;font-weight:500;transition:background .2s}
+.sub-btn:hover{background:#4a8a15}
+.sub-btn:disabled{opacity:.4;cursor:not-allowed}
+.spin-row{display:none;align-items:center;gap:7px;font-size:12px;color:#5a5650;font-style:italic}
+.spin-row.on{display:flex}
+.spin{width:12px;height:12px;border:2px solid rgba(99,153,34,.15);border-top-color:#639922;border-radius:50%;animation:sp .8s linear infinite;flex-shrink:0}
+@keyframes sp{to{transform:rotate(360deg)}}
+
+/* BLOCK */
+.block-box{display:none;background:rgba(80,20,10,.6);border:2px solid rgba(231,111,81,.4);border-radius:11px;padding:1rem}
+.block-box.on{display:block}
+.block-title{font-size:13px;font-weight:500;color:#e76f51;margin-bottom:.5rem}
+.block-body{font-size:12px;color:#c0876a;line-height:1.65;margin-bottom:.8rem}
+.block-retry{width:100%;background:rgba(231,111,81,.15);color:#e76f51;border:1px solid rgba(231,111,81,.3);border-radius:9px;padding:9px;font-size:12px;font-weight:500;transition:background .2s}
+.block-retry:hover{background:rgba(231,111,81,.25)}
+
+/* FEEDBACK */
+.fb-wrap{display:none;flex-direction:column;gap:.7rem}
+.fb-wrap.on{display:flex}
+.fb-box{border-radius:11px;padding:1rem}
+.fb-box.green{background:rgba(30,50,20,.5);border:1px solid rgba(99,153,34,.2)}
+.fb-box.blue{background:rgba(20,30,50,.5);border:1px solid rgba(99,153,170,.2)}
+.fb-box.amber{background:rgba(40,25,10,.5);border:1px solid rgba(186,117,23,.2)}
+.fb-box.neutral{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07)}
+.fb-sec-lbl{font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;margin-bottom:.8rem}
+.fb-box.green .fb-sec-lbl{color:#639922}
+.fb-box.blue .fb-sec-lbl{color:#85b7eb}
+.fb-box.amber .fb-sec-lbl{color:#e9c46a}
+.fb-box.neutral .fb-sec-lbl{color:#8a8470}
+.scores-g{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:.8rem}
+.sc-it{background:rgba(255,255,255,.03);border-radius:8px;padding:6px 8px}
+.sc-nm{font-size:10px;color:#5a5855;margin-bottom:3px}
+.sc-br{display:flex;align-items:center;gap:6px}
+.sc-trk{flex:1;height:3px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden}
+.sc-fill{height:100%;border-radius:3px;transition:width .8s ease}
+.sc-v{font-size:11px;font-weight:500;min-width:16px}
+.crit-comment{font-size:11px;color:#5a5650;margin-bottom:5px;padding:4px 7px;border-left:2px solid rgba(255,255,255,.08);line-height:1.5}
+.goal-bar-wrap{margin-bottom:.7rem}
+.goal-bar-meta{display:flex;justify-content:space-between;font-size:11px;margin-bottom:5px}
+.goal-track{height:6px;background:rgba(255,255,255,.06);border-radius:4px;overflow:hidden}
+.goal-fill{height:100%;border-radius:4px;transition:width .8s}
+.lesson-row{display:flex;align-items:flex-start;gap:8px;margin-bottom:.5rem;font-size:12px;line-height:1.5}
+.l-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:4px}
+.rb-row{display:flex;align-items:center;gap:8px;font-size:11px;margin-bottom:4px}
+.rb-row:last-child{margin-bottom:0}
+.rb-nm{width:110px;color:#5a5650;flex-shrink:0}
+.rb-track{flex:1;height:6px;background:rgba(255,255,255,.06);border-radius:4px;overflow:hidden}
+.rb-fill{height:100%;border-radius:4px}
+.rb-pct{width:35px;text-align:right;font-weight:500}
+.rb-lbl{font-size:10px;padding:2px 7px;border-radius:20px;flex-shrink:0}
+.fb-txt{font-size:12px;color:#8a8470;line-height:1.7}
+.ach-row{display:none;background:rgba(186,117,23,.08);border:1px solid rgba(186,117,23,.25);border-radius:9px;padding:9px 12px;align-items:center;gap:9px}
+.ach-row.on{display:flex}
+.ach-ico{font-size:19px}
+.ach-t{font-size:12px;color:#e9c46a;font-weight:500}
+.ach-d{font-size:10px;color:#5a5855;margin-top:1px}
+
+/* REFLECTION */
+.reflect-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:11px;padding:1rem}
+.reflect-lbl{font-size:11px;color:#5a5855;margin-bottom:.6rem;text-transform:uppercase;letter-spacing:.08em;font-size:10px}
+.reflect-q{font-size:13px;color:#e8e4dc;line-height:1.6;margin-bottom:.8rem}
+.reflect-ta{width:100%;background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.1);border-radius:9px;padding:10px 12px;color:#e8e4dc;font-family:inherit;font-size:13px;line-height:1.6;resize:none;min-height:70px;outline:none;transition:border-color .2s;-webkit-appearance:none}
+.reflect-ta:focus{border-color:rgba(99,153,34,.4)}
+.reflect-ta::placeholder{color:#2e2c28}
+.reflect-btns{display:flex;gap:8px;margin-top:.7rem}
+.reflect-submit{flex:1;background:#3b6d11;color:#c0dd97;border:none;border-radius:9px;padding:9px;font-size:12px;font-weight:500;transition:background .2s}
+.reflect-submit:hover{background:#4a8a15}
+.reflect-skip{background:rgba(255,255,255,.04);color:#5a5855;border:1px solid rgba(255,255,255,.08);border-radius:9px;padding:9px 14px;font-size:12px;transition:all .2s}
+.reflect-skip:hover{background:rgba(255,255,255,.08)}
+.skip-confirm{display:none;background:rgba(40,25,10,.5);border:1px solid rgba(186,117,23,.2);border-radius:9px;padding:.8rem;margin-top:.6rem}
+.skip-confirm.on{display:block}
+.skip-q{font-size:12px;color:#e9c46a;margin-bottom:.6rem;line-height:1.5}
+.skip-ta{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:8px 10px;color:#e8e4dc;font-family:inherit;font-size:12px;resize:none;min-height:50px;outline:none}
+.skip-btns{display:flex;gap:7px;margin-top:.6rem}
+.skip-anyway{flex:1;background:rgba(186,117,23,.12);color:#e9c46a;border:1px solid rgba(186,117,23,.25);border-radius:8px;padding:7px;font-size:11px;transition:background .2s}
+.skip-anyway:hover{background:rgba(186,117,23,.22)}
+.skip-back{background:rgba(255,255,255,.04);color:#5a5855;border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:7px 12px;font-size:11px;transition:all .2s}
+.skip-back:hover{background:rgba(255,255,255,.08)}
+.nxt-btn{width:100%;background:rgba(99,153,34,.12);color:#97c459;border:1px solid rgba(99,153,34,.28);border-radius:9px;padding:10px;font-size:13px;font-weight:500;transition:background .2s}
+.nxt-btn:hover{background:rgba(99,153,34,.22)}
+
+/* TACTIC RESULT */
+.tactic-result{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:11px;padding:1rem}
+.tr-score{text-align:center;margin-bottom:1rem}
+.tr-num{font-size:2.5rem;font-weight:300;color:#97c459}
+.tr-max{font-size:1rem;color:#5a5855}
+.tr-label{font-size:11px;color:#5a5855;margin-top:4px}
+.tr-btns{display:flex;flex-direction:column;gap:7px;margin-top:1rem}
+.tr-btn{padding:10px;border-radius:9px;font-size:12px;font-weight:500;transition:all .2s;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:#e8e4dc}
+.tr-btn:hover{background:rgba(255,255,255,.08)}
+.tr-btn.primary{background:rgba(99,153,34,.12);color:#97c459;border-color:rgba(99,153,34,.28)}
+.tr-btn.primary:hover{background:rgba(99,153,34,.22)}
+
+/* TOAST */
+#toast-stack{position:fixed;top:12px;right:12px;z-index:1000;display:flex;flex-direction:column;gap:6px;max-width:260px;pointer-events:none}
+.toast{border-radius:9px;padding:9px 12px;font-size:12px;line-height:1.4;animation:tIn .3s ease;border-left:3px solid #e76f51;background:#1a1208}
+.toast.warn{border-color:#e9c46a;color:#e9c46a}
+.toast.crit{border-color:#e76f51;color:#e76f51}
+.toast.good{border-color:#639922;color:#97c459}
+@keyframes tIn{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:translateX(0)}}
+
+/* COMPLETE */
+#s-complete{background:#0e1117;align-items:center;justify-content:center;padding:2rem;text-align:center}
+.c-ico{font-size:2.5rem;margin-bottom:.9rem}
+.c-title{font-size:1.5rem;font-weight:400;color:#f2ede4;margin-bottom:.4rem}
+.c-sub{font-size:13px;color:#5a5855;margin-bottom:1.5rem;max-width:340px;line-height:1.6}
+.fin-g{display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:300px;margin:0 auto 1.5rem}
+.fin-it{background:rgba(255,255,255,.04);border-radius:9px;padding:10px}
+.fin-n{font-size:1.2rem;font-weight:500;color:#97c459}
+.fin-l{font-size:10px;color:#5a5855;margin-top:2px}
+.exp-box{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:9px;padding:.9rem;max-width:420px;margin:0 auto;text-align:left;width:100%}
+.exp-lbl{font-size:10px;color:#5a5855;margin-bottom:5px;text-transform:uppercase;letter-spacing:.1em}
+.exp-data{font-family:monospace;font-size:9px;color:#639922;background:rgba(0,0,0,.3);border-radius:6px;padding:7px;white-space:pre-wrap;word-break:break-all;max-height:100px;overflow-y:auto}
+.copy-btn{width:100%;margin-top:8px;background:rgba(99,153,34,.1);color:#97c459;border:1px solid rgba(99,153,34,.2);border-radius:7px;padding:7px;font-size:11px;transition:background .2s}
+.copy-btn:hover{background:rgba(99,153,34,.2)}
+</style>
+</head>
+<body>
+<div id="toast-stack"></div>
+
+<!-- WELCOME -->
+<div id="s-welcome" class="screen active">
+  <div class="w-badge">EFL Teacher Training · Semester Journey</div>
+  <h1 class="w-title">Welcome to<br><em>Lesson Breakthrough</em></h1>
+  <p class="w-sub">You are a teacher-in-training at a state secondary school. Navigate real classroom moments — your words shape every outcome.</p>
+  <div class="w-form">
+    <div class="w-lbl">Your participant ID</div>
+    <div class="w-err" id="w-err">Please enter your ID first.</div>
+    <input class="w-inp" id="pid" type="text" placeholder="e.g. ST-042" maxlength="20" autocomplete="off"/>
+    <button class="w-btn" id="begin-btn">Begin the semester →</button>
+    <p class="w-note">Use this same ID for pre/post test forms. Returning users: enter the same ID to resume.</p>
+    <div class="w-ret" id="w-ret"></div>
+  </div>
+</div>
+
+<!-- MAP -->
+<div id="s-map" class="screen">
+  <div class="topbar">
+    <div class="tb-info"><div class="tb-lbl">Lesson Breakthrough</div><div class="tb-ttl">Semester Map</div></div>
+    <div class="tb-pill" id="map-pid"></div>
+  </div>
+  <div class="map-body">
+    <div class="xp-row">
+      <div class="xp-meta"><span>Teaching XP</span><span id="xp-val">0 XP</span></div>
+      <div class="xp-track"><div class="xp-fill" id="xp-fill" style="width:0%"></div></div>
+    </div>
+    <div class="folders-row">
+      <button class="folder-btn" id="btn-ach">
+        <span class="f-ico">🏅</span>
+        <div><div class="f-ttl">Achievements</div><div class="f-sub">Badges & pedagogy cards</div></div>
+        <span class="f-badge" id="ach-badge">0/2</span>
+      </button>
+      <button class="folder-btn" id="btn-cards">
+        <span class="f-ico">📖</span>
+        <div><div class="f-ttl">Language Cards</div><div class="f-sub">Phrases & pedagogy cards</div></div>
+        <span class="f-badge" id="cards-badge">!</span>
+      </button>
+    </div>
+    <div id="mod-list"></div>
+  </div>
+</div>
+
+<!-- ACHIEVEMENTS -->
+<div id="s-achievements" class="screen">
+  <div class="topbar"><button class="tb-back" data-back="s-map">←</button><div class="tb-info"><div class="tb-lbl">Folder</div><div class="tb-ttl">Achievements & Pedagogy Cards</div></div></div>
+  <div class="folder-body">
+    <p class="folder-intro">Each achievement unlocks a pedagogy card — a professional insight earned through practice.</p>
+    <div class="ach-list" id="ach-list"></div>
+    <div style="margin-top:1.2rem">
+      <div class="fb-sec-lbl" style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#3a3835;margin-bottom:.7rem">Pedagogy cards</div>
+      <div id="ped-cards-list"></div>
+    </div>
+  </div>
+</div>
+
+<!-- LANGUAGE CARDS -->
+<div id="s-cards" class="screen">
+  <div class="topbar"><button class="tb-back" id="cards-back">←</button><div class="tb-info"><div class="tb-lbl">Folder</div><div class="tb-ttl">Language Cards</div></div></div>
+  <div class="folder-body">
+    <p class="folder-intro">Use these before or after any scenario. Click a phrase to copy it into your response.</p>
+    <div class="ctabs" id="ctabs"></div>
+    <div class="card-list" id="card-list"></div>
+  </div>
+</div>
+
+<!-- SCENARIO -->
+<div id="s-scenario" class="screen">
+  <div class="topbar">
+    <button class="tb-back" data-back="s-map">←</button>
+    <div class="tb-info"><div class="tb-lbl" id="sc-lbl"></div><div class="tb-ttl" id="sc-ttl"></div></div>
+    <button class="tb-pill" id="sc-cards-btn" style="background:none;border:1px solid rgba(99,153,34,.25);color:#639922;border-radius:7px;padding:3px 9px;font-size:11px;cursor:pointer">📖 Cards</button>
+  </div>
+  <div class="sc-wrap" id="sc-wrap">
+    <!-- Dynamically populated -->
+  </div>
+</div>
+
+<!-- COMPLETE -->
+<div id="s-complete" class="screen">
+  <div class="c-ico">🎓</div>
+  <h1 class="c-title">Well done!</h1>
+  <p class="c-sub">You completed both available scenarios. More scenarios coming soon.</p>
+  <div class="fin-g" id="fin-g"></div>
+  <div class="exp-box">
+    <div class="exp-lbl">Research export — copy for your data collection</div>
+    <div class="exp-data" id="exp-data"></div>
+    <button class="copy-btn" id="copy-export">Copy to clipboard</button>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════
+
+const ACHIEVEMENTS = [
+  { id: 'a1', icon: '🏅', title: 'Hello, Teacher!', desc: 'Completed Scenario 1 — Self-introduction', scenario: 'S1' },
+  { id: 'a2', icon: '🤝', title: 'First Contact Established', desc: 'Completed Scenario 2 — Ice-breaking games', scenario: 'S2' }
+];
+
+const PED_CARDS = [
+  {
+    id: 'pc1', icon: '💬', title: 'The First Thirty Seconds', unlockedBy: 'a1',
+    mentor: "Your first thirty seconds in that room will set the tone for the whole term. They're not judging your English — they're deciding whether they can trust you. Make them feel safe first.",
+    principle: 'The first impression a teacher creates is not about knowledge — it is about safety.',
+    practice: ['Speak first — take the communicative initiative so students don\'t have to.', 'Name the awkwardness directly: "I know first lessons can feel a bit strange."', 'Offer a choice — informal name, optional questions, open invitation to speak.', 'End with a forward-looking statement that creates positive expectation for the term.'],
+    mistake: 'Many pre-service teachers begin with rules and expectations — they want to establish authority early. This signals distrust before the relationship has begun.'
+  },
+  {
+    id: 'pc2', icon: '🎭', title: 'Adapting Your Introduction to Your Audience', unlockedBy: 'a1',
+    mentor: 'The goal is always the same — make them feel safe. But what "safe" looks like is completely different for a nine-year-old, a teenager, and an adult. Read the room before you open your mouth.',
+    principle: 'The same communicative goal requires different strategies depending on who is in the room.',
+    practice: ['Teenagers (12–17): Acknowledge the awkwardness. Offer an informal name option. Signal that their opinions matter. A personal detail works better than credentials.', 'Primary (7–11): Simpler vocabulary, shorter sentences, physical eye level. Use a visual or game rather than a speech.', 'Adults (18+): Treat as equals from the first sentence. State your teaching approach briefly. Light self-aware humour signals confidence.'],
+    mistake: 'Using the same introduction script regardless of audience — a teenager\'s classroom needs a different opening than an adult evening class, even if the language goal is identical.'
+  },
+  {
+    id: 'pc3', icon: '🎲', title: 'The Ice-Breaker Promise', unlockedBy: 'a2',
+    mentor: "An ice-breaker isn't a game — it's a promise. You're telling these students: this is a place where it's safe to speak, safe to get it wrong, and safe to be yourself. The activity is just the vehicle. Your tone is the message.",
+    principle: 'An ice-breaking activity succeeds or fails on the teacher\'s tone — not on the activity itself.',
+    practice: ['Frame the activity as play, not performance — "there are no wrong answers" before you explain the rules.', 'Model first — go before your students so they see what is expected and that it is safe.', 'Encourage without forcing — offer low-pressure entry points for hesitant students.', 'Close with a named observation — "you just had your first real conversation together" makes the learning visible.'],
+    mistake: 'Focusing on whether students complete the activity rather than whether they felt safe doing it — a perfectly completed bingo card means nothing if three students felt too anxious to speak.'
+  },
+  {
+    id: 'pc4', icon: '🤲', title: 'Managing Participation Without Pressure', unlockedBy: 'a2',
+    mentor: "There will always be one student who won't move. The worst thing you can do is make it a public issue. The best thing you can do is make it very easy to take one small step.",
+    principle: 'Inclusion in a group activity is created through low-pressure invitations, not through rules about mandatory participation.',
+    practice: ['Approach hesitant students quietly and individually — never name their passivity to the group.', 'Offer the smallest possible step: "Shall we start with just one question together?"', 'For overexcited students — redirect energy rather than suppress it: "great energy, let\'s keep it in walking pace."', 'Use participation as observation data — who initiates, who follows, who opts out tells you something useful.'],
+    mistake: 'Calling out non-participating students by name in front of the class — this protects the teacher\'s sense of control at the cost of the student\'s sense of safety.'
+  },
+  {
+    id: 'pc5', icon: '💬', title: 'What Makes Students Want to Talk: The Three Gaps', unlockedBy: 'a2',
+    mentor: "Students don't talk because you tell them to. They talk because they need something from each other — a piece of information, an opinion, a solution. Build the need first, and the language follows.",
+    principle: 'Every communicative task works because it creates a gap between what one person knows and what another needs to find out. No gap — no real communication.',
+    practice: ['Information gap: give each student different information. They must talk to complete a task neither can finish alone. Works at all levels.', 'Opinion gap: choose a topic with no objectively right answer. Students form, express, and defend a personal position. Requires language for giving reasons.', 'Reasoning gap: give students incomplete clues. The answer is logical but requires collaboration to reach. Most cognitively demanding — use when students have enough confidence.', 'Before designing any speaking task, ask: what does Student A have that Student B needs? That question creates the gap.'],
+    mistake: 'Asking students to "discuss" a topic without creating a real gap — when everyone already knows the answer, or when there is nothing to find out from each other, students perform conversation rather than have it.'
+  }
+];
+
+const LANG_CARDS = [
+  {
+    cat: 'Greeting & opening', title: 'Opening phrases',
+    tip: 'Your first words set the tone. Start warm and direct.',
+    exs: ['Hello! Good morning / Good afternoon, everyone!', "I'm glad to meet you.", 'My name is …, and I\'ll be your English teacher this term.', 'Before we start, let me tell you a little about myself.']
+  },
+  {
+    cat: 'Greeting & opening', title: 'Accessibility & tone-setting',
+    tip: 'Signal that you are approachable from the first moment.',
+    exs: ['You can call me … — whichever feels more comfortable.', "I know the first lesson with a new teacher can feel a bit strange, so I'll go first.", 'I hope we\'ll have a productive and comfortable course together.', 'This is your classroom too — I want you to feel comfortable speaking here.']
+  },
+  {
+    cat: 'Launching activities', title: 'Starting a game or activity',
+    tip: 'Frame activities as play, not performance.',
+    exs: ["Let's get to know each other a little better.", "Let's start with something simple and fun.", "Here's a game — and the goal is to try, not to be perfect.", "I'll go first so you can see how it works."]
+  },
+  {
+    cat: 'Reducing pressure', title: 'Reassurance phrases',
+    tip: 'Explicit permission to be imperfect reduces anxiety immediately.',
+    exs: ["Don't worry about mistakes — just try.", 'A short answer is perfectly fine.', 'Take your time.', "You don't need to be perfect — just have a go."]
+  },
+  {
+    cat: 'Encouraging', title: 'During activities',
+    tip: 'Brief, energetic, non-evaluative feedback keeps momentum going.',
+    exs: ['Good — keep going.', 'Thank you for sharing that.', "Nice — who's next?", "Great idea — can you say a bit more?"]
+  },
+  {
+    cat: 'Instructions', title: 'Giving sequenced instructions',
+    tip: 'One action per sentence. First / then / finally.',
+    exs: ['First… then… finally…', 'You have five minutes. First everyone shares one idea, then agree on the best one.', 'Before you start, make sure everyone has understood the task.', "When you're ready, raise your hand."]
+  }
+];
+
+const MODULES = [
+  {
+    id: 'mod1', title: 'Module 1', subtitle: 'Foundations', icon: '📚',
+    scenarios: [
+      { id: 's1', title: 'Self-introduction', desc: 'Making your first impression', playable: true, xp: 80 },
+      { id: 's2', title: 'Ice-breaking games', desc: 'Creating a safe space for communication', playable: true, xp: 100 },
+      { id: 's3', title: 'Making Contact at the Beginning of the Lesson', desc: 'Opening every lesson well', playable: false },
+      { id: 's4', title: 'Setting the Lesson Goals', desc: 'Communicating learning objectives clearly', playable: false },
+      { id: 's5', title: 'Using Classroom Language', desc: 'Professional classroom communication', playable: false },
+      { id: 's6', title: 'Giving Instructions to the Task', desc: 'Clear, sequenced task instructions', playable: false },
+      { id: 's7', title: 'Addressing Students Personally', desc: 'Individual student communication', playable: false },
+      { id: 's8', title: 'Scaffolding, ICQs and CCQs', desc: 'Supporting student understanding', playable: false },
+      { id: 's9', title: 'Finishing the Lesson — Reflection Time', desc: 'Closing lessons effectively', playable: false }
+    ]
+  },
+  { id: 'mod2', title: 'Module 2', subtitle: 'Coming soon', icon: '🔒', scenarios: [], locked: true },
+  { id: 'mod3', title: 'Module 3', subtitle: 'Coming soon', icon: '🔒', scenarios: [], locked: true }
+];
+
+// ═══════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════
+const S = {
+  pid: '', xp: 0, done: [], achs: [], log: [], att: {},
+  bars: { energy: 100, motiv: 75, involve: 70, stress: 20 },
+  cur: null, curTactic: null, curStepIdx: 0, curSteps: [],
+  runningScore: 0, runningMax: 0,
+  mcqPhase: 0, tacticPhase: false,
+  reflectIdx: 0, reflectQs: [],
+  newCards: true, newAchs: false
+};
+let cardsFrom = 's-map';
+
+// ═══════════════════════════════════════
+// PERSIST
+// ═══════════════════════════════════════
+async function saveProgress() {
+  const data = { pid: S.pid, xp: S.xp, done: S.done, achs: S.achs, log: S.log, att: S.att };
+  try {
+    await fetch('/api/save', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ pid: S.pid, data })
+    });
+  } catch(e) { console.error('Save failed', e); }
+}
+
+async function loadProgress(pid) {
+  try {
+    const res = await fetch('/api/load', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ pid })
+    });
+    const data = await res.json();
+    if (data.found && data.data) {
+      S.xp = data.data.xp || 0;
+      S.done = data.data.done || [];
+      S.achs = data.data.achs || [];
+      S.log = data.data.log || [];
+      S.att = data.data.att || {};
+      return true;
+    }
+  } catch(e) { console.error('Load failed', e); }
+  return false;
+}
+
+// ═══════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════
+function go(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function mkToast(msg, type = 'warn') {
+  const s = document.getElementById('toast-stack');
+  const t = document.createElement('div');
+  t.className = 'toast ' + type; t.textContent = msg; s.appendChild(t);
+  setTimeout(() => t.style.opacity = '0', 3500);
+  setTimeout(() => t.remove(), 4000);
+}
+
+// ═══════════════════════════════════════
+// BARS
+// ═══════════════════════════════════════
+function bCol(v, isStr) {
+  if (isStr) return v >= 75 ? '#e76f51' : v >= 50 ? '#e9c46a' : '#639922';
+  return v <= 25 ? '#e76f51' : v <= 50 ? '#e9c46a' : v <= 75 ? '#f9a825' : '#639922';
+}
+function bLbl(v, isStr) {
+  if (isStr) { if (v >= 75) return '⚠ Critical'; if (v >= 50) return 'High'; if (v >= 25) return 'Moderate'; return 'Low'; }
+  if (v <= 10) return '⛔ Critical'; if (v <= 25) return '⚠ Poor'; if (v <= 50) return 'Okay — focus!'; if (v <= 75) return 'Good'; return 'Awesome!';
+}
+function setBarEl(id, v, isStr = false) {
+  const f = document.getElementById('bf-' + id), p = document.getElementById('bp-' + id);
+  if (!f || !p) return;
+  f.style.width = v + '%'; f.style.background = bCol(v, isStr);
+  p.textContent = v + '%'; p.style.color = bCol(v, isStr);
+}
+function setBars(b) {
+  Object.assign(S.bars, b);
+  setBarEl('energy', b.energy); setBarEl('motiv', b.motiv);
+  setBarEl('involve', b.involve); setBarEl('stress', b.stress, true);
+}
+function applyDeltas(d) {
+  if (!d) return;
+  const oldBars = { ...S.bars };
+  const nb = {
+    energy: Math.max(5, Math.min(100, S.bars.energy + (d.energyDelta || 0))),
+    motiv: Math.max(5, Math.min(100, S.bars.motiv + (d.motivDelta || 0))),
+    involve: Math.max(5, Math.min(100, S.bars.involve + (d.involveDelta || 0))),
+    stress: Math.max(0, Math.min(100, S.bars.stress + (d.stressDelta || 0)))
+  };
+  checkBarNotifs(nb, oldBars);
+  setBars(nb);
+}
+function checkBarNotifs(nv, ov) {
+  const checks = [
+    { k: 'energy', l: 'Your energy', s: false },
+    { k: 'motiv', l: 'Class motivation', s: false },
+    { k: 'involve', l: 'Class involvement', s: false },
+    { k: 'stress', l: 'Class stress', s: true }
+  ];
+  checks.forEach(({ k, l, s }) => {
+    const n = nv[k], o = ov[k];
+    if (!s) {
+      if (n <= 10 && o > 10) mkToast('⛔ ' + l + ' is critical!', 'crit');
+      else if (n <= 25 && o > 25) mkToast('⚠ ' + l + ' is dropping — check your tone.', 'warn');
+      else if (n <= 50 && o > 50) mkToast('💡 ' + l + ' below 50% — concentrate!', 'warn');
+      else if (n >= 75 && o < 75) mkToast('✓ ' + l + ' is back to good!', 'good');
+    } else {
+      if (n >= 75 && o < 75) mkToast('⛔ Class stress critical! De-escalate now.', 'crit');
+      else if (n >= 50 && o < 50) mkToast('⚠ Stress rising — watch your tone.', 'warn');
+      else if (n <= 25 && o > 25) mkToast('✓ Stress low — class feels safe.', 'good');
+    }
+  });
+}
+
+// ═══════════════════════════════════════
+// MAP
+// ═══════════════════════════════════════
+function renderMap() {
+  document.getElementById('map-pid').textContent = S.pid;
+  const pct = Math.min(100, Math.round((S.xp / 500) * 100));
+  document.getElementById('xp-fill').style.width = pct + '%';
+  document.getElementById('xp-val').textContent = S.xp + ' XP';
+  document.getElementById('ach-badge').textContent = S.achs.length + '/2';
+  if (S.newCards) document.getElementById('cards-badge').textContent = '!';
+  else document.getElementById('cards-badge').textContent = '12';
+
+  const list = document.getElementById('mod-list');
+  list.innerHTML = '';
+
+  MODULES.forEach(mod => {
+    const sec = document.createElement('div');
+    sec.className = 'module-section';
+
+    const secLbl = document.createElement('div');
+    secLbl.className = 'mod-section-lbl';
+    secLbl.textContent = mod.locked ? mod.title + ' — ' + mod.subtitle : mod.title + ' — ' + mod.subtitle;
+    sec.appendChild(secLbl);
+
+    if (mod.locked) {
+      const lc = document.createElement('div');
+      lc.className = 'mod-card locked';
+      lc.innerHTML = `<div class="mod-ico" style="background:rgba(255,255,255,.05)">🔒</div><div class="mod-info"><div class="mod-name">${mod.title}</div><div class="mod-desc">Available in a future update</div></div>`;
+      sec.appendChild(lc);
+    } else {
+      const ml = document.createElement('div');
+      ml.className = 'mod-list';
+      mod.scenarios.forEach((sc, i) => {
+        const done = S.done.includes(sc.id);
+        const playable = sc.playable;
+        const isCurrent = playable && !done;
+        const tries = (S.att[sc.id] || []).length;
+
+        const d = document.createElement('div');
+        d.className = 'mod-card' + (playable ? (done ? ' done' : isCurrent ? ' current playable' : ' playable') : ' locked');
+
+        let rightContent = '';
+        if (!playable) rightContent = '🔒';
+        else if (done) rightContent = `✓<br><span style="color:#3b6d11;font-size:10px">+${sc.xp}XP</span>`;
+        else rightContent = '▶ Play';
+
+        d.innerHTML = `
+          <div class="mod-ico" style="background:rgba(${playable ? '59,109,17' : '255,255,255'},.15)">${playable ? (i === 0 ? '🌱' : '🎮') : '🔒'}</div>
+          <div class="mod-info">
+            <div class="mod-wk">Scenario ${i + 1}</div>
+            <div class="mod-name">${sc.title}</div>
+            <div class="mod-desc">${sc.desc}${tries > 1 ? ' · ' + tries + ' attempts' : ''}</div>
+          </div>
+          <div class="mod-right">${rightContent}</div>`;
+
+        if (playable) d.addEventListener('click', () => openScenario(sc.id));
+        ml.appendChild(d);
+      });
+      sec.appendChild(ml);
+    }
+    list.appendChild(sec);
+  });
+}
+
+// ═══════════════════════════════════════
+// ACHIEVEMENTS
+// ═══════════════════════════════════════
+function renderAchievements() {
+  const list = document.getElementById('ach-list');
+  list.innerHTML = '';
+  ACHIEVEMENTS.forEach(a => {
+    const earned = S.achs.includes(a.id);
+    const d = document.createElement('div');
+    d.className = 'ach-item ' + (earned ? 'earned' : 'locked-a');
+    d.innerHTML = `<div class="ach-ico-wrap">${a.icon}</div><div><div class="ach-name">${a.title}</div><div class="ach-desc">${earned ? a.desc : 'Complete the scenario to unlock.'}</div></div><div class="ach-st ${earned ? '' : 'pend'}">${earned ? '✓' : 'Locked'}</div>`;
+    list.appendChild(d);
+  });
+
+  const pedList = document.getElementById('ped-cards-list');
+  pedList.innerHTML = '';
+  PED_CARDS.forEach(pc => {
+    const unlocked = S.achs.includes(pc.unlockedBy);
+    const d = document.createElement('div');
+    d.className = 'ped-card' + (unlocked ? '' : ' locked-c');
+    d.innerHTML = `<div class="pc-head"><span class="pc-ico">${pc.icon}</span><span class="pc-ttl">${pc.title}</span><span class="pc-tog">${unlocked ? '▾ Read' : '🔒'}</span></div>
+      <div class="pc-body">
+        <div class="pc-mentor">"${pc.mentor}"<div style="font-size:10px;color:#5a9a8a;margin-top:4px">— Your Mentor</div></div>
+        <div class="pc-principle">${pc.principle}</div>
+        <div class="pc-section-lbl">In practice</div>
+        ${pc.practice.map(p => `<div style="font-size:12px;color:#c8c0b0;line-height:1.6;margin-bottom:5px;padding-left:12px;border-left:2px solid rgba(99,153,34,.3)">• ${p}</div>`).join('')}
+        <div class="pc-section-lbl" style="margin-top:10px">Common mistake</div>
+        <div class="pc-warning">${pc.mistake}</div>
+      </div>`;
+    if (unlocked) {
+      d.querySelector('.pc-head').addEventListener('click', () => {
+        const o = d.classList.toggle('open');
+        d.querySelector('.pc-tog').textContent = o ? '▴ Close' : '▾ Read';
+      });
+    }
+    pedList.appendChild(d);
+  });
+}
+
+// ═══════════════════════════════════════
+// LANGUAGE CARDS
+// ═══════════════════════════════════════
+const CATS = [...new Set(LANG_CARDS.map(c => c.cat))];
+let activeCat = CATS[0];
+
+function renderCards(cat) {
+  activeCat = cat;
+  S.newCards = false;
+  document.getElementById('cards-badge').textContent = LANG_CARDS.length;
+
+  const tabs = document.getElementById('ctabs');
+  tabs.innerHTML = '';
+  CATS.forEach(c => {
+    const b = document.createElement('button');
+    b.className = 'ctab' + (c === cat ? ' active' : '');
+    b.textContent = c;
+    b.addEventListener('click', () => renderCards(c));
+    tabs.appendChild(b);
+  });
+
+  const list = document.getElementById('card-list');
+  list.innerHTML = '';
+  LANG_CARDS.filter(c => c.cat === cat).forEach(card => {
+    const d = document.createElement('div');
+    d.className = 'lang-card';
+    d.innerHTML = `<div class="lc-head"><span class="lc-tag">${card.cat}</span><span class="lc-ttl">${card.title}</span><span class="lc-tog">▾ Show</span></div>
+      <div class="lc-body"><p class="lc-tip">${card.tip}</p><div class="lc-exs">${card.exs.map(e => `<div class="lc-ex" data-phrase="${e}">"${e}"</div>`).join('')}</div></div>`;
+    d.querySelector('.lc-head').addEventListener('click', () => {
+      const o = d.classList.toggle('open');
+      d.querySelector('.lc-tog').textContent = o ? '▴ Hide' : '▾ Show';
+    });
+    d.querySelectorAll('.lc-ex').forEach(ex => {
+      ex.addEventListener('click', () => {
+        const phrase = ex.dataset.phrase;
+        const ta = document.getElementById('resp-ta');
+        if (ta) { ta.value = ta.value ? ta.value + ' ' + phrase : phrase; ta.focus(); }
+        go('s-scenario');
+        mkToast('Phrase added to your response ✓', 'good');
+      });
+    });
+    list.appendChild(d);
+  });
+}
+
+// ═══════════════════════════════════════
+// SCENARIO DEFINITIONS
+// ═══════════════════════════════════════
+const SCENARIO_DATA = {
+  s1: {
+    title: 'Self-introduction',
+    desc: 'Making your first impression',
+    mentorLine: "Your first thirty seconds in that room will set the tone for the whole term. They're not judging your English — they're deciding whether they can trust you. Make them feel safe first.",
+    initBars: { energy: 100, motiv: 55, involve: 45, stress: 35 },
+    chars: [{ name: 'Lena', mood: 'curious', c: '#3b6d11' }, { name: 'Nick', mood: 'reserved', c: '#185fa5' }, { name: 'Paul', mood: 'fidgeting', c: '#ba7517' }],
+    situation: "It's the first day of term. You enter classroom 8B for the first time. 14 students aged 14–16 look at you with cautious curiosity — some show interest, others stiffness and distance. The atmosphere is unstable. This is first contact.",
+    goal: 'Establish a positive, safe communicative atmosphere and communicate your presence as an accessible, friendly interlocutor.',
+    criteria: ['Register appropriateness', 'Pragmatic appropriateness', 'Affective climate management', 'Linguistic accuracy & clarity', 'Contact-establishing behaviour'],
+    mcqs: [
+      {
+        q: 'You are about to introduce yourself to a new class of teenagers for the first time. What is the MAIN purpose of a teacher\'s self-introduction?',
+        opts: [
+          { text: 'To give students a full biography and professional background', why: 'Wrong — too much information, shifts focus to the teacher not the relationship', correct: false },
+          { text: 'To demonstrate subject knowledge and set expectations for the course', why: 'Wrong — demonstrating expertise before trust creates distance, not rapport', correct: false },
+          { text: 'To reduce distance, create trust, and set a tone for open communication', why: '✓ Correct — this is the contact-establishing function', correct: true },
+          { text: 'To explain all lesson rules and behavioural expectations from the start', why: 'Wrong — rules before rapport raises stress rather than lowering it', correct: false }
+        ]
+      },
+      {
+        q: 'You are introducing yourself to teenagers (ages 14–15) in an EFL classroom. Which opening line best establishes safe, open communication?',
+        opts: [
+          { text: '"Good morning. I am Ekaterina Sergeevna, your English teacher. Let us begin."', why: 'Wrong — formally correct but cold; creates distance immediately', correct: false },
+          { text: '"Hi everyone! I\'m Katya, I love English and I hope you will too!"', why: 'Partially correct — warm but possibly too casual for a first professional impression', correct: false },
+          { text: '"Hello, everyone — I\'m glad to meet you. My name is Ekaterina Sergeevna, but you can call me Katya. I hope this term we\'ll do some interesting things together."', why: '✓ Correct — balances warmth, professional identity, accessibility, and forward-looking tone', correct: true },
+          { text: '"Before we do anything else, I want to tell you my rules for this class."', why: 'Wrong — rules before relationship; raises stress and communicates distrust immediately', correct: false }
+        ]
+      }
+    ],
+    clicheGroups: [
+      { label: 'Greeting', phrases: ['Hello! Good morning / Good afternoon, everyone!', "I'm glad to meet you."] },
+      { label: 'Self-identification', phrases: ['My name is …, and I\'ll be your English teacher this term.', 'You can call me … — whichever feels more comfortable.'] },
+      { label: 'Rapport-building', phrases: ["I know the first lesson with a new teacher can feel a bit strange — so I'll go first.", "I hope we'll have a productive and comfortable course together."] },
+      { label: 'Tone-setting', phrases: ['If you have questions — just ask.', 'This is your classroom too — I want you to feel comfortable speaking here.'] }
+    ],
+    reflectQs: [
+      { score: [0, 3], q: 'Что помогает установить контакт с учениками на первом уроке? Что из этого вы использовали в своём ответе — и чего не хватило?' },
+      { score: [4, 7], q: 'Вы представлялись подросткам (14–15 лет). Что бы вы изменили в своём само-представлении, если бы обращались к младшим школьникам или взрослым студентам?' },
+      { score: [8, 99], q: 'Каким учителем вы хотите быть в глазах своих учеников — и отражает ли ваше само-представление этот образ?' }
+    ],
+    achievementId: 'a1',
+    xp: 80
+  },
+  s2: {
+    title: 'Ice-breaking games',
+    desc: 'Creating a safe space for communication',
+    mentorLine: "An ice-breaker isn't a game — it's a promise. You're telling these students: this is a place where it's safe to speak, safe to get it wrong, and safe to be yourself. The activity is just the vehicle. Your tone is the message.",
+    initBars: { energy: 97, motiv: 65, involve: 55, stress: 25 },
+    chars: [{ name: 'Lena', mood: 'ready', c: '#3b6d11' }, { name: 'Nick', mood: 'watching', c: '#185fa5' }, { name: 'Paul', mood: 'excited', c: '#ba7517' }],
+    situation: 'It is the first or second lesson. The class is polite but reserved — a few students are ready to speak, while others are waiting to see what is expected of them. You are going to run an ice-breaking activity.',
+    goal: 'Create a safe, engaging interaction space where students can get to know each other and begin speaking without fear.',
+    mcqs: [
+      {
+        q: 'What is the main purpose of an ice-breaking game at the beginning of working with a new group?',
+        opts: [
+          { text: 'To test grammar accuracy under pressure', why: 'Wrong — pressure is the opposite of what an ice-breaker creates', correct: false },
+          { text: 'To reduce anxiety, build first contact, and encourage participation', why: '✓ Correct — affective-communicative and organisational goal combined', correct: true },
+          { text: 'To identify only the strongest speakers', why: 'Wrong — assessment is not the goal; this framing creates anxiety', correct: false },
+          { text: 'To finish the activity as quickly as possible', why: 'Wrong — speed prioritises the task over the communicative atmosphere', correct: false }
+        ]
+      },
+      {
+        q: 'During a group ice-breaking activity, you notice two students are not participating — one is watching quietly and one is whispering in Russian. What do you do?',
+        opts: [
+          { text: 'Stop the activity and ask them to explain why they are not participating', why: 'Wrong — public pressure increases anxiety, the opposite of the goal', correct: false },
+          { text: 'Approach them quietly and offer a low-pressure way in — a simple question or a role as observer first', why: '✓ Correct — inclusive, low-pressure, preserves dignity', correct: true },
+          { text: 'Ignore it for now and focus on the students who are participating', why: 'Partially acceptable — avoids confrontation, but leaves two students behind', correct: false },
+          { text: 'End the activity early since not everyone is engaged', why: 'Wrong — abandons the pedagogical goal entirely', correct: false }
+        ]
+      }
+    ],
+    tactics: [
+      {
+        id: 't1', title: 'Find Someone Who…', desc: 'Students walk around asking simple questions to find classmates who match each prompt.',
+        criteria: ['Affective-communicative: safe space', 'Communicative-organisational: activity management', 'Register appropriateness', 'Linguistic accuracy & clarity'],
+        steps: [
+          { id: 'intro', type: 'must', title: 'Introducing the game', desc: 'Introduce the activity to the class. Make it sound appealing and low-pressure before explaining how it works.', situation: 'You are about to start "Find Someone Who…" with a new class. You need to introduce it in a way that makes students want to join in.', goal: 'Students feel curious and willing to try — not anxious.', criteria: ['Warmth & tone', 'Framing as play not performance', 'Register for teenagers'] },
+          { id: 'rules', type: 'must', title: 'Explaining the rules', desc: 'Explain how the activity works — what students do, in what order, for how long. Include a modelled example.', situation: 'You are explaining the rules of "Find Someone Who…". Students have a card with sentences.', goal: 'All students can start immediately after your instructions.', criteria: ['Instruction clarity', 'Modelling included', 'Reassurance about mistakes', 'Time limit stated'] },
+          { id: 'time', type: 'must', title: 'Managing time', desc: 'One minute remains. Give a time warning and prepare students for transition.', situation: 'Students have been active for four minutes. One minute remains. You need to warn them and prepare for the next step.', goal: 'Smooth transition — students feel the activity is closing naturally, not being cut off.', criteria: ['Clear time warning', 'Preview of what comes next', 'Positive tone maintained'] },
+          { id: 'learnt', type: 'must', title: 'Asking what students learnt', desc: 'Ask the class to share something they discovered about a classmate.', situation: 'The activity has ended. Students have their completed cards. You want to open a brief sharing moment.', goal: 'At least 2-3 students share voluntarily. Sharing feels natural, not like answer-checking.', criteria: ['Open, curious question', 'Not framed as assessment', 'Warm response to first answer'] },
+          { id: 'close', type: 'must', title: 'Finishing the game — small conclusion', desc: 'Close the activity. Name what happened and connect it forward.', situation: 'The sharing is done. You need to close the activity and connect it to the lesson or the term ahead.', goal: 'Students feel the activity had meaning. A positive forward-looking connection is made.', criteria: ['Names what was achieved', 'Validates class effort', 'Forward-looking connection'] }
+        ],
+        optSteps: [
+          { id: 'passive', type: 'opt', title: 'Stimulating passive students', desc: 'Nick and another student are standing still, not approaching anyone after 90 seconds.', situation: 'The activity has been running for 90 seconds. Nick and one other student are standing still, holding their cards but not moving. What do you say to them?', goal: 'Nick starts participating without feeling publicly singled out.', criteria: ['Quiet individual approach', 'Face-saving offer', 'No public naming of passivity'] },
+          { id: 'excited', type: 'opt', title: 'Managing overexcited students', desc: 'Paul and two others are running and speaking very loudly.', situation: 'Paul and two students are running across the room and speaking loudly in Russian. One has knocked a chair. What do you say?', goal: 'Energy redirected without stopping the activity or shaming anyone.', criteria: ['Calm tone', 'Names behaviour not person', 'Activity continues'] },
+          { id: 'english', type: 'opt', title: 'Stimulating English use', desc: 'Students are active but mostly speaking Russian.', situation: 'Students are engaged and moving around but most pairs are speaking Russian. What do you say?', goal: 'Students switch to English without feeling punished for using Russian.', criteria: ['Positive nudge', 'Models a phrase', 'No penalty framing'] },
+          { id: 'rules_check', type: 'opt', title: 'Checking rule-following', desc: 'Some students are writing names without asking questions.', situation: 'You notice some students are filling in names on their card without actually asking questions — they are guessing or copying. What do you say?', goal: 'Students redirected to the communicative purpose without accusation.', criteria: ['Redirects to purpose not the violation', 'No singling out', 'Light tone'] }
+        ],
+        clicheGroups: [
+          { label: 'Launching', phrases: ["Let's get to know each other a little better.", "Let's start with something simple and fun."] },
+          { label: 'Reducing pressure', phrases: ["Don't worry about mistakes — just try.", 'A short answer is perfectly fine.', 'Take your time.'] },
+          { label: 'Encouraging', phrases: ['Good — keep going.', 'Thank you for sharing that.'] }
+        ]
+      },
+      {
+        id: 't2', title: 'Two Truths and One Lie', desc: 'Each student says three things about themselves — two true, one a lie. The class guesses the lie.',
+        criteria: ['Affective-communicative: safe space', 'Communicative-organisational: activity management', 'Register appropriateness', 'Linguistic accuracy & clarity'],
+        steps: [
+          { id: 'intro', type: 'must', title: 'Introducing the game', desc: 'Introduce Two Truths and One Lie — make it sound playful and intriguing.', situation: 'You are introducing "Two Truths and One Lie" to a new class. The goal is to make them curious and willing to try before explaining rules.', goal: 'Students feel curious and playful — not anxious about having to speak.', criteria: ['Curiosity and energy built', 'Framed as fun not performance', 'Register appropriate for teenagers'] },
+          { id: 'rules', type: 'must', title: 'Explaining the rules + modelling', desc: 'Explain how the game works AND demonstrate your own three statements before asking students.', situation: 'You are explaining Two Truths and One Lie. You need to give the rules AND model the game yourself first before asking any student to try.', goal: 'Students understand the rules and see it is safe to try because the teacher went first.', criteria: ['Rules clear and brief', 'Teacher models first with personal detail', 'Reassurance about length ("just three short sentences")'] },
+          { id: 'time', type: 'must', title: 'Managing time', desc: 'Decide when enough students have shared and prepare the transition.', situation: 'Four students have shared. You need to wrap up the sharing phase naturally — not too abruptly, not dragging it out.', goal: 'Students feel the activity ended at the right moment, not cut off.', criteria: ['Natural close', 'No "we spent too long" framing', 'Preview of what comes next'] },
+          { id: 'learnt', type: 'must', title: 'Asking what students learnt', desc: 'Ask the class what they found out about each other.', situation: 'The game is over. You want to invite a brief reflection on what students discovered.', goal: 'Students share voluntarily. Sharing feels natural and warm, not like an assessment.', criteria: ['Open curious question', 'Not framed as competitive ("who guessed most")', 'Warm response to first answer'] },
+          { id: 'close', type: 'must', title: 'Finishing the game — small conclusion', desc: 'Close the activity and connect it forward.', situation: 'The sharing is done. You need to close the game and connect it to what comes next.', goal: 'Students feel the activity had real meaning. A positive connection is made.', criteria: ['Names what was achieved', 'Validates the class', 'Forward-looking connection'] }
+        ],
+        optSteps: [
+          { id: 'passive', type: 'opt', title: 'Stimulating passive students', desc: 'After three students share, silence falls and nobody volunteers.', situation: 'After three students have shared, nobody is volunteering. Silence. Several students look at their hands. What do you say?', goal: 'Students feel it is safe to try even with something simple.', criteria: ['Lowers the bar ("just one easy thing")', 'No public roll-call of the silent', 'Warm invitation'] },
+          { id: 'excited', type: 'opt', title: 'Managing overexcited students', desc: 'Paul and George are calling out and laughing before the speaker finishes.', situation: 'Paul and George are calling out guesses and laughing loudly before Lena has finished speaking. Lena looks flustered. What do you say?', goal: 'Lena can finish. Paul and George are redirected without being shamed.', criteria: ['Redirects without naming or shaming', 'Gives Lena space to continue', 'Playful not punitive tone'] },
+          { id: 'english', type: 'opt', title: 'Stimulating English use', desc: 'Students are guessing enthusiastically but in Russian.', situation: 'Students are enthusiastically guessing the lie — but all in Russian. What do you say?', goal: 'Students switch to English without losing their enthusiasm.', criteria: ['Models the English phrase', 'Positive nudge not a rule', 'No penalty framing'] }
+        ],
+        clicheGroups: [
+          { label: 'Launching', phrases: ["Here's a game where the goal is to trick each other.", "I'll go first so you can see how it works."] },
+          { label: 'Reducing pressure', phrases: ['You only need three short sentences.', 'Take your time — there\'s no rush.'] },
+          { label: 'Encouraging', phrases: ['Great guess — now say it in English.', 'Well done for going first.'] }
+        ]
+      },
+      {
+        id: 't3', title: 'Classmate Bingo', desc: 'Students interact with classmates to complete a bingo grid with personal facts and experiences.',
+        criteria: ['Affective-communicative: safe space', 'Communicative-organisational: activity management', 'Register appropriateness', 'Linguistic accuracy & clarity'],
+        steps: [
+          { id: 'intro', type: 'must', title: 'Introducing the game', desc: 'Introduce Classmate Bingo — make the bingo mechanic sound exciting before explaining rules.', situation: 'You are introducing "Classmate Bingo" to a new class. You want to build excitement around the bingo mechanic before explaining the rules.', goal: 'Students feel curious about the activity and want to start.', criteria: ['Bingo excitement built', 'Social purpose named', 'Register warm and energetic'] },
+          { id: 'rules', type: 'must', title: 'Explaining the rules + demonstrating one box', desc: 'Explain how bingo works AND demonstrate one specific box from the card.', situation: 'You are explaining Classmate Bingo. Students each have a bingo card. You need to explain the rules AND demonstrate how to fill in one specific box before releasing them.', goal: 'Students know exactly what question to ask and what counts as filling a box.', criteria: ['Demonstrates one specific box', 'Win condition clear (full line, raise hand, say Bingo)', 'Safety net offered ("ask me quietly if unsure")'] },
+          { id: 'time', type: 'must', title: 'Managing time', desc: 'One minute remains. Give a time warning.', situation: 'Students have been active for four minutes. One minute remains.', goal: 'Students feel the activity is ending naturally. The bingo excitement is preserved.', criteria: ['Clear time warning', 'Bingo finish line referenced ("try to complete your line")', 'Positive tone'] },
+          { id: 'learnt', type: 'must', title: 'Asking what students learnt', desc: 'Ask the class what they found out about each other.', situation: 'The bingo cards are completed. You want to invite a brief sharing moment before moving on.', goal: 'Students share something genuine they discovered — not just who won.', criteria: ['Not framed as "who won"', 'Open question about what was discovered', 'Warm not evaluative'] },
+          { id: 'close', type: 'must', title: 'Finishing the game — small conclusion', desc: 'Close the activity and connect it forward.', situation: 'Sharing is done. You need to close the activity and connect it to what comes next.', goal: 'Students feel the activity had meaning. A forward-looking connection is made.', criteria: ['Names what was achieved', 'Validates the class', 'Forward-looking connection'] }
+        ],
+        optSteps: [
+          { id: 'passive', type: 'opt', title: 'Stimulating passive students', desc: 'Nick is sitting at his desk looking at the card but not moving after one minute.', situation: 'Nick is sitting at his desk, looking at his bingo card but not moving. One minute has passed. What do you say?', goal: 'Nick starts without feeling publicly singled out.', criteria: ['Quiet individual approach', 'Shows him which box to start with', 'Models the question for him'] },
+          { id: 'rules_check', type: 'opt', title: 'Checking rule-following', desc: 'Two students have the same name in every box — they are copying from each other.', situation: 'You notice two students have the same name in every box of their bingo card. They are clearly copying from each other rather than asking different classmates. What do you say?', goal: 'Students redirected to the communicative purpose without accusation or shame.', criteria: ['Redirects to purpose not violation', 'Not "that\'s cheating"', 'Light tone'] },
+          { id: 'english', type: 'opt', title: 'Stimulating English use', desc: 'Students are active but speaking Russian.', situation: 'Students are moving around and engaged but most are asking questions in Russian. What do you say?', goal: 'Students switch to English without stopping the activity.', criteria: ['Models the question in English', 'Positive nudge', 'No penalty framing'] }
+        ],
+        clicheGroups: [
+          { label: 'Launching', phrases: ["Has anyone played bingo before? We're doing a version where you find classmates.", 'When you complete a line — shout Bingo!'] },
+          { label: 'Reducing pressure', phrases: ["If you're not sure how to ask, come and ask me quietly.", 'A short yes or no answer is fine.'] },
+          { label: 'Encouraging', phrases: ['Good — keep going!', 'One more minute — try to finish your line.'] }
+        ]
+      }
+    ],
+    reflectQs: [
+      { score: [0, 4], q: 'Какие игры-ледоколы вы используете или планируете использовать в практике? Что из этого вы попробовали в своём ответе?' },
+      { score: [5, 8], q: 'Что помогает вовлечь учеников в игру? Какие элементы вашей инструкции лучше всего создали безопасную атмосферу?' },
+      { score: [9, 12], q: 'Как вы поступите, если ученик отказывается участвовать в игре? Как поступили бы с таким учеником в своём варианте?' },
+      { score: [13, 99], q: 'На что вы обратите внимание, пока ученики играют? Как используете эти наблюдения в дальнейшем?' }
+    ],
+    achievementId: 'a2',
+    xp: 100
+  }
+};
+
+// ═══════════════════════════════════════
+// OPEN SCENARIO
+// ═══════════════════════════════════════
+function openScenario(id) {
+  const sc = SCENARIO_DATA[id];
+  if (!sc) return;
+  S.cur = id;
+  S.mcqPhase = 0;
+  S.tacticPhase = false;
+  S.curTactic = null;
+  S.curStepIdx = 0;
+  S.curSteps = [];
+  S.runningScore = 0;
+  S.runningMax = 0;
+
+  setBars(sc.initBars);
+  document.getElementById('sc-lbl').textContent = sc.title;
+  document.getElementById('sc-ttl').textContent = sc.desc;
+
+  renderScenarioPhase('case');
+  go('s-scenario');
+}
+
+function renderScenarioPhase(phase) {
+  const sc = SCENARIO_DATA[S.cur];
+  const wrap = document.getElementById('sc-wrap');
+  wrap.innerHTML = '';
+
+  // Always show bars
+  wrap.appendChild(makeBarsPanel());
+
+  if (phase === 'case') renderCasePhase(wrap, sc);
+  else if (phase === 'mcq') renderMCQPhase(wrap, sc);
+  else if (phase === 'tactic_choice') renderTacticChoice(wrap, sc);
+  else if (phase === 'step') renderStepPhase(wrap);
+  else if (phase === 'tactic_result') renderTacticResult(wrap);
+  else if (phase === 'reflect') renderReflectPhase(wrap, sc);
+}
+
+function makeBarsPanel() {
+  const div = document.createElement('div');
+  div.className = 'bars-panel';
+  div.innerHTML = `
+    <div class="bars-hdr">Classroom pulse <span>Updates after each response</span></div>
+    <div class="bar-grp">
+      <div class="bar-grp-lbl">👩‍🏫 Teacher</div>
+      <div class="bar-row"><span class="bar-nm">Personal energy</span><div class="bar-track"><div class="bar-fill" id="bf-energy" style="width:${S.bars.energy}%;background:${bCol(S.bars.energy,false)}"></div></div><span class="bar-pct" id="bp-energy" style="color:${bCol(S.bars.energy,false)}">${S.bars.energy}%</span></div>
+    </div>
+    <div class="bar-grp">
+      <div class="bar-grp-lbl">🎓 Whole class</div>
+      <div class="bar-row"><span class="bar-nm">Motivation</span><div class="bar-track"><div class="bar-fill" id="bf-motiv" style="width:${S.bars.motiv}%;background:${bCol(S.bars.motiv,false)}"></div></div><span class="bar-pct" id="bp-motiv" style="color:${bCol(S.bars.motiv,false)}">${S.bars.motiv}%</span></div>
+      <div class="bar-row"><span class="bar-nm">Involvement</span><div class="bar-track"><div class="bar-fill" id="bf-involve" style="width:${S.bars.involve}%;background:${bCol(S.bars.involve,false)}"></div></div><span class="bar-pct" id="bp-involve" style="color:${bCol(S.bars.involve,false)}">${S.bars.involve}%</span></div>
+      <div class="bar-row"><span class="bar-nm">Stress</span><div class="bar-track"><div class="bar-fill" id="bf-stress" style="width:${S.bars.stress}%;background:${bCol(S.bars.stress,true)}"></div></div><span class="bar-pct" id="bp-stress" style="color:${bCol(S.bars.stress,true)}">${S.bars.stress}%</span></div>
+    </div>`;
+  return div;
+}
+
+function renderCasePhase(wrap, sc) {
+  // Mentor line
+  const mb = document.createElement('div');
+  mb.className = 'mentor-box';
+  mb.innerHTML = `<div class="mentor-ico">👩‍🏫</div><div><div class="mentor-text">"${sc.mentorLine}"</div><div class="mentor-name">— Your Mentor</div></div>`;
+  wrap.appendChild(mb);
+
+  // Case
+  const cc = document.createElement('div');
+  cc.className = 'case-card';
+  cc.innerHTML = `<div class="case-lbl">The situation</div><p class="case-text">${sc.situation}</p>`;
+  wrap.appendChild(cc);
+
+  // Characters
+  if (sc.chars) {
+    const cr = document.createElement('div');
+    cr.className = 'chars-row';
+    sc.chars.forEach(c => {
+      const chip = document.createElement('div');
+      chip.className = 'char-chip';
+      chip.innerHTML = `<div class="char-av" style="background:${c.c}22;color:${c.c}">${c.name[0]}</div><div><div class="char-nm">${c.name}</div><div class="char-md">${c.mood}</div></div>`;
+      cr.appendChild(chip);
+    });
+    wrap.appendChild(cr);
+  }
+
+  // Continue button
+  const btn = document.createElement('button');
+  btn.className = 'nxt-btn';
+  btn.textContent = 'Continue →';
+  btn.addEventListener('click', () => { S.mcqPhase = 0; renderScenarioPhase('mcq'); });
+  wrap.appendChild(btn);
+}
+
+function renderMCQPhase(wrap, sc) {
+  const mcq = sc.mcqs[S.mcqPhase];
+  const card = document.createElement('div');
+  card.className = 'mcq-card';
+
+  const progress = document.createElement('div');
+  progress.style.cssText = 'font-size:10px;color:#5a5855;margin-bottom:.6rem;text-transform:uppercase;letter-spacing:.08em';
+  progress.textContent = `Knowledge check ${S.mcqPhase + 1} of ${sc.mcqs.length}`;
+  card.appendChild(progress);
+
+  const q = document.createElement('div');
+  q.className = 'mcq-q';
+  q.textContent = mcq.q;
+  card.appendChild(q);
+
+  const opts = document.createElement('div');
+  opts.className = 'mcq-opts';
+  const letters = ['A', 'B', 'C', 'D'];
+  let answered = false;
+
+  mcq.opts.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'mcq-opt';
+    btn.innerHTML = `<div class="mcq-letter">${letters[i]}</div><div class="mcq-opt-text">${opt.text}<div class="mcq-why">${opt.why}</div></div>`;
+    btn.addEventListener('click', () => {
+      if (answered) return;
+      answered = true;
+      opts.querySelectorAll('.mcq-opt').forEach((b, j) => {
+        if (j === i) b.className = 'mcq-opt ' + (opt.correct ? 'selected-correct' : 'selected-wrong');
+        else if (mcq.opts[j].correct) b.className = 'mcq-opt revealed-correct';
+      });
+      nextBtn.style.display = 'block';
+    });
+    opts.appendChild(btn);
+  });
+  card.appendChild(opts);
+
+  const nextBtn = document.createElement('button');
+  nextBtn.className = 'mcq-next';
+  nextBtn.style.display = 'none';
+  nextBtn.textContent = S.mcqPhase < sc.mcqs.length - 1 ? 'Next question →' : (sc.tactics ? 'Choose your activity →' : 'Write your response →');
+  nextBtn.addEventListener('click', () => {
+    S.mcqPhase++;
+    if (S.mcqPhase < sc.mcqs.length) renderScenarioPhase('mcq');
+    else if (sc.tactics) renderScenarioPhase('tactic_choice');
+    else renderSingleResponsePhase(wrap, sc);
+  });
+  card.appendChild(nextBtn);
+  wrap.appendChild(card);
+}
+
+function renderTacticChoice(wrap, sc) {
+  const lbl = document.createElement('div');
+  lbl.style.cssText = 'font-size:12px;color:#5a5855;margin-bottom:.8rem;line-height:1.6';
+  lbl.textContent = 'Choose an ice-breaking activity. Complete it, then return to try the others.';
+  wrap.appendChild(lbl);
+
+  const prev = (S.att[S.cur + '_tactics'] || {});
+
+  const tc = document.createElement('div');
+  tc.className = 'tactic-choice';
+
+  sc.tactics.forEach((t, i) => {
+    const tries = (prev[t.id] || []).length;
+    const btn = document.createElement('button');
+    btn.className = 'tactic-btn';
+    const colors = ['#185fa5', '#3b6d11', '#854f0b'];
+    btn.innerHTML = `
+      <div class="tactic-num" style="background:${colors[i]}33;color:${colors[i]}">${i + 1}</div>
+      <div class="tactic-info">
+        <div class="tactic-ttl">${t.title}</div>
+        <div class="tactic-desc">${t.desc}${tries > 0 ? ' · ' + tries + ' attempt' + (tries > 1 ? 's' : '') : ''}</div>
+      </div>
+      <div class="tactic-arrow">→</div>`;
+    btn.addEventListener('click', () => startTactic(t));
+    tc.appendChild(btn);
+  });
+  wrap.appendChild(tc);
+}
+
+function startTactic(tactic) {
+  S.curTactic = tactic;
+  S.tacticPhase = true;
+  S.runningScore = 0;
+  S.runningMax = 0;
+  S.curStepScores = [];
+
+  // Build step sequence: must steps + 1-2 random opt steps inserted at right position
+  const mustSteps = [...tactic.steps];
+  const optPool = [...tactic.optSteps];
+  const numOpt = Math.floor(Math.random() * 2) + 1; // 1 or 2
+  const selectedOpts = optPool.sort(() => 0.5 - Math.random()).slice(0, Math.min(numOpt, optPool.length));
+
+  // Insert opt steps between rules and time management
+  const insertIdx = 2; // after intro and rules
+  const allSteps = [
+    ...mustSteps.slice(0, insertIdx),
+    ...selectedOpts,
+    ...mustSteps.slice(insertIdx)
+  ];
+
+  S.curSteps = allSteps;
+  S.curStepIdx = 0;
+  renderScenarioPhase('step');
+}
+
+function renderStepPhase(wrap) {
+  const step = S.curSteps[S.curStepIdx];
+  const tactic = S.curTactic;
+
+  // Progress bar
+  const prog = document.createElement('div');
+  prog.style.cssText = 'font-size:11px;color:#5a5855;margin-bottom:.5rem;display:flex;justify-content:space-between';
+  prog.innerHTML = `<span>${tactic.title}</span><span>Step ${S.curStepIdx + 1} / ${S.curSteps.length}</span>`;
+  wrap.appendChild(prog);
+
+  const trackDiv = document.createElement('div');
+  trackDiv.style.cssText = 'height:3px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden;margin-bottom:.8rem';
+  const trackFill = document.createElement('div');
+  trackFill.style.cssText = `height:100%;width:${Math.round((S.curStepIdx / S.curSteps.length) * 100)}%;background:#639922;border-radius:3px;transition:width .4s`;
+  trackDiv.appendChild(trackFill);
+  wrap.appendChild(trackDiv);
+
+  // Step card
+  const sc_data = SCENARIO_DATA[S.cur];
+  const card = document.createElement('div');
+  card.className = 'step-card';
+  card.innerHTML = `
+    <div class="step-head">
+      <span class="step-badge ${step.type === 'must' ? 'must-b' : 'opt-b'}">${step.type === 'must' ? 'MUST' : 'OPTIONAL'}</span>
+      <span class="step-title">${step.title}</span>
+      <span class="step-num">max 2 pts</span>
+    </div>
+    <div class="step-desc">${step.desc}</div>
+    <div class="case-lbl" style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:#5a5855;margin-bottom:5px">What's happening</div>
+    <div style="font-size:12px;color:#c8c0b0;font-style:italic;line-height:1.65;margin-bottom:.8rem">${step.situation}</div>
+    <div style="font-size:11px;color:#5a5650;margin-bottom:.8rem">
+      <span style="color:#639922;font-weight:500">Running score: </span>
+      <span id="running-score">${S.runningScore} / ${S.runningMax} pts so far</span>
+    </div>`;
+  wrap.appendChild(card);
+
+  // Support panel with clichés
+  const sup = document.createElement('div');
+  sup.className = 'support-panel';
+  const supHdr = document.createElement('div');
+  supHdr.className = 'support-hdr';
+  supHdr.innerHTML = '<div class="support-hdr-l">💡 Helpful phrases — click to insert</div><span class="support-tog">▾ Show</span>';
+  const supBody = document.createElement('div');
+  supBody.className = 'support-body';
+  tactic.clicheGroups.forEach(g => {
+    const grp = document.createElement('div');
+    grp.className = 'cliche-group';
+    grp.innerHTML = `<div class="cg-lbl">${g.label}</div>`;
+    g.phrases.forEach(p => {
+      const pill = document.createElement('span');
+      pill.className = 'cliche-pill';
+      pill.textContent = `"${p}"`;
+      pill.addEventListener('click', () => {
+        const ta = document.getElementById('resp-ta');
+        if (ta) { ta.value = ta.value ? ta.value + ' ' + p : p; ta.focus(); }
+      });
+      grp.appendChild(pill);
+    });
+    supBody.appendChild(grp);
+  });
+  supHdr.addEventListener('click', () => {
+    const o = supBody.classList.toggle('open');
+    supHdr.querySelector('.support-tog').textContent = o ? '▴ Hide' : '▾ Show';
+  });
+  sup.appendChild(supHdr);
+  sup.appendChild(supBody);
+  wrap.appendChild(sup);
+
+  // Response
+  const respDiv = document.createElement('div');
+  respDiv.innerHTML = `
+    <div class="resp-lbl">Your response as the teacher — write in English:</div>
+    <textarea class="resp-ta" id="resp-ta" placeholder="Type what you would say in this moment..."></textarea>
+    <div class="wc-row"><span class="wc" id="wc">0 words</span><span style="font-size:10px;color:#3a3835">Aim for 2–4 sentences</span></div>`;
+  wrap.appendChild(respDiv);
+
+  document.getElementById('resp-ta')?.addEventListener('input', function() {
+    const w = this.value.trim().split(/\s+/).filter(x => x).length;
+    const wc = document.getElementById('wc');
+    if (wc) wc.textContent = w + (w === 1 ? ' word' : ' words');
+  });
+
+  // Submit row
+  const subRow = document.createElement('div');
+  subRow.className = 'sub-row';
+  const subBtn = document.createElement('button');
+  subBtn.className = 'sub-btn';
+  subBtn.id = 'sub-btn';
+  subBtn.textContent = 'Submit';
+  const spinRow = document.createElement('div');
+  spinRow.className = 'spin-row';
+  spinRow.id = 'spin-row';
+  spinRow.innerHTML = '<div class="spin"></div>Assessing…';
+  subRow.appendChild(subBtn);
+  subRow.appendChild(spinRow);
+  wrap.appendChild(subRow);
+
+  // Block panel
+  const blockBox = document.createElement('div');
+  blockBox.className = 'block-box';
+  blockBox.id = 'block-box';
+  blockBox.innerHTML = `<div class="block-title">⛔ Response cannot be submitted</div><div class="block-body" id="block-body"></div><button class="block-retry" id="block-retry">Clear and try again →</button>`;
+  wrap.appendChild(blockBox);
+
+  // Feedback panel (hidden initially)
+  const fbWrap = document.createElement('div');
+  fbWrap.className = 'fb-wrap';
+  fbWrap.id = 'fb-wrap';
+  fbWrap.innerHTML = `
+    <div class="fb-box green"><div class="fb-sec-lbl">NLP analysis</div><div class="scores-g" id="scores-g"></div><div id="crit-comments"></div></div>
+    <div class="fb-box blue"><div class="fb-sec-lbl">Goal achievement</div><div id="lesson-rows"></div></div>
+    <div class="fb-box amber"><div class="fb-sec-lbl">Classroom pulse</div><div id="result-bars"></div></div>
+    <div class="fb-box neutral"><div class="fb-sec-lbl">Coach's note</div><p class="fb-txt" id="fb-txt"></p></div>
+    <div class="ach-row" id="ach-row"><div class="ach-ico" id="ach-ico"></div><div><div class="ach-t" id="ach-t"></div><div class="ach-d" id="ach-d"></div></div></div>
+    <button class="nxt-btn" id="nxt-btn">${S.curStepIdx < S.curSteps.length - 1 ? 'Next step →' : 'See results →'}</button>`;
+  wrap.appendChild(fbWrap);
+
+  // Wire up submit
+  subBtn.addEventListener('click', () => submitStep(step));
+  document.getElementById('block-retry')?.addEventListener('click', () => {
+    document.getElementById('resp-ta').value = '';
+    document.getElementById('resp-ta').classList.remove('bad');
+    document.getElementById('block-box').className = 'block-box';
+    subBtn.disabled = false;
+  });
+  document.getElementById('nxt-btn')?.addEventListener('click', () => {
+    S.curStepIdx++;
+    if (S.curStepIdx < S.curSteps.length) renderScenarioPhase('step');
+    else renderScenarioPhase('tactic_result');
+  });
+}
+
+async function submitStep(step) {
+  const resp = document.getElementById('resp-ta')?.value?.trim();
+  if (!resp || resp.length < 5) { alert('Please write your response first.'); return; }
+
+  const subBtn = document.getElementById('sub-btn');
+  const spinRow = document.getElementById('spin-row');
+  subBtn.disabled = true;
+  spinRow.className = 'spin-row on';
+
+  try {
+    const res = await fetch('/api/assess', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        response: resp,
+        situation: step.situation,
+        goal: step.goal || 'Demonstrate professional communicative competence.',
+        criteria: step.criteria || ['Register', 'Clarity', 'Empathy', 'Pragmatic appropriateness'],
+        moduleId: S.cur,
+        stepId: step.id
+      })
+    });
+    const p = await res.json();
+    spinRow.className = 'spin-row';
+    subBtn.disabled = false;
+
+    if (p.inappropriate) {
+      document.getElementById('resp-ta').classList.add('bad');
+      document.getElementById('block-body').innerHTML = `<p style="margin-bottom:.5rem"><strong>Reason:</strong> ${p.inappropriateReason}</p><p>Professional teaching requires respectful, relevant language. Review the Language Cards for guidance, then try again.</p>`;
+      document.getElementById('block-box').className = 'block-box on';
+      document.getElementById('block-box').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+
+    showStepFeedback(p, resp, step);
+  } catch(e) {
+    spinRow.className = 'spin-row';
+    subBtn.disabled = false;
+    mkToast('Assessment failed — please check connection and try again.', 'crit');
+  }
+}
+
+function showStepFeedback(p, resp, step) {
+  applyDeltas(p.barDeltas);
+
+  const total = (p.scores || []).reduce((a, s) => a + s.score, 0);
+  const avg = p.scores?.length ? total / p.scores.length : 3;
+  S.runningScore += Math.round(avg * 2);
+  S.runningMax += 10;
+  if (!S.curStepScores) S.curStepScores = [];
+  S.curStepScores.push({ stepId: step.id, scores: p.scores || [] });
+
+  const grid = document.getElementById('scores-g');
+  if (grid) {
+    grid.innerHTML = '';
+    const cc = document.getElementById('crit-comments');
+    if (cc) cc.innerHTML = '';
+    (p.scores || []).forEach(s => {
+      const pct = (s.score / 5) * 100;
+      const col = s.score >= 4 ? '#639922' : s.score >= 3 ? '#ba7517' : '#993c1d';
+      const d = document.createElement('div');
+      d.className = 'sc-it';
+      d.innerHTML = `<div class="sc-nm">${s.criterion}</div><div class="sc-br"><div class="sc-trk"><div class="sc-fill" style="width:${pct}%;background:${col}"></div></div><span class="sc-v" style="color:${col}">${s.score}/5</span></div>`;
+      grid.appendChild(d);
+      if (s.comment && cc) {
+        const c = document.createElement('div');
+        c.className = 'crit-comment';
+        c.innerHTML = `<span style="color:${col};font-weight:500">${s.criterion}:</span> ${s.comment}`;
+        cc.appendChild(c);
+      }
+    });
+  }
+
+  const lr = document.getElementById('lesson-rows');
+  if (lr && p.lessonGoal) {
+    const gl = p.lessonGoal;
+    const gc = gl.percentage >= 75 ? '#639922' : gl.percentage >= 50 ? '#ba7517' : '#993c1d';
+    lr.innerHTML = `<div class="goal-bar-wrap"><div class="goal-bar-meta"><span style="color:#5a5650">Goal achievement</span><span style="color:${gc};font-weight:500">${gl.percentage}%</span></div><div class="goal-track"><div class="goal-fill" style="width:${gl.percentage}%;background:${gc}"></div></div></div>`;
+    (gl.comments || []).forEach((c, i) => {
+      const r = document.createElement('div');
+      r.className = 'lesson-row';
+      r.innerHTML = `<div class="l-dot" style="background:${i === 0 ? gc : '#5a5650'}"></div><span style="color:${i === 0 ? '#c8c0b0' : '#8a8470'}">${c}</span>`;
+      lr.appendChild(r);
+    });
+  }
+
+  const rb = document.getElementById('result-bars');
+  if (rb) {
+    rb.innerHTML = '';
+    [{ k: 'energy', n: 'Teacher energy', s: false }, { k: 'motiv', n: 'Class motivation', s: false }, { k: 'involve', n: 'Class involvement', s: false }, { k: 'stress', n: 'Class stress', s: true }].forEach(bd => {
+      const v = S.bars[bd.k], col = bCol(v, bd.s), lbl = bLbl(v, bd.s);
+      const r = document.createElement('div');
+      r.className = 'rb-row';
+      r.innerHTML = `<span class="rb-nm">${bd.n}</span><div class="rb-track"><div class="rb-fill" style="width:${v}%;background:${col}"></div></div><span class="rb-pct" style="color:${col}">${v}%</span><span class="rb-lbl" style="background:${col}18;color:${col};border:1px solid ${col}44">${lbl}</span>`;
+      rb.appendChild(r);
+    });
+  }
+
+  const fbtxt = document.getElementById('fb-txt');
+  if (fbtxt) fbtxt.innerHTML = `<strong style="color:#c8bfa8">What worked:</strong> ${p.highlight || 'Nothing stood out as particularly effective this time.'}<br><br>${p.coachNote || ''}<br><br><strong style="color:#c8bfa8">For next time:</strong> ${p.suggestion || ''}`;
+
+  document.getElementById('fb-wrap').className = 'fb-wrap on';
+  document.getElementById('fb-wrap').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  document.getElementById('sub-btn').style.display = 'none';
+}
+
+// ═══════════════════════════════════════
+// SPIDER CHART
+// ═══════════════════════════════════════
+function makeSpiderChart(axes, scores, title, subtitle) {
+  // axes: array of {label, value 0-100, prev 0-100 (optional)}
+  const N = axes.length;
+  const cx = 160, cy = 155, r = 110;
+  const levels = [0.25, 0.5, 0.75, 1.0];
+  const angleStep = (2 * Math.PI) / N;
+  const startAngle = -Math.PI / 2;
+
+  function pt(i, frac) {
+    const a = startAngle + i * angleStep;
+    return { x: cx + r * frac * Math.cos(a), y: cy + r * frac * Math.sin(a) };
+  }
+
+  // Grid lines
+  let gridLines = '';
+  levels.forEach(lv => {
+    const pts = axes.map((_, i) => pt(i, lv));
+    gridLines += `<polygon points="${pts.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ')}" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>`;
+  });
+
+  // Axis lines
+  let axisLines = '';
+  axes.forEach((_, i) => {
+    const p = pt(i, 1);
+    axisLines += `<line x1="${cx}" y1="${cy}" x2="${p.x.toFixed(1)}" y2="${p.y.toFixed(1)}" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>`;
+  });
+
+  // Previous attempt polygon (if exists)
+  let prevPolygon = '';
+  const hasPrev = axes.some(a => a.prev !== undefined);
+  if (hasPrev) {
+    const prevPts = axes.map((a, i) => pt(i, (a.prev || 0) / 100));
+    prevPolygon = `<polygon points="${prevPts.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ')}" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" stroke-dasharray="4,3"/>`;
+  }
+
+  // Current polygon
+  const curPts = axes.map((a, i) => pt(i, (a.value || 0) / 100));
+  const curPolygon = `<polygon points="${curPts.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ')}" fill="rgba(99,153,34,0.2)" stroke="#639922" stroke-width="2"/>`;
+
+  // Dots
+  let dots = '';
+  axes.forEach((a, i) => {
+    const p = pt(i, (a.value || 0) / 100);
+    const col = a.value >= 75 ? '#639922' : a.value >= 50 ? '#e9c46a' : '#e76f51';
+    dots += `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="4" fill="${col}" stroke="#0e1117" stroke-width="2"/>`;
+  });
+
+  // Labels
+  let labels = '';
+  axes.forEach((a, i) => {
+    const p = pt(i, 1.28);
+    const anchor = p.x < cx - 5 ? 'end' : p.x > cx + 5 ? 'start' : 'middle';
+    const col = a.value >= 75 ? '#97c459' : a.value >= 50 ? '#e9c46a' : '#e76f51';
+    // Split long labels
+    const words = a.label.split(' ');
+    const mid = Math.ceil(words.length / 2);
+    const l1 = words.slice(0, mid).join(' ');
+    const l2 = words.slice(mid).join(' ');
+    if (l2) {
+      labels += `<text x="${p.x.toFixed(1)}" y="${(p.y - 6).toFixed(1)}" text-anchor="${anchor}" font-size="10" fill="${col}" font-family="Segoe UI,system-ui,sans-serif">${l1}</text>`;
+      labels += `<text x="${p.x.toFixed(1)}" y="${(p.y + 7).toFixed(1)}" text-anchor="${anchor}" font-size="10" fill="${col}" font-family="Segoe UI,system-ui,sans-serif">${l2}</text>`;
+    } else {
+      labels += `<text x="${p.x.toFixed(1)}" y="${(p.y + 4).toFixed(1)}" text-anchor="${anchor}" font-size="10" fill="${col}" font-family="Segoe UI,system-ui,sans-serif">${a.label}</text>`;
+    }
+    // Value label
+    const vp = pt(i, (a.value || 0) / 100);
+    labels += `<text x="${vp.x.toFixed(1)}" y="${(vp.y - 7).toFixed(1)}" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.6)" font-family="Segoe UI,system-ui,sans-serif">${a.value}%</text>`;
+  });
+
+  // Legend
+  let legend = '';
+  if (hasPrev) {
+    legend = `<line x1="10" y1="298" x2="26" y2="298" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-dasharray="4,3"/><text x="30" y="302" font-size="9" fill="rgba(255,255,255,0.4)" font-family="Segoe UI,system-ui,sans-serif">Previous attempt</text>
+    <line x1="120" y1="298" x2="136" y2="298" stroke="#639922" stroke-width="2"/><text x="140" y="302" font-size="9" fill="#97c459" font-family="Segoe UI,system-ui,sans-serif">This attempt</text>`;
+  }
+
+  const svgEl = document.createElement('div');
+  svgEl.style.cssText = 'background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:11px;padding:.8rem;margin-bottom:.7rem';
+  svgEl.innerHTML = `
+    <div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#5a5855;margin-bottom:.5rem">${title}</div>
+    <div style="font-size:12px;color:#8a8470;margin-bottom:.7rem">${subtitle}</div>
+    <svg viewBox="0 0 320 310" width="100%" style="max-width:320px;display:block;margin:0 auto">
+      ${gridLines}${axisLines}${prevPolygon}${curPolygon}${dots}${labels}${legend}
+    </svg>`;
+  return svgEl;
+}
+
+function buildSpiderAxesFromScores(allStepScores) {
+  // Aggregate scores by criterion name across all steps
+  const criteriaMap = {};
+  allStepScores.forEach(step => {
+    (step.scores || []).forEach(s => {
+      if (!criteriaMap[s.criterion]) criteriaMap[s.criterion] = [];
+      criteriaMap[s.criterion].push(s.score);
+    });
+  });
+  return Object.entries(criteriaMap).map(([label, scores]) => ({
+    label,
+    value: Math.round((scores.reduce((a, b) => a + b, 0) / scores.length / 5) * 100)
+  }));
+}
+
+function renderTacticResult(wrap) {
+  const sc = SCENARIO_DATA[S.cur];
+  const tactic = S.curTactic;
+
+  if (!S.att[S.cur + '_tactics']) S.att[S.cur + '_tactics'] = {};
+  if (!S.att[S.cur + '_tactics'][tactic.id]) S.att[S.cur + '_tactics'][tactic.id] = [];
+
+  const prevAttempts = S.att[S.cur + '_tactics'][tactic.id];
+  const prevScore = prevAttempts.length > 0 ? prevAttempts[prevAttempts.length - 1].score : null;
+  const prevMax = prevAttempts.length > 0 ? prevAttempts[prevAttempts.length - 1].max : null;
+
+  S.att[S.cur + '_tactics'][tactic.id].push({
+    score: S.runningScore, max: S.runningMax,
+    stepScores: S.curStepScores || [],
+    ts: new Date().toISOString()
+  });
+
+  const result = document.createElement('div');
+  result.className = 'tactic-result';
+  const pct = S.runningMax > 0 ? Math.round((S.runningScore / S.runningMax) * 100) : 0;
+  const col = pct >= 75 ? '#639922' : pct >= 50 ? '#e9c46a' : '#e76f51';
+
+  let improvNote = '';
+  if (prevScore !== null && prevMax !== null) {
+    const prevPct = Math.round((prevScore / prevMax) * 100);
+    const diff = pct - prevPct;
+    if (diff > 0) improvNote = `<div style="font-size:12px;color:#639922;margin-top:4px">↑ +${diff}% from your previous attempt</div>`;
+    else if (diff < 0) improvNote = `<div style="font-size:12px;color:#e9c46a;margin-top:4px">↓ ${diff}% from previous — review the language cards and try again</div>`;
+    else improvNote = `<div style="font-size:12px;color:#5a5855;margin-top:4px">Same score as previous attempt</div>`;
+  }
+
+  result.innerHTML = `
+    <div class="tr-score">
+      <div class="tr-num" style="color:${col}">${S.runningScore}<span class="tr-max"> / ${S.runningMax}</span></div>
+      <div class="tr-label">${tactic.title} — ${pct}%</div>
+      ${improvNote}
+      <div style="margin-top:6px;font-size:12px;color:#5a5855">${pct >= 75 ? '✓ Strong performance' : pct >= 50 ? 'Good foundation — try again to improve' : 'Keep practising — review the language cards and try again'}</div>
+    </div>`;
+  wrap.appendChild(result);
+
+  // Spider chart
+  if (S.curStepScores && S.curStepScores.length > 0) {
+    const axes = buildSpiderAxesFromScores(S.curStepScores);
+    if (axes.length >= 3) {
+      // Add prev attempt data if available
+      if (prevAttempts.length > 0 && prevAttempts[prevAttempts.length - 1].stepScores) {
+        const prevAxes = buildSpiderAxesFromScores(prevAttempts[prevAttempts.length - 1].stepScores);
+        axes.forEach(a => {
+          const prev = prevAxes.find(p => p.label === a.label);
+          if (prev) a.prev = prev.value;
+        });
+      }
+      const attemptNum = S.att[S.cur + '_tactics'][tactic.id].length;
+      wrap.appendChild(makeSpiderChart(
+        axes, null,
+        `PCC Profile — ${tactic.title}`,
+        `Attempt ${attemptNum}${prevAttempts.length > 0 ? ' · dashed line shows previous attempt' : ''}`
+      ));
+    }
+  }
+
+  const btns = document.createElement('div');
+  btns.className = 'tr-btns';
+  btns.innerHTML = `
+    <button class="tr-btn" id="try-again-btn">↺ Try this tactic again</button>
+    <button class="tr-btn" id="try-other-btn">← Try a different tactic</button>
+    <button class="tr-btn primary" id="to-reflect-btn">Continue to reflection →</button>`;
+  wrap.appendChild(btns);
+
+  document.getElementById('try-again-btn').addEventListener('click', () => startTactic(tactic));
+  document.getElementById('try-other-btn').addEventListener('click', () => renderScenarioPhase('tactic_choice'));
+  document.getElementById('to-reflect-btn').addEventListener('click', () => {
+    S.reflectIdx = 0;
+    const totalScore = S.runningScore;
+    S.reflectQs = sc.reflectQs.filter(q => totalScore >= q.score[0] && totalScore <= q.score[1]);
+    if (!S.reflectQs.length) S.reflectQs = [sc.reflectQs[0]];
+    renderScenarioPhase('reflect');
+  });
+}
+
+function renderSingleResponsePhase(wrap, sc) {
+  // For scenario 1 — no tactics, just single response
+  const sup = document.createElement('div');
+  sup.className = 'support-panel';
+  const supHdr = document.createElement('div');
+  supHdr.className = 'support-hdr';
+  supHdr.innerHTML = '<div class="support-hdr-l">💡 Helpful phrases — click to insert</div><span class="support-tog">▾ Show</span>';
+  const supBody = document.createElement('div');
+  supBody.className = 'support-body';
+  sc.clicheGroups.forEach(g => {
+    const grp = document.createElement('div');
+    grp.className = 'cliche-group';
+    grp.innerHTML = `<div class="cg-lbl">${g.label}</div>`;
+    g.phrases.forEach(p => {
+      const pill = document.createElement('span');
+      pill.className = 'cliche-pill';
+      pill.textContent = `"${p}"`;
+      pill.addEventListener('click', () => {
+        const ta = document.getElementById('resp-ta-s1');
+        if (ta) { ta.value = ta.value ? ta.value + ' ' + p : p; ta.focus(); }
+      });
+      grp.appendChild(pill);
+    });
+    supBody.appendChild(grp);
+  });
+  supHdr.addEventListener('click', () => {
+    const o = supBody.classList.toggle('open');
+    supHdr.querySelector('.support-tog').textContent = o ? '▴ Hide' : '▾ Show';
+  });
+  sup.appendChild(supHdr);
+  sup.appendChild(supBody);
+  wrap.appendChild(sup);
+
+  const hint = document.createElement('div');
+  hint.style.cssText = 'font-size:11px;color:#5a5650;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:7px 10px';
+  hint.innerHTML = `💡 Communicative task: <strong style="color:#e8e4dc">${sc.goal}</strong>`;
+  wrap.appendChild(hint);
+
+  const respDiv = document.createElement('div');
+  respDiv.innerHTML = `
+    <div class="resp-lbl">Your response as the teacher — write in English:</div>
+    <textarea class="resp-ta" id="resp-ta-s1" placeholder="Type what you would say to the class..."></textarea>
+    <div class="wc-row"><span class="wc" id="wc">0 words</span><span style="font-size:10px;color:#3a3835">Aim for 3–5 sentences</span></div>`;
+  wrap.appendChild(respDiv);
+
+  document.getElementById('resp-ta-s1').addEventListener('input', function() {
+    const w = this.value.trim().split(/\s+/).filter(x => x).length;
+    document.getElementById('wc').textContent = w + (w === 1 ? ' word' : ' words');
+  });
+
+  const subRow = document.createElement('div');
+  subRow.className = 'sub-row';
+  const subBtn = document.createElement('button');
+  subBtn.className = 'sub-btn';
+  subBtn.id = 'sub-btn-s1';
+  subBtn.textContent = 'Submit for assessment';
+  const spinRow = document.createElement('div');
+  spinRow.className = 'spin-row';
+  spinRow.id = 'spin-row-s1';
+  spinRow.innerHTML = '<div class="spin"></div>AI is assessing your response…';
+  subRow.appendChild(subBtn);
+  subRow.appendChild(spinRow);
+  wrap.appendChild(subRow);
+
+  const blockBox = document.createElement('div');
+  blockBox.className = 'block-box';
+  blockBox.id = 'block-box-s1';
+  blockBox.innerHTML = `<div class="block-title">⛔ Response cannot be submitted</div><div class="block-body" id="block-body-s1"></div><button class="block-retry" id="block-retry-s1">Clear and try again →</button>`;
+  wrap.appendChild(blockBox);
+
+  const fbWrap = document.createElement('div');
+  fbWrap.className = 'fb-wrap';
+  fbWrap.id = 'fb-wrap-s1';
+  fbWrap.innerHTML = `
+    <div class="fb-box green"><div class="fb-sec-lbl">NLP analysis — communication criteria</div><div class="scores-g" id="scores-g-s1"></div><div id="crit-comments-s1"></div></div>
+    <div class="fb-box blue"><div class="fb-sec-lbl">Lesson goal achievement</div><div id="lesson-rows-s1"></div></div>
+    <div class="fb-box amber"><div class="fb-sec-lbl">Classroom pulse</div><div id="result-bars-s1"></div></div>
+    <div class="fb-box neutral"><div class="fb-sec-lbl">Coach's note</div><p class="fb-txt" id="fb-txt-s1"></p></div>
+    <div class="ach-row" id="ach-row-s1"><div class="ach-ico" id="ach-ico-s1"></div><div><div class="ach-t" id="ach-t-s1"></div><div class="ach-d" id="ach-d-s1"></div></div></div>
+    <button class="nxt-btn" id="nxt-btn-s1">Continue to reflection →</button>`;
+  wrap.appendChild(fbWrap);
+
+  subBtn.addEventListener('click', async () => {
+    const resp = document.getElementById('resp-ta-s1')?.value?.trim();
+    if (!resp || resp.length < 5) { alert('Please write your response first.'); return; }
+
+    subBtn.disabled = true;
+    document.getElementById('spin-row-s1').className = 'spin-row on';
+
+    try {
+      const res = await fetch('/api/assess', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ response: resp, situation: sc.situation, goal: sc.goal, criteria: sc.criteria, moduleId: S.cur })
+      });
+      const p = await res.json();
+      document.getElementById('spin-row-s1').className = 'spin-row';
+      subBtn.disabled = false;
+
+      if (p.inappropriate) {
+        document.getElementById('resp-ta-s1').classList.add('bad');
+        document.getElementById('block-body-s1').innerHTML = `<p style="margin-bottom:.5rem"><strong>Reason:</strong> ${p.inappropriateReason}</p><p>Professional teaching requires respectful, relevant language. Review the Language Cards, then try again.</p>`;
+        document.getElementById('block-box-s1').className = 'block-box on';
+        return;
+      }
+
+      applyDeltas(p.barDeltas);
+      S.runningScore = (p.scores || []).reduce((a, s) => a + s.score, 0);
+      S.runningMax = (p.scores?.length || 0) * 5;
+
+      const grid = document.getElementById('scores-g-s1');
+      const cc = document.getElementById('crit-comments-s1');
+      if (grid) {
+        grid.innerHTML = '';
+        (p.scores || []).forEach(s => {
+          const pct = (s.score / 5) * 100;
+          const col = s.score >= 4 ? '#639922' : s.score >= 3 ? '#ba7517' : '#993c1d';
+          const d = document.createElement('div');
+          d.className = 'sc-it';
+          d.innerHTML = `<div class="sc-nm">${s.criterion}</div><div class="sc-br"><div class="sc-trk"><div class="sc-fill" style="width:${pct}%;background:${col}"></div></div><span class="sc-v" style="color:${col}">${s.score}/5</span></div>`;
+          grid.appendChild(d);
+          if (s.comment && cc) {
+            const c = document.createElement('div');
+            c.className = 'crit-comment';
+            c.innerHTML = `<span style="color:${col};font-weight:500">${s.criterion}:</span> ${s.comment}`;
+            cc.appendChild(c);
+          }
+        });
+      }
+
+      const lr = document.getElementById('lesson-rows-s1');
+      if (lr && p.lessonGoal) {
+        const gl = p.lessonGoal;
+        const gc = gl.percentage >= 75 ? '#639922' : gl.percentage >= 50 ? '#ba7517' : '#993c1d';
+        lr.innerHTML = `<div class="goal-bar-wrap"><div class="goal-bar-meta"><span style="color:#5a5650">Goal achievement</span><span style="color:${gc};font-weight:500">${gl.percentage}%</span></div><div class="goal-track"><div class="goal-fill" style="width:${gl.percentage}%;background:${gc}"></div></div></div>`;
+      }
+
+      const rb = document.getElementById('result-bars-s1');
+      if (rb) {
+        rb.innerHTML = '';
+        [{ k: 'energy', n: 'Teacher energy', s: false }, { k: 'motiv', n: 'Class motivation', s: false }, { k: 'involve', n: 'Class involvement', s: false }, { k: 'stress', n: 'Class stress', s: true }].forEach(bd => {
+          const v = S.bars[bd.k], col = bCol(v, bd.s), lbl = bLbl(v, bd.s);
+          const r = document.createElement('div');
+          r.className = 'rb-row';
+          r.innerHTML = `<span class="rb-nm">${bd.n}</span><div class="rb-track"><div class="rb-fill" style="width:${v}%;background:${col}"></div></div><span class="rb-pct" style="color:${col}">${v}%</span><span class="rb-lbl" style="background:${col}18;color:${col};border:1px solid ${col}44">${lbl}</span>`;
+          rb.appendChild(r);
+        });
+      }
+
+      document.getElementById('fb-txt-s1').innerHTML = `<strong style="color:#c8bfa8">What worked:</strong> ${p.highlight || 'Nothing stood out as particularly effective this time.'}<br><br>${p.coachNote || ''}<br><br><strong style="color:#c8bfa8">For next time:</strong> ${p.suggestion || ''}`;
+
+      // Achievement
+      const achId = sc.achievementId;
+      if (!S.achs.includes(achId)) {
+        const ach = ACHIEVEMENTS.find(a => a.id === achId);
+        if (ach) {
+          document.getElementById('ach-ico-s1').textContent = ach.icon;
+          document.getElementById('ach-t-s1').textContent = '🔓 ' + ach.title + ' unlocked!';
+          document.getElementById('ach-d-s1').textContent = ach.desc;
+          document.getElementById('ach-row-s1').className = 'ach-row on';
+        }
+      }
+
+      if (!S.att[S.cur]) S.att[S.cur] = [];
+      S.att[S.cur].push({ response: resp, scores: p.scores, finalBars: { ...S.bars }, ts: new Date().toISOString() });
+
+      document.getElementById('fb-wrap-s1').className = 'fb-wrap on';
+      document.getElementById('fb-wrap-s1').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      subBtn.style.display = 'none';
+
+    } catch(e) {
+      document.getElementById('spin-row-s1').className = 'spin-row';
+      subBtn.disabled = false;
+      mkToast('Assessment failed — please try again.', 'crit');
+    }
+  });
+
+  document.getElementById('block-retry-s1')?.addEventListener('click', () => {
+    document.getElementById('resp-ta-s1').value = '';
+    document.getElementById('resp-ta-s1').classList.remove('bad');
+    document.getElementById('block-box-s1').className = 'block-box';
+    document.getElementById('sub-btn-s1').disabled = false;
+  });
+
+  document.getElementById('nxt-btn-s1')?.addEventListener('click', () => {
+    // Unlock achievement
+    const sc_data = SCENARIO_DATA[S.cur];
+    if (!S.achs.includes(sc_data.achievementId)) {
+      S.achs.push(sc_data.achievementId);
+      S.newAchs = true;
+    }
+    S.reflectIdx = 0;
+    const totalScore = S.runningScore;
+    S.reflectQs = sc_data.reflectQs.filter(q => totalScore >= q.score[0] && totalScore <= q.score[1]);
+    if (!S.reflectQs.length) S.reflectQs = [sc_data.reflectQs[0]];
+    renderScenarioPhase('reflect');
+  });
+}
+
+function renderReflectPhase(wrap, sc) {
+  if (S.reflectIdx >= S.reflectQs.length) {
+    completeScenario();
+    return;
+  }
+  const q = S.reflectQs[S.reflectIdx];
+  const card = document.createElement('div');
+  card.className = 'reflect-card';
+
+  const lbl = document.createElement('div');
+  lbl.className = 'reflect-lbl';
+  lbl.textContent = `Reflection ${S.reflectIdx + 1} of ${S.reflectQs.length}`;
+  card.appendChild(lbl);
+
+  const qEl = document.createElement('div');
+  qEl.className = 'reflect-q';
+  qEl.textContent = q.q;
+  card.appendChild(qEl);
+
+  const ta = document.createElement('textarea');
+  ta.className = 'reflect-ta';
+  ta.placeholder = 'Напишите здесь свои мысли...';
+  card.appendChild(ta);
+
+  const btns = document.createElement('div');
+  btns.className = 'reflect-btns';
+
+  const submitBtn = document.createElement('button');
+  submitBtn.className = 'reflect-submit';
+  submitBtn.textContent = S.reflectIdx < S.reflectQs.length - 1 ? 'Next question →' : 'Finish →';
+
+  const skipBtn = document.createElement('button');
+  skipBtn.className = 'reflect-skip';
+  skipBtn.textContent = 'Skip';
+
+  btns.appendChild(submitBtn);
+  btns.appendChild(skipBtn);
+  card.appendChild(btns);
+
+  // Skip confirmation
+  const skipConfirm = document.createElement('div');
+  skipConfirm.className = 'skip-confirm';
+  skipConfirm.innerHTML = `
+    <div class="skip-q">Before you skip — what makes this question feel unnecessary or uncomfortable right now?</div>
+    <textarea class="skip-ta" id="skip-ta" placeholder="Optional — write briefly or just skip anyway..."></textarea>
+    <div class="skip-btns">
+      <button class="skip-anyway" id="skip-anyway">Skip anyway →</button>
+      <button class="skip-back" id="skip-back">← Go back</button>
+    </div>`;
+  card.appendChild(skipConfirm);
+
+  submitBtn.addEventListener('click', () => {
+    if (!S.att[S.cur + '_reflect']) S.att[S.cur + '_reflect'] = [];
+    S.att[S.cur + '_reflect'].push({ q: q.q, answered: true, response: ta.value, ts: new Date().toISOString() });
+    S.reflectIdx++;
+    const w = document.getElementById('sc-wrap');
+    w.innerHTML = '';
+    w.appendChild(makeBarsPanel());
+    renderReflectPhase(w, sc);
+  });
+
+  skipBtn.addEventListener('click', () => { skipConfirm.className = 'skip-confirm on'; });
+  document.getElementById('skip-anyway')?.addEventListener('click', () => {
+    if (!S.att[S.cur + '_reflect']) S.att[S.cur + '_reflect'] = [];
+    S.att[S.cur + '_reflect'].push({ q: q.q, answered: false, skipReason: document.getElementById('skip-ta')?.value || null, ts: new Date().toISOString() });
+    S.reflectIdx++;
+    const w = document.getElementById('sc-wrap');
+    w.innerHTML = '';
+    w.appendChild(makeBarsPanel());
+    renderReflectPhase(w, sc);
+  });
+  document.getElementById('skip-back')?.addEventListener('click', () => { skipConfirm.className = 'skip-confirm'; });
+
+  wrap.appendChild(card);
+}
+
+function completeScenario() {
+  const sc = SCENARIO_DATA[S.cur];
+  if (!S.done.includes(S.cur)) { S.done.push(S.cur); S.xp += sc.xp; }
+  if (!S.achs.includes(sc.achievementId)) S.achs.push(sc.achievementId);
+
+  if (!S.log) S.log = [];
+  S.log.push({ scenario: S.cur, xp: sc.xp, bars: { ...S.bars }, ts: new Date().toISOString() });
+
+  saveProgress();
+
+  // Build module spider chart from all logged scores
+  const allStepScores = [];
+  Object.keys(S.att).forEach(k => {
+    if (k.includes('_tactics')) {
+      Object.values(S.att[k]).forEach(attempts => {
+        if (Array.isArray(attempts)) {
+          attempts.forEach(a => { if (a.stepScores) allStepScores.push(...a.stepScores); });
+        }
+      });
+    }
+    if (k === S.cur && Array.isArray(S.att[k])) {
+      S.att[k].forEach(a => { if (a.scores) allStepScores.push({ stepId: k, scores: a.scores }); });
+    }
+  });
+
+  renderMap();
+  go('s-map');
+  mkToast('✓ Scenario completed! +' + sc.xp + ' XP', 'good');
+
+  // Show module spider if we have enough data
+  if (S.done.length >= 2 && allStepScores.length > 0) {
+    setTimeout(() => {
+      const axes = buildSpiderAxesFromScores(allStepScores);
+      if (axes.length >= 3) {
+        const chartEl = makeSpiderChart(axes, null, 'Your PCC Profile — Module 1 so far', 'Based on all completed scenarios');
+        chartEl.style.cssText += 'position:fixed;bottom:0;left:0;right:0;z-index:500;max-width:680px;margin:0 auto;border-radius:11px 11px 0 0;border-bottom:none;';
+        const closeBtn = document.createElement('button');
+        closeBtn.style.cssText = 'display:block;width:100%;background:rgba(99,153,34,.12);color:#97c459;border:none;border-top:1px solid rgba(99,153,34,.2);padding:10px;font-size:12px;font-weight:500;cursor:pointer;font-family:inherit';
+        closeBtn.textContent = 'Close chart ✕';
+        closeBtn.addEventListener('click', () => chartEl.remove());
+        chartEl.appendChild(closeBtn);
+        document.body.appendChild(chartEl);
+      }
+    }, 800);
+  }
+}
+
+// ═══════════════════════════════════════
+// WELCOME
+// ═══════════════════════════════════════
+document.getElementById('pid').addEventListener('input', async () => {
+  const v = document.getElementById('pid').value.trim();
+  const el = document.getElementById('w-ret');
+  if (!v) { el.style.display = 'none'; return; }
+  try {
+    const res = await fetch('/api/load', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ pid: v })
+    });
+    const data = await res.json();
+    if (data.found && data.data?.done?.length > 0) {
+      el.style.display = 'block';
+      el.textContent = `👋 Welcome back! You've completed ${data.data.done.length} scenario${data.data.done.length > 1 ? 's' : ''}. Your progress will be restored.`;
+    } else { el.style.display = 'none'; }
+  } catch(e) { el.style.display = 'none'; }
+});
+
+document.getElementById('begin-btn').addEventListener('click', async () => {
+  const v = document.getElementById('pid').value.trim();
+  if (!v) { document.getElementById('w-err').style.display = 'block'; document.getElementById('pid').focus(); return; }
+  document.getElementById('w-err').style.display = 'none';
+  S.pid = v;
+  await loadProgress(v);
+  renderMap();
+  renderCards(CATS[0]);
+  go('s-map');
+});
+
+document.getElementById('pid').addEventListener('keydown', e => { if (e.key === 'Enter') document.getElementById('begin-btn').click(); });
+
+// ═══════════════════════════════════════
+// NAVIGATION WIRING
+// ═══════════════════════════════════════
+document.querySelectorAll('[data-back]').forEach(b => b.addEventListener('click', () => go(b.dataset.back)));
+document.getElementById('cards-back').addEventListener('click', () => go(cardsFrom));
+document.getElementById('btn-ach').addEventListener('click', () => { renderAchievements(); go('s-achievements'); });
+document.getElementById('btn-cards').addEventListener('click', () => { cardsFrom = 's-map'; renderCards(activeCat); go('s-cards'); });
+document.getElementById('sc-cards-btn').addEventListener('click', () => { cardsFrom = 's-scenario'; renderCards(activeCat); go('s-cards'); });
+
+// ═══════════════════════════════════════
+// COMPLETE SCREEN
+// ═══════════════════════════════════════
+document.getElementById('copy-export').addEventListener('click', () => {
+  const text = document.getElementById('exp-data').textContent;
+  navigator.clipboard.writeText(text).then(() => mkToast('Copied to clipboard ✓', 'good'));
+});
+
+function showComplete() {
+  const allScores = (S.log || []).map(l => l.xp);
+  document.getElementById('fin-g').innerHTML = `
+    <div class="fin-it"><div class="fin-n">${S.xp}</div><div class="fin-l">Total XP</div></div>
+    <div class="fin-it"><div class="fin-n">${S.done.length}/2</div><div class="fin-l">Scenarios done</div></div>
+    <div class="fin-it"><div class="fin-n">${S.achs.length}/2</div><div class="fin-l">Achievements</div></div>
+    <div class="fin-it"><div class="fin-n">M1</div><div class="fin-l">Module</div></div>`;
+  document.getElementById('exp-data').textContent = JSON.stringify({
+    playerId: S.pid, completedAt: new Date().toISOString(),
+    totalXP: S.xp, scenariosDone: S.done, achievements: S.achs,
+    log: S.log, reflections: Object.keys(S.att).filter(k => k.includes('reflect')).map(k => ({ scenario: k, data: S.att[k] }))
+  }, null, 2);
+  go('s-complete');
+}
+</script>
+</body>
+</html>
+
