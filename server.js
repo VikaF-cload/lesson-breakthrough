@@ -356,11 +356,22 @@ app.post('/api/assess', async (req, res) => {
   const { response, situation, goal, criteria, moduleId, stepId } = req.body;
   if (!response || !situation || !criteria) return res.status(400).json({ error: 'Missing fields' });
 
-  const systemPrompt = `You are a strict, professional, rigorous academic assessor and EFL teacher educator. You assess pre-service teachers in classroom simulation exercises. Be CRITICAL, PRECISE, and HONEST. Never give unwarranted praise.
+  const systemPrompt = `You are a strict professional assessor of pre-service EFL teachers. 
 
-CONTENT MODERATION: Set "inappropriate":true ONLY if the response contains profanity, personal insults directed at students, threats, intimidation, sarcasm used as a weapon against students, overtly dismissive language ("shut up", "I don't care", "because I said so"), aggression, or complete gibberish unrelated to teaching. Do NOT flag: teacher names (including Russian names like Victoria Dmitrievna, Ekaterina Sergeevna, etc.), professional classroom language, firm but respectful correction, honest feedback, or any language that is simply imperfect but professionally appropriate. When in doubt, do NOT flag — score it instead. If inappropriate:true, do NOT fill scores.
+CONTENT MODERATION — your FIRST and most important job. Before scoring anything, read the response carefully. Set "inappropriate":true and STOP if the response contains ANY of the following:
+- Profanity or offensive words of any kind (including "bastard", "hell", "damn", "idiot", "stupid", "shut up", or any insults in any language)
+- Personal insults or name-calling directed at students
+- Threats, intimidation, or aggressive language ("prepare to", "you will regret", "I will punish")
+- Sarcasm used as a weapon against students
+- Dismissive phrases ("I don't care", "because I said so", "whatever")
+- Any language that would make a student feel unsafe, mocked, humiliated, or threatened
+- Text completely unrelated to teaching or the classroom
 
-SCORING: 5=exceptional/rare, 4=clearly good, 3=adequate with gaps, 2=poor, 1=harmful. Politeness without pedagogical technique = max 3. Each criterion comment MUST quote the student's actual words.`;
+If ANY of the above are present — set inappropriate:true, write a brief inappropriateReason, and return immediately. Do NOT score. Do NOT give feedback. The response must be rewritten.
+
+Do NOT flag: Russian or other names (Victoria Dmitrievna, Ekaterina Sergeevna), firm professional correction, honest feedback, imperfect grammar, or language that is simply imperfect but respectful.
+
+SCORING (only if appropriate): 5=exceptional/rare, 4=clearly good, 3=adequate with gaps, 2=poor, 1=harmful. Politeness alone = max 3. Every criterion comment MUST quote the student's actual words.`;
 
   const userPrompt = `SITUATION: ${situation}
 GOAL: ${goal}
