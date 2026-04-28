@@ -17,24 +17,19 @@ app.post('/api/save', async (req, res) => {
   const { pid, data } = req.body;
   if (!pid || !data) return res.status(400).json({ error: 'Missing pid or data' });
   try {
-    // Check if bin exists for this pid
     const searchRes = await fetch(`https://api.jsonbin.io/v3/b?name=${encodeURIComponent('lb_' + pid)}`, {
       headers: { 'X-Master-Key': JSONBIN_KEY }
     });
     const searchData = await searchRes.json();
     const existing = Array.isArray(searchData) ? searchData.find(b => b.name === 'lb_' + pid) : null;
-
     if (existing) {
-      // Update existing bin
-      const updateRes = await fetch(`${JSONBIN_URL}/${existing.id}`, {
+      await fetch(`${JSONBIN_URL}/${existing.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', 'X-Master-Key': JSONBIN_KEY },
         body: JSON.stringify(data)
       });
-      const updated = await updateRes.json();
       res.json({ success: true, binId: existing.id });
     } else {
-      // Create new bin
       const createRes = await fetch(JSONBIN_URL, {
         method: 'POST',
         headers: {
@@ -83,45 +78,20 @@ app.post('/api/assess', async (req, res) => {
 
   const systemPrompt = `You are a strict, professional, rigorous academic assessor and EFL teacher educator. You assess pre-service teachers in classroom simulation exercises. Be CRITICAL, PRECISE, and HONEST. Never give unwarranted praise.
 
-CONTENT MODERATION — check FIRST. Set "inappropriate":true if the response contains ANY of:
-- Profanity or offensive language
-- Insults, name-calling, or personal attacks on students
-- Threats or intimidation
-- Dismissive or sarcastic language ("shut up", "I don't care", "because I said so")
-- Aggressive, condescending, or demeaning tone
-- Text completely unrelated to teaching
-- Gibberish or deliberate nonsense
-If inappropriate:true, do NOT fill scores.
+CONTENT MODERATION: Set "inappropriate":true if the response contains profanity, insults, threats, dismissive language, aggression, or gibberish. If inappropriate:true, do NOT fill scores.
 
-SCORING STANDARDS:
-5 = Exceptional, publishable model response. Very rare.
-4 = Clearly good with specific evidence. Justified.
-3 = Adequate but with clear, nameable gaps.
-2 = Poor. Missing key elements or wrong approach.
-1 = Harmful or completely off-target.
-Politeness without pedagogical technique = max 3.
+SCORING: 5=exceptional/rare, 4=clearly good, 3=adequate with gaps, 2=poor, 1=harmful. Politeness without pedagogical technique = max 3. Each criterion comment MUST quote the student's actual words.`;
 
-Each criterion comment MUST quote or paraphrase the student's actual words and explain the score specifically.`;
+  const userPrompt = `SITUATION: ${situation}
+GOAL: ${goal}
+CRITERIA: ${criteria.map((c, i) => `${i+1}. ${c}`).join(', ')}
+STUDENT RESPONSE: "${response}"
 
-  const userPrompt = `CLASSROOM SITUATION: ${situation}
-LESSON GOAL: ${goal}
-ASSESSMENT CRITERIA (score each 1–5):
-${criteria.map((c, i) => `${i + 1}. ${c}`).join('\n')}
-STUDENT TEACHER'S RESPONSE: "${response}"
-
-Reply ONLY with valid JSON, no markdown:
-{
-  "inappropriate": false,
-  "inappropriateReason": "",
-  "scores": [{"criterion":"...","score":3,"comment":"specific comment quoting their words"}],
-  "lessonGoal": {"achieved":false,"percentage":55,"comments":["observation","suggestion"]},
-  "barDeltas": {"energyDelta":-5,"motivDelta":8,"involveDelta":6,"stressDelta":-6},
-  "highlight": "one specific phrase that worked, or honest statement if nothing did",
-  "suggestion": "one concrete improvement with example phrasing",
-  "coachNote": "2-3 sentences of honest professional feedback naming strengths AND gaps"
-}`;
+Reply ONLY with valid JSON:
+{"inappropriate":false,"inappropriateReason":"","scores":[{"criterion":"...","score":3,"comment":"..."}],"lessonGoal":{"achieved":false,"percentage":55,"comments":["observation","suggestion"]},"barDeltas":{"energyDelta":-3,"motivDelta":8,"involveDelta":6,"stressDelta":-5},"highlight":"specific phrase that worked","suggestion":"one concrete improvement","coachNote":"2-3 sentences of honest feedback"}`;
 
   try {
+    console.log('Calling Anthropic API, key present:', !!ANTHROPIC_KEY);
     const aiRes = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
@@ -130,21 +100,24 @@ Reply ONLY with valid JSON, no markdown:
         'anthropic-version': '2023-06-01'
       },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
+        model: 'claude-haiku-4-5-20251001',
         max_tokens: 1200,
         system: systemPrompt,
         messages: [{ role: 'user', content: userPrompt }]
       })
     });
     const aiData = await aiRes.json();
+    console.log('AI status:', aiRes.status, 'error:', aiData.error?.message);
+    if (aiData.error) throw new Error(aiData.error.message || 'API error');
     const raw = aiData?.content?.[0]?.text || '';
+    if (!raw) throw new Error('Empty AI response');
     const clean = raw.replace(/```json|```/g, '').trim();
     const jsonMatch = clean.match(/\{[\s\S]*\}/);
-    if (!jsonMatch) throw new Error('No JSON in response');
+    if (!jsonMatch) throw new Error('No JSON found in: ' + raw.slice(0, 100));
     const parsed = JSON.parse(jsonMatch[0]);
     res.json(parsed);
   } catch (e) {
-    console.error('AI assess error:', e);
+    console.error('AI assess error:', e.message);
     res.status(500).json({ error: 'Assessment failed', detail: e.message });
   }
 });
