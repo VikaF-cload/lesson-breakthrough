@@ -543,6 +543,42 @@ Lesson transition clarity:
   4: Explicit forward-looking statement — first step of the lesson named
   5: Smooth and motivating bridge — students feel pulled into the lesson`,
 
+    s5: `
+SCENARIO 5 RUBRIC — Using classroom language:
+
+Register appropriateness & variation:
+  1-2: One register used throughout (usually imperatives only) regardless of context; or completely wrong register for the moment
+  3: Correct register but no variation — repetitive and flat; technically right but not responsive to context
+  4: Register varies with context — imperative for practical moments, softened for individual/sensitive, collective for whole-class; clear awareness of when to shift
+  5: Register choice is nuanced, purposeful, and precisely matched to each moment; feels natural not calculated
+
+Classroom language accuracy & naturalness:
+  1-2: Phrases are translated from Russian literally and sound unnatural; or contain errors that confuse meaning
+  3: Correct but textbook-sounding; phrases work but lack naturalness
+  4: Natural, accurate, idiomatic; sounds like a real English teacher not a phrase book
+  5: Precise, varied, entirely natural; wide repertoire deployed fluently
+
+Praise — specificity and warmth:
+  1-2: No praise present; or praise is actively discouraging ("Finally someone got it")
+  3: Generic praise only ("Well done", "Good job") — technically positive but no content
+  4: Specific praise naming what worked; warm and genuine
+  5: Specific praise + extension ("Can you tell us how you got there?") — reinforces and develops
+
+Transition clarity:
+  1-2: No transition; activity ends without acknowledgement and next task begins abruptly
+  3: Transition present but mechanical — students understand but don't feel engaged
+  4: Clear, warm transition; activity closed, effort acknowledged, new task introduced
+  5: Seamless transition that maintains energy and student engagement
+
+Affective climate maintenance:
+  1-2: Language creates tension, embarrassment, or confusion
+  3: Neutral — language doesn't worsen the atmosphere but doesn't improve it
+  4: Language actively maintains warmth and focus throughout
+  5: Language restores or elevates the classroom mood even in a difficult moment
+
+CHALLENGE STEPS — additional criterion:
+Register under pressure: Did the register choice match the emotional weight of the situation? (low-stress → softened/collective; high-stress → calm, grounded, non-escalating)`,
+
     s3_bonus: `
 BONUS TASK RUBRIC — Personalised question connected to lesson topic:
 Score each criterion honestly. The 5th criterion (Relevancy to the topic) is the key one for this task.
