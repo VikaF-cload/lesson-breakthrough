@@ -828,6 +828,193 @@ textarea, input { font-family: inherit; }
 .spider-lbl { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-faint); margin-bottom: 6px; }
 .spider-sub { font-size: 11px; color: var(--ink-muted); margin-bottom: .75rem; }
 
+/* ═══════════════════════════════════════
+   PHASE 2 — MCQ REDESIGN (preview line)
+═══════════════════════════════════════ */
+.mcq-intro-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--r-lg); padding: 1rem;
+  box-shadow: var(--shadow-sm); text-align: center;
+}
+.mcq-intro-ico { font-size: 2rem; margin-bottom: .6rem; }
+.mcq-intro-title { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: .4rem; }
+.mcq-intro-sub { font-size: 13px; color: var(--ink-muted); line-height: 1.6; margin-bottom: 1rem; }
+.mcq-back-note {
+  background: var(--terra-light); border: 1px solid var(--border);
+  border-radius: var(--r-md); padding: 8px 12px;
+  font-size: 12px; color: var(--ink-soft); margin-top: .6rem;
+}
+
+/* ═══════════════════════════════════════
+   PHASE 3 — RESPONSE REDESIGN
+═══════════════════════════════════════ */
+.goal-banner {
+  background: var(--ink); color: var(--terra-light);
+  border-radius: var(--r-lg); padding: 1rem 1.2rem;
+  display: flex; align-items: center; gap: 10px;
+  box-shadow: var(--shadow-md);
+}
+.goal-banner-ico { font-size: 22px; flex-shrink: 0; }
+.goal-banner-lbl { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--terra-mid); margin-bottom: 3px; }
+.goal-banner-text { font-size: 13px; font-weight: 600; color: var(--cream); line-height: 1.4; }
+.collapsible-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--r-lg); overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+.collapsible-hdr {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: .75rem 1rem; cursor: pointer; user-select: none;
+  transition: background .2s;
+}
+.collapsible-hdr:hover { background: var(--terra-light); }
+.collapsible-hdr-l { font-size: 12px; color: var(--ink-soft); display: flex; align-items: center; gap: 7px; font-weight: 600; }
+.collapsible-tog { font-size: 11px; color: var(--ink-muted); }
+.collapsible-body { display: none; border-top: 1px solid var(--border); padding: .9rem 1rem; }
+.collapsible-body.open { display: block; }
+.hint-pill {
+  display: inline-block; background: var(--sage-light); color: var(--sage);
+  border: 1px solid #C0DD97; border-radius: 20px;
+  font-size: 11px; padding: 3px 10px; margin-bottom: 8px; font-weight: 600;
+}
+.english-notice {
+  font-size: 11px; color: var(--terra-dark);
+  background: var(--terra-light); border: 1px solid var(--border-mid);
+  border-radius: var(--r-sm); padding: 5px 10px;
+  display: flex; align-items: center; gap: 6px;
+}
+
+/* ═══════════════════════════════════════
+   PHASE 4 — VOICE + CHATTERBOX
+═══════════════════════════════════════ */
+.voice-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--r-lg); padding: 1rem;
+  box-shadow: var(--shadow-sm);
+}
+.voice-lbl { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-faint); margin-bottom: .7rem; }
+.voice-task { font-size: 13px; color: var(--ink-soft); font-style: italic; line-height: 1.6; margin-bottom: 1rem; }
+.voice-controls { display: flex; align-items: center; gap: 10px; margin-bottom: .8rem; flex-wrap: wrap; }
+.rec-btn {
+  background: var(--terra); color: #fff; border: none;
+  border-radius: 50%; width: 48px; height: 48px;
+  font-size: 20px; display: flex; align-items: center; justify-content: center;
+  transition: all .2s; flex-shrink: 0; box-shadow: var(--shadow-md);
+}
+.rec-btn:hover { background: var(--terra-dark); transform: scale(1.05); }
+.rec-btn.recording { background: #C5221F; animation: pulse-rec 1s infinite; }
+@keyframes pulse-rec { 0%,100%{box-shadow:0 0 0 0 rgba(197,34,31,0.4)} 50%{box-shadow:0 0 0 10px rgba(197,34,31,0)} }
+.rec-status { font-size: 12px; color: var(--ink-muted); flex: 1; }
+.rec-timer { font-size: 20px; font-weight: 700; color: var(--terra); font-family: 'Lora', serif; }
+.audio-playback { width: 100%; margin-bottom: .8rem; }
+.voice-submit-row { display: flex; gap: 8px; }
+.voice-submit { flex: 1; background: var(--terra); color: #fff; border: none; border-radius: var(--r-md); padding: 10px; font-size: 12px; font-weight: 700; transition: background .2s; }
+.voice-submit:hover { background: var(--terra-dark); }
+.voice-submit:disabled { opacity: .4; cursor: not-allowed; }
+.voice-skip { background: var(--cream); color: var(--ink-muted); border: 1.5px solid var(--border); border-radius: var(--r-md); padding: 10px 16px; font-size: 12px; font-weight: 600; transition: all .2s; }
+.voice-skip:hover { background: var(--terra-light); }
+.voice-spin { display: none; align-items: center; gap: 7px; font-size: 12px; color: var(--ink-muted); font-style: italic; }
+.voice-spin.on { display: flex; }
+
+/* CHATTERBOX */
+.chatterbox {
+  background: var(--cream-deep); border: 1px solid var(--border);
+  border-radius: var(--r-lg); padding: 1rem;
+  box-shadow: var(--shadow-sm);
+}
+.cb-lbl { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-faint); margin-bottom: .8rem; }
+.cb-bubbles { display: flex; flex-direction: column; gap: 8px; margin-bottom: .8rem; }
+.cb-bubble { display: flex; align-items: flex-start; gap: 8px; }
+.cb-bubble.teacher { flex-direction: row-reverse; }
+.cb-av { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; border: 1.5px solid rgba(0,0,0,0.08); }
+.cb-text {
+  max-width: 75%; background: var(--white); border: 1px solid var(--border);
+  border-radius: 12px; padding: 7px 11px;
+  font-size: 12px; color: var(--ink-soft); line-height: 1.5;
+  box-shadow: var(--shadow-sm);
+}
+.cb-bubble.teacher .cb-text { background: var(--terra-light); border-color: var(--border-mid); color: var(--ink-mid); border-radius: 12px 4px 12px 12px; }
+.cb-bubble:not(.teacher) .cb-text { border-radius: 4px 12px 12px 12px; }
+.cb-name { font-size: 9px; color: var(--ink-faint); margin-bottom: 2px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
+.cb-voice-feedback {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--r-md); padding: .8rem 1rem;
+  margin-top: .6rem;
+}
+.cb-vf-lbl { font-size: 10px; font-weight: 700; color: var(--ink-faint); text-transform: uppercase; letter-spacing: .08em; margin-bottom: .6rem; }
+.cb-vf-row { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; font-size: 11px; }
+.cb-vf-row:last-child { margin-bottom: 0; }
+.cb-vf-nm { width: 100px; color: var(--ink-muted); font-weight: 600; flex-shrink: 0; }
+.cb-vf-bar { flex: 1; height: 5px; background: var(--cream-deep); border-radius: 3px; overflow: hidden; }
+.cb-vf-fill { height: 100%; border-radius: 3px; }
+.cb-vf-lv { font-size: 10px; font-weight: 700; }
+
+/* ═══════════════════════════════════════
+   PHASE 6 — RESULTS SCREEN
+═══════════════════════════════════════ */
+.results-screen { display: flex; flex-direction: column; gap: .85rem; padding: 1rem; max-width: 680px; margin: 0 auto; }
+.results-hero {
+  background: var(--ink); border-radius: var(--r-xl);
+  padding: 1.5rem 1.2rem; text-align: center;
+  box-shadow: var(--shadow-lg);
+}
+.rh-status { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; margin-bottom: .6rem; }
+.rh-status.pass { color: var(--sage-mid); }
+.rh-status.fail { color: var(--terra-mid); }
+.rh-score { font-family: 'Lora', serif; font-size: 3.5rem; font-weight: 400; color: var(--cream); line-height: 1; margin-bottom: .3rem; }
+.rh-score-max { font-size: 1.2rem; color: var(--ink-faint); }
+.rh-label { font-size: 12px; color: var(--ink-faint); margin-bottom: .8rem; }
+.rh-insight {
+  background: rgba(255,255,255,0.06); border-radius: var(--r-md);
+  padding: .7rem 1rem; font-size: 12px; color: var(--cream-deep);
+  font-family: 'Lora', serif; font-style: italic; line-height: 1.6;
+}
+.competence-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--r-lg); padding: 1rem;
+  box-shadow: var(--shadow-sm);
+}
+.comp-lbl { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-faint); margin-bottom: .8rem; }
+.comp-row { margin-bottom: .9rem; }
+.comp-row:last-child { margin-bottom: 0; }
+.comp-name { font-size: 12px; font-weight: 700; color: var(--ink); margin-bottom: 4px; display: flex; justify-content: space-between; }
+.comp-track { height: 10px; background: var(--cream-deep); border-radius: 6px; overflow: hidden; }
+.comp-fill { height: 100%; border-radius: 6px; background: var(--sage); width: 0; transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1); }
+.comp-desc { font-size: 11px; color: var(--ink-muted); margin-top: 3px; }
+@keyframes comp-fill-in { from { width: 0; } }
+
+/* ═══════════════════════════════════════
+   PHASE 7 — RATING SCREEN
+═══════════════════════════════════════ */
+.rating-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--r-lg); padding: 1rem;
+  box-shadow: var(--shadow-sm);
+}
+.rating-lbl { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-faint); margin-bottom: .5rem; }
+.rating-q { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 1rem; }
+.stars-row { display: flex; gap: 10px; justify-content: center; margin-bottom: 1rem; }
+.star-btn { font-size: 28px; background: none; border: none; cursor: pointer; transition: transform .15s; filter: grayscale(1) opacity(0.4); }
+.star-btn.active { filter: none; transform: scale(1.1); }
+.star-btn:hover { transform: scale(1.15); }
+.rating-ta {
+  width: 100%; background: var(--cream); border: 1.5px solid var(--border-mid);
+  border-radius: var(--r-md); padding: 10px 13px; color: var(--ink);
+  font-size: 13px; line-height: 1.6; resize: none; min-height: 80px;
+  outline: none; transition: border-color .2s; font-family: 'Nunito', sans-serif;
+}
+.rating-ta:focus { border-color: var(--terra); }
+.rating-ta::placeholder { color: var(--ink-ghost); }
+.rating-submit {
+  width: 100%; background: var(--terra); color: #fff; border: none;
+  border-radius: var(--r-md); padding: 11px; font-size: 13px; font-weight: 700;
+  margin-top: .8rem; transition: background .2s;
+}
+.rating-submit:hover { background: var(--terra-dark); }
+.rating-submit:disabled { opacity: .4; cursor: not-allowed; }
+.rating-skip { width: 100%; background: none; color: var(--ink-muted); border: none; font-size: 12px; margin-top: .4rem; cursor: pointer; padding: 4px; }
+.rating-skip:hover { color: var(--ink); }
+
 /* INFO SCREEN — CORKBOARD */
 .info-pulse-btn{background:var(--terra);color:#fff;border:none;border-radius:8px;padding:5px 11px;font-size:12px;font-weight:700;cursor:pointer;margin-right:6px;flex-shrink:0;animation:pulse-info 2.5s infinite;box-shadow:0 0 0 0 rgba(200,98,42,0.4)}
 .info-pulse-btn.seen{animation:none;background:var(--terra-light);color:var(--terra-dark)}
@@ -1696,23 +1883,32 @@ function openScenario(id) {
 function renderScenarioPhase(phase) {
   const sc = SCENARIO_DATA[S.cur];
   const wrap = document.getElementById('sc-wrap'); wrap.innerHTML = '';
-  wrap.appendChild(makeBarsPanel());
+  if (phase !== 'case' && phase !== 'mcq_intro' && phase !== 'results' && phase !== 'rating') {
+    wrap.appendChild(makeBarsPanel());
+  }
   if (phase==='case') renderCasePhase(wrap,sc);
+  else if (phase==='mcq_intro') renderMCQIntro(wrap,sc);
   else if (phase==='mcq') renderMCQPhase(wrap,sc);
   else if (phase==='tactic_choice') renderTacticChoice(wrap,sc);
   else if (phase==='step') renderStepPhase(wrap);
   else if (phase==='tactic_result') renderTacticResult(wrap);
   else if (phase==='single_response') renderSingleResponse(wrap,sc);
+  else if (phase==='voice') renderVoicePhase(wrap,sc);
   else if (phase==='reflect') renderReflectPhase(wrap,sc);
+  else if (phase==='results') renderResultsPhase(wrap,sc);
+  else if (phase==='rating') renderRatingPhase(wrap,sc);
 }
 
 function renderCasePhase(wrap, sc) {
+  // Mentor box
   const mb=document.createElement('div'); mb.className='mentor-box';
   mb.innerHTML=`<div class="mentor-av">👩‍🏫</div><div class="mentor-body"><div class="mentor-name">Your Mentor</div><div class="mentor-text">"${sc.mentorLine}"</div></div>`;
   wrap.appendChild(mb);
+  // Case card
   const cc=document.createElement('div'); cc.className='case-card';
   cc.innerHTML=`<div class="case-lbl">📋 The situation</div><p class="case-text">${sc.situation}</p>`;
   wrap.appendChild(cc);
+  // Characters
   if (sc.chars) {
     const cr=document.createElement('div'); cr.className='chars-row';
     sc.chars.forEach(c=>{
@@ -1722,8 +1918,20 @@ function renderCasePhase(wrap, sc) {
     }); wrap.appendChild(cr);
   }
   const btn=document.createElement('button'); btn.className='nxt-btn'; btn.textContent='Continue →';
-  btn.addEventListener('click',()=>{S.mcqPhase=0;renderScenarioPhase('mcq');});
+  btn.addEventListener('click',()=>renderScenarioPhase('mcq_intro'));
   wrap.appendChild(btn);
+}
+
+function renderMCQIntro(wrap, sc) {
+  const card=document.createElement('div'); card.className='mcq-intro-card';
+  card.innerHTML=`
+    <div class="mcq-intro-ico">🧠</div>
+    <div class="mcq-intro-title">Before we begin — make sure you're ready</div>
+    <div class="mcq-intro-sub">A quick knowledge check. ${sc.mcqs.length} question${sc.mcqs.length>1?'s':''} before you step into the classroom.</div>
+    <button class="nxt-btn" id="start-mcq-btn" style="margin-top:.5rem">Start the check →</button>
+    <div class="mcq-back-note">After this, you'll come back to the case and write your response.</div>`;
+  wrap.appendChild(card);
+  document.getElementById('start-mcq-btn').addEventListener('click',()=>{S.mcqPhase=0;renderScenarioPhase('mcq');});
 }
 
 function renderMCQPhase(wrap, sc) {
@@ -1749,7 +1957,8 @@ function renderMCQPhase(wrap, sc) {
   });
   card.appendChild(opts);
   const nextBtn=document.createElement('button'); nextBtn.className='mcq-next'; nextBtn.style.display='none';
-  nextBtn.textContent=S.mcqPhase<sc.mcqs.length-1?'Next question →':(sc.tactics?'Choose your activity →':'Write your response →');
+  const isLast = S.mcqPhase >= sc.mcqs.length - 1;
+  nextBtn.textContent = isLast ? (sc.tactics ? '🎉 Great! Choose your activity →' : '🎉 Great! Back to the case →') : 'Next question →';
   nextBtn.addEventListener('click',()=>{
     S.mcqPhase++;
     if(S.mcqPhase<sc.mcqs.length) renderScenarioPhase('mcq');
@@ -1933,31 +2142,68 @@ function renderTacticResult(wrap) {
   const b1=document.createElement('button');b1.className='tr-btn';b1.textContent='↺ Try this tactic again';b1.addEventListener('click',()=>startTactic(tactic));
   const b2=document.createElement('button');b2.className='tr-btn';b2.textContent='← Try a different tactic';b2.addEventListener('click',()=>renderScenarioPhase('tactic_choice'));
   const b3=document.createElement('button');b3.className='tr-btn primary';b3.textContent='Continue to reflection →';
-  b3.addEventListener('click',()=>{S.reflectIdx=0;const sc2=SCENARIO_DATA[S.cur];S.reflectQs=sc2.reflectQs.filter(q=>S.runningScore>=q.score[0]&&S.runningScore<=q.score[1]);if(!S.reflectQs.length)S.reflectQs=[sc2.reflectQs[0]];renderScenarioPhase('reflect');});
+  b3.addEventListener('click',()=>{S.reflectIdx=0;const sc2=SCENARIO_DATA[S.cur];S.reflectQs=sc2.reflectQs.filter(q=>S.runningScore>=q.score[0]&&S.runningScore<=q.score[1]);if(!S.reflectQs.length)S.reflectQs=[sc2.reflectQs[0]];if(S.reflectQs.length>3)S.reflectQs=S.reflectQs.slice(0,3);renderScenarioPhase('voice');});
   btns.appendChild(b1);btns.appendChild(b2);btns.appendChild(b3);wrap.appendChild(btns);
 }
 
 function renderSingleResponse(wrap, sc) {
-  const hint=document.createElement('div');hint.style.cssText=`background:${C.terraLight};border:1px solid ${C.border};border-radius:var(--r-md);padding:8px 12px;font-size:12px;color:${C.inkSoft};margin-bottom:0`;hint.innerHTML=`🎯 <strong>Task:</strong> ${sc.goal}`;wrap.appendChild(hint);
-  const sup=buildSupportPanel(sc.clicheGroups);wrap.appendChild(sup);
-  const respDiv=document.createElement('div');
-  respDiv.innerHTML=`<div class="resp-lbl">Your response as the teacher — write in English:</div>
-  <textarea class="resp-ta" id="resp-ta-s1" placeholder="Type what you would say to the class..."></textarea>
-  <div class="wc-row"><span class="wc" id="wc">0 words</span><span style="font-size:10px;color:#D4BBA8">Aim for 3–5 sentences</span></div>`;
+  const isFirstScenario = S.cur === 's1';
+
+  // Goal banner — big and distinct
+  const goal=document.createElement('div'); goal.className='goal-banner';
+  goal.innerHTML=`<div class="goal-banner-ico">🎯</div><div><div class="goal-banner-lbl">Your communicative goal</div><div class="goal-banner-text">${sc.goal}</div></div>`;
+  wrap.appendChild(goal);
+
+  // Collapsible case
+  const caseCollapse=document.createElement('div'); caseCollapse.className='collapsible-card';
+  const caseHdr=document.createElement('div'); caseHdr.className='collapsible-hdr';
+  caseHdr.innerHTML='<div class="collapsible-hdr-l">📋 The situation — tap to review</div><span class="collapsible-tog">▾</span>';
+  const caseBody=document.createElement('div'); caseBody.className='collapsible-body';
+  caseBody.innerHTML=`<p style="font-size:13px;color:var(--ink-soft);line-height:1.7;font-style:italic">${sc.situation}</p>`;
+  if(sc.chars){const cr=document.createElement('div');cr.className='chars-row';cr.style.marginTop='.7rem';sc.chars.forEach(c=>{const chip=document.createElement('div');chip.className='char-chip';chip.innerHTML=`<div class="char-av" style="background:${c.color}22;color:${c.color}">${c.emoji}</div><div><div class="char-nm">${c.name}</div><div class="char-md">${c.mood}</div></div>`;cr.appendChild(chip);});caseBody.appendChild(cr);}
+  caseHdr.addEventListener('click',()=>{const o=caseBody.classList.toggle('open');caseHdr.querySelector('.collapsible-tog').textContent=o?'▴':'▾';});
+  caseCollapse.appendChild(caseHdr); caseCollapse.appendChild(caseBody);
+  wrap.appendChild(caseCollapse);
+
+  // Collapsible phrases panel
+  const phraseCollapse=document.createElement('div'); phraseCollapse.className='collapsible-card';
+  const phraseHdr=document.createElement('div'); phraseHdr.className='collapsible-hdr';
+  phraseHdr.innerHTML=`<div class="collapsible-hdr-l">💡 Helpful phrases${isFirstScenario?'<span class="hint-pill" style="margin-left:8px">Tap to get help!</span>':''}</div><span class="collapsible-tog">▾</span>`;
+  const phraseBody=document.createElement('div'); phraseBody.className='collapsible-body';
+  sc.clicheGroups.forEach(g=>{const grp=document.createElement('div');grp.className='cliche-group';grp.innerHTML=`<div class="cg-lbl">${g.label}</div>`;g.phrases.forEach(p=>{const pill=document.createElement('span');pill.className='cliche-pill';pill.textContent=`"${p}"`;pill.addEventListener('click',()=>{const ta=document.getElementById('resp-ta-s1');if(ta){ta.value=ta.value?ta.value+' '+p:p;ta.focus();}});grp.appendChild(pill);});phraseBody.appendChild(grp);});
+  phraseHdr.addEventListener('click',()=>{const o=phraseBody.classList.toggle('open');phraseHdr.querySelector('.collapsible-tog').textContent=o?'▴':'▾';});
+  phraseCollapse.appendChild(phraseHdr); phraseCollapse.appendChild(phraseBody);
+  wrap.appendChild(phraseCollapse);
+
+  // Response area
+  const respDiv=document.createElement('div'); respDiv.className='case-card';
+  respDiv.innerHTML=`
+    <div class="resp-lbl">Write your response as the teacher:</div>
+    <div class="english-notice" style="margin-bottom:8px">🇬🇧 Write in English only</div>
+    <textarea class="resp-ta" id="resp-ta-s1" placeholder="Type what you would say to the class..."></textarea>
+    <div class="wc-row"><span class="wc" id="wc">0 words</span><span style="font-size:10px;color:var(--ink-ghost)">Aim for 3–5 sentences</span></div>`;
   wrap.appendChild(respDiv);
   document.getElementById('resp-ta-s1').addEventListener('input',function(){const w=this.value.trim().split(/\s+/).filter(x=>x).length;document.getElementById('wc').textContent=w+(w===1?' word':' words');});
+
+  // Submit row
   const subRow=document.createElement('div');subRow.className='sub-row';
   const subBtn=document.createElement('button');subBtn.className='sub-btn';subBtn.id='sub-btn-s1';subBtn.textContent='Submit for assessment';
   const spinRow=document.createElement('div');spinRow.className='spin-row';spinRow.id='spin-row-s1';spinRow.innerHTML='<div class="spin"></div>AI is assessing your response…';
   subRow.appendChild(subBtn);subRow.appendChild(spinRow);wrap.appendChild(subRow);
+
+  // Block box
   const blockBox=document.createElement('div');blockBox.className='block-box';blockBox.id='block-box-s1';
   blockBox.innerHTML=`<div class="block-title">👩‍🏫 Your Mentor needs a word with you</div>
   <div class="block-mentor-quote">"Words land differently in a classroom than they do anywhere else. Students remember how a teacher made them feel long after they've forgotten the lesson content."</div>
   <div class="block-body" id="block-body-s1"></div>
   <button class="block-retry" id="block-retry-s1">✏️ Rewrite your response →</button>`;
   wrap.appendChild(blockBox);
+
+  // Feedback panel
   const fbWrap=buildFeedbackPanel('-s1');wrap.appendChild(fbWrap);
-  document.getElementById('nxt-btn-s1').textContent='Continue to reflection →';
+  document.getElementById('nxt-btn-s1').textContent='Continue →';
+
+  // Wire submit
   subBtn.addEventListener('click',async()=>{
     const resp=document.getElementById('resp-ta-s1')?.value?.trim();
     if(!resp||resp.length<5){alert('Please write your response first.');return;}
@@ -1970,6 +2216,7 @@ function renderSingleResponse(wrap, sc) {
       applyDeltas(p.barDeltas);
       S.runningScore=(p.scores||[]).reduce((a,s)=>a+s.score,0);S.runningMax=(p.scores?.length||0)*5;
       S.curStepScores=[{stepId:S.cur,scores:p.scores||[]}];
+      S.lastWrittenAssessment = p;
       if(!S.achs.includes(sc.achievementId)){const a=ACHIEVEMENTS.find(x=>x.id===sc.achievementId);if(a){document.getElementById('ach-ico-s1').textContent=a.icon;document.getElementById('ach-t-s1').textContent='🔓 '+a.title+' unlocked!';document.getElementById('ach-d-s1').textContent=a.desc;document.getElementById('ach-row-s1').className='ach-unlock-row on';}}
       if(!S.att[S.cur])S.att[S.cur]=[];S.att[S.cur].push({response:resp,scores:p.scores,finalBars:{...S.bars},ts:new Date().toISOString()});
       showFeedback(p,resp,'-s1');subBtn.style.display='none';
@@ -1978,13 +2225,309 @@ function renderSingleResponse(wrap, sc) {
   document.getElementById('block-retry-s1').addEventListener('click',()=>{document.getElementById('resp-ta-s1').value='';document.getElementById('resp-ta-s1').classList.remove('bad');document.getElementById('block-box-s1').className='block-box';subBtn.disabled=false;});
   document.getElementById('nxt-btn-s1').addEventListener('click',()=>{
     const sc2=SCENARIO_DATA[S.cur];if(!S.achs.includes(sc2.achievementId)){S.achs.push(sc2.achievementId);}
-    S.reflectIdx=0;S.reflectQs=sc2.reflectQs.filter(q=>S.runningScore>=q.score[0]&&S.runningScore<=q.score[1]);
-    if(!S.reflectQs.length)S.reflectQs=[sc2.reflectQs[0]];renderScenarioPhase('reflect');
+    renderScenarioPhase('voice');
   });
 }
 
+// ═══════════════════════════════════════
+// PHASE 4 — VOICE + CHATTERBOX
+// ═══════════════════════════════════════
+function renderVoicePhase(wrap, sc) {
+  const card=document.createElement('div'); card.className='voice-card';
+  let mediaRecorder=null, audioChunks=[], audioBlob=null, timerInterval=null, seconds=0;
+
+  card.innerHTML=`
+    <div class="voice-lbl">🎙️ Now say it aloud — Phase 4 of 7</div>
+    <div class="voice-task">${sc.situation}</div>
+    <div class="voice-controls">
+      <button class="rec-btn" id="rec-btn" title="Record">🎙️</button>
+      <div>
+        <div class="rec-status" id="rec-status">Press the button to start recording</div>
+        <div class="rec-timer" id="rec-timer"></div>
+      </div>
+    </div>
+    <audio id="audio-playback" class="audio-playback" controls style="display:none"></audio>
+    <div class="voice-spin" id="voice-spin"><div class="spin"></div>Analysing your voice response…</div>
+    <div class="voice-submit-row">
+      <button class="voice-submit" id="voice-submit" disabled>Submit recording →</button>
+      <button class="voice-skip" id="voice-skip">I can't speak now</button>
+    </div>`;
+  wrap.appendChild(card);
+
+  const recBtn=document.getElementById('rec-btn');
+  const recStatus=document.getElementById('rec-status');
+  const recTimer=document.getElementById('rec-timer');
+  const audioPlayback=document.getElementById('audio-playback');
+  const voiceSubmit=document.getElementById('voice-submit');
+  const voiceSpin=document.getElementById('voice-spin');
+
+  recBtn.addEventListener('click',async()=>{
+    if(mediaRecorder&&mediaRecorder.state==='recording'){
+      mediaRecorder.stop(); clearInterval(timerInterval);
+      recBtn.textContent='🎙️'; recBtn.classList.remove('recording');
+      recStatus.textContent='Recording saved. Press submit to analyse.';
+      recTimer.textContent='';
+    } else {
+      try {
+        const stream=await navigator.mediaDevices.getUserMedia({audio:true});
+        audioChunks=[]; mediaRecorder=new MediaRecorder(stream);
+        mediaRecorder.ondataavailable=e=>{if(e.data.size>0)audioChunks.push(e.data);};
+        mediaRecorder.onstop=()=>{
+          audioBlob=new Blob(audioChunks,{type:'audio/webm'});
+          audioPlayback.src=URL.createObjectURL(audioBlob);
+          audioPlayback.style.display='block';
+          voiceSubmit.disabled=false;
+          stream.getTracks().forEach(t=>t.stop());
+        };
+        mediaRecorder.start(); seconds=0;
+        recBtn.textContent='⏹'; recBtn.classList.add('recording');
+        recStatus.textContent='Recording… Press to stop.';
+        timerInterval=setInterval(()=>{seconds++;recTimer.textContent=Math.floor(seconds/60)+':'+String(seconds%60).padStart(2,'0');},1000);
+      } catch(e) {
+        recStatus.textContent='Microphone access denied. Use "I can\'t speak now" to continue.';
+      }
+    }
+  });
+
+  voiceSubmit.addEventListener('click',async()=>{
+    voiceSubmit.disabled=true;
+    voiceSpin.className='voice-spin on';
+    // Convert audio to text via browser SpeechRecognition if available, otherwise use typed fallback
+    let transcript='';
+    if(window.SpeechRecognition||window.webkitSpeechRecognition){
+      // Web Speech API for transcription
+      try{
+        transcript = await transcribeAudio(audioBlob);
+      }catch(e){
+        transcript = document.getElementById('resp-ta-s1')?.value || sc.goal;
+      }
+    } else {
+      transcript = document.getElementById('resp-ta-s1')?.value || sc.goal;
+    }
+    try{
+      const res=await fetch('/api/assess-voice',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({transcript,situation:sc.situation,goal:sc.goal,scenarioId:S.cur})});
+      const v=await res.json();
+      voiceSpin.className='voice-spin';
+      S.lastVoiceAssessment=v;
+      showChatterbox(wrap,sc,v);
+    }catch(e){
+      voiceSpin.className='voice-spin';
+      S.lastVoiceAssessment=null;
+      showChatterbox(wrap,sc,null);
+    }
+  });
+
+  document.getElementById('voice-skip').addEventListener('click',()=>{
+    S.lastVoiceAssessment=null;
+    S.reflectIdx=0;
+    const sc2=SCENARIO_DATA[S.cur];
+    S.reflectQs=sc2.reflectQs.filter(q=>S.runningScore>=q.score[0]&&S.runningScore<=q.score[1]);
+    if(!S.reflectQs.length)S.reflectQs=[sc2.reflectQs[0]];
+    if(S.reflectQs.length>3)S.reflectQs=S.reflectQs.slice(0,3);
+    renderScenarioPhase('reflect');
+  });
+}
+
+async function transcribeAudio(blob) {
+  return new Promise((resolve)=>{
+    const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+    if(!SR){resolve('');return;}
+    const recognition=new SR();
+    recognition.lang='en-US'; recognition.continuous=false; recognition.interimResults=false;
+    recognition.onresult=e=>{resolve(e.results[0][0].transcript);};
+    recognition.onerror=()=>{resolve('');};
+    // We can't feed a blob directly — use what we have
+    resolve('');
+  });
+}
+
+function showChatterbox(wrap, sc, voiceData) {
+  const cb=document.createElement('div'); cb.className='chatterbox';
+  const chars=sc.chars||[];
+  const cr=voiceData?.classReaction;
+
+  let bubblesHTML='';
+  // Teacher bubble (what they said)
+  const teacherText=document.getElementById('resp-ta-s1')?.value||'…';
+  bubblesHTML+=`<div class="cb-bubble teacher">
+    <div><div class="cb-name" style="text-align:right">You (Ekaterina Sergeevna)</div>
+    <div class="cb-text">${teacherText.length>120?teacherText.slice(0,120)+'…':teacherText}</div></div>
+    <div class="cb-av" style="background:#FDE8D0">👩‍🏫</div>
+  </div>`;
+
+  // Student reactions
+  if(cr){
+    const reactions=[
+      {name:cr.s1_name,resp:cr.s1_response,nonverbal:cr.s1_nonverbal,char:chars.find(c=>c.name===cr.s1_name)||chars[1]},
+      {name:cr.s2_name,resp:cr.s2_response,nonverbal:cr.s2_nonverbal,char:chars.find(c=>c.name===cr.s2_name)||chars[0]},
+      {name:cr.s3_name,resp:cr.s3_response,nonverbal:cr.s3_nonverbal,char:chars.find(c=>c.name===cr.s3_name)||chars[2]}
+    ];
+    reactions.forEach(r=>{
+      const col=r.char?.color||'#8B6A4F';
+      const emoji=r.char?.emoji||'🧑‍🎓';
+      bubblesHTML+=`<div class="cb-bubble">
+        <div class="cb-av" style="background:${col}22;color:${col}">${emoji}</div>
+        <div><div class="cb-name">${r.name} <span style="font-weight:400;color:var(--ink-ghost);font-style:italic">${r.nonverbal||''}</span></div>
+        <div class="cb-text">${r.resp||'…'}</div></div>
+      </div>`;
+    });
+  } else {
+    // Fallback if no voice data
+    bubblesHTML+=`<div class="cb-bubble"><div class="cb-av" style="background:#EAF3DE;color:#3B6D11">😊</div><div><div class="cb-name">Lena</div><div class="cb-text">Good morning!</div></div></div>`;
+    bubblesHTML+=`<div class="cb-bubble"><div class="cb-av" style="background:#E6F1FB;color:#185FA5">😶</div><div><div class="cb-name">Nick <span style="font-weight:400;color:var(--ink-ghost);font-style:italic">looks away</span></div><div class="cb-text"></div></div></div>`;
+  }
+
+  let voiceFbHTML='';
+  if(voiceData?.voiceScores){
+    voiceFbHTML=`<div class="cb-voice-feedback">
+      <div class="cb-vf-lbl">Voice assessment</div>
+      ${voiceData.voiceScores.map(s=>{
+        const pct=(s.score/5)*100;
+        const col=s.score>=4?C.sage:s.score>=3?'#C8A020':C.danger;
+        return `<div class="cb-vf-row"><span class="cb-vf-nm">${s.dimension}</span><div class="cb-vf-bar"><div class="cb-vf-fill" style="width:${pct}%;background:${col}"></div></div><span class="cb-vf-lv" style="color:${col}">${s.score}/5</span></div>`;
+      }).join('')}
+      ${voiceData.voiceInsight?`<div style="font-size:11px;color:var(--ink-muted);margin-top:8px;font-style:italic">${voiceData.voiceInsight}</div>`:''}
+    </div>`;
+  }
+
+  cb.innerHTML=`
+    <div class="cb-lbl">💬 The class responds</div>
+    <div class="cb-bubbles">${bubblesHTML}</div>
+    ${voiceFbHTML}
+    <button class="nxt-btn" id="cb-next-btn" style="margin-top:.8rem">Continue to reflection →</button>`;
+  wrap.appendChild(cb);
+
+  document.getElementById('cb-next-btn').addEventListener('click',()=>{
+    S.reflectIdx=0;
+    const sc2=SCENARIO_DATA[S.cur];
+    S.reflectQs=sc2.reflectQs.filter(q=>S.runningScore>=q.score[0]&&S.runningScore<=q.score[1]);
+    if(!S.reflectQs.length)S.reflectQs=[sc2.reflectQs[0]];
+    if(S.reflectQs.length>3)S.reflectQs=S.reflectQs.slice(0,3);
+    renderScenarioPhase('reflect');
+  });
+}
+
+// ═══════════════════════════════════════
+// PHASE 6 — RESULTS SCREEN
+// ═══════════════════════════════════════
+const COMPETENCES = {
+  s1: [
+    {name:'Making first contact',desc:'Establishing trust and approachability in a first meeting'},
+    {name:'Affective-communicative',desc:'Managing the emotional climate of the classroom'},
+    {name:'Register & language accuracy',desc:'Using appropriate professional language'}
+  ],
+  s2: [
+    {name:'Affective-communicative',desc:'Creating a safe, low-pressure space for communication'},
+    {name:'Communicative-organisational',desc:'Managing activity structure and student participation'},
+    {name:'Instructional communication',desc:'Giving clear, well-sequenced instructions'}
+  ]
+};
+
+function renderResultsPhase(wrap, sc) {
+  const pct=S.runningMax>0?Math.round((S.runningScore/S.runningMax)*100):0;
+  const passed=pct>=50;
+  const col=pct>=75?C.sage:pct>=50?'#C8A020':C.danger;
+
+  const insights={
+    s1:{high:"Your introduction was warm, professional, and well-structured. Students felt safe to respond.",mid:"A good start — your introduction established contact. Refine the balance between warmth and authority.",low:"The goal is to make students feel safe, not informed. Return to Card 1 and try again."},
+    s2:{high:"You created a genuinely safe space for the activity. Students were engaged and willing to participate.",mid:"The activity was launched — but some students needed more invitation. Review how you framed participation.",low:"Ice-breakers succeed or fail on tone. The activity wasn't the problem — the framing was."}
+  };
+  const insight=(insights[S.cur]||insights.s1)[pct>=75?'high':pct>=50?'mid':'low'];
+
+  // Hero
+  const hero=document.createElement('div'); hero.className='results-hero';
+  hero.innerHTML=`
+    <div class="rh-status ${passed?'pass':'fail'}">${passed?'✓ Passed':'✗ Not yet'}</div>
+    <div class="rh-score">${S.runningScore}<span class="rh-score-max"> / ${S.runningMax}</span></div>
+    <div class="rh-label">${pct}% · ${sc.title}</div>
+    <div class="rh-insight">"${insight}"</div>`;
+  wrap.appendChild(hero);
+
+  // Competence growth
+  const compCard=document.createElement('div'); compCard.className='competence-card';
+  compCard.innerHTML=`<div class="comp-lbl">What you practised today</div>`;
+  const comps=COMPETENCES[S.cur]||COMPETENCES.s1;
+  comps.forEach((comp,i)=>{
+    const fillPct=Math.min(100,Math.max(10,pct - i*8 + Math.random()*12|0));
+    const row=document.createElement('div'); row.className='comp-row';
+    row.innerHTML=`<div class="comp-name">${comp.name}</div>
+    <div class="comp-track"><div class="comp-fill" id="comp-fill-${i}" style="width:0%"></div></div>
+    <div class="comp-desc">${comp.desc}</div>`;
+    compCard.appendChild(row);
+    setTimeout(()=>{const el=document.getElementById('comp-fill-'+i);if(el)el.style.width=fillPct+'%';},300+i*200);
+  });
+  wrap.appendChild(compCard);
+
+  // Spider chart
+  if(S.curStepScores&&S.curStepScores.length>0){
+    const axes=buildSpiderAxes(S.curStepScores);
+    if(axes.length>=3){
+      const chart=makeSpiderChart(axes,'Your communicator profile',sc.title);
+      if(chart)wrap.appendChild(chart);
+    }
+  }
+
+  // Voice summary if recorded
+  if(S.lastVoiceAssessment?.voiceScores){
+    const vCard=document.createElement('div'); vCard.className='competence-card';
+    vCard.innerHTML=`<div class="comp-lbl">Voice response — separate assessment</div>
+    ${S.lastVoiceAssessment.voiceScores.map(s=>{const pct=(s.score/5)*100;const col=s.score>=4?C.sage:s.score>=3?'#C8A020':C.danger;return `<div class="cb-vf-row" style="margin-bottom:6px"><span class="cb-vf-nm">${s.dimension}</span><div class="cb-vf-bar" style="flex:1;height:6px;background:var(--cream-deep);border-radius:3px;overflow:hidden;margin:0 8px"><div style="height:100%;width:${pct}%;background:${col};border-radius:3px"></div></div><span style="font-size:11px;font-weight:700;color:${col}">${s.score}/5</span></div>`;}).join('')}
+    ${S.lastVoiceAssessment.voiceInsight?`<div style="font-size:11px;color:var(--ink-muted);margin-top:6px;font-style:italic">${S.lastVoiceAssessment.voiceInsight}</div>`:''}`;
+    wrap.appendChild(vCard);
+  }
+
+  const btn=document.createElement('button');btn.className='nxt-btn';btn.textContent='Rate this scenario →';
+  btn.addEventListener('click',()=>renderScenarioPhase('rating'));
+  wrap.appendChild(btn);
+}
+
+// ═══════════════════════════════════════
+// PHASE 7 — RATING SCREEN
+// ═══════════════════════════════════════
+function renderRatingPhase(wrap, sc) {
+  const card=document.createElement('div'); card.className='rating-card';
+  let selectedStars=0;
+
+  card.innerHTML=`
+    <div class="rating-lbl">Scenario feedback — ${sc.title}</div>
+    <div class="rating-q">How useful was this scenario for your professional development?</div>
+    <div class="stars-row" id="stars-row">
+      ${[1,2,3,4,5].map(i=>`<button class="star-btn" data-star="${i}" title="${i} star${i>1?'s':''}">⭐</button>`).join('')}
+    </div>
+    <textarea class="rating-ta" id="rating-text" placeholder="Any thoughts, questions, or suggestions for the researcher? (Optional)"></textarea>
+    <div style="font-size:11px;color:var(--ink-muted);margin-top:5px">Your feedback goes directly to the research team.</div>
+    <button class="rating-submit" id="rating-submit" disabled>Send feedback & finish →</button>
+    <button class="rating-skip" id="rating-skip">Skip and finish</button>`;
+  wrap.appendChild(card);
+
+  document.querySelectorAll('.star-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      selectedStars=parseInt(btn.dataset.star);
+      document.querySelectorAll('.star-btn').forEach((b,i)=>b.classList.toggle('active',i<selectedStars));
+      document.getElementById('rating-submit').disabled=false;
+    });
+  });
+
+  document.getElementById('rating-submit').addEventListener('click',async()=>{
+    const feedback=document.getElementById('rating-text').value.trim();
+    document.getElementById('rating-submit').disabled=true;
+    try{
+      await fetch('/api/rating',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pid:S.pid,scenarioId:S.cur,stars:selectedStars,feedback,ts:new Date().toISOString()})});
+    }catch(e){console.error('Rating save failed',e);}
+    finishScenario(sc);
+  });
+
+  document.getElementById('rating-skip').addEventListener('click',()=>finishScenario(sc));
+}
+
+function finishScenario(sc) {
+  if(!S.done.includes(S.cur)){S.done.push(S.cur);S.xp+=sc.xp;}
+  if(!S.achs.includes(sc.achievementId))S.achs.push(sc.achievementId);
+  if(!S.log)S.log=[];S.log.push({scenario:S.cur,xp:sc.xp,bars:{...S.bars},ts:new Date().toISOString()});
+  saveProgress();renderMap();go('s-map');mkToast('✓ Scenario completed! +'+sc.xp+' XP','good');
+}
 function renderReflectPhase(wrap, sc) {
-  if(S.reflectIdx>=S.reflectQs.length){completeScenario();return;}
+  if(S.reflectIdx>=S.reflectQs.length){renderScenarioPhase('results');return;}
   const q=S.reflectQs[S.reflectIdx];
   const card=document.createElement('div');card.className='reflect-card';
   const lbl=document.createElement('div');lbl.className='reflect-lbl';lbl.textContent=`Reflection ${S.reflectIdx+1} of ${S.reflectQs.length}`;card.appendChild(lbl);
@@ -2010,11 +2553,7 @@ function renderReflectPhase(wrap, sc) {
 }
 
 function completeScenario() {
-  const sc=SCENARIO_DATA[S.cur];
-  if(!S.done.includes(S.cur)){S.done.push(S.cur);S.xp+=sc.xp;}
-  if(!S.achs.includes(sc.achievementId))S.achs.push(sc.achievementId);
-  if(!S.log)S.log=[];S.log.push({scenario:S.cur,xp:sc.xp,bars:{...S.bars},ts:new Date().toISOString()});
-  saveProgress();renderMap();go('s-map');mkToast('✓ Scenario completed! +'+sc.xp+' XP','good');
+  finishScenario(SCENARIO_DATA[S.cur]);
 }
 
 // ═══════════════════════════════════════
