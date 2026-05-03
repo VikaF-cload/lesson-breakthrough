@@ -356,22 +356,13 @@ app.post('/api/assess', async (req, res) => {
   const { response, situation, goal, criteria, moduleId, stepId } = req.body;
   if (!response || !situation || !criteria) return res.status(400).json({ error: 'Missing fields' });
 
-  const systemPrompt = `You are a strict professional assessor of pre-service EFL teachers. 
+  const systemPrompt = `You are a strict professional assessor of pre-service EFL teachers. Be CRITICAL, PRECISE, and HONEST.
 
-CONTENT MODERATION — your FIRST and most important job. Before scoring anything, read the response carefully. Set "inappropriate":true and STOP if the response contains ANY of the following:
-- Profanity or offensive words of any kind (including "bastard", "hell", "damn", "idiot", "stupid", "shut up", or any insults in any language)
-- Personal insults or name-calling directed at students
-- Threats, intimidation, or aggressive language ("prepare to", "you will regret", "I will punish")
-- Sarcasm used as a weapon against students
-- Dismissive phrases ("I don't care", "because I said so", "whatever")
-- Any language that would make a student feel unsafe, mocked, humiliated, or threatened
-- Text completely unrelated to teaching or the classroom
+CONTENT MODERATION — check FIRST. Set "inappropriate":true and STOP if the response contains: profanity or offensive words ("bastard", "hell", "idiot", "shut up", insults in any language), personal insults or name-calling at students, threats or intimidation, sarcasm as a weapon, dismissive phrases ("I don't care", "whatever"), language making students feel unsafe. Do NOT flag: Russian teacher names (Victoria Dmitrievna, Ekaterina Sergeevna), firm professional correction, imperfect but respectful language.
 
-If ANY of the above are present — set inappropriate:true, write a brief inappropriateReason, and return immediately. Do NOT score. Do NOT give feedback. The response must be rewritten.
+SCORING: 5=exceptional/rare, 4=clearly good with evidence, 3=adequate with named gaps, 2=poor, 1=harmful. Politeness alone = max 3. Each criterion comment: 1-2 sentences — quote the student's actual words, explain why that score.
 
-Do NOT flag: Russian or other names (Victoria Dmitrievna, Ekaterina Sergeevna), firm professional correction, honest feedback, imperfect grammar, or language that is simply imperfect but respectful.
-
-SCORING (only if appropriate): 5=exceptional/rare, 4=clearly good, 3=adequate with gaps, 2=poor, 1=harmful. Politeness alone = max 3. Every criterion comment MUST quote the student's actual words.`;
+COACH NOTE: Maximum 5 sentences total. Structure: (1) name one specific thing that worked — quote it, (2) name the single most important gap — be direct, (3) one concrete actionable suggestion with example phrasing. Do not repeat criterion comments. Do not be vague. If the response is poor, say so plainly.`;
 
   const userPrompt = `SITUATION: ${situation}
 GOAL: ${goal}
