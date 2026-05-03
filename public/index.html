@@ -827,6 +827,41 @@ textarea, input { font-family: inherit; }
 .spider-wrap { background: var(--white); border: 1px solid var(--border); border-radius: var(--r-lg); padding: .9rem; margin-bottom: .75rem; box-shadow: var(--shadow-sm); }
 .spider-lbl { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-faint); margin-bottom: 6px; }
 .spider-sub { font-size: 11px; color: var(--ink-muted); margin-bottom: .75rem; }
+
+/* INFO SCREEN — CORKBOARD */
+.info-pulse-btn{background:var(--terra);color:#fff;border:none;border-radius:8px;padding:5px 11px;font-size:12px;font-weight:700;cursor:pointer;margin-right:6px;flex-shrink:0;animation:pulse-info 2.5s infinite;box-shadow:0 0 0 0 rgba(200,98,42,0.4)}
+.info-pulse-btn.seen{animation:none;background:var(--terra-light);color:var(--terra-dark)}
+@keyframes pulse-info{0%{box-shadow:0 0 0 0 rgba(200,98,42,0.5)}60%{box-shadow:0 0 0 10px rgba(200,98,42,0)}100%{box-shadow:0 0 0 0 rgba(200,98,42,0)}}
+.info-board{background:#C8893A;background-image:repeating-linear-gradient(0deg,transparent,transparent 18px,rgba(0,0,0,0.04) 18px,rgba(0,0,0,0.04) 19px),repeating-linear-gradient(90deg,transparent,transparent 18px,rgba(0,0,0,0.04) 18px,rgba(0,0,0,0.04) 19px);padding:16px 14px 28px;flex:1;overflow-y:auto}
+.info-two{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:11px}
+.info-four{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:7px}
+.info-note{background:#FFFBEF;border-radius:3px;padding:13px 15px 15px;position:relative;box-shadow:2px 3px 8px rgba(0,0,0,0.18)}
+.info-note.info-wh{background:#fff}.info-note.info-gr{background:#F0FAF5}.info-note.info-pk{background:#FFF0E8}
+.info-hw-note{background:#FFFDE8;border-radius:3px;padding:13px 15px 15px;position:relative;box-shadow:2px 3px 9px rgba(0,0,0,0.2);background-image:repeating-linear-gradient(transparent,transparent 24px,rgba(180,160,100,0.18) 24px,rgba(180,160,100,0.18) 25px)}
+.info-tape{position:absolute;top:-8px;left:50%;transform:translateX(-50%);width:44px;height:15px;background:rgba(255,245,170,0.72);border:0.5px solid rgba(200,160,70,0.35);border-radius:2px;z-index:2}
+.info-pin{width:12px;height:12px;border-radius:50%;position:absolute;box-shadow:0 2px 4px rgba(0,0,0,0.35);z-index:2}
+.info-nh{font-size:11px;font-weight:700;color:#5A3A10;text-transform:uppercase;letter-spacing:0.09em;margin-bottom:7px;padding-bottom:5px;border-bottom:1.5px solid rgba(90,58,16,0.13)}
+.info-portrait{width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid rgba(0,0,0,0.09);overflow:hidden}
+.info-portrait img{width:100%;height:100%;object-fit:cover}
+.info-photo-note{font-size:9px;color:#B8947A;text-align:center;margin-top:3px;font-style:italic}
+.info-fact{font-size:10px;color:#6B4A30;display:flex;align-items:flex-start;gap:4px;line-height:1.4}
+.info-fact::before{content:'·';color:#C8622A;font-weight:700;flex-shrink:0}
+.info-char-card{background:#fff;border-radius:6px;padding:9px;box-shadow:2px 3px 8px rgba(0,0,0,0.18);position:relative;text-align:center;display:flex;flex-direction:column;align-items:center;gap:4px}
+.info-char-av{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;border:2px solid rgba(0,0,0,0.07)}
+.info-cn{font-size:11px;font-weight:700;color:#1A0D05}.info-cr{font-size:10px;color:#8B6A4F;line-height:1.35}
+.info-ctag{font-size:9px;font-weight:700;padding:2px 7px;border-radius:20px;text-transform:uppercase;letter-spacing:0.06em}
+.info-bar-row{margin-bottom:8px}.info-bar-row:last-child{margin-bottom:0}
+.info-bar-top{display:flex;align-items:center;gap:5px;margin-bottom:3px}
+.info-blbl{font-size:11px;color:#3A2A10;font-weight:600;flex:1}
+.info-bpct{font-size:10px;font-weight:700;width:30px;text-align:right}
+.info-btrack{height:7px;background:#F0D5BE;border-radius:4px;overflow:hidden;margin-bottom:3px}
+.info-bfill{height:100%;border-radius:4px}
+.info-binfo{font-size:10px;color:#8B6A4F;line-height:1.4;font-style:italic}
+.info-sticker{display:inline-block;font-size:10px;font-weight:700;padding:4px 11px;border-radius:20px;text-transform:uppercase;letter-spacing:0.08em;box-shadow:1px 2px 4px rgba(0,0,0,0.18);margin:2px}
+.ist-terra{background:#C8622A;color:#fff}.ist-green{background:#3B6D11;color:#fff}.ist-amber{background:#8A6A08;color:#fff}.ist-teal{background:#0F6E56;color:#fff}.ist-red{background:#993C1D;color:#fff}.ist-ink{background:#1A0D05;color:#F4E8D0}
+.info-bottom-note{background:#fff;border-radius:3px;padding:14px 16px;position:relative;box-shadow:2px 3px 8px rgba(0,0,0,0.18);max-width:340px;margin:0 auto 18px}
+.info-back-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:#1A0D05;color:#F4E8D0;border:none;border-radius:10px;padding:12px 28px;font-size:13px;font-weight:700;cursor:pointer;margin:0 auto;box-shadow:2px 3px 8px rgba(0,0,0,0.28);transition:background .2s;font-family:'Nunito',sans-serif}
+.info-back-btn:hover{background:#3B1F0A}
 </style>
 
 <div id="toast-stack"></div>
@@ -862,6 +897,7 @@ textarea, input { font-family: inherit; }
 <div id="s-map" class="screen">
   <div class="topbar">
     <div class="tb-info"><div class="tb-lbl">Lesson Breakthrough</div><div class="tb-ttl">Semester Map</div></div>
+    <button class="info-pulse-btn" id="info-btn" title="Welcome board">ℹ</button>
     <div class="tb-pill" id="map-pid"></div>
   </div>
   <div class="map-body">
@@ -929,6 +965,223 @@ textarea, input { font-family: inherit; }
     <button class="tb-pill" id="sc-cards-btn" style="cursor:pointer;border:none">📖 Cards</button>
   </div>
   <div class="sc-wrap" id="sc-wrap"></div>
+</div>
+
+<!-- ═══════════════════════════════════ INFO ═══ -->
+<div id="s-info" class="screen">
+  <div class="topbar">
+    <button class="tb-back" id="info-back">←</button>
+    <div class="tb-info"><div class="tb-lbl">Lesson Breakthrough</div><div class="tb-ttl">Welcome board</div></div>
+  </div>
+  <div class="info-board">
+
+    <div class="info-two">
+      <div class="info-note info-pk" style="transform:rotate(-0.9deg)">
+        <div class="info-tape"></div>
+        <div class="info-nh">That's me</div>
+        <div style="display:flex;gap:11px;align-items:flex-start">
+          <div style="flex-shrink:0;text-align:center">
+            <div class="info-portrait" style="background:#FDE8D0;border-color:#E8C9A8" id="kate-portrait"><span style="font-size:24px">👩‍🏫</span></div>
+            <div class="info-photo-note">photo coming soon</div>
+          </div>
+          <div style="flex:1">
+            <div style="font-size:13px;font-weight:700;color:#1A0D05;margin-bottom:2px">Ekaterina Sergeevna</div>
+            <div style="font-size:10px;color:#C8622A;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:7px">Katya · First-year English teacher</div>
+            <div style="display:flex;flex-direction:column;gap:3px">
+              <div class="info-fact">I'm really teaching. Right now. For the first time.</div>
+              <div class="info-fact">I care about my students. I want to get this right.</div>
+              <div class="info-fact">I'm learning. Sometimes I'll get it wrong.</div>
+              <div class="info-fact">That's the whole point.</div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:10px;font-size:11px;font-style:italic;color:#8B6A4F;border-top:1px solid rgba(90,58,16,0.12);padding-top:7px">The class will call me different names as the semester unfolds. By the end... who knows? 🤍</div>
+        <div style="margin-top:8px;display:flex;gap:5px;flex-wrap:wrap">
+          <span class="info-sticker ist-terra">first year</span>
+          <span class="info-sticker ist-amber">state secondary school</span>
+        </div>
+      </div>
+
+      <div class="info-note info-gr" style="transform:rotate(0.7deg)">
+        <div class="info-tape"></div>
+        <div class="info-nh">My mentor</div>
+        <div style="display:flex;gap:11px;align-items:flex-start">
+          <div style="flex-shrink:0;text-align:center">
+            <div class="info-portrait" style="background:#E1F5EE;border-color:#9FE1CB" id="mentor-portrait"><span style="font-size:24px">👩‍🦳</span></div>
+            <div class="info-photo-note">photo coming soon</div>
+          </div>
+          <div style="flex:1">
+            <div style="font-size:13px;font-weight:700;color:#1A0D05;margin-bottom:2px">Senior English Teacher</div>
+            <div style="font-size:10px;color:#0F6E56;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:7px">Takes me under her wing</div>
+            <div style="display:flex;flex-direction:column;gap:3px">
+              <div class="info-fact">20 years in the classroom</div>
+              <div class="info-fact">Warm. Direct. Never tells you what to do.</div>
+              <div class="info-fact">Appears before every new challenge</div>
+              <div class="info-fact">Asks questions. Makes you think.</div>
+            </div>
+          </div>
+        </div>
+        <div style="background:#F0FAF7;border-left:3px solid #0F6E56;padding:7px 10px;border-radius:0 6px 6px 0;font-size:12px;font-family:'Lora',Georgia,serif;font-style:italic;color:#1A4A3A;line-height:1.6;margin-top:8px">"You already have what it takes. Trust yourself — and trust your students. You'll nail it."</div>
+        <div style="margin-top:8px;display:flex;gap:5px;flex-wrap:wrap">
+          <span class="info-sticker ist-teal">20 years exp.</span>
+          <span class="info-sticker ist-green">your guide</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-note info-wh" style="transform:rotate(0.3deg)">
+      <div class="info-tape" style="left:22%"></div>
+      <div class="info-tape" style="left:68%"></div>
+      <div class="info-nh">Class 8B — your students</div>
+      <div style="font-size:11px;color:#8B6A4F;margin-bottom:10px">14 students. Ages 14–16. They're all different. They're all watching you.</div>
+      <div class="info-four">
+        <div class="info-char-card" style="transform:rotate(-1.1deg)">
+          <div class="info-pin" style="background:#185FA5"></div>
+          <div class="info-char-av" style="background:#E6F1FB">😶</div>
+          <div class="info-cn">Nick, 15</div>
+          <div class="info-cr">Silent. Watching.<br>Waiting for a reason.</div>
+          <span class="info-ctag" style="background:#E6F1FB;color:#0C447C">reach him</span>
+        </div>
+        <div class="info-char-card" style="transform:rotate(1.3deg)">
+          <div class="info-pin" style="background:#E8A020"></div>
+          <div class="info-char-av" style="background:#FAEEDA">😄</div>
+          <div class="info-cn">Paul, 14</div>
+          <div class="info-cr">Everywhere at once.<br>Hard to ignore.</div>
+          <span class="info-ctag" style="background:#FAEEDA;color:#633806">channel him</span>
+        </div>
+        <div class="info-char-card" style="transform:rotate(-0.6deg)">
+          <div class="info-pin" style="background:#3B6D11"></div>
+          <div class="info-char-av" style="background:#EAF3DE">😊</div>
+          <div class="info-cn">Lena, 15</div>
+          <div class="info-cr">Always ready.<br>Your best ally.</div>
+          <span class="info-ctag" style="background:#EAF3DE;color:#27500A">keep her</span>
+        </div>
+        <div class="info-char-card" style="transform:rotate(0.9deg)">
+          <div class="info-pin" style="background:#185FA5"></div>
+          <div class="info-char-av" style="background:#EEEDFE">🧠</div>
+          <div class="info-cn">George, 16</div>
+          <div class="info-cr">Too smart. Too bored.<br>Asks hard questions.</div>
+          <span class="info-ctag" style="background:#EEEDFE;color:#3C3489">challenge him</span>
+        </div>
+      </div>
+      <div style="margin-top:9px;font-size:10px;color:#B8947A;text-align:center;font-style:italic;border-top:1px solid #F0D5BE;padding-top:7px">More students appear as the semester unfolds... 👀</div>
+    </div>
+
+    <div class="info-two">
+      <div class="info-note info-pk" style="transform:rotate(-0.5deg)">
+        <div class="info-tape"></div>
+        <div class="info-nh">The classroom pulse</div>
+        <div style="font-size:11px;color:#6B4A30;margin-bottom:9px">Every word you say moves these. Watch them.</div>
+        <div class="info-bar-row">
+          <div class="info-bar-top"><span class="info-blbl">⚡ Your energy</span><span class="info-bpct" style="color:#3B6D11">85%</span></div>
+          <div class="info-btrack"><div class="info-bfill" style="width:85%;background:#3B6D11"></div></div>
+          <div class="info-binfo">Drops slowly. Crashes when things go wrong.</div>
+        </div>
+        <div class="info-bar-row">
+          <div class="info-bar-top"><span class="info-blbl">🔥 Motivation</span><span class="info-bpct" style="color:#E8A020">62%</span></div>
+          <div class="info-btrack"><div class="info-bfill" style="width:62%;background:#E8A020"></div></div>
+          <div class="info-binfo">Do they want to be here? Warmth and purpose raise it.</div>
+        </div>
+        <div class="info-bar-row">
+          <div class="info-bar-top"><span class="info-blbl">👐 Involvement</span><span class="info-bpct" style="color:#E8A020">55%</span></div>
+          <div class="info-btrack"><div class="info-bfill" style="width:55%;background:#E8A020"></div></div>
+          <div class="info-binfo">Are they actually speaking? Rises when they feel safe.</div>
+        </div>
+        <div class="info-bar-row">
+          <div class="info-bar-top"><span class="info-blbl">😤 Stress</span><span class="info-bpct" style="color:#3B6D11">25%</span></div>
+          <div class="info-btrack"><div class="info-bfill" style="width:25%;background:#3B6D11"></div></div>
+          <div class="info-binfo">Lower = better. Don't pressure. Don't embarrass. Be calm.</div>
+        </div>
+        <div style="margin-top:8px;display:flex;gap:5px;flex-wrap:wrap">
+          <span class="info-sticker ist-green">updated live</span>
+          <span class="info-sticker ist-red">watch the stress!</span>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:9px">
+        <div class="info-note" style="background:#EEF5FF;transform:rotate(0.7deg)">
+          <div class="info-tape"></div>
+          <div class="info-nh">The semester map</div>
+          <div style="display:flex;flex-direction:column;gap:5px">
+            <div style="display:flex;align-items:center;gap:8px;padding:5px 8px;background:#F8FBF4;border-radius:6px"><span style="width:22px;height:22px;border-radius:6px;background:#EAF3DE;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0">✓</span><div style="font-size:11px;color:#1A0D05"><strong>Done</strong> — XP earned, cards unlocked</div></div>
+            <div style="display:flex;align-items:center;gap:8px;padding:5px 8px;background:#FFF8F4;border-radius:6px;border:1px solid #E8C9A8"><span style="width:22px;height:22px;border-radius:6px;background:#FDE8D0;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0">▶</span><div style="font-size:11px;color:#1A0D05"><strong>Play now</strong> — your current challenge</div></div>
+            <div style="display:flex;align-items:center;gap:8px;padding:5px 8px;background:#FAFAF8;border-radius:6px"><span style="width:22px;height:22px;border-radius:6px;background:#F0EBE3;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0">🔒</span><div style="font-size:11px;color:#1A0D05"><strong>Locked</strong> — complete the previous first</div></div>
+          </div>
+        </div>
+        <div class="info-note info-wh" style="transform:rotate(-0.6deg)">
+          <div class="info-tape"></div>
+          <div class="info-nh">Your library</div>
+          <div style="font-size:11px;color:#3A2A10;line-height:1.75">🏅 <strong>Achievements</strong> — badges you earn<br>🎓 <strong>Pedagogy Cards</strong> — insights you unlock<br>📖 <strong>Language Cards</strong> — phrases anytime</div>
+          <div style="margin-top:7px;font-size:10px;color:#B8947A;font-style:italic">New items show a <strong style="color:#C8622A">!</strong> — don't miss them.</div>
+          <div style="margin-top:7px"><span class="info-sticker ist-ink">earn as you play</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-two">
+      <div class="info-note info-gr" style="transform:rotate(-0.7deg)">
+        <div class="info-tape"></div>
+        <div class="info-nh">Your communicator profile</div>
+        <div style="font-size:11px;color:#3A2A10;margin-bottom:8px">After each scenario — see exactly which communication skills are growing and which need work.</div>
+        <div style="background:#fff;border-radius:8px;padding:9px;border:1px solid #C0DD97">
+          <svg viewBox="0 0 160 145" width="100%" style="display:block;max-width:150px;margin:0 auto">
+            <polygon points="80,15 135,48 135,92 80,125 25,92 25,48" fill="none" stroke="#C0DD97" stroke-width="1"/>
+            <polygon points="80,35 112,52 112,78 80,95 48,78 48,52" fill="none" stroke="#C0DD97" stroke-width="0.8"/>
+            <polygon points="80,55 96,64 96,76 80,85 64,76 64,64" fill="none" stroke="#C0DD97" stroke-width="0.6"/>
+            <line x1="80" y1="15" x2="80" y2="125" stroke="#C0DD97" stroke-width="0.7"/>
+            <line x1="25" y1="48" x2="135" y2="92" stroke="#C0DD97" stroke-width="0.7"/>
+            <line x1="135" y1="48" x2="25" y2="92" stroke="#C0DD97" stroke-width="0.7"/>
+            <polygon points="80,22 128,54 118,88 80,112 38,82 42,50" fill="rgba(59,109,17,0.18)" stroke="#3B6D11" stroke-width="1.5"/>
+            <circle cx="80" cy="22" r="3" fill="#3B6D11"/><circle cx="128" cy="54" r="3" fill="#3B6D11"/>
+            <circle cx="118" cy="88" r="3" fill="#E8A020"/><circle cx="80" cy="112" r="3" fill="#3B6D11"/>
+            <circle cx="38" cy="82" r="3" fill="#C5221F"/><circle cx="42" cy="50" r="3" fill="#3B6D11"/>
+            <text x="80" y="9" text-anchor="middle" font-size="9" fill="#3B6D11" font-family="Nunito,sans-serif" font-weight="600">Register</text>
+            <text x="142" y="52" text-anchor="start" font-size="8" fill="#3B6D11" font-family="Nunito,sans-serif">Goals</text>
+            <text x="142" y="94" text-anchor="start" font-size="8" fill="#E8A020" font-family="Nunito,sans-serif">Warmth</text>
+            <text x="80" y="138" text-anchor="middle" font-size="8" fill="#3B6D11" font-family="Nunito,sans-serif">Pragmatics</text>
+            <text x="18" y="88" text-anchor="end" font-size="8" fill="#C5221F" font-family="Nunito,sans-serif">Clarity</text>
+            <text x="18" y="48" text-anchor="end" font-size="8" fill="#3B6D11" font-family="Nunito,sans-serif">Affective</text>
+          </svg>
+          <div style="display:flex;gap:10px;justify-content:center;margin-top:5px">
+            <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#3B6D11"><div style="width:8px;height:8px;border-radius:50%;background:#3B6D11"></div>Strong</div>
+            <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#E8A020"><div style="width:8px;height:8px;border-radius:50%;background:#E8A020"></div>Partial</div>
+            <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#C5221F"><div style="width:8px;height:8px;border-radius:50%;background:#C5221F"></div>Needs work</div>
+          </div>
+        </div>
+        <div style="margin-top:7px;font-size:10px;color:#4A8A70;font-style:italic">Try again to see your improvement overlaid.</div>
+        <div style="margin-top:7px"><span class="info-sticker ist-green">grows with you</span></div>
+      </div>
+
+      <div class="info-hw-note" style="transform:rotate(1.3deg)">
+        <div class="info-pin" style="background:#C5221F;position:absolute;top:-6px;left:50%;transform:translateX(-50%)"></div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+          <div style="font-size:36px;color:#C8622A;font-family:'Lora',Georgia,serif;font-style:italic;font-weight:700;line-height:1;flex-shrink:0">!</div>
+          <div style="font-family:'Lora',Georgia,serif;font-style:italic;font-size:16px;color:#1A0D05;line-height:1.2">Please don't skip<br>the reflection.</div>
+        </div>
+        <div style="font-family:'Lora',Georgia,serif;font-style:italic;color:#3A2A10;line-height:1.75;font-size:12px">
+          <p style="margin-bottom:5px">After each scenario — a few questions. In Russian. Not scored.</p>
+          <p style="margin-bottom:5px">They help you understand <em>why</em> something worked — not just what you did.</p>
+          <p style="margin-bottom:5px">And they help me understand how teachers think and feel.</p>
+          <p>You can skip. But you'll be asked why first.</p>
+        </div>
+        <div style="margin-top:12px;padding-top:8px;border-top:1px dashed rgba(90,58,16,0.2);display:flex;justify-content:space-between;align-items:center">
+          <div style="font-family:'Lora',Georgia,serif;font-style:italic;font-size:11px;color:#8B6A4F">V. Fateeva<br><span style="font-size:10px">researcher · EFL teacher</span></div>
+          <span class="info-sticker ist-terra">#answers_matter</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-bottom-note">
+      <div class="info-tape" style="left:22%"></div>
+      <div class="info-tape" style="left:68%"></div>
+      <div style="text-align:center;padding:4px 0">
+        <div style="font-size:15px;margin-bottom:8px">📌</div>
+        <div style="font-family:'Lora',Georgia,serif;font-style:italic;font-size:14px;color:#3A2A10;line-height:1.5">"Every word you say<br>in that room matters."</div>
+      </div>
+    </div>
+
+    <button class="info-back-btn" id="info-back-btn">← Back to the semester map</button>
+  </div>
 </div>
 
 <!-- ═══════════════════════════════════ COMPLETE ═══ -->
@@ -1126,6 +1379,9 @@ function checkBarNotifs(nv, ov) {
 // MAP
 // ═══════════════════════════════════════
 function renderMap() {
+  if(localStorage.getItem('lb_info_seen')){
+    document.getElementById('info-btn')?.classList.add('seen');
+  }
   document.getElementById('map-pid').textContent = S.pid;
   const hour = new Date().getHours();
   const greeting = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
@@ -1789,6 +2045,13 @@ document.getElementById('btn-ach').addEventListener('click',()=>{renderAchieveme
 document.getElementById('btn-pedcards').addEventListener('click',()=>{pedCardsFrom='s-map';renderPedCards();go('s-pedcards');});
 document.getElementById('btn-cards').addEventListener('click',()=>{cardsFrom='s-map';renderCards(activeCat);go('s-cards');});
 document.getElementById('sc-cards-btn').addEventListener('click',()=>{cardsFrom='s-scenario';renderCards(activeCat);go('s-cards');});
+document.getElementById('info-btn').addEventListener('click',()=>{
+  go('s-info');
+  document.getElementById('info-btn').classList.add('seen');
+  localStorage.setItem('lb_info_seen','1');
+});
+document.getElementById('info-back').addEventListener('click',()=>go('s-map'));
+document.getElementById('info-back-btn').addEventListener('click',()=>go('s-map'));
 
 // ═══════════════════════════════════════
 // COMPLETE
