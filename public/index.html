@@ -1454,7 +1454,8 @@ const C = {
 const ACHIEVEMENTS = [
   { id: 'a1', icon: '🏅', title: 'Hello, Teacher!', desc: 'Completed Scenario 1 — Self-introduction', scenario: 'S1' },
   { id: 'a2', icon: '🤝', title: 'First Contact Established', desc: 'Completed Scenario 2 — Ice-breaking games', scenario: 'S2' },
-  { id: 'a3', icon: '🔑', title: 'Every Lesson a New Beginning', desc: 'Completed Scenario 3 — Making contact at the start of the lesson', scenario: 'S3' }
+  { id: 'a3', icon: '🔑', title: 'Every Lesson a New Beginning', desc: 'Completed Scenario 3 — Making contact at the start of the lesson', scenario: 'S3' },
+  { id: 'a4', icon: '🎯', title: 'Clear Destination', desc: 'Completed Scenario 4 — Setting the lesson goals', scenario: 'S4' }
 ];
 
 const PED_CARDS = [
@@ -1528,11 +1529,50 @@ const PED_CARDS = [
       'Bridge the personal exchange to the lesson topic when possible: "You mentioned you like music — that connects nicely to what we\'re doing today."'
     ],
     mistake: 'Asking "How are you?" and moving on before anyone answers — this is a missed contact opportunity that signals the question was performative, not genuine.'
+  },
+  {
+    id: 'pc9', icon: '🎯', title: 'The Three-Part Goal Formula', unlockedBy: 'a4',
+    mentor: "A goal that only names the topic tells students where the bus is going — but not why they should get on. Add the result and the reason, and suddenly students are passengers who chose to be there.",
+    principle: 'An effective lesson goal has three parts: what students will do (activity), what they will be able to do by the end (result), and why this matters for them personally (meaningful connection).',
+    practice: [
+      'Activity: use a concrete verb — "practise", "read and discuss", "write", "listen and identify". Avoid "study" or "learn about" — these describe the teacher\'s plan, not the student\'s action.',
+      'Result: make it observable — "you will be able to describe…", "you will know how to…", "you will be able to use… in a sentence". The student should be able to check at the end whether they achieved it.',
+      'Personal connection: one sentence that answers the unspoken question "so what?" — "this is something you\'ll use when you travel", "this will help you in your final exam", "you\'ll be able to do this in a real conversation".',
+      'Keep the whole formulation to 2–3 sentences. If it takes longer, the goal is too complex for one lesson.'
+    ],
+    mistake: '"Today we will study the Present Perfect" — this is a topic, not a goal. Students learn nothing about what they will do, what they will achieve, or why it matters.'
+  },
+  {
+    id: 'pc10', icon: '📐', title: 'Topic, Task, and Goal — Three Different Things', unlockedBy: 'a4',
+    mentor: "Most beginners write lesson plans where the goal is really just the topic. I understand — it feels like the same thing. But your students feel the difference immediately. A topic tells them what the lesson is about. A goal tells them what they will leave with.",
+    principle: 'Topic, task, and goal are three distinct concepts. Confusing them produces goals that orient neither teacher nor student.',
+    practice: [
+      'Topic: what the lesson is about — "Present Perfect", "My hometown", "Environmental problems". This is a label, not a direction.',
+      'Task: what students will physically do — "do exercise 3", "watch a video", "write a paragraph". This describes activity but not outcome.',
+      'Goal: what students will be able to do as a result of the lesson — combines activity + result + personal meaning. This is what belongs at the top of your lesson.',
+      'Test: ask yourself — "if a student achieved nothing in this lesson except the goal as I stated it, would that be enough?" If yes, the goal is well-formed. If no, revise it.'
+    ],
+    mistake: 'Writing "Goal: Present Perfect tense" in a lesson plan — this is a topic. The actual goal might be: "Students will be able to describe three things they have done this week using Present Perfect."'
+  },
+  {
+    id: 'pc11', icon: '🔍', title: 'Checking if Students Understood the Goal', unlockedBy: 'a4',
+    mentor: "Saying the goal once is not the same as students understanding it. A goal that has been heard is not the same as a goal that has been owned. The check takes thirty seconds. What it gives you is worth the whole lesson.",
+    principle: 'A goal check serves two functions: it confirms comprehension and it personalises the goal — turning an abstract statement into something the student connects to their own need.',
+    practice: [
+      'Never use a yes/no check — "Did everyone understand?" will always get a nod, regardless of comprehension.',
+      'Ask a student to restate the goal in their own words: "Can you tell me in one sentence what we\'re going to do today?" If they can\'t, the goal needs simplifying.',
+      'Follow the comprehension check with a personal connection question: "When do you think you might actually use this?" — even one genuine answer from the class shifts the whole atmosphere.',
+      'If a student challenges the goal\'s relevance ("Why do we need this?"), treat it as a gift — a genuine answer to this question is the most motivating thing you can say.'
+    ],
+    mistake: 'Stating the goal, writing it on the board, and moving on without any check — the goal becomes a ritual that students stop reading within three lessons.'
   }
 ];
 
 const LANG_CARDS = [
-  { cat: 'Greeting & opening', title: 'Opening phrases', tip: 'Your first words set the tone. Start warm and direct.', exs: ['Hello! Good morning / Good afternoon, everyone!', "I'm glad to meet you.", "My name is …, and I'll be your English teacher this term.", 'Before we start, let me tell you a little about myself.'] },
+  { cat: 'Setting goals', title: 'Stating the lesson goal', tip: 'Use the three-part formula: activity + result + why it matters.', exs: ["By the end of the lesson, you will be able to…", "Today we're going to… and by the end you should be able to…", "Our goal today is to… — and here's why that matters for you.", "In this lesson you'll learn how to… so that you can…"] },
+  { cat: 'Setting goals', title: 'Sequencing the lesson', tip: 'Give students a map of the lesson. Predictability reduces anxiety.', exs: ["First we'll… then we'll… and finally…", "We'll start with… move on to… and finish by…", "There are three parts to today's lesson…", "By the time we finish, you'll have practised… and produced…"] },
+  { cat: 'Setting goals', title: 'Checking goal understanding', tip: 'Never use yes/no checks. Ask students to restate in their own words.', exs: ["Can someone tell me in their own words what we're going to do today?", "What will you be able to do by the end of this lesson?", "Turn to your partner — what's our goal today?", "In one sentence — what are we here to practise?"] },
+  { cat: 'Setting goals', title: 'Making the goal personal', tip: 'Connect the goal to the student\'s real life. One genuine answer changes the room.', exs: ["Why do you think this might be useful for you?", "When might you actually use this outside the classroom?", "Does anyone have a situation where knowing this would help?", "Think of one moment in your life where you'd need this — what would it be?"] },
   { cat: 'Greeting & opening', title: 'Accessibility & tone-setting', tip: 'Signal that you are approachable from the first moment.', exs: ['You can call me … — whichever feels more comfortable.', "I know the first lesson with a new teacher can feel a bit strange, so I'll go first.", "I hope we'll have a productive and comfortable course together.", 'This is your classroom too — I want you to feel comfortable speaking here.'] },
   { cat: 'Lesson opening', title: 'Greeting rituals', tip: 'Use a stable, warm formula every lesson. Predictability creates safety.', exs: ["Good morning, everyone — great to see you.", "Hello, class! How's everyone doing today?", "I'm glad you're here. Let's get started.", "Good to see you all — let's have a good lesson today."] },
   { cat: 'Lesson opening', title: 'Mood and energy check', tip: 'A simple whole-class question shows you see them as people, not just learners.', exs: ["How are you today on a scale of one to five?", "Quick check — thumbs up if you're ready to go.", "How's everyone feeling today? Good? Tired? Somewhere in between?", "Before we start — is everyone here mentally as well as physically?"] },
@@ -1552,7 +1592,7 @@ const MODULES = [
       { id: 's1', title: 'Self-introduction', desc: 'Making your first impression', xp: 80, icon: '🌱' },
       { id: 's2', title: 'Ice-breaking games', desc: 'Creating a safe space for communication', xp: 100, icon: '🎮' },
       { id: 's3', title: 'Making Contact at the Beginning of the Lesson', desc: 'Opening every lesson well', xp: 90, icon: '🔑' },
-      { id: 's4', title: 'Setting the Lesson Goals', desc: 'Communicating learning objectives clearly', icon: '🔒' },
+      { id: 's4', title: 'Setting the Lesson Goals', desc: 'Communicating learning objectives clearly', xp: 85, icon: '🎯' },
       { id: 's5', title: 'Using Classroom Language', desc: 'Professional classroom communication', icon: '🔒' },
       { id: 's6', title: 'Giving Instructions to the Task', desc: 'Clear, sequenced task instructions', icon: '🔒' },
       { id: 's7', title: 'Addressing Students Personally', desc: 'Individual student communication', icon: '🔒' },
@@ -2276,8 +2316,126 @@ const SCENARIO_DATA = {
       {score:[0,99],q:'Какой ритуал начала урока вы бы сделали своей визитной карточкой — и почему именно он?'}
     ],
     achievementId:'a3', xp:90
+  },
+
+  s4: {
+    title:'Setting the Lesson Goals',
+    desc:'Making the purpose of every lesson clear and meaningful',
+    mentorLine:"Students can survive a lesson without understanding the grammar — but they can't survive it without understanding why they're there. Your goal isn't a formality at the top of the board. It's the reason they decide to engage.",
+    initBars:{energy:93,motiv:62,involve:55,stress:25},
+    chars:[
+      {name:'Lena',mood:'notebook open',color:'#3B6D11',emoji:'😊'},
+      {name:'Nick',mood:'waiting',color:'#185FA5',emoji:'😶'},
+      {name:'Paul',mood:'restless',color:'#C8622A',emoji:'😄'},
+      {name:'George',mood:'sceptical',color:'#534AB7',emoji:'🧠'}
+    ],
+    situation:"The class has settled after the opening. Students are calm but not yet focused on the lesson content. George is already flipping through the textbook. Nick is staring at the desk. You need to tell the class what today's lesson is about — not as a formality, but in a way that makes them want to engage.",
+    goal:'State the lesson goal in a clear, concrete, three-part structure: what students will do, what they will be able to do by the end, and why it matters for them personally.',
+    criteria:['Register appropriateness','Goal clarity & completeness','Personal/meaningful connection','Linguistic accuracy & clarity','Lesson transition clarity'],
+    mcqs:[
+      {
+        q:'Why is setting the lesson goal at the beginning of the lesson important?',
+        opts:[
+          {text:'To repeat the whole textbook unit before beginning.',why:'Wrong — restating the unit is not the same as setting a communicative goal.',correct:false},
+          {text:'To show students what they will do, what they will learn, and what result they should achieve.',why:'✓ Correct — goal-setting serves an orienting, motivating, and structuring function all at once.',correct:true},
+          {text:'To test students before they know the topic.',why:'Wrong — this describes a diagnostic task, not a goal-setting act.',correct:false},
+          {text:'To make the lesson sound formal and serious.',why:'Wrong — formality is not the purpose. A goal that sounds formal but means nothing is worse than no goal at all.',correct:false}
+        ]
+      },
+      {
+        q:'A student hears "Today we will study Present Perfect." What is missing from this goal statement?',
+        opts:[
+          {text:'Nothing — naming the grammar topic is a sufficient lesson goal.',why:'Wrong — this names the topic, not the goal. Students still don\'t know what they will do or why.',correct:false},
+          {text:'The result: what students will be able to do by the end, and why it matters.',why:'✓ Correct — "study Present Perfect" is a topic, not a goal. A goal includes activity + result + personal connection.',correct:true},
+          {text:'A longer explanation of the grammar rules.',why:'Wrong — more grammar information doesn\'t make a goal more meaningful.',correct:false},
+          {text:'The homework for the next lesson.',why:'Wrong — a lesson goal looks forward within the lesson, not beyond it.',correct:false}
+        ]
+      }
+    ],
+    tactics:[
+      {
+        id:'t1',
+        title:'Goal-Setting with Understanding Check',
+        desc:'Formulate a clear three-part lesson goal, then check students understood it — and make it personal.',
+        criteria:['Register appropriateness','Goal clarity & completeness','Personal/meaningful connection','Linguistic accuracy & clarity','Lesson transition clarity'],
+        clicheGroups:[
+          {label:'Stating the goal',phrases:['By the end of the lesson, you will be able to…','Today we are going to… and by the end you should be able to…','Our goal today is to… — and here is why that matters.','In this lesson, you will learn how to… so that you can…']},
+          {label:'Sequencing',phrases:['First we will… then… and finally…','We\'ll start with… move on to… and finish by…']},
+          {label:'Checking understanding',phrases:['Can someone tell me in their own words what we\'re going to do today?','What will you be able to do by the end of this lesson?','Turn to your partner — what\'s our goal today?']},
+          {label:'Making it personal',phrases:['Why do you think this might be useful for you?','When might you actually use this outside the classroom?','Does anyone have a situation where this would help?']}
+        ],
+        steps:[
+          {
+            id:'formulate',type:'must',
+            title:'Formulate the goal',
+            hasVoice:true,
+            desc:'State the lesson goal using the three-part structure: activity (what students will do) + result (what they will be able to do) + personal/meaningful aspect (why it matters). Make it concrete, not abstract.',
+            situation:'The class is settled and looking at you. State today\'s lesson goal. The topic is describing recent personal experiences using Present Perfect (Grade 8).',
+            goal:'Students hear a complete three-part goal. The language is simple, warm, and direct — not a lesson plan read aloud.',
+            criteria:['Activity clearly stated','Result concrete and achievable','Personal/meaningful connection present','Language accessible for Grade 8']
+          },
+          {
+            id:'check_personal',type:'must',
+            title:'Check understanding — and make it personal',
+            hasVoice:true,
+            desc:'Ask students to restate the goal in their own words, then connect it to their own experience or need.',
+            situation:'You have stated the goal. Nick is looking at you but hasn\'t reacted. George looks unimpressed. Ask the class to confirm understanding — and invite a personal connection.',
+            goal:'At least one student restates the goal. One student connects it to something personal. Nick shows some engagement.',
+            criteria:['Understanding check present — not yes/no','Personal connection invited','Response to student answer is warm and validating']
+          }
+        ],
+        optSteps:[
+          {
+            id:'cant_restate',type:'opt',
+            title:'Student cannot restate the goal',
+            desc:'You asked a student to say the goal in their own words. They shrug or say "I don\'t know."',
+            situation:'You asked Nick to restate the goal. He looks down and says nothing. The class is watching.',
+            goal:'Nick is not embarrassed. The goal is restated accessibly. The class moves on without tension.',
+            criteria:['Face-saving move present','Goal restated simply','No pressure or public exposure']
+          },
+          {
+            id:'not_useful',type:'opt',
+            title:'Student says the topic is not useful or interesting',
+            desc:'George says — quietly but audibly — "Why do we even need this?"',
+            situation:'After you stated the goal, George says: "I don\'t see why this is useful." Two other students look interested in the answer.',
+            goal:'George\'s challenge is met with genuine engagement, not defensiveness. The personal connection is strengthened, not dismissed.',
+            criteria:['Genuine response — not dismissive','Acknowledges the student\'s perspective','Reframes the goal\'s relevance concretely']
+          }
+        ],
+        achievementId:'a4', xp:85
+      }
+    ],
+    reflectQs:[
+      {score:[0,99],q:'Какую часть формулировки цели вам было труднее всего сформулировать — и почему?'},
+      {
+        score:[0,99],
+        variants:[
+          'Как бы вы переформулировали цель, если бы увидели, что ученики не понимают её смысла?',
+          'Как отреагируете, если ученик спросит «зачем нам это?»?'
+        ]
+      },
+      {
+        score:[0,99],
+        variants:[
+          'Как изменилась бы ваша формулировка цели, если бы вы работали с более слабым классом или с более сильным?',
+          'Есть ли разница между целью, которую вы ставите для себя как учитель, и целью, которую вы озвучиваете ученикам?'
+        ]
+      }
+    ],
+    achievementId:'a4', xp:85
   }
 };
+
+// S4 bonus topics from the curriculum table
+SCENARIO_DATA.s4.bonusTopics = [
+  {grade:'Grade 5',topic:'My family and friends',skill:'Speaking',hint:'Talking about people they know — personal and close.'},
+  {grade:'Grade 6',topic:'School life and routines',skill:'Reading',hint:'Understanding texts about school — familiar context.'},
+  {grade:'Grade 7',topic:'Healthy lifestyle',skill:'Listening',hint:'Catching key information about health choices.'},
+  {grade:'Grade 8',topic:'Free time and hobbies',skill:'Speaking',hint:'Describing what they enjoy doing — highly personal.'},
+  {grade:'Grade 9',topic:'Travelling and transport',skill:'Writing',hint:'Producing a structured text about travel.'},
+  {grade:'Grade 10',topic:'Food and cooking',skill:'Speaking',hint:'Discussing preferences, recipes, habits.'},
+  {grade:'Grade 11',topic:'Seasons and weather',skill:'Reading / Speaking',hint:'Comprehension + personal response about weather and seasons.'}
+];
 
 // ═══════════════════════════════════════
 // OPEN SCENARIO
@@ -2517,11 +2675,110 @@ async function submitStep(step) {
     S.curStepScores.push({stepId:step.id,scores:p.scores||[]});
     const rs=document.getElementById('running-score');
     if(rs)rs.innerHTML=`<strong style="color:${C.terra}">${S.runningScore} / ${S.runningMax} pts</strong>`;
-    document.getElementById('nxt-btn').textContent=S.curStepIdx<S.curSteps.length-1?'Next step →':'See results →';
     subBtn.style.display='none';
+    // If step has voice/chatterbox — show it before the next button
+    if(step.hasVoice) {
+      const nxtBtn=document.getElementById('nxt-btn');
+      nxtBtn.style.display='none'; // hide until chatterbox done
+      renderStepChatterbox(resp, step, p.scores);
+    } else {
+      document.getElementById('nxt-btn').textContent=S.curStepIdx<S.curSteps.length-1?'Next step →':'See results →';
+    }
   } catch(e) {
     spinRow.className='spin-row'; subBtn.disabled=false;
     mkToast('Assessment failed — please try again.','crit');
+  }
+}
+
+async function renderStepChatterbox(teacherText, step, scores) {
+  const sc = SCENARIO_DATA[S.cur];
+  const wrap = document.getElementById('sc-wrap');
+
+  // Build chatterbox container
+  const cb = document.createElement('div'); cb.className='chatterbox'; cb.id='step-cb';
+  cb.innerHTML=`<div class="cb-lbl">💬 The class responds</div>
+  <div class="cb-bubbles" id="step-cb-bubbles">
+    <div class="cb-bubble teacher">
+      <div>
+        <div class="cb-name" style="text-align:right">You</div>
+        <div class="cb-text">${teacherText.length>140?teacherText.slice(0,140)+'…':teacherText}</div>
+      </div>
+      <div class="cb-av" style="background:#FDE8D0">👩‍🏫</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:var(--ink-muted);font-style:italic;padding:4px 0">
+      <div class="spin"></div>Students are processing…
+    </div>
+  </div>`;
+  wrap.appendChild(cb);
+  cb.scrollIntoView({behavior:'smooth',block:'start'});
+
+  // Get AI-generated reactions
+  const avgScore = scores?.length ? scores.reduce((a,s)=>a+s.score,0)/scores.length : 3;
+  try {
+    const res = await fetch('/api/assess-voice', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        transcript: teacherText,
+        situation: step.situation,
+        goal: step.goal,
+        scenarioId: S.cur + '_step_' + step.id
+      })
+    });
+    const v = await res.json();
+    if(v.barDeltas) setTimeout(()=>applyDeltas(v.barDeltas), 600);
+    S.lastVoiceAssessment = v;
+    showStepReactions(cb, sc, v, avgScore);
+  } catch(e) {
+    showStepReactions(cb, sc, null, avgScore);
+  }
+}
+
+function showStepReactions(cb, sc, voiceData, avgScore) {
+  const bubblesDiv = document.getElementById('step-cb-bubbles');
+  const chars = sc.chars || [];
+
+  // Clear loading spinner
+  const loader = bubblesDiv.querySelector('div:last-child');
+  if(loader) loader.remove();
+
+  const cr = voiceData?.classReaction;
+  const reactions = cr ? [
+    {name:cr.s1_name, resp:cr.s1_response, nonverbal:cr.s1_nonverbal, char:chars.find(c=>c.name===cr.s1_name)||chars[1]},
+    {name:cr.s2_name, resp:cr.s2_response, nonverbal:cr.s2_nonverbal, char:chars.find(c=>c.name===cr.s2_name)||chars[0]},
+    {name:cr.s3_name, resp:cr.s3_response, nonverbal:cr.s3_nonverbal, char:chars.find(c=>c.name===cr.s3_name)||chars[2]}
+  ] : [
+    {name:'Lena', resp:'Okay, I think I understand.', nonverbal:'nods', char:chars[0]},
+    {name:'Nick', resp:'', nonverbal:'looks up briefly', char:chars[1]},
+    {name:'George', resp:'...', nonverbal:'raises an eyebrow', char:chars[3]||chars[2]}
+  ];
+
+  reactions.forEach(r => {
+    if(!r.name) return;
+    const col = r.char?.color||'#8B6A4F';
+    const emoji = r.char?.emoji||'🧑‍🎓';
+    const bub = document.createElement('div'); bub.className='cb-bubble';
+    bub.innerHTML=`<div class="cb-av" style="background:${col}22;color:${col}">${emoji}</div>
+    <div>
+      <div class="cb-name">${r.name} <span style="font-weight:400;color:var(--ink-ghost);font-style:italic">${r.nonverbal||''}</span></div>
+      <div class="cb-text">${r.resp||'…'}</div>
+    </div>`;
+    bubblesDiv.appendChild(bub);
+  });
+
+  // Voice insight if available
+  if(voiceData?.voiceInsight) {
+    const ins = document.createElement('div');
+    ins.style.cssText='font-size:11px;color:var(--ink-muted);font-style:italic;margin-top:8px;padding:6px 10px;background:var(--cream-deep);border-radius:var(--r-sm)';
+    ins.textContent='💬 '+voiceData.voiceInsight;
+    cb.appendChild(ins);
+  }
+
+  // Reveal next button
+  const nxtBtn = document.getElementById('nxt-btn');
+  if(nxtBtn) {
+    nxtBtn.style.display='block';
+    nxtBtn.textContent = S.curStepIdx < S.curSteps.length-1 ? 'Next step →' : 'See results →';
+    cb.appendChild(nxtBtn);
   }
 }
 
@@ -2952,6 +3209,11 @@ const COMPETENCES = {
     {name:'Contact-establishing',desc:'Opening every lesson with purposeful, warm contact'},
     {name:'Affective-communicative',desc:'Reading and managing the classroom mood'},
     {name:'Metacommunicative awareness',desc:'Adapting your approach based on student signals'}
+  ],
+  s4: [
+    {name:'Communicative-programming',desc:'Formulating clear, meaningful lesson goals'},
+    {name:'Goal clarity & structure',desc:'Using the three-part goal formula: activity + result + personal'},
+    {name:'Student orientation',desc:'Helping students understand why the lesson matters'}
   ]
 };
 
@@ -3067,14 +3329,17 @@ function renderBonusPhase(wrap, sc) {
   const topic = topics[Math.floor(Math.random() * topics.length)];
   S.curBonusTopic = topic;
 
+  const topicLabel = topic.skill ? `${topic.topic} — ${topic.skill}` : topic.topic;
+  const topicHint = topic.hint || '';
+
   const gate = document.createElement('div'); gate.className='bonus-gate';
   gate.innerHTML=`
     <div class="bonus-gate-star">⭐</div>
     <div class="bonus-gate-title"><em>Great challenge ahead!</em></div>
-    <div class="bonus-gate-sub">A special task for extra points. Today you are starting a new topic. Make your personalised question connected to the upcoming lesson theme.</div>
-    <div class="bonus-topic-badge">${topic.topic}</div>
-    <div class="bonus-grade">${topic.grade} · ${topic.hint}</div>
-    <div class="bonus-xp-note">+15 XP · written response only · extra criterion</div>
+    <div class="bonus-gate-sub">A special task for extra points. Formulate a concrete three-part lesson goal for this specific topic and skill combination.</div>
+    <div class="bonus-topic-badge">${topicLabel}</div>
+    <div class="bonus-grade">${topic.grade} · ${topicHint}</div>
+    <div class="bonus-xp-note">+15 XP · written response only · extra criterion: specificity to topic and skill</div>
     <button class="bonus-accept" id="bonus-accept">Accept the challenge →</button>
     <button class="bonus-skip" id="bonus-skip">Skip — go to reflection</button>`;
   wrap.appendChild(gate);
@@ -3094,21 +3359,36 @@ function renderBonusTask(wrap, sc, topic) {
   wrap.appendChild(makeBarsPanel());
 
   const card = document.createElement('div'); card.className = 'bonus-card';
+  const isS4 = S.cur === 's4';
+  const bonusInstructions = isS4
+    ? `Write a complete three-part lesson goal for <strong>${topic.grade}</strong> — <strong>${topic.topic}</strong>, with a focus on <strong>${topic.skill}</strong>. Use the structure: activity (what students will do) + result (what they will be able to do) + personal/meaningful connection. Name the skill explicitly.`
+    : `Write a personalised question you could ask a student at the <em>start</em> of the lesson that connects naturally to today's topic — <strong>${topicLabel}</strong>. The question should feel personal, not like a textbook exercise.`;
+  const bonusPlaceholder = isS4
+    ? `e.g. "By the end of the lesson you'll be able to talk about your favourite hobby for 2 minutes without stopping — and trust me, you have more to say about it than you think."`
+    : `e.g. "Do you have a favourite sport you play at the weekend?"`;
+  const bonusCriteria = isS4
+    ? ['Register appropriateness','Goal clarity & completeness','Personal/meaningful connection','Linguistic accuracy & clarity','Specificity to topic and skill']
+    : ['Register appropriateness','Affective climate management','Contact-establishing behaviour','Linguistic accuracy & clarity','Relevancy to the topic'];
+  const bonusSituation = isS4
+    ? `The teacher is setting the lesson goal for ${topic.grade} — topic: "${topic.topic}", skill focus: ${topic.skill}. Write a complete three-part goal statement appropriate for this context.`
+    : `The teacher is starting a new topic: "${topic.topic}" (${topic.grade}). Write a personalised micro-dialogue question for the start of the lesson that naturally connects to this topic.`;
+  const bonusGoal = isS4
+    ? `Formulate a clear, warm, three-part goal that names the skill, states a concrete result, and gives students a personal reason to care.`
+    : `Ask a warm, personal, topic-relevant question that connects the micro-dialogue to the upcoming lesson theme.`;
+
   card.innerHTML = `
     <div class="bonus-card-badge">⭐ Bonus challenge</div>
     <div class="goal-banner" style="margin-bottom:.8rem">
       <div class="goal-banner-ico">🎯</div>
       <div>
-        <div class="goal-banner-lbl">Today's topic</div>
-        <div class="goal-banner-text">${topic.grade} — ${topic.topic}</div>
+        <div class="goal-banner-lbl">${topic.grade} · ${topic.skill||'Topic challenge'}</div>
+        <div class="goal-banner-text">${topic.topic}</div>
       </div>
     </div>
-    <div style="font-size:13px;color:var(--ink-soft);line-height:1.7;margin-bottom:.9rem">
-      Write a personalised question you could ask a student at the <em>start</em> of the lesson that connects naturally to today's topic — <strong>${topic.topic}</strong>. The question should feel personal, not like a textbook exercise, and should be accessible at the students' level.
-    </div>
+    <div style="font-size:13px;color:var(--ink-soft);line-height:1.7;margin-bottom:.9rem">${bonusInstructions}</div>
     <div class="english-notice" style="margin-bottom:8px">🇬🇧 Write in English only</div>
-    <div class="resp-lbl">Your personalised question:</div>
-    <textarea class="resp-ta" id="bonus-ta" placeholder="e.g. 'Do you have a favourite sport you play at the weekend?'" style="min-height:65px"></textarea>
+    <div class="resp-lbl">Your response:</div>
+    <textarea class="resp-ta" id="bonus-ta" placeholder="${bonusPlaceholder}" style="min-height:80px"></textarea>
     <div class="wc-row"><span class="wc" id="bonus-wc">0 words</span></div>`;
   wrap.appendChild(card);
 
@@ -3132,9 +3412,7 @@ function renderBonusTask(wrap, sc, topic) {
     if (!resp || resp.length < 3) { alert('Write your question first.'); return; }
     subBtn.disabled = true; document.getElementById('bonus-spin').className = 'spin-row on';
     try {
-      const bonusSituation = `The teacher is starting a new topic: "${topic.topic}" (${topic.grade}). Write a personalised micro-dialogue question for the start of the lesson that naturally connects to this topic.`;
-      const bonusCriteria = ['Register appropriateness', 'Affective climate management', 'Contact-establishing behaviour', 'Linguistic accuracy & clarity', 'Relevancy to the topic'];
-      const res = await fetch('/api/assess', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ response: resp, situation: bonusSituation, goal: 'Ask a warm, personal, topic-relevant question that connects the micro-dialogue to the upcoming lesson theme.', criteria: bonusCriteria, moduleId: 's3_bonus' }) });
+      const res = await fetch('/api/assess', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ response: resp, situation: bonusSituation, goal: bonusGoal, criteria: bonusCriteria, moduleId: S.cur + '_bonus' }) });
       const p = await res.json();
       document.getElementById('bonus-spin').className = 'spin-row';
       subBtn.disabled = false;
