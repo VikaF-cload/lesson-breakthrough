@@ -356,13 +356,88 @@ app.post('/api/assess', async (req, res) => {
   const { response, situation, goal, criteria, moduleId, stepId } = req.body;
   if (!response || !situation || !criteria) return res.status(400).json({ error: 'Missing fields' });
 
-  const systemPrompt = `You are a strict professional assessor of pre-service EFL teachers. Be CRITICAL, PRECISE, and HONEST.
+  // Scenario-specific rubric anchors
+  const RUBRIC_ANCHORS = {
+    s1: `
+SCENARIO 1 RUBRIC — Self-introduction to a new class of teenagers:
 
-CONTENT MODERATION — check FIRST. Set "inappropriate":true and STOP if the response contains: profanity or offensive words ("bastard", "hell", "idiot", "shut up", insults in any language), personal insults or name-calling at students, threats or intimidation, sarcasm as a weapon, dismissive phrases ("I don't care", "whatever"), language making students feel unsafe. Do NOT flag: Russian teacher names (Victoria Dmitrievna, Ekaterina Sergeevna), firm professional correction, imperfect but respectful language.
+Register appropriateness:
+  1-2: Overly formal ("I am your teacher. We will now begin.") or inappropriately casual/childish
+  3: Professionally correct but slightly cold or distant — no warmth signal
+  4: Warm and accessible — offers informal name option OR acknowledges the awkwardness OR uses inclusive "we/us" language
+  5: All of the above PLUS a genuine personal detail or forward-looking statement that creates positive expectation
 
-SCORING: 5=exceptional/rare, 4=clearly good with evidence, 3=adequate with named gaps, 2=poor, 1=harmful. Politeness alone = max 3. Each criterion comment: 1-2 sentences — quote the student's actual words, explain why that score.
+Pragmatic appropriateness:
+  1-2: Response does not function as a self-introduction at all — gives instructions, rules, or irrelevant content
+  3: States name and role but no relational move — purely informational
+  4: Name + role + at least one relational move (accessibility signal, invitation, shared future)
+  5: Name + role + multiple relational moves, all purposeful and well-timed
 
-COACH NOTE: Maximum 5 sentences total. Structure: (1) name one specific thing that worked — quote it, (2) name the single most important gap — be direct, (3) one concrete actionable suggestion with example phrasing. Do not repeat criterion comments. Do not be vague. If the response is poor, say so plainly.`;
+Affective climate management:
+  1-2: Response increases tension — formal, cold, starts with rules or expectations
+  3: Neutral — neither increases nor decreases tension noticeably
+  4: Explicitly reduces tension — acknowledges first-lesson awkwardness, invites questions, signals safety
+  5: Masterfully addresses the emotional state of the room with specific, well-chosen language
+
+Linguistic accuracy & clarity:
+  1-2: Errors that impede understanding or sound unprofessional
+  3: Minor errors (typos, small grammar mistakes) but meaning is fully clear — reduce by 1 point max
+  4: Accurate, clear, natural — appropriate complexity for the audience
+  5: Precise, elegant, no errors, register-perfect
+
+Contact-establishing behaviour:
+  1-2: No signs of friendly first contact — could be an announcement or instruction
+  3: Minimal contact — acknowledges students are there but no warmth moves
+  4: Clear friendly contact — at least 2 of: greeting, name offering, pleasure expressed, invitation, forward-looking
+  5: Rich, multi-layered contact that leaves students feeling genuinely welcomed`,
+
+    s2: `
+SCENARIO 2 RUBRIC — Ice-breaking activity with a new class:
+
+Affective-communicative (safe space):
+  1-2: Activity framed as test or performance — students feel evaluated, not invited
+  3: Neutral framing — activity described but no explicit safety signals
+  4: Clear low-pressure framing — "no wrong answers", "try it", "I'll go first", or similar
+  5: Multiple safety signals + teacher models first + genuine invitation to participate
+
+Communicative-organisational (activity management):
+  1-2: Instructions unclear or missing — students cannot start
+  3: Basic instructions present but incomplete — some students will be confused
+  4: Clear sequenced instructions + time limit OR modelled example
+  5: Clear + sequenced + modelled + comprehension check (ICQ)
+
+Register appropriateness:
+  1-2: Wrong register for teenagers — either too formal or condescending
+  3: Appropriate but flat — no energy or enthusiasm
+  4: Warm, energetic, right for teenagers — sounds like a real teacher not a script
+  5: Naturally warm, energetic, age-appropriate with personal touch
+
+Linguistic accuracy & clarity:
+  1-2: Errors that confuse students about what to do
+  3: Minor errors but meaning clear — reduce by 1 max
+  4: Accurate and clear — students know exactly what to do
+  5: Precise, natural, no errors`
+  };
+
+  const rubricAnchor = RUBRIC_ANCHORS[moduleId] || '';
+
+  const systemPrompt = `You are a calibrated assessor of pre-service EFL teachers. Your job is FAIR, EVIDENCE-BASED assessment — neither harsh nor lenient. Use the rubric anchors below to score consistently.
+
+CONTENT MODERATION — check FIRST. Set "inappropriate":true and STOP only for: profanity, personal insults at students, threats, intimidation, weaponised sarcasm, "I don't care"/"whatever"-type dismissals, language that makes students feel unsafe. Do NOT flag: Russian teacher names (Victoria Dmitrievna, Ekaterina Sergeevna etc.), typos, grammatical errors, imperfect but respectful language.
+
+${rubricAnchor}
+
+GENERAL SCORING PRINCIPLES:
+- Typos and minor grammar errors reduce Linguistic accuracy by at most 1 point. They do NOT affect other criteria.
+- Warmth + accessibility + invitation + name in a self-introduction = 4, not 3.
+- Score 1-2 only when the response fails completely at the communicative goal or is harmful.
+- Score 3 when the response attempts the goal but is missing clear identifiable elements.
+- Score 4 when the response achieves the goal with positive moves you can name and quote.
+- Score 5 only for genuinely exceptional responses — rare.
+
+Each criterion comment: 1-2 sentences — quote the student's actual words, explain why that specific score using the rubric.
+
+COACH NOTE: Maximum 5 sentences. (1) Name one specific thing that worked — quote it. (2) Name the single most important gap. (3) One concrete actionable suggestion with example phrasing. Do not repeat criterion comments. Do not be vague.`;
 
   const userPrompt = `SITUATION: ${situation}
 GOAL: ${goal}
@@ -370,7 +445,7 @@ CRITERIA: ${criteria.map((c, i) => `${i+1}. ${c}`).join(', ')}
 STUDENT RESPONSE: "${response}"
 
 Reply ONLY with valid JSON:
-{"inappropriate":false,"inappropriateReason":"","scores":[{"criterion":"...","score":3,"comment":"..."}],"lessonGoal":{"achieved":false,"percentage":55,"comments":["observation","suggestion"]},"barDeltas":{"energyDelta":-3,"motivDelta":8,"involveDelta":6,"stressDelta":-5},"highlight":"specific phrase that worked","suggestion":"one concrete improvement","coachNote":"2-3 sentences of honest feedback"}`;
+{"inappropriate":false,"inappropriateReason":"","scores":[{"criterion":"...","score":3,"comment":"..."}],"lessonGoal":{"achieved":false,"percentage":55,"comments":["observation","suggestion"]},"barDeltas":{"energyDelta":-3,"motivDelta":8,"involveDelta":6,"stressDelta":-5},"highlight":"specific phrase that worked","suggestion":"one concrete improvement","coachNote":"up to 5 sentences of honest calibrated feedback"}`;
 
   try {
     console.log('Calling Anthropic API, key present:', !!ANTHROPIC_KEY);
@@ -412,12 +487,12 @@ app.post('/api/assess-voice', async (req, res) => {
   if (!transcript || !situation) return res.status(400).json({ error: 'Missing fields' });
 
   const DEMO_VOICE = {
-    s1: { voiceScores:[{dimension:'Pragmatics & content',score:4,comment:'The greeting and self-introduction are well-structured and appropriate for a first meeting with teenagers.'},{dimension:'Tone',score:4,comment:'Warm and accessible — "you can call me" signals approachability without losing authority.'},{dimension:'Clarity',score:4,comment:'Message clearly structured: name, role, forward-looking statement.'},{dimension:'Delivery',score:3,comment:'Pacing appears natural. A deliberate pause after the name introduction would add presence.'}],overallVoice:4,voiceInsight:'A warm, well-structured introduction that makes students feel welcome.',classReaction:{s1_name:'Nick',s1_response:'Hello.',s1_nonverbal:'looks up briefly',s2_name:'Lena',s2_response:'Good morning, Ekaterina Sergeevna!',s2_nonverbal:'smiles and sits up straight',s3_name:'Paul',s3_response:'Hi! Are we doing anything fun today?',s3_nonverbal:'raises his hand immediately'}},
-    s2: { voiceScores:[{dimension:'Pragmatics & content',score:4,comment:'Instructions are clear and the activity is framed as play rather than performance.'},{dimension:'Tone',score:4,comment:'Energetic and encouraging — the language creates a safe atmosphere.'},{dimension:'Clarity',score:3,comment:'Rules are mostly clear. A modelled example would strengthen understanding.'},{dimension:'Delivery',score:3,comment:'Natural sentence breaks suggest good use of pauses.'}],overallVoice:4,voiceInsight:'Warm and well-framed — students are invited rather than instructed.',classReaction:{s1_name:'Nick',s1_response:'',s1_nonverbal:'watches others, stays in his seat',s2_name:'Lena',s2_response:"Okay! Can I start?",s2_nonverbal:'already standing up',s3_name:'Paul',s3_response:"Yes! Come on everyone!",s3_nonverbal:'immediately approaches a classmate'}}
+    s1: { voiceScores:[{dimension:'Pragmatics & content',score:4,comment:'The greeting and self-introduction are well-structured and appropriate for a first meeting with teenagers.'},{dimension:'Tone',score:4,comment:'Warm and accessible — "you can call me" signals approachability without losing authority.'},{dimension:'Clarity',score:4,comment:'Message clearly structured: name, role, forward-looking statement.'},{dimension:'Delivery',score:3,comment:'Pacing appears natural. A deliberate pause after the name introduction would add presence.'}],overallVoice:4,voiceInsight:'A warm, well-structured introduction that makes students feel welcome.',barDeltas:{energyDelta:-2,motivDelta:10,involveDelta:8,stressDelta:-8},classReaction:{s1_name:'Nick',s1_response:'Hello.',s1_nonverbal:'looks up briefly',s2_name:'Lena',s2_response:'Good morning, Ekaterina Sergeevna!',s2_nonverbal:'smiles and sits up straight',s3_name:'Paul',s3_response:'Hi! Are we doing anything fun today?',s3_nonverbal:'raises his hand immediately'}},
+    s2: { voiceScores:[{dimension:'Pragmatics & content',score:4,comment:'Instructions are clear and the activity is framed as play rather than performance.'},{dimension:'Tone',score:4,comment:'Energetic and encouraging — the language creates a safe atmosphere.'},{dimension:'Clarity',score:3,comment:'Rules are mostly clear. A modelled example would strengthen understanding.'},{dimension:'Delivery',score:3,comment:'Natural sentence breaks suggest good use of pauses.'}],overallVoice:4,voiceInsight:'Warm and well-framed — students are invited rather than instructed.',barDeltas:{energyDelta:-3,motivDelta:12,involveDelta:14,stressDelta:-10},classReaction:{s1_name:'Nick',s1_response:'',s1_nonverbal:'watches others, stays in his seat',s2_name:'Lena',s2_response:"Okay! Can I start?",s2_nonverbal:'already standing up',s3_name:'Paul',s3_response:"Yes! Come on everyone!",s3_nonverbal:'immediately approaches a classmate'}}
   };
 
   const systemPrompt = `You are a strict EFL teacher educator assessing a pre-service teacher's spoken classroom response from a text transcript. Reply ONLY with valid JSON.`;
-  const userPrompt = `SITUATION: ${situation}\nGOAL: ${goal}\nTRANSCRIPT: "${transcript}"\n\nAssess: 1) Pragmatics & content 2) Tone 3) Clarity 4) Delivery\n\nReply: {"voiceScores":[{"dimension":"Pragmatics & content","score":3,"comment":"..."},{"dimension":"Tone","score":4,"comment":"..."},{"dimension":"Clarity","score":3,"comment":"..."},{"dimension":"Delivery","score":3,"comment":"..."}],"overallVoice":3,"voiceInsight":"one sentence","classReaction":{"s1_name":"Nick","s1_response":"...","s1_nonverbal":"...","s2_name":"Lena","s2_response":"...","s2_nonverbal":"...","s3_name":"Paul","s3_response":"...","s3_nonverbal":"..."}}`;
+  const userPrompt = `SITUATION: ${situation}\nGOAL: ${goal}\nTRANSCRIPT: "${transcript}"\n\nAssess: 1) Pragmatics & content 2) Tone 3) Clarity 4) Delivery\n\nFor barDeltas: warm/clear/engaging = positive motivDelta and involveDelta, negative stressDelta. Cold/unclear/rushed = negative motivDelta, positive stressDelta. Values -12 to +12.\n\nReply: {"voiceScores":[{"dimension":"Pragmatics & content","score":3,"comment":"..."},{"dimension":"Tone","score":4,"comment":"..."},{"dimension":"Clarity","score":3,"comment":"..."},{"dimension":"Delivery","score":3,"comment":"..."}],"overallVoice":3,"voiceInsight":"one sentence","barDeltas":{"energyDelta":-2,"motivDelta":8,"involveDelta":6,"stressDelta":-5},"classReaction":{"s1_name":"Nick","s1_response":"...","s1_nonverbal":"...","s2_name":"Lena","s2_response":"...","s2_nonverbal":"...","s3_name":"Paul","s3_response":"...","s3_nonverbal":"..."}}`;
 
   try {
     const aiRes = await fetch('https://api.anthropic.com/v1/messages', {
