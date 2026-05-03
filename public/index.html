@@ -6,7 +6,8 @@
 <title>Lesson Breakthrough</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
 <style>
 /* ═══════════════════════════════════════
    DESIGN TOKENS
@@ -822,6 +823,15 @@ textarea, input { font-family: inherit; }
 .exp-data { font-family: monospace; font-size: 9px; color: var(--terra-dark); background: var(--cream-deep); border-radius: var(--r-sm); padding: 8px; white-space: pre-wrap; word-break: break-all; max-height: 110px; overflow-y: auto; }
 .copy-btn { width: 100%; margin-top: 8px; background: var(--terra); color: #fff; border: none; border-radius: var(--r-sm); padding: 8px; font-size: 11px; font-weight: 700; transition: background .2s; }
 .copy-btn:hover { background: var(--terra-dark); }
+
+.crit-collapse { margin-top: .5rem; }
+.crit-toggle {
+  background: none; border: none; font-size: 11px; color: var(--sage);
+  cursor: pointer; padding: 3px 0; font-family: 'Nunito', sans-serif;
+  font-weight: 600; transition: color .2s;
+}
+.crit-toggle:hover { color: var(--sage); text-decoration: underline; }
+.bar-delta-comment { font-size: 10px; font-style: italic; padding: 1px 0 3px 118px; }
 
 /* SPIDER CHART */
 .spider-wrap { background: var(--white); border: 1px solid var(--border); border-radius: var(--r-lg); padding: .9rem; margin-bottom: .75rem; box-shadow: var(--shadow-sm); }
@@ -1883,7 +1893,7 @@ function openScenario(id) {
 function renderScenarioPhase(phase) {
   const sc = SCENARIO_DATA[S.cur];
   const wrap = document.getElementById('sc-wrap'); wrap.innerHTML = '';
-  if (phase !== 'case' && phase !== 'mcq_intro' && phase !== 'results' && phase !== 'rating') {
+  if (phase !== 'case' && phase !== 'mcq_intro' && phase !== 'mcq' && phase !== 'results' && phase !== 'rating') {
     wrap.appendChild(makeBarsPanel());
   }
   if (phase==='case') renderCasePhase(wrap,sc);
@@ -2062,9 +2072,16 @@ function buildSupportPanel(clicheGroups) {
 
 function buildFeedbackPanel(suffix) {
   const fbWrap=document.createElement('div'); fbWrap.className='fb-wrap'; fbWrap.id='fb-wrap'+suffix;
-  fbWrap.innerHTML=`<div class="fb-box green"><div class="fb-sec-lbl">NLP analysis</div><div class="scores-g" id="scores-g${suffix}"></div><div id="crit-comments${suffix}"></div></div>
+  fbWrap.innerHTML=`
+  <div class="fb-box green">
+    <div class="fb-sec-lbl">NLP analysis</div>
+    <div class="scores-g" id="scores-g${suffix}"></div>
+    <div class="crit-collapse" id="crit-collapse${suffix}">
+      <button class="crit-toggle" id="crit-toggle${suffix}">▾ Open for more detail</button>
+      <div class="crit-body" id="crit-comments${suffix}" style="display:none"></div>
+    </div>
+  </div>
   <div class="fb-box blue"><div class="fb-sec-lbl">Goal achievement</div><div id="lesson-rows${suffix}"></div></div>
-  <div class="fb-box amber"><div class="fb-sec-lbl">Classroom pulse</div><div id="result-bars${suffix}"></div></div>
   <div class="fb-box neutral"><div class="fb-sec-lbl">Coach's note</div><p class="fb-txt" id="fb-txt${suffix}"></p></div>
   <div class="ach-unlock-row" id="ach-row${suffix}"><div class="ach-unlock-ico" id="ach-ico${suffix}"></div><div><div class="ach-unlock-t" id="ach-t${suffix}"></div><div class="ach-unlock-d" id="ach-d${suffix}"></div></div></div>
   <button class="nxt-btn" id="nxt-btn${suffix}">Next step →</button>`;
@@ -2105,16 +2122,115 @@ async function submitStep(step) {
 }
 
 function showFeedback(p, resp, suffix) {
-  const grid=document.getElementById('scores-g'+suffix); const cc=document.getElementById('crit-comments'+suffix);
-  if(grid){grid.innerHTML='';(p.scores||[]).forEach(s=>{const pct=(s.score/5)*100;const col=s.score>=4?C.sage:s.score>=3?'#C8A020':C.danger;const d=document.createElement('div');d.className='sc-it';d.innerHTML=`<div class="sc-nm">${s.criterion}</div><div class="sc-br"><div class="sc-trk"><div class="sc-fill" style="width:${pct}%;background:${col}"></div></div><span class="sc-v" style="color:${col}">${s.score}/5</span></div>`;grid.appendChild(d);if(s.comment&&cc){const c=document.createElement('div');c.className='crit-comment';c.innerHTML=`<span style="color:${col};font-weight:700">${s.criterion}:</span> ${s.comment}`;cc.appendChild(c);}});}
+  // ── NLP scores grid ──
+  const grid=document.getElementById('scores-g'+suffix);
+  const cc=document.getElementById('crit-comments'+suffix);
+  const toggle=document.getElementById('crit-toggle'+suffix);
+  if(grid){
+    grid.innerHTML='';
+    (p.scores||[]).forEach(s=>{
+      const pct=(s.score/5)*100;
+      const col=s.score>=4?C.sage:s.score>=3?'#C8A020':C.danger;
+      const d=document.createElement('div');d.className='sc-it';
+      d.innerHTML=`<div class="sc-nm">${s.criterion}</div><div class="sc-br"><div class="sc-trk"><div class="sc-fill" style="width:${pct}%;background:${col}"></div></div><span class="sc-v" style="color:${col}">${s.score}/5</span></div>`;
+      grid.appendChild(d);
+      if(s.comment&&cc){
+        const c=document.createElement('div');c.className='crit-comment';
+        c.innerHTML=`<span style="color:${col};font-weight:700">${s.criterion}:</span> ${s.comment}`;
+        cc.appendChild(c);
+      }
+    });
+    // Wire collapsible toggle
+    if(toggle&&cc){
+      toggle.addEventListener('click',()=>{
+        const open=cc.style.display==='block';
+        cc.style.display=open?'none':'block';
+        toggle.textContent=open?'▾ Open for more detail':'▴ Hide detail';
+      });
+    }
+  }
+
+  // ── Goal achievement ──
   const lr=document.getElementById('lesson-rows'+suffix);
-  if(lr&&p.lessonGoal){const gl=p.lessonGoal;const gc=gl.percentage>=75?C.sage:gl.percentage>=50?'#C8A020':C.danger;lr.innerHTML=`<div class="goal-bar-wrap"><div class="goal-bar-meta"><span style="color:${C.inkMuted}">Goal achievement</span><span style="color:${gc}">${gl.percentage}%</span></div><div class="goal-track"><div class="goal-fill" style="width:${gl.percentage}%;background:${gc}"></div></div></div>`;(gl.comments||[]).forEach((c,i)=>{const r=document.createElement('div');r.className='lesson-row';r.innerHTML=`<div class="l-dot" style="background:${i===0?gc:C.inkFaint}"></div><span style="color:${i===0?C.inkSoft:C.inkMuted}">${c}</span>`;lr.appendChild(r);});}
-  const rb=document.getElementById('result-bars'+suffix);
-  if(rb){rb.innerHTML='';[{k:'energy',n:'⚡ Teacher energy',s:false},{k:'motiv',n:'🔥 Motivation',s:false},{k:'involve',n:'👐 Involvement',s:false},{k:'stress',n:'😤 Stress',s:true}].forEach(bd=>{const v=S.bars[bd.k],col=bCol(v,bd.s),lbl=bLbl(v,bd.s);const r=document.createElement('div');r.className='rb-row';r.innerHTML=`<span class="rb-nm">${bd.n}</span><div class="rb-track"><div class="rb-fill" style="width:${v}%;background:${col}"></div></div><span class="rb-pct" style="color:${col}">${v}%</span><span class="rb-lbl" style="background:${col}18;color:${col};border:1px solid ${col}44">${lbl}</span>`;rb.appendChild(r);});}
+  if(lr&&p.lessonGoal){
+    const gl=p.lessonGoal;
+    const gc=gl.percentage>=75?C.sage:gl.percentage>=50?'#C8A020':C.danger;
+    lr.innerHTML=`<div class="goal-bar-wrap"><div class="goal-bar-meta"><span style="color:${C.inkMuted}">Goal achievement</span><span style="color:${gc}">${gl.percentage}%</span></div><div class="goal-track"><div class="goal-fill" style="width:${gl.percentage}%;background:${gc}"></div></div></div>`;
+    (gl.comments||[]).forEach((c,i)=>{
+      const r=document.createElement('div');r.className='lesson-row';
+      r.innerHTML=`<div class="l-dot" style="background:${i===0?gc:C.inkFaint}"></div><span style="color:${i===0?C.inkSoft:C.inkMuted}">${c}</span>`;
+      lr.appendChild(r);
+    });
+  }
+
+  // ── Update original bars with delta arrows (no duplicate bar panel) ──
+  if(p.barDeltas){
+    const deltas={energy:p.barDeltas.energyDelta||0,motiv:p.barDeltas.motivDelta||0,involve:p.barDeltas.involveDelta||0,stress:p.barDeltas.stressDelta||0};
+    [{k:'energy',isStr:false},{k:'motiv',isStr:false},{k:'involve',isStr:false},{k:'stress',isStr:true}].forEach(({k,isStr})=>{
+      const d=deltas[k]; if(d===0) return;
+      const pctEl=document.getElementById('bp-'+k);
+      const fillEl=document.getElementById('bf-'+k);
+      if(!pctEl||!fillEl) return;
+      const newVal=S.bars[k];
+      const col=bCol(newVal,isStr);
+      // Animate fill
+      fillEl.style.transition='width .7s ease, background .5s ease';
+      fillEl.style.width=newVal+'%';
+      fillEl.style.background=col;
+      pctEl.style.color=col;
+      // Show delta arrow next to percentage
+      const arrow=d>0?(isStr?'↑':'↑'):((isStr?'↓':'↓'));
+      const arrowCol=d>0?(isStr?C.danger:C.sage):(isStr?C.sage:C.danger);
+      const commentText=getDeltaComment(k,newVal,d,isStr);
+      pctEl.innerHTML=`${newVal}% <span style="font-size:10px;color:${arrowCol};font-weight:700">${arrow}${Math.abs(d)}</span>`;
+      // Add comment below bar row if notable
+      if(commentText){
+        const barRow=pctEl.closest('.bar-row');
+        if(barRow){
+          let existing=barRow.nextElementSibling;
+          if(existing&&existing.classList.contains('bar-delta-comment')) existing.remove();
+          const note=document.createElement('div');
+          note.className='bar-delta-comment';
+          note.style.cssText=`font-size:10px;color:${arrowCol};padding:2px 0 4px 118px;font-style:italic`;
+          note.textContent=commentText;
+          barRow.after(note);
+        }
+      }
+    });
+  }
+
+  // ── Coach's note ──
   const fbtxt=document.getElementById('fb-txt'+suffix);
   if(fbtxt)fbtxt.innerHTML=`<strong style="color:${C.ink}">What worked:</strong> ${p.highlight||'Nothing stood out as particularly effective this time.'}<br><br>${p.coachNote||''}<br><br><strong style="color:${C.ink}">For next time:</strong> ${p.suggestion||''}`;
+
   document.getElementById('fb-wrap'+suffix).className='fb-wrap on';
   document.getElementById('fb-wrap'+suffix).scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function getDeltaComment(key, val, delta, isStr) {
+  if(Math.abs(delta)<3) return ''; // only comment on notable changes
+  if(key==='energy'){
+    if(delta<=-8) return 'That took a lot out of you.';
+    if(delta>=8) return 'You found your rhythm!';
+  }
+  if(key==='motiv'){
+    if(delta<=-8) return 'Students are losing interest — vary your approach.';
+    if(delta<=-4) return 'Pay attention — motivation is slipping.';
+    if(delta>=8) return 'Nice! Students are engaged.';
+    if(delta>=4) return 'Good — motivation is building.';
+  }
+  if(key==='involve'){
+    if(delta<=-8) return 'Students are withdrawing — create more space to participate.';
+    if(delta>=8) return 'Students are stepping up!';
+    if(delta>=4) return 'Good — more students are joining in.';
+  }
+  if(key==='stress'&&isStr){
+    if(delta>=8) return 'Careful — stress is rising fast.';
+    if(delta>=4) return 'Watch your tone — stress is creeping up.';
+    if(delta<=-6) return 'Students feel safe. Well done.';
+    if(delta<=-3) return 'Good — the atmosphere is calming.';
+  }
+  return '';
 }
 
 function renderTacticResult(wrap) {
