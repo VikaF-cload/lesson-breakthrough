@@ -415,6 +415,60 @@ Reply ONLY with valid JSON:
   }
 });
 
+// ── VOICE ASSESS ──
+app.post('/api/assess-voice', async (req, res) => {
+  const { transcript, situation, goal, scenarioId } = req.body;
+  if (!transcript || !situation) return res.status(400).json({ error: 'Missing fields' });
+
+  const DEMO_VOICE = {
+    s1: { voiceScores:[{dimension:'Pragmatics & content',score:4,comment:'The greeting and self-introduction are well-structured and appropriate for a first meeting with teenagers.'},{dimension:'Tone',score:4,comment:'Warm and accessible — "you can call me" signals approachability without losing authority.'},{dimension:'Clarity',score:4,comment:'Message clearly structured: name, role, forward-looking statement.'},{dimension:'Delivery',score:3,comment:'Pacing appears natural. A deliberate pause after the name introduction would add presence.'}],overallVoice:4,voiceInsight:'A warm, well-structured introduction that makes students feel welcome.',classReaction:{s1_name:'Nick',s1_response:'Hello.',s1_nonverbal:'looks up briefly',s2_name:'Lena',s2_response:'Good morning, Ekaterina Sergeevna!',s2_nonverbal:'smiles and sits up straight',s3_name:'Paul',s3_response:'Hi! Are we doing anything fun today?',s3_nonverbal:'raises his hand immediately'}},
+    s2: { voiceScores:[{dimension:'Pragmatics & content',score:4,comment:'Instructions are clear and the activity is framed as play rather than performance.'},{dimension:'Tone',score:4,comment:'Energetic and encouraging — the language creates a safe atmosphere.'},{dimension:'Clarity',score:3,comment:'Rules are mostly clear. A modelled example would strengthen understanding.'},{dimension:'Delivery',score:3,comment:'Natural sentence breaks suggest good use of pauses.'}],overallVoice:4,voiceInsight:'Warm and well-framed — students are invited rather than instructed.',classReaction:{s1_name:'Nick',s1_response:'',s1_nonverbal:'watches others, stays in his seat',s2_name:'Lena',s2_response:"Okay! Can I start?",s2_nonverbal:'already standing up',s3_name:'Paul',s3_response:"Yes! Come on everyone!",s3_nonverbal:'immediately approaches a classmate'}}
+  };
+
+  const systemPrompt = `You are a strict EFL teacher educator assessing a pre-service teacher's spoken classroom response from a text transcript. Reply ONLY with valid JSON.`;
+  const userPrompt = `SITUATION: ${situation}\nGOAL: ${goal}\nTRANSCRIPT: "${transcript}"\n\nAssess: 1) Pragmatics & content 2) Tone 3) Clarity 4) Delivery\n\nReply: {"voiceScores":[{"dimension":"Pragmatics & content","score":3,"comment":"..."},{"dimension":"Tone","score":4,"comment":"..."},{"dimension":"Clarity","score":3,"comment":"..."},{"dimension":"Delivery","score":3,"comment":"..."}],"overallVoice":3,"voiceInsight":"one sentence","classReaction":{"s1_name":"Nick","s1_response":"...","s1_nonverbal":"...","s2_name":"Lena","s2_response":"...","s2_nonverbal":"...","s3_name":"Paul","s3_response":"...","s3_nonverbal":"..."}}`;
+
+  try {
+    const aiRes = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-api-key': ANTHROPIC_KEY, 'anthropic-version': '2023-06-01' },
+      body: JSON.stringify({ model: 'claude-haiku-4-5-20251001', max_tokens: 800, system: systemPrompt, messages: [{ role: 'user', content: userPrompt }] })
+    });
+    const aiData = await aiRes.json();
+    if (aiData.error) throw new Error(aiData.error.message);
+    const raw = aiData?.content?.[0]?.text || '';
+    const jsonMatch = raw.replace(/```json|```/g, '').trim().match(/\{[\s\S]*\}/);
+    if (!jsonMatch) throw new Error('No JSON');
+    res.json(JSON.parse(jsonMatch[0]));
+  } catch (e) {
+    console.log('Voice AI failed, using demo:', e.message);
+    res.json(DEMO_VOICE[scenarioId] || DEMO_VOICE.s1);
+  }
+});
+
+// ── SAVE RATING ──
+app.post('/api/rating', async (req, res) => {
+  const { pid, scenarioId, stars, feedback, ts } = req.body;
+  if (!pid) return res.status(400).json({ error: 'Missing pid' });
+  try {
+    const searchRes = await fetch(`https://api.jsonbin.io/v3/b?name=${encodeURIComponent('lb_' + pid)}`, { headers: { 'X-Master-Key': JSONBIN_KEY } });
+    const searchData = await searchRes.json();
+    const existing = Array.isArray(searchData) ? searchData.find(b => b.name === 'lb_' + pid) : null;
+    if (existing) {
+      const binRes = await fetch(`${JSONBIN_URL}/${existing.id}/latest`, { headers: { 'X-Master-Key': JSONBIN_KEY } });
+      const binData = await binRes.json();
+      const record = binData.record || {};
+      if (!record.ratings) record.ratings = [];
+      record.ratings.push({ scenarioId, stars, feedback, ts });
+      await fetch(`${JSONBIN_URL}/${existing.id}`, { method: 'PUT', headers: { 'Content-Type': 'application/json', 'X-Master-Key': JSONBIN_KEY }, body: JSON.stringify(record) });
+    }
+    res.json({ success: true });
+  } catch (e) {
+    console.error('Rating save error:', e);
+    res.status(500).json({ error: 'Rating save failed' });
+  }
+});
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
