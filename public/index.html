@@ -833,6 +833,48 @@ textarea, input { font-family: inherit; }
 .crit-toggle:hover { color: var(--sage); text-decoration: underline; }
 .bar-delta-comment { font-size: 10px; font-style: italic; padding: 1px 0 3px 118px; }
 
+/* BONUS PHASE */
+.bonus-gate {
+  background: var(--ink); border-radius: var(--r-xl);
+  padding: 1.8rem 1.4rem; text-align: center;
+  box-shadow: var(--shadow-lg);
+}
+.bonus-gate-star { font-size: 2.8rem; margin-bottom: .6rem; animation: star-pulse 2s ease infinite; }
+@keyframes star-pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.12)} }
+.bonus-gate-title { font-family: 'Lora',serif; font-size: 1.5rem; color: var(--cream); margin-bottom: .4rem; }
+.bonus-gate-title em { font-style: italic; color: var(--terra-mid); }
+.bonus-gate-sub { font-size: 12px; color: var(--ink-faint); margin-bottom: 1.2rem; line-height: 1.6; max-width: 300px; margin-left: auto; margin-right: auto; }
+.bonus-topic-badge {
+  display: inline-block; background: var(--terra); color: #fff;
+  border-radius: 20px; padding: 5px 16px; font-size: 13px; font-weight: 700;
+  margin-bottom: .5rem; letter-spacing: .02em;
+}
+.bonus-grade { font-size: 11px; color: var(--ink-faint); margin-bottom: 1.2rem; }
+.bonus-accept {
+  width: 100%; background: var(--terra); color: #fff; border: none;
+  border-radius: var(--r-md); padding: 12px; font-size: 14px; font-weight: 700;
+  margin-bottom: 8px; transition: background .2s; font-family: 'Nunito',sans-serif;
+}
+.bonus-accept:hover { background: var(--terra-dark); }
+.bonus-skip {
+  width: 100%; background: none; border: 1.5px solid rgba(255,255,255,0.15);
+  border-radius: var(--r-md); padding: 10px; font-size: 12px; color: var(--ink-faint);
+  transition: all .2s; font-family: 'Nunito',sans-serif; cursor: pointer;
+}
+.bonus-skip:hover { background: rgba(255,255,255,0.06); color: var(--ink-ghost); }
+.bonus-xp-note { font-size: 11px; color: var(--terra-mid); margin-bottom: 1rem; }
+.bonus-card {
+  background: var(--white); border: 2px solid var(--terra);
+  border-radius: var(--r-lg); padding: 1rem;
+  box-shadow: var(--shadow-md);
+}
+.bonus-card-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--terra); color: #fff; border-radius: 20px;
+  padding: 3px 12px; font-size: 11px; font-weight: 700;
+  margin-bottom: .8rem; text-transform: uppercase; letter-spacing: .06em;
+}
+
 /* SPIDER CHART */
 .spider-wrap { background: var(--white); border: 1px solid var(--border); border-radius: var(--r-lg); padding: .9rem; margin-bottom: .75rem; box-shadow: var(--shadow-sm); }
 .spider-lbl { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-faint); margin-bottom: 6px; }
@@ -1411,7 +1453,8 @@ const C = {
 // ═══════════════════════════════════════
 const ACHIEVEMENTS = [
   { id: 'a1', icon: '🏅', title: 'Hello, Teacher!', desc: 'Completed Scenario 1 — Self-introduction', scenario: 'S1' },
-  { id: 'a2', icon: '🤝', title: 'First Contact Established', desc: 'Completed Scenario 2 — Ice-breaking games', scenario: 'S2' }
+  { id: 'a2', icon: '🤝', title: 'First Contact Established', desc: 'Completed Scenario 2 — Ice-breaking games', scenario: 'S2' },
+  { id: 'a3', icon: '🔑', title: 'Every Lesson a New Beginning', desc: 'Completed Scenario 3 — Making contact at the start of the lesson', scenario: 'S3' }
 ];
 
 const PED_CARDS = [
@@ -1465,15 +1508,15 @@ const MODULES = [
   {
     id: 'mod1', title: 'Module 1', subtitle: 'Foundations',
     scenarios: [
-      { id: 's1', title: 'Self-introduction', desc: 'Making your first impression', playable: true, xp: 80, icon: '🌱' },
-      { id: 's2', title: 'Ice-breaking games', desc: 'Creating a safe space for communication', playable: true, xp: 100, icon: '🎮' },
-      { id: 's3', title: 'Making Contact at the Beginning of the Lesson', desc: 'Opening every lesson well', playable: false, icon: '🔒' },
-      { id: 's4', title: 'Setting the Lesson Goals', desc: 'Communicating learning objectives clearly', playable: false, icon: '🔒' },
-      { id: 's5', title: 'Using Classroom Language', desc: 'Professional classroom communication', playable: false, icon: '🔒' },
-      { id: 's6', title: 'Giving Instructions to the Task', desc: 'Clear, sequenced task instructions', playable: false, icon: '🔒' },
-      { id: 's7', title: 'Addressing Students Personally', desc: 'Individual student communication', playable: false, icon: '🔒' },
-      { id: 's8', title: 'Scaffolding, ICQs and CCQs', desc: 'Supporting student understanding', playable: false, icon: '🔒' },
-      { id: 's9', title: 'Finishing the Lesson — Reflection Time', desc: 'Closing lessons effectively', playable: false, icon: '🔒' }
+      { id: 's1', title: 'Self-introduction', desc: 'Making your first impression', xp: 80, icon: '🌱' },
+      { id: 's2', title: 'Ice-breaking games', desc: 'Creating a safe space for communication', xp: 100, icon: '🎮' },
+      { id: 's3', title: 'Making Contact at the Beginning of the Lesson', desc: 'Opening every lesson well', xp: 90, icon: '🔑' },
+      { id: 's4', title: 'Setting the Lesson Goals', desc: 'Communicating learning objectives clearly', icon: '🔒' },
+      { id: 's5', title: 'Using Classroom Language', desc: 'Professional classroom communication', icon: '🔒' },
+      { id: 's6', title: 'Giving Instructions to the Task', desc: 'Clear, sequenced task instructions', icon: '🔒' },
+      { id: 's7', title: 'Addressing Students Personally', desc: 'Individual student communication', icon: '🔒' },
+      { id: 's8', title: 'Scaffolding, ICQs and CCQs', desc: 'Supporting student understanding', icon: '🔒' },
+      { id: 's9', title: 'Finishing the Lesson — Reflection Time', desc: 'Closing lessons effectively', icon: '🔒' }
     ]
   },
   { id: 'mod2', title: 'Module 2', subtitle: 'Coming soon', locked: true },
@@ -1719,8 +1762,15 @@ function renderMap() {
   const pct = Math.min(100, Math.round((S.xp / 500) * 100));
   document.getElementById('xp-fill').style.width = pct + '%';
   document.getElementById('xp-val').textContent = S.xp + ' / 500 XP';
-  const nextSc = MODULES[0].scenarios.find(sc => !S.done.includes(sc.id) && sc.playable);
-  document.getElementById('xp-note').textContent = nextSc ? 'Complete "' + nextSc.title + '" to earn +' + nextSc.xp + ' XP' : 'Module 1 complete!';
+  const scenarios = MODULES[0].scenarios;
+  const nextSc = scenarios.find((sc, i) => {
+    const hasData = !!SCENARIO_DATA[sc.id];
+    const prevDone = i === 0 || S.done.includes(scenarios[i-1].id);
+    return !S.done.includes(sc.id) && hasData && prevDone;
+  });
+  document.getElementById('xp-note').textContent = nextSc
+    ? 'Complete "' + nextSc.title + '" to earn +' + (nextSc.xp||0) + ' XP'
+    : S.done.length > 0 ? 'All available scenarios completed — replay anytime to improve.' : 'Module 1 complete!';
 
   const newAchs = S.achs.length > 0;
   document.getElementById('ach-new').style.display = newAchs ? 'block' : 'none';
@@ -1741,14 +1791,17 @@ function renderMap() {
       const ml = document.createElement('div'); ml.className = 'mod-list';
       mod.scenarios.forEach((sc, i) => {
         const done = S.done.includes(sc.id);
+        const hasData = !!SCENARIO_DATA[sc.id];
+        const prevDone = i === 0 || S.done.includes(mod.scenarios[i-1].id);
+        const unlocked = hasData && prevDone; // true once previous is done, stays true forever
         const d = document.createElement('div');
-        d.className = 'sc-card ' + (done ? 'done' : sc.playable ? 'playable' : 'locked');
-        const icoClass = done ? 'done' : sc.playable ? 'play' : 'lock';
-        const icoText = done ? '✓' : sc.playable ? '▶' : '🔒';
-        const rightClass = done ? 'done' : sc.playable ? 'play' : 'lock';
-        const rightText = done ? '+' + sc.xp + ' XP' : sc.playable ? 'Play →' : 'Locked';
+        d.className = 'sc-card ' + (done ? 'done' : unlocked ? 'playable' : 'locked');
+        const icoClass = done ? 'done' : unlocked ? 'play' : 'lock';
+        const icoText = done ? '✓' : unlocked ? '▶' : '🔒';
+        const rightClass = done ? 'done' : unlocked ? 'play' : 'lock';
+        const rightText = done ? '↺ Replay' : unlocked ? 'Play →' : 'Locked';
         d.innerHTML = `<div class="sc-ico ${icoClass}">${icoText}</div><div class="sc-info"><div class="sc-num">Scenario ${i+1}</div><div class="sc-name">${sc.title}</div><div class="sc-desc">${sc.desc}</div></div><div class="sc-right ${rightClass}">${rightText}</div>`;
-        if (sc.playable) d.addEventListener('click', () => openScenario(sc.id));
+        if (unlocked) d.addEventListener('click', () => openScenario(sc.id));
         ml.appendChild(d);
       });
       sec.appendChild(ml);
@@ -2006,6 +2059,182 @@ const SCENARIO_DATA = {
       {score:[13,99],q:'На что вы обратите внимание, пока ученики играют? Как используете эти наблюдения в дальнейшем?'}
     ],
     achievementId:'a2', xp:100
+  },
+
+  s3: {
+    title:'Making Contact at the Beginning of the Lesson',
+    desc:'Opening every lesson — returning to a class you know',
+    mentorLine:"You've met them before — but every lesson is a new beginning. They need to feel that you see them, that this room is safe, and that today is worth their attention. Your first thirty seconds set the tone for the next forty-five minutes.",
+    initBars:{energy:95,motiv:60,involve:50,stress:30},
+    chars:[
+      {name:'Lena',mood:'attentive',color:'#3B6D11',emoji:'😊'},
+      {name:'Nick',mood:'somewhere else',color:'#185FA5',emoji:'😶'},
+      {name:'Paul',mood:'already talking',color:'#C8622A',emoji:'😄'},
+      {name:'George',mood:'waiting',color:'#534AB7',emoji:'🧠'}
+    ],
+    situation:"It is a few days after your first lesson with class 8B. You know their names now. Nick is staring at his desk, Paul is talking to his neighbour, Lena has her notebook open, George is looking at the window. The general mood is cautious — some students are ready, others haven't arrived mentally yet. You need to move from initial presence to real contact and lead them into the lesson.",
+    goal:'Establish warm, purposeful contact with the class and move them smoothly into the lesson — without losing anyone along the way.',
+    criteria:['Register appropriateness','Affective climate management','Contact-establishing behaviour','Linguistic accuracy & clarity','Lesson transition clarity'],
+    mcqs:[
+      {
+        q:'You enter the classroom. Some students are chatting, two are on their phones, one student already has the textbook open. What is your first move?',
+        opts:[
+          {text:'Wait in silence at the front until everyone notices you and settles down.',why:'Wrong — passive waiting signals uncertainty and wastes time. Students may not even notice.',correct:false},
+          {text:'Start the greeting ritual immediately — your confident, warm presence signals the transition.',why:'✓ Correct — a clear, warm opening move shifts the room\'s attention and signals that the lesson has begun.',correct:true},
+          {text:'Ask the attentive student to tell the others to be quiet.',why:'Wrong — delegating classroom management to a student undermines your authority and puts that student in an awkward position.',correct:false},
+          {text:'Begin checking homework while waiting for noise to settle naturally.',why:'Wrong — starting a task before contact is established means half the class misses the instruction.',correct:false}
+        ]
+      },
+      {
+        q:'You ask "How are you today?" and three students answer enthusiastically — but most of the class stays silent. What does this tell you?',
+        opts:[
+          {text:'The silent students are being rude and should be addressed directly.',why:'Wrong — silence at the start of a lesson usually reflects caution or distraction, not defiance.',correct:false},
+          {text:'The question was too easy — try something more challenging to get a response.',why:'Wrong — the issue is not the difficulty of the question but the incomplete emotional contact.',correct:false},
+          {text:'Contact is only partially established — one more move is needed before starting the lesson.',why:'✓ Correct — uneven response is a metacommunicative signal. The teacher needs to reach the silent majority before moving on.',correct:true},
+          {text:'This is normal — not all students will respond to warm-up questions.',why:'Partially true but professionally incomplete. A skilled teacher reads uneven response as a prompt to act.',correct:false}
+        ]
+      }
+    ],
+    tactics:[
+      {
+        id:'t1',
+        title:'Greeting Ritual',
+        desc:'Use a stable, warm English opening routine to signal the transition into the lesson and establish immediate emotional contact.',
+        criteria:['Register appropriateness','Affective climate management','Contact-establishing behaviour','Linguistic accuracy & clarity','Lesson transition clarity'],
+        clicheGroups:[
+          {label:'Greeting formulas',phrases:['Good morning, everyone.','I\'m glad to see you.','Hello, class — let\'s get started.']},
+          {label:'Mood/energy check',phrases:['How are you today on a scale of one to five?','How\'s everyone doing?','Quick check — thumbs up if you\'re ready.']},
+          {label:'Transition to lesson',phrases:['Let\'s move into today\'s lesson.','We\'re going to start with something short and easy.','By the end of today, you\'ll be able to…']}
+        ],
+        steps:[
+          {
+            id:'greeting',type:'must',
+            title:'Opening greeting',
+            desc:'Greet the class using a stable, warm formula. Your tone and presence signal that the lesson has begun.',
+            situation:'You step to the front. Some students are still settling. Say your opening greeting.',
+            goal:'The class turns its attention to you. The lesson has begun.',
+            criteria:['Warmth and confidence','Register appropriate for teenagers','Clear signal that the lesson is starting']
+          },
+          {
+            id:'mood_check',type:'must',
+            title:'Mood or energy check',
+            desc:'Ask a simple, accessible question that invites a whole-class response and shows you see them as people.',
+            situation:'You have the class\'s attention. Nick is still quiet. Paul responded immediately. You want to reach more of the class.',
+            goal:'At least half the class responds verbally or nonverbally. Nick shows some reaction.',
+            criteria:['Question is accessible at their level','Inclusive — not directed only at strong students','Warm response to first answers']
+          },
+          {
+            id:'transition',type:'must',
+            title:'Transition to the lesson',
+            desc:'Bridge from the greeting to today\'s lesson with a clear, motivating forward-looking statement.',
+            situation:'The class is now mostly attentive. Lead them into the lesson.',
+            goal:'Students understand something specific is about to happen and feel ready for it.',
+            criteria:['Forward-looking statement present','Tone is inviting not commanding','Lesson goal hinted at or stated']
+          },
+          {
+            id:'passive',type:'opt',
+            title:'Reaching a non-responding student',
+            desc:'Nick has not responded to anything. He\'s looking at his desk.',
+            situation:'After your mood check, Nick still hasn\'t responded. Most of the class is with you. What do you say to Nick — quietly, without singling him out publicly?',
+            goal:'Nick makes some minimal contact — a word, a nod, eye contact. He doesn\'t feel pressured.',
+            criteria:['Quiet individual approach','Low-pressure invitation','No public naming of passivity']
+          },
+          {
+            id:'overactive',type:'opt',
+            title:'Redirecting Paul',
+            desc:'Paul has answered every question twice and is now talking to his neighbour again.',
+            situation:'Paul keeps jumping in before others have a chance. His energy is high. What do you say?',
+            goal:'Paul\'s energy is redirected without embarrassing him. Other students get space to respond.',
+            criteria:['Calm and warm tone','Redirects behaviour not person','Activity continues']
+          }
+        ],
+        optSteps:[],
+        achievementId:'a3',xp:90
+      },
+      {
+        id:'t2',
+        title:'Personalising Micro-Dialogue',
+        desc:'Use short, personal questions at the start of the lesson to show interest in students and activate genuine first interaction.',
+        criteria:['Register appropriateness','Affective climate management','Contact-establishing behaviour','Linguistic accuracy & clarity','Lesson transition clarity'],
+        clicheGroups:[
+          {label:'Personal openers',phrases:['How was your weekend?','Did anything interesting happen since we last met?','You mentioned you like sport — did anything happen this week?']},
+          {label:'Following up',phrases:['Really? Tell me more.','That\'s interesting — what did you think?','Nice! Did anyone else have a similar experience?']},
+          {label:'Bridging to lesson',phrases:['That connects nicely to what we\'re doing today.','Speaking of that — today we\'re going to…','Keep that thought — it\'ll be useful in today\'s lesson.']}
+        ],
+        steps:[
+          {
+            id:'open_dialogue',type:'must',
+            title:'Opening the micro-dialogue',
+            desc:'Choose a personally relevant, accessible topic and ask a genuine question. Make the first student feel heard.',
+            situation:'You\'ve greeted the class. Now you want to make the opening feel personal. Ask Lena something that connects to her interests.',
+            goal:'Lena responds warmly. One or two other students lean in.',
+            criteria:['Question is genuinely personal not generic','Accessible vocabulary for their level','Warm authentic tone']
+          },
+          {
+            id:'follow_up',type:'must',
+            title:'Following up',
+            desc:'Respond to the student\'s answer with genuine interest. Ask one follow-up question.',
+            situation:'Lena answered. Now deepen the exchange with one follow-up — and make it feel like a real conversation, not an interview.',
+            goal:'Lena responds again. The exchange feels natural, not performed.',
+            criteria:['Genuine follow-up present','Not an interrogation — conversational','Response validates what Lena said']
+          },
+          {
+            id:'include_hesitant',type:'must',
+            title:'Including a hesitant student',
+            desc:'Nick hasn\'t spoken. Offer him a lower-threshold entry point — something he can answer with one word or a gesture.',
+            situation:'Lena has spoken twice. Nick is quiet. You want to include him without pressure.',
+            goal:'Nick responds in some way — even minimally. He does not feel singled out.',
+            criteria:['Quiet individual approach','Question has a very low barrier to answer','No pressure if he doesn\'t respond']
+          },
+          {
+            id:'bridge',type:'must',
+            title:'Bridging to the lesson',
+            desc:'Connect the personal exchange to today\'s lesson topic naturally.',
+            situation:'The micro-dialogue has run for about two minutes. Time to move into the lesson.',
+            goal:'Students see the connection between the personal exchange and today\'s topic. The transition feels smooth, not abrupt.',
+            criteria:['Bridge is explicit and natural','Lesson topic introduced','Positive momentum maintained']
+          },
+          {
+            id:'bonus_bridge',type:'bonus',
+            title:'Great challenge ahead!',
+            desc:'A special challenge for extra points. Today you are starting a new topic. Make your personalised question connected to the upcoming topic.',
+            situation:'',  // set dynamically
+            goal:'The personal question you ask relates meaningfully to the topic. Students begin the lesson already thinking about the theme.',
+            criteria:['Register appropriateness','Affective climate management','Contact-establishing behaviour','Linguistic accuracy & clarity','Relevancy to the topic']
+          }
+        ],
+        optSteps:[
+          {
+            id:'unexpected_response',type:'opt',
+            title:'Handling an unexpected personal response',
+            desc:'A student says something personal or sensitive in response to your question.',
+            situation:'You asked "How was your weekend?" and a student quietly says their grandmother is in hospital. The class heard.',
+            goal:'You respond warmly and professionally without making the student feel exposed or ignored.',
+            criteria:['Warm and genuine response','Doesn\'t linger — moves on naturally','Doesn\'t ignore or rush past']
+          }
+        ]
+      }
+    ],
+    bonusTopics:[
+      {grade:'Grade 5',topic:'Sports and hobbies',hint:'Think about what they do in their free time.'},
+      {grade:'Grade 6',topic:'Home and abroad',hint:'Travel, places, home vs other countries.'},
+      {grade:'Grade 7',topic:'Professions',hint:'Future plans, what people do for work.'},
+      {grade:'Grade 8',topic:'News',hint:'Current events, what\'s happening in the world.'},
+      {grade:'Grade 9',topic:'Different lifestyles',hint:'Choices, values, how people live.'}
+    ],
+    reflectQs:[
+      {score:[0,99],q:'По каким признакам вы определите, что класс готов к уроку? Что из этого вы заметили в своём ответе?'},
+      {
+        score:[0,99],
+        variants:[
+          'Как бы вы начали урок, если бы это был первый урок после каникул?',
+          'Как бы вы начали урок, если бы класс только что написал контрольную?',
+          'Как бы вы начали урок, если бы это был 7 или 8 урок в расписании?'
+        ]
+      },
+      {score:[0,99],q:'Какой ритуал начала урока вы бы сделали своей визитной карточкой — и почему именно он?'}
+    ],
+    achievementId:'a3', xp:90
   }
 };
 
@@ -2035,6 +2264,7 @@ function renderScenarioPhase(phase) {
   else if (phase==='tactic_choice') renderTacticChoice(wrap,sc);
   else if (phase==='step') renderStepPhase(wrap);
   else if (phase==='tactic_result') renderTacticResult(wrap);
+  else if (phase==='bonus') renderBonusPhase(wrap,sc);
   else if (phase==='single_response') renderSingleResponse(wrap,sc);
   else if (phase==='voice') renderVoicePhase(wrap,sc);
   else if (phase==='reflect') renderReflectPhase(wrap,sc);
@@ -2391,7 +2621,14 @@ function renderTacticResult(wrap) {
   const b1=document.createElement('button');b1.className='tr-btn';b1.textContent='↺ Try this tactic again';b1.addEventListener('click',()=>startTactic(tactic));
   const b2=document.createElement('button');b2.className='tr-btn';b2.textContent='← Try a different tactic';b2.addEventListener('click',()=>renderScenarioPhase('tactic_choice'));
   const b3=document.createElement('button');b3.className='tr-btn primary';b3.textContent='Continue to reflection →';
-  b3.addEventListener('click',()=>{S.reflectIdx=0;const sc2=SCENARIO_DATA[S.cur];S.reflectQs=sc2.reflectQs.filter(q=>S.runningScore>=q.score[0]&&S.runningScore<=q.score[1]);if(!S.reflectQs.length)S.reflectQs=[sc2.reflectQs[0]];if(S.reflectQs.length>3)S.reflectQs=S.reflectQs.slice(0,3);renderScenarioPhase('voice');});
+  b3.addEventListener('click',()=>{
+    const sc2=SCENARIO_DATA[S.cur];
+    if(sc2.bonusTopics&&sc2.bonusTopics.length>0){
+      renderScenarioPhase('bonus');
+    } else {
+      S.reflectIdx=0; buildReflectQs(sc2); renderScenarioPhase('reflect');
+    }
+  });
   btns.appendChild(b1);btns.appendChild(b2);btns.appendChild(b3);wrap.appendChild(btns);
 }
 
@@ -2574,9 +2811,7 @@ function renderVoicePhase(wrap, sc) {
     S.lastVoiceAssessment=null;
     S.reflectIdx=0;
     const sc2=SCENARIO_DATA[S.cur];
-    S.reflectQs=sc2.reflectQs.filter(q=>S.runningScore>=q.score[0]&&S.runningScore<=q.score[1]);
-    if(!S.reflectQs.length)S.reflectQs=[sc2.reflectQs[0]];
-    if(S.reflectQs.length>3)S.reflectQs=S.reflectQs.slice(0,3);
+    buildReflectQs(sc2);
     renderScenarioPhase('reflect');
   });
 }
@@ -2653,9 +2888,7 @@ function showChatterbox(wrap, sc, voiceData) {
   document.getElementById('cb-next-btn').addEventListener('click',()=>{
     S.reflectIdx=0;
     const sc2=SCENARIO_DATA[S.cur];
-    S.reflectQs=sc2.reflectQs.filter(q=>S.runningScore>=q.score[0]&&S.runningScore<=q.score[1]);
-    if(!S.reflectQs.length)S.reflectQs=[sc2.reflectQs[0]];
-    if(S.reflectQs.length>3)S.reflectQs=S.reflectQs.slice(0,3);
+    buildReflectQs(sc2);
     renderScenarioPhase('reflect');
   });
 }
@@ -2673,6 +2906,11 @@ const COMPETENCES = {
     {name:'Affective-communicative',desc:'Creating a safe, low-pressure space for communication'},
     {name:'Communicative-organisational',desc:'Managing activity structure and student participation'},
     {name:'Instructional communication',desc:'Giving clear, well-sequenced instructions'}
+  ],
+  s3: [
+    {name:'Contact-establishing',desc:'Opening every lesson with purposeful, warm contact'},
+    {name:'Affective-communicative',desc:'Reading and managing the classroom mood'},
+    {name:'Metacommunicative awareness',desc:'Adapting your approach based on student signals'}
   ]
 };
 
@@ -2780,7 +3018,119 @@ function finishScenario(sc) {
   if(!S.log)S.log=[];S.log.push({scenario:S.cur,xp:sc.xp,bars:{...S.bars},ts:new Date().toISOString()});
   saveProgress();renderMap();go('s-map');mkToast('✓ Scenario completed! +'+sc.xp+' XP','good');
 }
-function renderReflectPhase(wrap, sc) {
+// ═══════════════════════════════════════
+// BONUS PHASE
+// ═══════════════════════════════════════
+function renderBonusPhase(wrap, sc) {
+  const topics = sc.bonusTopics || [];
+  const topic = topics[Math.floor(Math.random() * topics.length)];
+  S.curBonusTopic = topic;
+
+  const gate = document.createElement('div'); gate.className='bonus-gate';
+  gate.innerHTML=`
+    <div class="bonus-gate-star">⭐</div>
+    <div class="bonus-gate-title"><em>Great challenge ahead!</em></div>
+    <div class="bonus-gate-sub">A special task for extra points. Today you are starting a new topic. Make your personalised question connected to the upcoming lesson theme.</div>
+    <div class="bonus-topic-badge">${topic.topic}</div>
+    <div class="bonus-grade">${topic.grade} · ${topic.hint}</div>
+    <div class="bonus-xp-note">+15 XP · written response only · extra criterion</div>
+    <button class="bonus-accept" id="bonus-accept">Accept the challenge →</button>
+    <button class="bonus-skip" id="bonus-skip">Skip — go to reflection</button>`;
+  wrap.appendChild(gate);
+
+  document.getElementById('bonus-accept').addEventListener('click', () => {
+    renderBonusTask(wrap, sc, topic);
+  });
+  document.getElementById('bonus-skip').addEventListener('click', () => {
+    S.reflectIdx = 0;
+    buildReflectQs(sc);
+    renderScenarioPhase('reflect');
+  });
+}
+
+function renderBonusTask(wrap, sc, topic) {
+  wrap.innerHTML = '';
+  wrap.appendChild(makeBarsPanel());
+
+  const card = document.createElement('div'); card.className = 'bonus-card';
+  card.innerHTML = `
+    <div class="bonus-card-badge">⭐ Bonus challenge</div>
+    <div class="goal-banner" style="margin-bottom:.8rem">
+      <div class="goal-banner-ico">🎯</div>
+      <div>
+        <div class="goal-banner-lbl">Today's topic</div>
+        <div class="goal-banner-text">${topic.grade} — ${topic.topic}</div>
+      </div>
+    </div>
+    <div style="font-size:13px;color:var(--ink-soft);line-height:1.7;margin-bottom:.9rem">
+      Write a personalised question you could ask a student at the <em>start</em> of the lesson that connects naturally to today's topic — <strong>${topic.topic}</strong>. The question should feel personal, not like a textbook exercise, and should be accessible at the students' level.
+    </div>
+    <div class="english-notice" style="margin-bottom:8px">🇬🇧 Write in English only</div>
+    <div class="resp-lbl">Your personalised question:</div>
+    <textarea class="resp-ta" id="bonus-ta" placeholder="e.g. 'Do you have a favourite sport you play at the weekend?'" style="min-height:65px"></textarea>
+    <div class="wc-row"><span class="wc" id="bonus-wc">0 words</span></div>`;
+  wrap.appendChild(card);
+
+  document.getElementById('bonus-ta').addEventListener('input', function() {
+    const w = this.value.trim().split(/\s+/).filter(x=>x).length;
+    document.getElementById('bonus-wc').textContent = w + (w===1?' word':' words');
+  });
+
+  const subRow = document.createElement('div'); subRow.className = 'sub-row';
+  const subBtn = document.createElement('button'); subBtn.className = 'sub-btn'; subBtn.textContent = 'Submit bonus response';
+  const spinRow = document.createElement('div'); spinRow.className = 'spin-row'; spinRow.id = 'bonus-spin';
+  spinRow.innerHTML = '<div class="spin"></div>Assessing bonus response…';
+  subRow.appendChild(subBtn); subRow.appendChild(spinRow);
+  wrap.appendChild(subRow);
+
+  const fbWrap = buildFeedbackPanel('-bonus'); wrap.appendChild(fbWrap);
+  document.getElementById('nxt-btn-bonus').textContent = 'Continue to reflection →';
+
+  subBtn.addEventListener('click', async () => {
+    const resp = document.getElementById('bonus-ta')?.value?.trim();
+    if (!resp || resp.length < 3) { alert('Write your question first.'); return; }
+    subBtn.disabled = true; document.getElementById('bonus-spin').className = 'spin-row on';
+    try {
+      const bonusSituation = `The teacher is starting a new topic: "${topic.topic}" (${topic.grade}). Write a personalised micro-dialogue question for the start of the lesson that naturally connects to this topic.`;
+      const bonusCriteria = ['Register appropriateness', 'Affective climate management', 'Contact-establishing behaviour', 'Linguistic accuracy & clarity', 'Relevancy to the topic'];
+      const res = await fetch('/api/assess', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ response: resp, situation: bonusSituation, goal: 'Ask a warm, personal, topic-relevant question that connects the micro-dialogue to the upcoming lesson theme.', criteria: bonusCriteria, moduleId: 's3_bonus' }) });
+      const p = await res.json();
+      document.getElementById('bonus-spin').className = 'spin-row';
+      subBtn.disabled = false;
+      if (p.inappropriate) { alert('Please rewrite your response.'); return; }
+      // Bonus XP
+      S.xp += 15;
+      if (!S.att['s3_bonus']) S.att['s3_bonus'] = [];
+      S.att['s3_bonus'].push({ response: resp, topic: topic.topic, scores: p.scores, ts: new Date().toISOString() });
+      applyDeltas(p.barDeltas);
+      showFeedback(p, resp, '-bonus');
+      subBtn.style.display = 'none';
+      mkToast('⭐ +15 bonus XP!', 'good');
+    } catch(e) {
+      document.getElementById('bonus-spin').className = 'spin-row'; subBtn.disabled = false;
+      mkToast('Assessment failed — try again.', 'crit');
+    }
+  });
+
+  document.getElementById('nxt-btn-bonus').addEventListener('click', () => {
+    S.reflectIdx = 0;
+    buildReflectQs(sc);
+    renderScenarioPhase('reflect');
+  });
+}
+
+function buildReflectQs(sc) {
+  // Handle variant questions (random selection from variants array)
+  S.reflectQs = sc.reflectQs.map(q => {
+    if (q.variants) {
+      const chosen = q.variants[Math.floor(Math.random() * q.variants.length)];
+      return { score: q.score, q: chosen };
+    }
+    return q;
+  }).filter(q => S.runningScore >= q.score[0] && S.runningScore <= q.score[1]);
+  if (!S.reflectQs.length) S.reflectQs = [{ q: sc.reflectQs[0].q || sc.reflectQs[0].variants[0], score: [0,99] }];
+  if (S.reflectQs.length > 3) S.reflectQs = S.reflectQs.slice(0, 3);
+}
   if(S.reflectIdx>=S.reflectQs.length){renderScenarioPhase('results');return;}
   const q=S.reflectQs[S.reflectIdx];
   const card=document.createElement('div');card.className='reflect-card';
