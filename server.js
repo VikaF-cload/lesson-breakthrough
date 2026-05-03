@@ -510,6 +510,39 @@ BONUS TASK (s3_bonus) — Relevancy to the topic:
   4: Clear connection — personal question naturally leads to the topic
   5: Elegant connection — question is genuinely personal AND perfectly primes the topic`,
 
+    s4: `
+SCENARIO 4 RUBRIC — Setting the lesson goals:
+
+Register appropriateness:
+  1-2: Overly formal or reads like a lesson plan — "The educational objective of today's lesson is…"
+  3: Correct but flat — appropriate language, no warmth or engagement
+  4: Warm, direct, natural — sounds like a teacher talking to students, not reciting a document
+  5: Warm, engaging, perfectly pitched — students would genuinely want to know what comes next
+
+Goal clarity & completeness (three-part formula: activity + result + personal):
+  1-2: Topic only ("Today we study Present Perfect") or task only ("We will do exercises 3 and 4")
+  3: Two parts present — usually activity + result, but personal/meaningful connection missing
+  4: All three parts present — activity clear, result concrete and observable, personal connection stated
+  5: All three parts present AND seamlessly integrated — feels like one natural sentence, not a checklist
+
+Personal/meaningful connection:
+  1-2: No connection to students' real life or needs — purely academic or abstract
+  3: Implied relevance — students might infer it, but it is not stated
+  4: Explicit personal connection — "you'll use this when…", "this helps you…", "you'll be able to…"
+  5: Specific and compelling — connects to this class, this age group, this moment
+
+Linguistic accuracy & clarity:
+  1-2: Errors that confuse the goal itself — students misunderstand what to do
+  3: Minor errors only — meaning fully clear
+  4: Accurate, natural, well-structured
+  5: Precise, no errors, elegant sentence structure
+
+Lesson transition clarity:
+  1-2: No transition — students don't know what happens next
+  3: Implied transition — lesson probably starts after this
+  4: Explicit forward-looking statement — first step of the lesson named
+  5: Smooth and motivating bridge — students feel pulled into the lesson`,
+
     s3_bonus: `
 BONUS TASK RUBRIC — Personalised question connected to lesson topic:
 Score each criterion honestly. The 5th criterion (Relevancy to the topic) is the key one for this task.
@@ -656,6 +689,8 @@ app.post('/api/assess-voice', async (req, res) => {
 
   const DEMO_VOICE = {
     s1: { voiceScores:[{dimension:'Pragmatics & content',score:4,comment:'The greeting and self-introduction are well-structured and appropriate for a first meeting with teenagers.'},{dimension:'Tone',score:4,comment:'Warm and accessible — "you can call me" signals approachability without losing authority.'},{dimension:'Clarity',score:4,comment:'Message clearly structured: name, role, forward-looking statement.'},{dimension:'Delivery',score:3,comment:'Pacing appears natural. A deliberate pause after the name introduction would add presence.'}],overallVoice:4,voiceInsight:'A warm, well-structured introduction that makes students feel welcome.',barDeltas:{energyDelta:-2,motivDelta:10,involveDelta:8,stressDelta:-8},classReaction:{s1_name:'Nick',s1_response:'Hello.',s1_nonverbal:'looks up briefly',s2_name:'Lena',s2_response:'Good morning, Ekaterina Sergeevna!',s2_nonverbal:'smiles and sits up straight',s3_name:'Paul',s3_response:'Hi! Are we doing anything fun today?',s3_nonverbal:'raises his hand immediately'}},
+    s4_step_formulate: { voiceScores:[{dimension:'Pragmatics & content',score:4,comment:'The goal statement contains the key elements — activity and result are clear.'},{dimension:'Tone',score:4,comment:'Warm and direct — sounds like a teacher, not a lesson plan.'},{dimension:'Clarity',score:4,comment:'Straightforward sentence structure, students would understand immediately.'},{dimension:'Delivery',score:3,comment:'Pacing appears natural. A brief pause before the personal connection would add emphasis.'}],overallVoice:4,voiceInsight:'A clear, purposeful goal statement that orients the class.',barDeltas:{energyDelta:-2,motivDelta:9,involveDelta:7,stressDelta:-6},classReaction:{s1_name:'Lena',s1_response:'Got it.',s1_nonverbal:'nods and opens notebook',s2_name:'Nick',s2_response:'',s2_nonverbal:'looks up from desk',s3_name:'George',s3_response:'Fine.',s3_nonverbal:'still sceptical but listening'}},
+    s4_step_check_personal: { voiceScores:[{dimension:'Pragmatics & content',score:4,comment:'The question invites genuine personal connection rather than a simple yes/no.'},{dimension:'Tone',score:4,comment:'Curious and open — students feel invited rather than tested.'},{dimension:'Clarity',score:4,comment:'Question is direct and accessible.'},{dimension:'Delivery',score:3,comment:'Good pacing. A longer pause after asking would give more students time to respond.'}],overallVoice:4,voiceInsight:'An effective personal connection question that makes the goal feel relevant.',barDeltas:{energyDelta:-1,motivDelta:12,involveDelta:10,stressDelta:-8},classReaction:{s1_name:'Lena',s1_response:"I've actually needed to explain where I've been before. This will help!",s1_nonverbal:'leaning forward',s2_name:'Nick',s2_response:'Maybe for social media?',s2_nonverbal:'quiet but responds',s3_name:'George',s3_response:"I guess it's useful for writing emails.",s3_nonverbal:'softens slightly'}},
     s2: { voiceScores:[{dimension:'Pragmatics & content',score:4,comment:'Instructions are clear and the activity is framed as play rather than performance.'},{dimension:'Tone',score:4,comment:'Energetic and encouraging — the language creates a safe atmosphere.'},{dimension:'Clarity',score:3,comment:'Rules are mostly clear. A modelled example would strengthen understanding.'},{dimension:'Delivery',score:3,comment:'Natural sentence breaks suggest good use of pauses.'}],overallVoice:4,voiceInsight:'Warm and well-framed — students are invited rather than instructed.',barDeltas:{energyDelta:-3,motivDelta:12,involveDelta:14,stressDelta:-10},classReaction:{s1_name:'Nick',s1_response:'',s1_nonverbal:'watches others, stays in his seat',s2_name:'Lena',s2_response:"Okay! Can I start?",s2_nonverbal:'already standing up',s3_name:'Paul',s3_response:"Yes! Come on everyone!",s3_nonverbal:'immediately approaches a classmate'}}
   };
 
@@ -676,7 +711,7 @@ app.post('/api/assess-voice', async (req, res) => {
     res.json(JSON.parse(jsonMatch[0]));
   } catch (e) {
     console.log('Voice AI failed, using demo:', e.message);
-    res.json(DEMO_VOICE[scenarioId] || DEMO_VOICE.s1);
+    res.json(DEMO_VOICE[scenarioId] || DEMO_VOICE[scenarioId?.split('_step_')[0]] || DEMO_VOICE.s1);
   }
 });
 
