@@ -289,23 +289,104 @@ function getDemoFeedback(criteria, stepId, situation, modId) {
 // ═══════════════════════════════════════
 // SAVE PROGRESS
 // ═══════════════════════════════════════
+// ── BIN ID CACHE (in-memory, survives restarts via index bin) ──
+const binIdCache = {};
+const INDEX_BIN_NAME = 'lb_index';
+let indexBinId = null;
+
+async function getIndexBin() {
+  if (indexBinId) return indexBinId;
+  // Try to find existing index bin by fetching a known-named bin
+  // We store the index bin ID in an environment variable fallback
+  indexBinId = process.env.JSONBIN_INDEX_ID || null;
+  return indexBinId;
+}
+
+async function ensureIndexBin() {
+  if (indexBinId) return;
+  // Create the index bin
+  try {
+    const res = await fetch(JSONBIN_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Master-Key': JSONBIN_KEY,
+        'X-Bin-Name': INDEX_BIN_NAME,
+        'X-Bin-Private': 'false'
+      },
+      body: JSON.stringify({ bins: {} })
+    });
+    const data = await res.json();
+    indexBinId = data.metadata?.id;
+    console.log('Created index bin:', indexBinId);
+  } catch(e) {
+    console.error('Index bin creation failed:', e.message);
+  }
+}
+
+async function getBinId(pid) {
+  if (binIdCache[pid]) return binIdCache[pid];
+  // Try loading from index bin
+  if (!indexBinId) return null;
+  try {
+    const res = await fetch(`${JSONBIN_URL}/${indexBinId}/latest`, {
+      headers: { 'X-Master-Key': JSONBIN_KEY }
+    });
+    const data = await res.json();
+    const id = data.record?.bins?.[pid];
+    if (id) binIdCache[pid] = id;
+    return id || null;
+  } catch(e) {
+    return null;
+  }
+}
+
+async function setBinId(pid, binId) {
+  binIdCache[pid] = binId;
+  if (!indexBinId) return;
+  try {
+    // Read current index
+    const res = await fetch(`${JSONBIN_URL}/${indexBinId}/latest`, {
+      headers: { 'X-Master-Key': JSONBIN_KEY }
+    });
+    const data = await res.json();
+    const record = data.record || { bins: {} };
+    record.bins[pid] = binId;
+    // Write updated index
+    await fetch(`${JSONBIN_URL}/${indexBinId}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json', 'X-Master-Key': JSONBIN_KEY },
+      body: JSON.stringify(record)
+    });
+  } catch(e) {
+    console.error('Index update failed:', e.message);
+  }
+}
+
+// Initialise index bin on startup
+(async () => {
+  await ensureIndexBin();
+  console.log('Index bin ready:', indexBinId);
+})();
+
+// ── SAVE PROGRESS ──
 app.post('/api/save', async (req, res) => {
   const { pid, data } = req.body;
   if (!pid || !data) return res.status(400).json({ error: 'Missing pid or data' });
   try {
-    const searchRes = await fetch(`https://api.jsonbin.io/v3/b?name=${encodeURIComponent('lb_' + pid)}`, {
-      headers: { 'X-Master-Key': JSONBIN_KEY }
-    });
-    const searchData = await searchRes.json();
-    const existing = Array.isArray(searchData) ? searchData.find(b => b.name === 'lb_' + pid) : null;
-    if (existing) {
-      await fetch(`${JSONBIN_URL}/${existing.id}`, {
+    const existingId = await getBinId(pid);
+    if (existingId) {
+      // Update existing bin
+      const updateRes = await fetch(`${JSONBIN_URL}/${existingId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', 'X-Master-Key': JSONBIN_KEY },
         body: JSON.stringify(data)
       });
-      res.json({ success: true, binId: existing.id });
+      const updated = await updateRes.json();
+      if (updated.message && updated.message.includes('error')) throw new Error(updated.message);
+      res.json({ success: true, binId: existingId });
     } else {
+      // Create new bin
       const createRes = await fetch(JSONBIN_URL, {
         method: 'POST',
         headers: {
@@ -317,34 +398,33 @@ app.post('/api/save', async (req, res) => {
         body: JSON.stringify(data)
       });
       const created = await createRes.json();
-      res.json({ success: true, binId: created.metadata?.id });
+      console.log('Create bin response:', JSON.stringify(created).slice(0, 200));
+      const newId = created.metadata?.id;
+      if (!newId) throw new Error('No bin ID returned: ' + JSON.stringify(created).slice(0, 100));
+      await setBinId(pid, newId);
+      res.json({ success: true, binId: newId });
     }
   } catch (e) {
-    console.error('Save error:', e);
-    res.status(500).json({ error: 'Save failed' });
+    console.error('Save error:', e.message);
+    res.status(500).json({ error: 'Save failed', detail: e.message });
   }
 });
 
-// ═══════════════════════════════════════
-// LOAD PROGRESS
-// ═══════════════════════════════════════
+// ── LOAD PROGRESS ──
 app.post('/api/load', async (req, res) => {
   const { pid } = req.body;
   if (!pid) return res.status(400).json({ error: 'Missing pid' });
   try {
-    const searchRes = await fetch(`https://api.jsonbin.io/v3/b?name=${encodeURIComponent('lb_' + pid)}`, {
-      headers: { 'X-Master-Key': JSONBIN_KEY }
-    });
-    const searchData = await searchRes.json();
-    const existing = Array.isArray(searchData) ? searchData.find(b => b.name === 'lb_' + pid) : null;
-    if (!existing) return res.json({ found: false });
-    const binRes = await fetch(`${JSONBIN_URL}/${existing.id}/latest`, {
+    const existingId = await getBinId(pid);
+    if (!existingId) return res.json({ found: false });
+    const binRes = await fetch(`${JSONBIN_URL}/${existingId}/latest`, {
       headers: { 'X-Master-Key': JSONBIN_KEY }
     });
     const binData = await binRes.json();
+    if (!binData.record) return res.json({ found: false });
     res.json({ found: true, data: binData.record });
   } catch (e) {
-    console.error('Load error:', e);
+    console.error('Load error:', e.message);
     res.status(500).json({ error: 'Load failed' });
   }
 });
@@ -481,7 +561,46 @@ Reply ONLY with valid JSON:
   }
 });
 
-// ── VOICE ASSESS ──
+// ── REFLECTION QUALITY ──
+app.post('/api/assess-reflection', async (req, res) => {
+  const { question, answer, scenarioId } = req.body;
+  if (!answer || answer.trim().length < 5) return res.json({ qualityScore: 1, qualityLabel: 'minimal' });
+
+  const systemPrompt = `You are assessing the quality of a pre-service EFL teacher's written reflection on a classroom simulation. Score using this rubric:
+1 — One word or irrelevant answer, no engagement with the question
+2 — Very brief, surface-level, no specific reference to own experience
+3 — Adequate — answers the question but stays general, no analysis
+4 — Good — references specific actions or choices, shows awareness of why something worked or didn't
+5 — Excellent — analytical, connects theory to practice, shows metacommunicative awareness, specific examples
+Reply ONLY with valid JSON: {"qualityScore":3,"qualityLabel":"adequate","qualityNote":"one sentence"}`;
+
+  try {
+    const aiRes = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-api-key': ANTHROPIC_KEY, 'anthropic-version': '2023-06-01' },
+      body: JSON.stringify({
+        model: 'claude-haiku-4-5-20251001', max_tokens: 150,
+        system: systemPrompt,
+        messages: [{ role: 'user', content: `QUESTION: ${question}\nANSWER: "${answer}"` }]
+      })
+    });
+    const aiData = await aiRes.json();
+    if (aiData.error) throw new Error(aiData.error.message);
+    const raw = aiData?.content?.[0]?.text || '';
+    const match = raw.replace(/```json|```/g,'').trim().match(/\{[\s\S]*\}/);
+    if (!match) throw new Error('No JSON');
+    res.json(JSON.parse(match[0]));
+  } catch(e) {
+    console.log('Reflection quality AI failed:', e.message);
+    // Simple heuristic fallback based on length and content
+    const len = answer.trim().split(/\s+/).length;
+    const score = len < 5 ? 1 : len < 15 ? 2 : len < 40 ? 3 : len < 80 ? 4 : 5;
+    const labels = ['','minimal','brief','adequate','good','excellent'];
+    res.json({ qualityScore: score, qualityLabel: labels[score], qualityNote: 'Assessed by length heuristic (API unavailable)' });
+  }
+});
+
+
 app.post('/api/assess-voice', async (req, res) => {
   const { transcript, situation, goal, scenarioId } = req.body;
   if (!transcript || !situation) return res.status(400).json({ error: 'Missing fields' });
@@ -517,16 +636,18 @@ app.post('/api/rating', async (req, res) => {
   const { pid, scenarioId, stars, feedback, ts } = req.body;
   if (!pid) return res.status(400).json({ error: 'Missing pid' });
   try {
-    const searchRes = await fetch(`https://api.jsonbin.io/v3/b?name=${encodeURIComponent('lb_' + pid)}`, { headers: { 'X-Master-Key': JSONBIN_KEY } });
-    const searchData = await searchRes.json();
-    const existing = Array.isArray(searchData) ? searchData.find(b => b.name === 'lb_' + pid) : null;
-    if (existing) {
-      const binRes = await fetch(`${JSONBIN_URL}/${existing.id}/latest`, { headers: { 'X-Master-Key': JSONBIN_KEY } });
+    const existingId = await getBinId(pid);
+    if (existingId) {
+      const binRes = await fetch(`${JSONBIN_URL}/${existingId}/latest`, { headers: { 'X-Master-Key': JSONBIN_KEY } });
       const binData = await binRes.json();
       const record = binData.record || {};
       if (!record.ratings) record.ratings = [];
       record.ratings.push({ scenarioId, stars, feedback, ts });
-      await fetch(`${JSONBIN_URL}/${existing.id}`, { method: 'PUT', headers: { 'Content-Type': 'application/json', 'X-Master-Key': JSONBIN_KEY }, body: JSON.stringify(record) });
+      await fetch(`${JSONBIN_URL}/${existingId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json', 'X-Master-Key': JSONBIN_KEY },
+        body: JSON.stringify(record)
+      });
     }
     res.json({ success: true });
   } catch (e) {
