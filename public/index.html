@@ -1455,7 +1455,8 @@ const ACHIEVEMENTS = [
   { id: 'a1', icon: '🏅', title: 'Hello, Teacher!', desc: 'Completed Scenario 1 — Self-introduction', scenario: 'S1' },
   { id: 'a2', icon: '🤝', title: 'First Contact Established', desc: 'Completed Scenario 2 — Ice-breaking games', scenario: 'S2' },
   { id: 'a3', icon: '🔑', title: 'Every Lesson a New Beginning', desc: 'Completed Scenario 3 — Making contact at the start of the lesson', scenario: 'S3' },
-  { id: 'a4', icon: '🎯', title: 'Clear Destination', desc: 'Completed Scenario 4 — Setting the lesson goals', scenario: 'S4' }
+  { id: 'a4', icon: '🎯', title: 'Clear Destination', desc: 'Completed Scenario 4 — Setting the lesson goals', scenario: 'S4' },
+  { id: 'a5', icon: '🗣️', title: 'Every Word in English', desc: 'Completed Scenario 5 — Using classroom language', scenario: 'S5' }
 ];
 
 const PED_CARDS = [
@@ -1565,6 +1566,42 @@ const PED_CARDS = [
       'If a student challenges the goal\'s relevance ("Why do we need this?"), treat it as a gift — a genuine answer to this question is the most motivating thing you can say.'
     ],
     mistake: 'Stating the goal, writing it on the board, and moving on without any check — the goal becomes a ritual that students stop reading within three lessons.'
+  },
+  {
+    id:'pc12', icon:'🗣️', title:'Register Is a Choice, Not a Default', unlockedBy:'a5',
+    mentor:"The same request can be made five different ways. Which one you choose tells students something about how you see them and your relationship. A teacher who only uses imperatives creates compliance. A teacher who varies register creates cooperation.",
+    principle:'Register is not about politeness — it is about relationship. The right register for each moment depends on the emotional context, the power dynamic, and what you want to happen next.',
+    practice:[
+      'Imperative (direct): use for efficiency in low-stakes practical moments ("Open your books") or when urgency requires it ("Stop — listen"). Not for emotional or vulnerable moments.',
+      'Softened (Could you / Would you): use when a student is hesitant, tired, or upset. The softened form preserves dignity and invites cooperation rather than demanding it.',
+      'Collective (Let\'s / Shall we): use when you want the class to feel like participants rather than subjects. "Shall we move on?" includes you in the action.',
+      'Call-and-response ("One, two, three — eyes on me!"): use for attention restoration. The rhythm signals a shift and gives students a moment to follow.'
+    ],
+    mistake:'Using only one register throughout the lesson — usually imperatives — which makes the teacher sound authoritarian even when they are not trying to be.'
+  },
+  {
+    id:'pc13', icon:'⭐', title:'What Specific Praise Actually Does', unlockedBy:'a5',
+    mentor:"\"Good job\" is not praise — it is a reflex. Specific praise names what worked and why. It tells the student what to keep doing. That is worth four extra words on every correct answer.",
+    principle:'Specific praise has three components: it names the action, explains why it worked, and signals what the student should continue doing. Generic praise does none of these things.',
+    practice:[
+      'Name the action: "Well done — you used the target structure correctly there."',
+      'Explain why it worked: "That\'s exactly right — you picked up on the detail most people miss."',
+      'Extend thinking after correct answers: "Good — can you tell us how you got there?" This signals that the answer mattered, not just that it was right.',
+      'After a wrong answer: "Good try — you\'re close. What made you think that?" preserves dignity while correcting.'
+    ],
+    mistake:'"Good job, everyone" after one student answers correctly — misdirected, generic, and disconnected from the actual performance. Students stop responding to it within weeks.'
+  },
+  {
+    id:'pc14', icon:'🔄', title:'The Transition as a Communicative Act', unlockedBy:'a5',
+    mentor:"Every transition between activities is a moment when students decide whether to follow or drift. A well-managed transition takes thirty seconds. A poorly managed one can cost the next ten minutes — and the lesson never fully recovers.",
+    principle:'An activity transition is not an administrative break. It is a communicative act that closes one episode, acknowledges effort, restores attention, and opens the next — each requiring a different register.',
+    practice:[
+      'Close clearly: "Okay, let\'s stop there" — don\'t trail off or let the activity die. A clear signal respects everyone\'s time.',
+      'Acknowledge before moving on: one sentence of specific acknowledgement before the next instruction. Skipping this makes students feel the work was irrelevant.',
+      'Restore attention before instructing: never give the next instruction while students are still finishing the previous task. Wait for eyes first.',
+      'Open with energy: the first sentence of the next task sets its emotional register. "Right, this next one is interesting—" lands differently from "Now do exercise 4."'
+    ],
+    mistake:'Saying "Okay, next exercise" immediately after the previous task ends — no acknowledgement, no transition, no contact. Students feel processed, not taught.'
   }
 ];
 
@@ -1573,6 +1610,16 @@ const LANG_CARDS = [
   { cat: 'Setting goals', title: 'Sequencing the lesson', tip: 'Give students a map of the lesson. Predictability reduces anxiety.', exs: ["First we'll… then we'll… and finally…", "We'll start with… move on to… and finish by…", "There are three parts to today's lesson…", "By the time we finish, you'll have practised… and produced…"] },
   { cat: 'Setting goals', title: 'Checking goal understanding', tip: 'Never use yes/no checks. Ask students to restate in their own words.', exs: ["Can someone tell me in their own words what we're going to do today?", "What will you be able to do by the end of this lesson?", "Turn to your partner — what's our goal today?", "In one sentence — what are we here to practise?"] },
   { cat: 'Setting goals', title: 'Making the goal personal', tip: 'Connect the goal to the student\'s real life. One genuine answer changes the room.', exs: ["Why do you think this might be useful for you?", "When might you actually use this outside the classroom?", "Does anyone have a situation where knowing this would help?", "Think of one moment in your life where you'd need this — what would it be?"] },
+  { cat: 'Requests — direct', title:'Imperative forms', tip:'Use for low-stakes practical requests or urgent moments. Direct and efficient.', exs:['Open your books at page…','Come up to the board, please.','Hand in your notebooks.','Turn off the lights, please.','Exchange your papers with your partner.','Put your phones away.','Close your books.','Stand up / Sit down.','Write this down.','Look at the board.']},
+  { cat: 'Requests — softened', title:'Softened request forms', tip:'Use when a student is hesitant, tired, or the moment is emotionally sensitive.', exs:['Could you come up to the board for me?','Would you mind passing the papers to the front?','Could you turn the light off, please?','Would you like to read the first paragraph?','Could you try that again for me?','Would you be able to work with a partner?']},
+  { cat: 'Requests — collective', title:'Collective invitation forms', tip:'Use when you want the class to feel like participants, not subjects.', exs:["Let's move on to the next activity.","Shall we take a look at the answers together?","Let's stop there.","Shall we hear from someone else?","Let's check what you found.","Shall we try that again together?"]},
+  { cat: 'Attention', title:'Whole-class attention signals', tip:'Use a consistent signal every lesson. Predictability makes it work faster.', exs:["Okay, let's stop there.","Eyes on me, please.","Can I have everyone's attention?","Right, everyone — look this way.","Freeze — listen for a moment.","One, two, three — eyes on me!","English time — ready, set, go!","Clap once if you can hear me. Clap twice if you're ready."]},
+  { cat: 'Attention', title:'Individual attention', tip:'Name the student, make it warm — not punitive.', exs:["Nick — are you with us?","Paul — I need your eyes here.","George — what do you think?","Could you join us for a moment?","I'd love to hear your idea on this."]},
+  { cat: 'Praise', title:'Specific praise phrases', tip:'Name what worked. Four extra words changes everything.', exs:["Well done — that's exactly right.","Good — I like how you used the target structure there.","Excellent — you picked up on something most people miss.","Nice work — the pronunciation was very clear.","That's a great point — can you develop it?","Well done — can you tell us how you got there?"]},
+  { cat: 'Praise', title:'Encouraging after wrong answers', tip:'Preserve dignity. Always leave a door open.', exs:["Good try — you're close. What about…?","Not quite, but I can see what you were thinking.","That's an interesting idea — what made you think that?","Almost — one small adjustment and you'd have it.","Good effort — let's look at it together."]},
+  { cat: 'Transitions', title:'Closing an activity', tip:"Close clearly before moving on. Don't let activities die.", exs:["Let's wrap that up.","Okay, that's enough time for that.","Let's hear one more answer and then we'll move on.","Good — let's leave it there.","Time's up — good work."]},
+  { cat: 'Transitions', title:'Bridging between activities', tip:'Connect what came before to what comes next.', exs:["Now we're going to move on to something different.","The next activity links to what we just did.","Right — the next part is…","This connects to what you practised just now.","Keep that thought — it'll be useful in a moment."]},
+  { cat: 'Energisers', title:'Call-and-response & stand-up energisers', tip:'Use to restore energy and refocus. Works best mid-lesson.', exs:["One, two, three — eyes on me!","English time — ready, set, go!","Stand up if you have a pet at home.","Stand up if you did something interesting this weekend.","Sit down if you can name three English words for food.","Clap once if you can hear me. Clap twice if you're ready to go."]},
   { cat: 'Greeting & opening', title: 'Accessibility & tone-setting', tip: 'Signal that you are approachable from the first moment.', exs: ['You can call me … — whichever feels more comfortable.', "I know the first lesson with a new teacher can feel a bit strange, so I'll go first.", "I hope we'll have a productive and comfortable course together.", 'This is your classroom too — I want you to feel comfortable speaking here.'] },
   { cat: 'Lesson opening', title: 'Greeting rituals', tip: 'Use a stable, warm formula every lesson. Predictability creates safety.', exs: ["Good morning, everyone — great to see you.", "Hello, class! How's everyone doing today?", "I'm glad you're here. Let's get started.", "Good to see you all — let's have a good lesson today."] },
   { cat: 'Lesson opening', title: 'Mood and energy check', tip: 'A simple whole-class question shows you see them as people, not just learners.', exs: ["How are you today on a scale of one to five?", "Quick check — thumbs up if you're ready to go.", "How's everyone feeling today? Good? Tired? Somewhere in between?", "Before we start — is everyone here mentally as well as physically?"] },
@@ -1593,7 +1640,7 @@ const MODULES = [
       { id: 's2', title: 'Ice-breaking games', desc: 'Creating a safe space for communication', xp: 100, icon: '🎮' },
       { id: 's3', title: 'Making Contact at the Beginning of the Lesson', desc: 'Opening every lesson well', xp: 90, icon: '🔑' },
       { id: 's4', title: 'Setting the Lesson Goals', desc: 'Communicating learning objectives clearly', xp: 85, icon: '🎯' },
-      { id: 's5', title: 'Using Classroom Language', desc: 'Professional classroom communication', icon: '🔒' },
+      { id: 's5', title: 'Using Classroom Language', desc: 'Professional classroom communication', xp: 95, icon: '🗣️' },
       { id: 's6', title: 'Giving Instructions to the Task', desc: 'Clear, sequenced task instructions', icon: '🔒' },
       { id: 's7', title: 'Addressing Students Personally', desc: 'Individual student communication', icon: '🔒' },
       { id: 's8', title: 'Scaffolding, ICQs and CCQs', desc: 'Supporting student understanding', icon: '🔒' },
@@ -2437,9 +2484,111 @@ SCENARIO_DATA.s4.bonusTopics = [
   {grade:'Grade 11',topic:'Seasons and weather',skill:'Reading / Speaking',hint:'Comprehension + personal response about weather and seasons.'}
 ];
 
-// ═══════════════════════════════════════
-// OPEN SCENARIO
-// ═══════════════════════════════════════
+// ─── SCENARIO 5 ───────────────────────────────────────────────
+SCENARIO_DATA.s5 = {
+  title:'Using Classroom Language',
+  desc:'Managing your class entirely in English',
+  mentorLine:"Every word you say in that classroom is a model. Not just for the language — for the register, the tone, the relationship. Students don't just hear what you say. They learn how to speak to each other from watching how you speak to them.",
+  initBars:{energy:90,motiv:65,involve:58,stress:28},
+  chars:[
+    {name:'Lena',mood:'attentive',color:'#3B6D11',emoji:'😊'},
+    {name:'Nick',mood:'passive',color:'#185FA5',emoji:'😶'},
+    {name:'Paul',mood:'distracted',color:'#C8622A',emoji:'😄'},
+    {name:'George',mood:'watching',color:'#534AB7',emoji:'🧠'}
+  ],
+  situation:"The class has just finished a pair-speaking activity. Some students are still talking, Paul is showing something on his phone to his neighbour, Nick has closed his notebook. You need to close the activity, acknowledge the work, refocus the class — all in English, using the right register for each moment.",
+  goal:'Manage a complete activity transition — closing, praising, refocusing — using accurate, varied, contextually appropriate classroom language entirely in English.',
+  criteria:['Register appropriateness & variation','Classroom language accuracy & naturalness','Praise — specificity and warmth','Transition clarity','Affective climate maintenance'],
+  mcqs:[
+    {
+      q:'A student gives a correct answer. Which response best demonstrates effective praise?',
+      opts:[
+        {text:'"Yes." — acknowledges the answer and moves on.',why:'Wrong — this is a minimal acknowledgement, not praise. No warmth, no reinforcement.',correct:false},
+        {text:'"Good job, everyone." — warm and inclusive.',why:'Wrong — misdirected. The whole class didn\'t answer. Generic praise to the wrong audience loses meaning.',correct:false},
+        {text:'"Well done — that\'s exactly right. Can you tell us how you got that?"',why:'✓ Correct — specific, warm, extends thinking. Names what worked and invites elaboration.',correct:true},
+        {text:'"Finally, someone got it." — relieved and honest.',why:'Wrong — backhanded. Implies the others failed. This is discouraging, not praising.',correct:false}
+      ]
+    },
+    {
+      q:'You need the class\'s attention — students are still finishing their pair activity. Which is most effective?',
+      opts:[
+        {text:'Wait in silence at the front until everyone notices you.',why:'Wrong — passive waiting signals uncertainty and wastes transition time.',correct:false},
+        {text:'Shout "QUIET!" across the room.',why:'Wrong — creates tension and models aggression. The class will go quiet but feel attacked.',correct:false},
+        {text:'"Okay, let\'s stop there. Eyes on me, please." — calm and direct.',why:'✓ Correct — a clear, warm attention signal. Signals transition without creating tension.',correct:true},
+        {text:'Ask the loudest student to tell everyone to be quiet.',why:'Wrong — delegates authority and creates peer pressure. Puts a student in an awkward position.',correct:false}
+      ]
+    }
+  ],
+  tactics:[
+    {
+      id:'t1',
+      title:'Managing an Activity Transition',
+      desc:'Close the activity, acknowledge the work, restore attention, and move the class forward — entirely in English.',
+      criteria:['Register appropriateness & variation','Classroom language accuracy & naturalness','Praise — specificity and warmth','Transition clarity','Affective climate maintenance'],
+      clicheGroups:[
+        {label:'Closing the activity',phrases:["Okay, let's stop there.","Let's wrap that up.","Time's up — good work.","One more minute, then we'll stop."]},
+        {label:'Praising',phrases:["Well done — I could hear some great conversations.","Good work, everyone.","I noticed some really good ideas there.","That was a strong effort — thank you."]},
+        {label:'Calling for attention',phrases:["Eyes on me, please.","Can I have everyone's attention?","One, two, three — eyes on me!","English time — ready, set, go!","Freeze — listen for a moment."]},
+        {label:'Redirecting individuals',phrases:["Paul — I need your eyes here.","Nick — are you with us?","Could you put that away for now?","Let's save that for later."]}
+      ],
+      steps:[
+        {id:'close',type:'must',title:'Closing the activity',desc:'Signal the end of the pair activity clearly and warmly. Students should know the activity is over.',situation:'Students are still talking after the pair activity. Some haven\'t noticed the time is up. Close the activity.',goal:'Students stop the pair activity and begin to refocus.',criteria:['Clear signal that activity is ending','Warm tone — not abrupt','Register appropriate for teenagers']},
+        {id:'praise',type:'must',title:'Praising the work',desc:'Acknowledge what students did — specifically, not generically. Name something concrete you observed.',situation:'The activity has ended. Students are looking at you. Praise the work you just observed.',goal:'Students feel their effort was noticed. The praise names something specific.',criteria:['Praise is specific not generic','Names something concrete','Warm and sincere — not formulaic']},
+        {id:'attention',type:'must',title:'Calling for attention',desc:'Use a clear attention signal to redirect the whole class to you.',situation:'Paul is still on his phone. Nick is looking at his desk. Most of the class is with you but not all. Restore full attention.',goal:'The whole class — including Paul and Nick — is focused on you.',criteria:['Clear attention signal used','Register matches the moment','Avoids aggression or embarrassment']},
+        {id:'redirect_paul',type:'opt',title:'Redirecting Paul',desc:'Paul is still on his phone after two attention signals.',situation:'After your attention call, Paul is still showing something on his phone and hasn\'t looked up. The class is watching.',goal:'Paul refocuses without confrontation. Class atmosphere stays calm.',criteria:['Calm warm tone','Names behaviour not person','Activity continues']},
+        {id:'reach_nick',type:'opt',title:'Reaching Nick',desc:'Nick has his notebook closed and is staring at his desk.',situation:'Nick hasn\'t responded to the closing signal. He looks disengaged — not defiant, just elsewhere.',goal:'Nick re-engages minimally. He doesn\'t feel publicly singled out.',criteria:['Quiet individual approach','Low-pressure invitation','No public naming of passivity']}
+      ],
+      optSteps:[]
+    },
+    {
+      id:'t2',
+      title:'Register Practice',
+      desc:'Learn when to use each register — then practise under increasing pressure. Written and oral.',
+      criteria:['Register appropriateness & variation','Classroom language accuracy & naturalness','Praise — specificity and warmth','Transition clarity','Affective climate maintenance'],
+      clicheGroups:[
+        {label:'Imperative (direct)',phrases:["Open your books at page 47.","Come up to the board.","Hand in your notebooks.","Put your phones away.","Write this down."]},
+        {label:'Softened (Could you / Would you)',phrases:["Could you come up to the board for me?","Would you mind passing the papers forward?","Could you turn the light off, please?","Would you like to read the first paragraph?"]},
+        {label:'Collective (Let\'s / Shall we)',phrases:["Let's move on to the next activity.","Shall we take a look at the answers together?","Let's stop there.","Shall we hear from someone else?"]},
+        {label:'Call-and-response / Energisers',phrases:["One, two, three — eyes on me!","English time — ready, set, go!","Stand up if you… / Sit down if you…","Clap once if you can hear me. Clap twice if you\'re ready."]}
+      ],
+      steps:[
+        {id:'sort',type:'must',title:'Register sorting task',desc:'Match each situation to the right register before you practise.',situation:'SORTING_TASK',goal:'Understand when each register is appropriate.',criteria:[]},
+        {id:'imperative',type:'must',title:'Direct request — imperative',desc:'Make a clear, direct request to one student. The situation calls for efficiency and authority.',situation:'You need George to come to the board immediately. The class is waiting. Use a direct imperative form.',goal:'George understands immediately and acts. The class sees a confident, clear teacher.',criteria:['Imperative form used correctly','Appropriate for this context','Natural and confident — not harsh']},
+        {id:'softened',type:'must',title:'Softened request — individual',desc:'Make a request that requires care. The student seems reluctant or tired.',situation:'Nick hasn\'t opened his book. He looks tired, not defiant. You want him to start without creating confrontation.',goal:'Nick opens his book. He doesn\'t feel pressured or embarrassed.',criteria:['Softened form used (Could you / Would you)','Warm and patient tone','Face-saving for the student']},
+        {id:'collective',type:'must',title:'Collective invitation — whole class',desc:'Invite the whole class into a new action using a collective form.',situation:'The class needs to move from individual work to a group discussion. Use a collective invitation.',goal:'Students feel invited rather than ordered. The transition feels natural.',criteria:['Collective form used (Let\'s / Shall we)','Warm and inclusive tone','Students would follow willingly']},
+        {id:'challenge_1',type:'must',title:'Challenge 1 — Low stress',hasVoice:true,desc:'Lena is chatting to her neighbour while you\'re giving instructions. Redirect her.',situation:'🟢 Low stress: Lena is whispering to her neighbour during your instructions. She\'s not being defiant — just distracted. What do you say?',goal:'Lena refocuses without embarrassment. You chose the right register for a low-stakes moment.',criteria:['Register appropriate to low-stress context','Warm not punitive','Lena refocuses without losing face']},
+        {id:'challenge_2',type:'must',title:'Challenge 2 — Medium stress',hasVoice:true,desc:'Paul has ignored your requests for three minutes. The class is watching.',situation:'🟡 Medium stress: Paul has ignored two polite requests and is now leaning back in his chair, arms crossed. The class is watching to see what you do.',goal:'Paul refocuses. Your authority is maintained without aggression. The class\'s trust in you holds.',criteria:['Register escalates appropriately from softened to direct','Calm but firm','Authority maintained without confrontation']},
+        {id:'challenge_3',type:'must',title:'Challenge 3 — High stress',hasVoice:true,desc:'The lesson is going badly. You need to restore contact.',situation:'🔴 High stress: It has been a difficult lesson. Nick has put his head on his desk, two students are passing notes, and the general energy is flat. You have 10 minutes left. Restore contact and reset the room.',goal:'The room shifts. At least some students re-engage. Your response doesn\'t make things worse.',criteria:['Register matches the emotional weight of the moment','Calm and grounded — not panicked','Uses classroom language creatively to shift energy']}
+      ],
+      optSteps:[
+        {id:'refusal',type:'opt',title:'Student refuses to come to the board',desc:'After your direct request, a student says "I don\'t want to."',situation:'You asked a student to come to the board. They say "I don\'t want to" — not aggressively, just clearly. The class is watching.',goal:'You respond professionally. The student is not humiliated. The lesson continues.',criteria:['Calm professional response','Offers an alternative or a moment','Doesn\'t escalate']},
+        {id:'register_repair',type:'opt',title:'Register repair',desc:'You used a very direct imperative and it landed badly.',situation:'You said "Sit down and be quiet" firmly. One student looks visibly hurt. Others look tense.',goal:'You repair the moment without undermining your authority. The emotional temperature drops.',criteria:['Acknowledges the impact without excessive apology','Shifts to warmer register','Atmosphere recovers']}
+      ]
+    }
+  ],
+  reflectQs:[
+    {score:[0,99],q:'От чего зависит выбор регистра общения: где уместен императив, а где нужна смягчённая форма?'},
+    {score:[0,99],variants:[
+      'С какими фразами вы чаще всего обращаетесь к классу или ученику на уроке?',
+      'Есть ли фразы из вашего педагогического арсенала, которые вы использовали «на автопилоте» — и которые, если подумать, не совсем подходят вашим ученикам?'
+    ]},
+    {score:[0,99],variants:[
+      'Какая похвала, по вашему опыту, действительно мотивирует учеников — и чем она отличается от дежурного «well done»?',
+      'Что будете делать, если ученики постоянно переходят на родной язык?'
+    ]}
+  ],
+  achievementId:'a5', xp:95
+};
+
+// S5 — Register sorting task data
+const S5_SORT_ITEMS = [
+  {situation:'The class is working quietly and you need someone to erase the board.',correct:'imperative',options:['imperative','softened','collective'],why:'Low-stakes practical request during calm work — direct imperative is efficient and appropriate.'},
+  {situation:'A tired student hasn\'t opened their book. You don\'t want to embarrass them.',correct:'softened',options:['imperative','softened','collective'],why:'Student is vulnerable — softened form preserves dignity and invites cooperation rather than demanding it.'},
+  {situation:'You want the whole class to put their phones away before starting.',correct:'collective',options:['imperative','softened','collective'],why:'Collective form ("Let\'s put our phones away") includes you in the action and feels collaborative rather than confrontational.'},
+  {situation:'A student is about to knock something over and you need them to stop immediately.',correct:'imperative',options:['imperative','softened','collective'],why:'Urgency requires directness. A softened form here would be inappropriate and potentially dangerous.'},
+  {situation:'You want to transition the whole class from individual work to a group discussion.',correct:'collective',options:['imperative','softened','collective'],why:'"Shall we move into groups?" invites rather than orders — the class feels like participants, not subjects.'},
+  {situation:'You notice a student looks upset and hasn\'t started the task. You want to check in.',correct:'softened',options:['imperative','softened','collective'],why:'The student\'s emotional state requires care. A softened individual question opens a conversation without pressure.'}
+];
 function openScenario(id) {
   const sc = SCENARIO_DATA[id]; if (!sc) return;
   S.cur=id; S.mcqPhase=0; S.curTactic=null; S.curStepIdx=0; S.curSteps=[]; S.runningScore=0; S.runningMax=0; S.curStepScores=[];
@@ -2463,6 +2612,7 @@ function renderScenarioPhase(phase) {
   else if (phase==='tactic_choice') renderTacticChoice(wrap,sc);
   else if (phase==='step') renderStepPhase(wrap);
   else if (phase==='tactic_result') renderTacticResult(wrap);
+  else if (phase==='register_sort') renderRegisterSort(wrap);
   else if (phase==='bonus') renderBonusPhase(wrap,sc);
   else if (phase==='single_response') renderSingleResponse(wrap,sc);
   else if (phase==='voice') renderVoicePhase(wrap,sc);
@@ -2567,7 +2717,10 @@ function startTactic(tactic) {
 }
 
 function renderStepPhase(wrap) {
-  const step=S.curSteps[S.curStepIdx]; const tactic=S.curTactic;
+  const step=S.curSteps[S.curStepIdx];
+  // Special case: sorting task step
+  if(step.situation==='SORTING_TASK'){renderRegisterSort(wrap);return;}
+  const tactic=S.curTactic;
   const pct=Math.round((S.curStepIdx/S.curSteps.length)*100);
   const progDiv=document.createElement('div'); progDiv.className='progress-track-wrap';
   progDiv.innerHTML=`<div class="progress-track-meta"><span>${tactic.title}</span><span>Step ${S.curStepIdx+1} / ${S.curSteps.length}</span></div><div class="progress-track"><div class="progress-fill" style="width:${pct}%"></div></div>`;
@@ -2610,6 +2763,91 @@ function renderStepPhase(wrap) {
     S.curStepIdx++;
     if(S.curStepIdx<S.curSteps.length) renderScenarioPhase('step');
     else renderScenarioPhase('tactic_result');
+  });
+}
+
+function renderRegisterSort(wrap) {
+  const items = S5_SORT_ITEMS;
+  let answers = new Array(items.length).fill(null);
+  let checked = false;
+
+  const card = document.createElement('div'); card.className='step-card';
+  card.innerHTML=`
+    <div class="step-head">
+      <span class="step-badge must-b">MUST</span>
+      <span class="step-title">Register sorting task</span>
+    </div>
+    <div class="step-desc">Match each situation to the most appropriate register. Think about the emotional context, not just the grammar.</div>`;
+  wrap.appendChild(card);
+
+  const sortWrap = document.createElement('div');
+  sortWrap.style.cssText='display:flex;flex-direction:column;gap:10px;margin-top:4px';
+
+  items.forEach((item, idx) => {
+    const d = document.createElement('div');
+    d.style.cssText='background:var(--white);border:1px solid var(--border);border-radius:var(--r-md);padding:.85rem 1rem;box-shadow:var(--shadow-sm)';
+    d.innerHTML=`<div style="font-size:12px;color:var(--ink-soft);line-height:1.6;margin-bottom:.6rem;font-style:italic">"${item.situation}"</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap" id="sort-opts-${idx}">
+      ${item.options.map(o=>`<button class="sort-opt-btn" data-idx="${idx}" data-val="${o}" style="background:var(--cream);border:1.5px solid var(--border);border-radius:var(--r-sm);padding:5px 14px;font-size:12px;font-weight:600;color:var(--ink-muted);cursor:pointer;transition:all .2s">${o}</button>`).join('')}
+    </div>
+    <div class="sort-why" id="sort-why-${idx}" style="display:none;margin-top:6px;font-size:11px;line-height:1.5;padding:5px 9px;border-radius:var(--r-sm)"></div>`;
+    sortWrap.appendChild(d);
+  });
+  wrap.appendChild(sortWrap);
+
+  // Wire option buttons
+  wrap.querySelectorAll('.sort-opt-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      if(checked) return;
+      const idx=parseInt(btn.dataset.idx);
+      answers[idx]=btn.dataset.val;
+      // Visual selection
+      wrap.querySelectorAll(`.sort-opt-btn[data-idx="${idx}"]`).forEach(b=>{
+        b.style.background='var(--cream)'; b.style.borderColor='var(--border)'; b.style.color='var(--ink-muted)';
+      });
+      btn.style.background='var(--terra-light)'; btn.style.borderColor='var(--terra)'; btn.style.color='var(--terra-dark)';
+      // Show check button if all answered
+      const allDone=answers.every(a=>a!==null);
+      document.getElementById('sort-check-btn').disabled=!allDone;
+    });
+  });
+
+  // Check button
+  const checkRow=document.createElement('div'); checkRow.style.cssText='margin-top:4px;display:flex;align-items:center;gap:10px';
+  const checkBtn=document.createElement('button'); checkBtn.id='sort-check-btn'; checkBtn.className='sub-btn'; checkBtn.textContent='Check my answers'; checkBtn.disabled=true;
+  const scoreDiv=document.createElement('div'); scoreDiv.style.cssText='font-size:12px;color:var(--ink-muted);font-style:italic';
+  checkRow.appendChild(checkBtn); checkRow.appendChild(scoreDiv); wrap.appendChild(checkRow);
+
+  checkBtn.addEventListener('click',()=>{
+    checked=true; checkBtn.style.display='none';
+    let correct=0;
+    items.forEach((item,idx)=>{
+      const isRight=answers[idx]===item.correct;
+      if(isRight) correct++;
+      // Colour all buttons
+      wrap.querySelectorAll(`.sort-opt-btn[data-idx="${idx}"]`).forEach(b=>{
+        if(b.dataset.val===item.correct){b.style.background='var(--sage-light)';b.style.borderColor='var(--sage)';b.style.color='var(--sage)';}
+        else if(b.dataset.val===answers[idx]&&!isRight){b.style.background='#FEF0EE';b.style.borderColor='var(--danger, #C5221F)';b.style.color='#C5221F';}
+        else{b.style.background='var(--cream)';b.style.borderColor='var(--border)';b.style.color='var(--ink-ghost)';}
+      });
+      // Show why
+      const why=document.getElementById('sort-why-'+idx);
+      why.style.display='block';
+      why.style.background=isRight?'var(--sage-light)':'#FEF0EE';
+      why.style.color=isRight?'var(--sage)':'#7A2020';
+      why.innerHTML=(isRight?'✓ ':'✗ ')+item.why;
+    });
+    scoreDiv.textContent=correct+' / '+items.length+' correct';
+    scoreDiv.style.color=correct>=5?'var(--sage)':correct>=3?'#C8A020':'#C5221F';
+    // Show continue button
+    const nxtBtn=document.createElement('button'); nxtBtn.className='nxt-btn'; nxtBtn.style.marginTop='.8rem';
+    nxtBtn.textContent='Continue to practice →';
+    nxtBtn.addEventListener('click',()=>{
+      S.curStepIdx++;
+      if(S.curStepIdx<S.curSteps.length) renderScenarioPhase('step');
+      else renderScenarioPhase('tactic_result');
+    });
+    wrap.appendChild(nxtBtn);
   });
 }
 
@@ -3214,6 +3452,11 @@ const COMPETENCES = {
     {name:'Communicative-programming',desc:'Formulating clear, meaningful lesson goals'},
     {name:'Goal clarity & structure',desc:'Using the three-part goal formula: activity + result + personal'},
     {name:'Student orientation',desc:'Helping students understand why the lesson matters'}
+  ],
+  s5: [
+    {name:'Register awareness',desc:'Choosing the right register for each classroom moment'},
+    {name:'Classroom language repertoire',desc:'Using accurate, varied English to manage the class'},
+    {name:'Affective-communicative',desc:'Maintaining a positive atmosphere through language choices'}
   ]
 };
 
