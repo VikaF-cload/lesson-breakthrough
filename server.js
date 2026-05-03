@@ -471,6 +471,55 @@ Contact-establishing behaviour:
   4: Clear friendly contact — at least 2 of: greeting, name offering, pleasure expressed, invitation, forward-looking
   5: Rich, multi-layered contact that leaves students feeling genuinely welcomed`,
 
+    s3: `
+SCENARIO 3 RUBRIC — Making contact at the beginning of the lesson (returning class):
+
+Register appropriateness:
+  1-2: Overly formal, cold, or inappropriately casual — does not fit teenagers aged 14-16
+  3: Correct register but flat — no warmth or personality
+  4: Warm, confident, appropriate for teenagers — sounds like a real teacher
+  5: Natural, warm, with personal touch — students would genuinely respond
+
+Affective climate management:
+  1-2: No attempt to manage classroom mood — begins abruptly or creates tension
+  3: Neutral — does not increase tension but does not reduce it either
+  4: Actively reduces tension — signals safety, belonging, readiness; reaches hesitant students
+  5: Expertly calibrated — mood check included, individual students acknowledged, room ready
+
+Contact-establishing behaviour:
+  1-2: No contact moves — could be a broadcast announcement
+  3: One contact move only — basic greeting but nothing personalising
+  4: At least two clear moves: greeting + mood check OR greeting + personal question OR greeting + transition
+  5: Three or more purposeful moves building genuine connection before the lesson begins
+
+Linguistic accuracy & clarity:
+  1-2: Errors that impede communication or sound unprofessional
+  3: Minor errors only — meaning fully clear
+  4: Accurate, natural, no errors
+  5: Precise, elegant, perfectly pitched for the group
+
+Lesson transition clarity:
+  1-2: No transition — lesson either doesn't start or starts abruptly
+  3: Implied transition — students can guess the lesson is starting
+  4: Explicit forward-looking statement — students know something specific is coming
+  5: Bridge is motivating AND connects to a specific lesson goal or topic
+
+BONUS TASK (s3_bonus) — Relevancy to the topic:
+  1-2: Question has no connection to the lesson topic
+  3: Loose connection — topic mentioned but not woven into the personal question
+  4: Clear connection — personal question naturally leads to the topic
+  5: Elegant connection — question is genuinely personal AND perfectly primes the topic`,
+
+    s3_bonus: `
+BONUS TASK RUBRIC — Personalised question connected to lesson topic:
+Score each criterion honestly. The 5th criterion (Relevancy to the topic) is the key one for this task.
+
+Register appropriateness: Is the question warm and appropriate for teenagers?
+Affective climate management: Does the question create a safe, inviting opening?
+Contact-establishing behaviour: Does it invite genuine personal response?
+Linguistic accuracy & clarity: Is the English accurate and natural?
+Relevancy to the topic: Does the question connect naturally and personally to the topic? (4 = clear connection, 5 = elegant and seamless)`,
+
     s2: `
 SCENARIO 2 RUBRIC — Ice-breaking activity with a new class:
 
