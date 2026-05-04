@@ -510,6 +510,38 @@ BONUS TASK (s3_bonus) — Relevancy to the topic:
   4: Clear connection — personal question naturally leads to the topic
   5: Elegant connection — question is genuinely personal AND perfectly primes the topic`,
 
+
+    s6: `
+SCENARIO 6 RUBRIC — Giving instructions (written modelling step only):
+
+Instruction clarity:
+  1-2: Students would not know what to do — steps missing, contradictory, or confusing
+  3: Main steps present but at least one important element unclear or implied
+  4: All steps clear and in logical order — students can start immediately
+  5: All steps clear, explicitly sequenced, with anticipation of likely confusion points
+
+Sequencing:
+  1-2: Steps not in the order students would follow them
+  3: Mostly correct order but one step misplaced
+  4: Correct order matching the task flow
+  5: Perfect sequence with explicit connectors (first/then/finally)
+
+Modelling quality (written step):
+  Path 1 drill: 1-2 = no base sentence or no model answer; 3 = cycle present but no coaching; 4 = full cycle + rule reminder; 5 = cycle + rule + coaching note
+  Path 2 reading: 1-2 = no strategy named or wrong strategy; 3 = strategy named but thinking not shown; 4 = first+last sentence + topic noun + heading choice; 5 = all of the above + explicit "why this heading" reasoning
+  Path 3 speaking: 1-2 = reads card aloud; 3 = description present but facts only; 4 = facts + feelings, realistic pace; 5 = facts + feelings + explicit naming of structure
+
+ICQ quality:
+  1-2: "Does everyone understand?" or similar social question
+  3: Attempts a check but closed-ended or vague
+  4: Closed, targets procedure, specific and answerable
+  5: Closed + targets the exact danger zone for this task type
+
+Register & transition:
+  1-2: Instruction is cold, robotic, or confusing in tone
+  3: Functional but flat — students would follow but not feel invited
+  4: Warm, clear, appropriate for the age group and task type
+  5: Warm, purposeful, energises students for the task`,
     s4: `
 SCENARIO 4 RUBRIC — Setting the lesson goals:
 
@@ -557,37 +589,40 @@ Score 4-5 if: English, warm, confident, unambiguous start signal.
 Score 3 if: correct but flat or slightly hesitant.
 Score 1-2 if: in Russian, a question, or unclear.
 Keep coachNote to 1 sentence.`,
-    s6:`
-SCENARIO 6 RUBRIC — Giving instructions (written modelling step only):
+    s7:`
+SCENARIO 7 RUBRIC — Addressing students personally (full assessment steps only):
 
-Instruction clarity:
-  1-2: Students would not know what to do — steps missing, contradictory, or confusing
-  3: Main steps present but at least one important element unclear or implied
-  4: All steps clear and in logical order — students can start immediately
-  5: All steps clear, explicitly sequenced, with anticipation of likely confusion points
+Affective-communicative:
+  1-2: Response increases student anxiety, embarrassment, or disengagement
+  3: Neutral — doesn't worsen but doesn't improve the student's state
+  4: Actively reduces anxiety or increases engagement — student feels seen not watched
+  5: Precisely calibrated to this student's emotional state — warm, private, purposeful
 
-Sequencing:
-  1-2: Steps not in the order students would follow them
-  3: Mostly correct order but one step misplaced
-  4: Correct order matching the task flow
-  5: Perfect sequence with explicit connectors (first/then/finally)
+Error correction technique (Path 3 only):
+  1-2: "No. That's wrong." or public correction with no path forward
+  3: Softens the correction but gives no information — "Almost!" with nothing to work with
+  4: Receives the answer, identifies the gap, gives the student a path (question or hint)
+  5: Receives → identifies → paths → acknowledges what was right — full professional sequence
 
-Modelling quality (written step):
-  Path 1 drill: 1-2 = no base sentence or no model answer; 3 = cycle present but no coaching; 4 = full cycle + rule reminder; 5 = cycle + rule + coaching note
-  Path 2 reading: 1-2 = no strategy named or wrong strategy; 3 = strategy named but thinking not shown; 4 = first+last sentence + topic noun + heading choice; 5 = all of the above + explicit "why this heading" reasoning
-  Path 3 speaking: 1-2 = reads card aloud; 3 = description present but facts only; 4 = facts + feelings, realistic pace; 5 = facts + feelings + explicit naming of structure
+Dignity preservation:
+  1-2: Response draws attention to failure, compares to others, or expresses exasperation
+  3: Avoids obvious humiliation but student still feels exposed or dismissed
+  4: Student's dignity is actively protected — private, specific, forward-looking
+  5: Student feels acknowledged and supported — their mistake or struggle becomes a learning moment
 
-ICQ quality:
-  1-2: "Does everyone understand?" or similar social question
-  3: Attempts a check but closed-ended or vague
-  4: Closed, targets procedure, specific and answerable
-  5: Closed + targets the exact danger zone for this task type
+Register appropriateness:
+  1-2: Wrong register — too formal, too aggressive, or inappropriate for the moment
+  3: Appropriate register but flat — lacks warmth or personal touch
+  4: Warm, appropriate, natural — sounds like a teacher who sees this student as a person
+  5: Register is precisely matched to the student and the emotional weight of the moment
 
-Register & transition:
-  1-2: Instruction is cold, robotic, or confusing in tone
-  3: Functional but flat — students would follow but not feel invited
-  4: Warm, clear, appropriate for the age group and task type
-  5: Warm, purposeful, energises students for the task`,
+Scaffolding clarity / Instructional specificity (Path 1 only):
+  1-2: No concrete next step given — student still doesn't know what to do
+  3: A direction is given but vague — "just try something"
+  4: One concrete, specific, immediately actionable next step
+  5: One step + brief scaffolding note + implied belief that the student can do it`,
+    s7_step_open: { voiceScores:[{dimension:'Pragmatics & content',score:4,comment:'Quiet, warm, face-saving approach — no accusation, no public attention.'},{dimension:'Tone',score:4,comment:'Genuinely concerned and supportive — student would feel seen rather than caught.'},{dimension:'Clarity',score:4,comment:'Simple and clear — Nick knows he\'s being offered help, not interrogated.'},{dimension:'Delivery',score:4,comment:'Calm and unhurried — gives the student space to respond.'}],overallVoice:4,voiceInsight:'A warm, private approach that opens rather than demands.',barDeltas:{energyDelta:-1,motivDelta:4,involveDelta:5,stressDelta:-6},classReaction:{s1_name:'Nick',s1_response:'',s1_nonverbal:'looks up briefly, slight relief',s2_name:'Lena',s2_response:'',s2_nonverbal:'continues working, didn\'t notice',s3_name:'Paul',s3_response:'',s3_nonverbal:'glances over briefly'}},
+    s7_step_receive: { voiceScores:[{dimension:'Pragmatics & content',score:4,comment:'Receives the answer professionally without verdict — George feels heard, not judged.'},{dimension:'Tone',score:4,comment:'Curious and calm — the class sees a teacher who takes answers seriously.'},{dimension:'Clarity',score:4,comment:'Clear question that opens the conversation rather than closing it.'},{dimension:'Delivery',score:4,comment:'Even pacing — no sign of disappointment or impatience.'}],overallVoice:4,voiceInsight:'Professional and warm — George\'s dignity is intact and Tom has nothing to work with.',barDeltas:{energyDelta:-1,motivDelta:6,involveDelta:4,stressDelta:-5},classReaction:{s1_name:'George',s1_response:'Well... I thought the paragraph was about difficulties.',s1_nonverbal:'looking at the text, reconsidering',s2_name:'Tom',s2_response:'',s2_nonverbal:'smirk fades slightly',s3_name:'Lena',s3_response:'',s3_nonverbal:'looks at her own answer, checking'}},
 
     s5: `
 SCENARIO 5 RUBRIC — Using classroom language:
