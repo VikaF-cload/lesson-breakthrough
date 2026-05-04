@@ -1458,7 +1458,8 @@ const ACHIEVEMENTS = [
   { id: 'a4', icon: '🎯', title: 'Clear Destination', desc: 'Completed Scenario 4 — Setting the lesson goals', scenario: 'S4' },
   { id: 'a5', icon: '🗣️', title: 'Every Word in English', desc: 'Completed Scenario 5 — Using classroom language', scenario: 'S5' },
   { id: 'a6', icon: '📋', title: 'Clear Instructions', desc: 'Completed Scenario 6 — Giving instructions to the task', scenario: 'S6' },
-  { id: 'a7', icon: '👁️', title: 'I See You', desc: 'Completed Scenario 7 — Addressing students personally', scenario: 'S7' }
+  { id: 'a7', icon: '👁️', title: 'I See You', desc: 'Completed Scenario 7 — Addressing students personally', scenario: 'S7' },
+  { id: 'a8', icon: '🔍', title: 'No Assumptions', desc: 'Completed Scenario 8 — Scaffolding, ICQs and CCQs', scenario: 'S8' }
 ];
 
 const PED_CARDS = [
@@ -1654,6 +1655,42 @@ const PED_CARDS = [
     mistake:'Calling on a disengaged student with a hard question — this punishes the disengagement with public exposure, which deepens it. The student shuts down further and the class learns that disengagement is risky.'
   },
   {
+    id:'pc21',icon:'🔍',title:'CCQs: Checking the Concept, Not the Confidence',unlockedBy:'a8',
+    mentor:"A student who nods confidently has told you nothing. A student who can answer 'if you're almost certain it's true — which word do you use?' has shown you something real. The CCQ is not a quiz. It's a diagnostic tool.",
+    principle:'A CCQ reveals whether the student has understood the underlying concept — not just repeated back the rule. The wrong answer tells you exactly what they misunderstood.',
+    practice:[
+      'Make CCQs closed and concept-dependent: answerable from understanding alone, not from memory of the rule.',
+      'Target the most likely confusion point: for modals of deduction, the confusion is usually between the possibility modals (could/may/might). Ask about that specifically.',
+      'Use context not metalanguage: "If you\'re 90% sure — which word?" not "What does \'must\' express?" A2 learners can use the concept before they can name it.',
+      'Sequence matters: CCQ first (concept), then ICQ (procedure), then start signal. Never skip the CCQ because students look like they understood.'
+    ],
+    mistake:'Asking a CCQ after a student has already answered correctly — you\'re confirming the performance, not the understanding. Ask before the performance to see what\'s actually there.'
+  },
+  {
+    id:'pc22',icon:'❓',title:'ICQ and CCQ Together: The Full Checking Sequence',unlockedBy:'a8',
+    mentor:"The ICQ and the CCQ are not the same tool used at different times. They check different things. One tells you whether students know what they're doing. The other tells you whether they know what it means. You need both.",
+    principle:'ICQ checks procedure. CCQ checks concept. Using only one means you either know students can do the task but don\'t understand the language — or understand the language but don\'t know what to do with the task.',
+    practice:[
+      'The full sequence: present concept → CCQ (did they understand the meaning?) → explain task → ICQ (do they know what to do?) → start signal.',
+      'CCQ example for modals: "If you see someone sleeping at 2pm and you\'re almost certain they\'re tired — which word?" ICQ example: "So are you choosing one word or writing a full sentence?"',
+      'If a student answers a CCQ wrong, don\'t correct immediately — use it. "Interesting — what made you think that?" reveals the misunderstanding and opens a path to the correct concept.',
+      'Never ask "Does everyone understand?" — this is neither a CCQ nor an ICQ. It\'s a social ritual that produces nods regardless of comprehension.'
+    ],
+    mistake:'Using the same question for both checks: "Do you know what to do?" conflates procedure and concept and answers neither.'
+  },
+  {
+    id:'pc23',icon:'🏗️',title:'Scaffolding: Building a Bridge, Not Giving a Lift',unlockedBy:'a8',
+    mentor:"A scaffold is not a hint and it's not the answer. It's a temporary structure that lets the student reach something they couldn't reach alone — and then it comes down. The test: if you remove it, can they still stand?",
+    principle:'Scaffolding works when it connects something new to something already known. It fails when it simplifies the concept until the concept no longer holds — or when it becomes a crutch the student can\'t work without.',
+    practice:[
+      'Diagnose before scaffolding: find out exactly where the breakdown is. The wrong scaffold wastes time. "What do you already know about this?" takes ten seconds and tells you everything.',
+      'Bridge from what they know: "You said could means possible — is \'might\' more like could or more like must?" connects the unknown to the already-understood.',
+      'Give the minimum: one question, one example, one analogy. If they need more, diagnose again — the gap is different from what you thought.',
+      'Confirm before releasing: one follow-up question that verifies the scaffold worked. "Try that sentence now — what do you think?" Then step back.'
+    ],
+    mistake:'Scaffolding by simplifying the rule until it breaks: "just use could when you\'re not sure" works until the student tries a sentence where might is more natural — and the scaffold becomes a new source of error.'
+  },
+  {
     id:'pc13', icon:'⭐', title:'What Specific Praise Actually Does', unlockedBy:'a5',
     mentor:"\"Good job\" is not praise — it is a reflex. Specific praise names what worked and why. It tells the student what to keep doing. That is worth four extra words on every correct answer.",
     principle:'Specific praise has three components: it names the action, explains why it worked, and signals what the student should continue doing. Generic praise does none of these things.',
@@ -1680,6 +1717,10 @@ const PED_CARDS = [
 ];
 
 const LANG_CARDS = [
+  {cat:'CCQs',title:'Concept checking questions',tip:'Check understanding through use — not through metalanguage.',exs:["Can you give me an example where you'd use this?","If you're almost certain — which word would you choose?","Give me a situation where this rule applies.","Can I say '___'? Why not?","Is ___ more like [example A] or [example B]?","If I replace [word] with [word] — does the meaning change?"]},
+  {cat:'CCQs',title:'Following up on CCQ answers',tip:'A wrong answer is data — use it, not squash it.',exs:["Interesting — what made you think that?","You're close — what's the difference between these two?","Not quite — let's check it together.","Good — can you tell me why?","That works in some cases — what about this one?"]},
+  {cat:'Scaffolding language',title:'Diagnosing the gap',tip:'Find the exact breakdown before you try to fix it.',exs:["What do you already know about this?","Tell me what you're sure about — let's start there.","Which part is unclear — the word, the meaning, or the context?","What would you say if you weren't worried about being wrong?","Let's try an easier example first."]},
+  {cat:'Scaffolding language',title:'Building and confirming the scaffold',tip:'Bridge from what they know. Give the minimum. Then check it held.',exs:["Is this more like [A] or more like [B]?","Don't think about the rule — just tell me: are you sure, or just guessing?","You said ___ — so what does that tell you about this one?","You've got the idea — now apply it here.","What would change if you replaced [word] with [word]?","Try that sentence now — what do you think?","You don't need me any more — you've understood it."]},
   {cat:'Addressing students',title:'Approaching a struggling student',tip:'Quiet, private, warm. Ask about process not product.',exs:["How's it going — is there a part you'd like to talk through?","What have you got so far? Let's start there.","Which part feels unclear — the task or the topic?","Let's try the first sentence together.","You don't need to have it all — just start with what you know.","What would you say if you weren't worried about being wrong?","What's one thing you do know about this topic?"]},
   {cat:'Addressing students',title:'Re-engaging a disengaged student',tip:'Low-barrier. Specific. Almost impossible to refuse.',exs:["How's it going with you two?","Paul — option A or B, which one?","Just one word — which would you choose?","Can you give Lena one reason for your option?","What's your gut feeling on this?","Good — carry on.","That's a strong point — develop that."]},
   {cat:'Error correction',title:'Receiving and correcting a wrong answer',tip:'Receive before correcting. Open a path — don\'t just close one.',exs:["That's interesting — what made you think that?","You're close — what if we look at [specific part] again?","Not quite — but you've got [this element] right.","Good try — let me give you a hint.","What does the first sentence of that paragraph actually say?","Can anyone add to that?","Let's look at that together.","You identified the right [X] — now let's check the [Y]."]},
@@ -1724,7 +1765,7 @@ const MODULES = [
       { id: 's5', title: 'Using Classroom Language', desc: 'Professional classroom communication', xp: 95, icon: '🗣️' },
       { id: 's6', title: 'Giving Instructions to the Task', desc: 'Clear, sequenced task instructions', xp: 90, icon: '📋' },
       { id: 's7', title: 'Addressing Students Personally', desc: 'Individual student communication', xp: 85, icon: '👁️' },
-      { id: 's8', title: 'Scaffolding, ICQs and CCQs', desc: 'Supporting student understanding', icon: '🔒' },
+      { id: 's8', title: 'Scaffolding, ICQs and CCQs', desc: 'Supporting student understanding', xp: 80, icon: '🔍' },
       { id: 's9', title: 'Finishing the Lesson — Reflection Time', desc: 'Closing lessons effectively', icon: '🔒' }
     ]
   },
@@ -3147,6 +3188,158 @@ SCENARIO_DATA.s7 = {
   achievementId:'a7', xp:85
 };
 
+// ─── SCENARIO 8 ───────────────────────────────────────────────
+SCENARIO_DATA.s8 = {
+  title:'Scaffolding, ICQs and CCQs',
+  desc:'Checking understanding and supporting students who are stuck',
+  mentorLine:"An ICQ checks whether students know what to do. A CCQ checks whether they understand what it means. Both are about the same thing: not assuming. The teacher who asks 'does everyone understand?' has stopped teaching. The teacher who asks 'so if you're almost certain — which word would you use?' is still at work.",
+  initBars:{energy:85,motiv:66,involve:60,stress:28},
+  chars:[
+    {name:'Lena',mood:'attentive',color:'#3B6D11',emoji:'😊'},
+    {name:'Nick',mood:'uncertain',color:'#185FA5',emoji:'😶'},
+    {name:'Paul',mood:'already moved on',color:'#C8622A',emoji:'😄'},
+    {name:'George',mood:'analytical',color:'#534AB7',emoji:'🧠'}
+  ],
+  situation:"You've just explained modals of deduction — can't, must, may/might, could. You wrote examples on the board. Most students are nodding. Nick is staring at the board. Paul has already turned to a new page. You don't know yet whether anyone actually understood — or whether they just recognised the words.",
+  goal:'Check genuine concept understanding and procedural readiness before students practise — using CCQs, ICQs, and scaffolding that meets students exactly where they are.',
+  criteria:['CCQ/ICQ quality','Diagnostic clarity','Face-saving','Register','Follow-up technique'],
+  mcqs:[
+    {
+      q:'You\'ve just explained a grammar rule and a student nods confidently. Which response best checks their actual understanding?',
+      opts:[
+        {text:'"Great — so you understood everything?"',why:'Wrong — this confirms the nod. It\'s a social check, not a comprehension check. Nodding is social, not diagnostic.',correct:false},
+        {text:'"Can you give me an example sentence using this rule?"',why:'✓ Correct — production demonstrates understanding. You immediately see whether the concept was internalised, not just recognised.',correct:true},
+        {text:'"Good — let\'s move on then."',why:'Wrong — treating a nod as confirmation. You will discover the misunderstanding three exercises later, when it is harder to fix.',correct:false},
+        {text:'"Can you explain the rule back to me in your own words?"',why:'Partially right but risky at A2 level — not all learners can verbalise rules they can apply. Production is a more reliable check than metalanguage.',correct:false}
+      ]
+    },
+    {
+      q:'What is the difference between an ICQ and a CCQ?',
+      opts:[
+        {text:'An ICQ checks the task procedure; a CCQ checks the concept meaning.',why:'✓ Correct — ICQ: "What will you do first?" / CCQ: "If you\'re almost certain — which modal would you use?"',correct:true},
+        {text:'An ICQ is for reading tasks; a CCQ is for grammar tasks.',why:'Wrong — both are used across all task types. The distinction is what they check, not when.',correct:false},
+        {text:'A CCQ is asked before the task; an ICQ is asked after.',why:'Wrong — timing varies by situation. The distinction is purpose: concept vs procedure.',correct:false},
+        {text:'They are the same technique with different names.',why:'Wrong — confusing them means checking instructions when you need to check understanding, or vice versa. The learning gap stays hidden.',correct:false}
+      ]
+    }
+  ],
+  tactics:[
+    {
+      id:'t1',
+      title:'ICQs and CCQs',
+      desc:'Checking concept and procedure after presenting modals of deduction.',
+      grade:'Grade 9',taskType:'Grammar input',topic:'Modals of deduction',
+      criteria:['CCQ/ICQ quality','Diagnostic clarity','Face-saving','Register','Follow-up technique'],
+      clicheGroups:[
+        {label:'CCQ openers',phrases:["Can you count it — yes or no?","Is this one thing or many things?","Give me an example where you'd use this.","If you're 90% sure — which word would you choose?","Can I say '___'? Why not?"]},
+        {label:'ICQ openers',phrases:["So what will you do first?","How long do you have?","Are you working alone or with a partner?","What do you do when you've finished?"]},
+        {label:'Follow-up',phrases:["Good — can you tell me why?","Not quite — what made you think that?","That's interesting — let's check it together.","You're close — what's the difference between these two?"]}
+      ],
+      steps:[
+        {id:'ccq',type:'must',format:'chatterbox_only',
+         title:'Ask a CCQ',
+         caseBlock:{
+           room:'Whole-class input stage. Modals of deduction on the board with two examples: "He must be tired — he worked all night." / "She can\'t be at home — I saw her leave."',
+           task:'Students need to understand the concept before the practice exercise: must = almost certain (positive); can\'t = almost certain (negative); may/might/could = possible but uncertain.',
+           student:'Most students look like they followed. Nick is quietly uncertain. You don\'t know yet who actually understood and who just nodded.'
+         },
+         situation:'Check whether students understood the concept — not the task. Ask one question that reveals whether they know the difference between certainty and possibility in this context. The question should expose a gap if one exists.',
+         goal:'At least one student demonstrates understanding. Nick\'s level of comprehension becomes visible — to you, not to the class.',
+         fullAssess:false,
+         chatterboxChars:['Lena','Nick']
+        },
+        {id:'react_respond',type:'must',format:'chatterbox_only',
+         title:'React and respond to student answers',
+         prewrittenBubbles:[
+           {name:'Lena',response:"If you're sure it's true — you use must. If you're sure it's NOT true — can't.",nonverbal:'answers confidently, looks at her notes'},
+           {name:'Nick',response:"Is it... could? Because it's possible?",nonverbal:'says quietly, not sure if he\'s right'}
+         ],
+         situation:'Lena has answered correctly. Nick has answered with "could" — he\'s understood the possibility category but hasn\'t grasped the certainty distinction. Respond to both answers in a way that acknowledges Lena, addresses Nick\'s misunderstanding, and doesn\'t expose him publicly.',
+         goal:'Lena feels her answer was valued. Nick understands what he missed without feeling corrected in front of the class. The concept becomes clearer for everyone.',
+         fullAssess:false,
+         chatterboxChars:['Lena','Nick']
+        },
+        {id:'icq',type:'must',format:'chatterbox_written',
+         title:'Ask an ICQ for the practice task',
+         situation:'The class is about to do a gap-fill exercise — 6 sentences, choose the correct modal. Ask an ICQ that verifies they know what to do in the exercise — not whether they understood the grammar. One specific, closed question.',
+         goal:'Students know the procedure before they start. Nick has something concrete to act on.',
+         fullAssess:true,
+         chatterboxChars:['Nick','Paul']
+        }
+      ],
+      optSteps:[],
+      bonusStep:{
+        id:'george_bonus',type:'bonus',title:'George challenges the concept',
+        desc:'George says: "In Russian we just use intonation for this — why does English need special words?"',
+        situation:'After your CCQ, George raises his hand: "In my language we don\'t have must or can\'t for guessing — we just use tone of voice. Why does English need separate words for this?" The class is interested.',
+        goal:'The question is engaged with genuinely — not dismissed, not derailed. Students feel the language curiosity is welcome. You handle it in 2–3 sentences and return to the task.',
+        fullAssess:false,
+        chatterboxChars:['George'],
+        bonusXP:10
+      },
+      achievementId:'a8',xp:80
+    },
+    {
+      id:'t2',
+      title:'Scaffolding',
+      desc:'Supporting a student who is stuck on modals of deduction.',
+      grade:'Grade 9',taskType:'Individual practice',topic:'Modals of deduction',
+      criteria:['Scaffolding technique','Diagnostic precision','Concept clarity','Face-saving','Language accessibility'],
+      clicheGroups:[
+        {label:'Diagnosing the gap',phrases:["What do you already know about this?","Tell me what you\'re sure about — let\'s start there.","Which part is unclear — the word or the meaning?","What would you say if you weren\'t worried about being wrong?"]},
+        {label:'Building the scaffold',phrases:["Is this more like [example A] or [example B]?","Don\'t think about the rule yet — just tell me: are you sure, or just guessing?","Let\'s try it with an easier example first.","You said ___ — so what does that tell you about this one?"]},
+        {label:'Confirming and releasing',phrases:["You\'ve got it — try the next one.","Good — now apply that to sentence 4.","That\'s exactly it. Keep going.","You don\'t need me any more — you\'ve understood it."]}
+      ],
+      steps:[
+        {id:'diagnose',type:'must',format:'chatterbox_only',
+         title:'Diagnose the gap',
+         caseBlock:{
+           room:'Individual practice. Students are doing a gap-fill — choosing the correct modal for 8 sentences.',
+           task:'Sentence 4: "Look at those clouds. It ___ rain later." Nick has written nothing. He understood the basic rule but is stuck: could, may, and might all feel the same to him.',
+           student:'Nick has stopped at sentence 4. He knows "must" means certain and "can\'t" means certainly not — but the difference between could, may, and might is not clear to him. He hasn\'t asked for help. He looks like he\'s re-reading the sentence repeatedly.'
+         },
+         situation:'Approach Nick quietly. Before giving anything, find out specifically where his understanding breaks down. One question that diagnoses the exact gap — not a general "are you okay?"',
+         goal:'You know exactly what Nick understands and what he doesn\'t. He doesn\'t feel interrogated.',
+         fullAssess:false,
+         chatterboxChars:['Nick']
+        },
+        {id:'scaffold',type:'must',format:'chatterbox_written',
+         title:'Provide the scaffold',
+         prewrittenBubbles:[
+           {name:'Nick',response:"I know must means you're sure and can't means impossible. But could, may and might — they all mean 'maybe', right? So which one do I pick?",nonverbal:'looks frustrated but engaged, pen in hand'}
+         ],
+         situation:'Nick has told you his exact gap: he understands the certainty end of the scale but can\'t distinguish between the possibility modals. Give him a scaffold — a bridge that helps him choose between could, may, and might without giving him the answer. Make the language accessible for an A2 learner.',
+         goal:'Nick has a concrete thinking tool he can apply to this sentence and the next ones. He hasn\'t been given the answer — he has a way to find it.',
+         fullAssess:true,
+         chatterboxChars:['Nick']
+        },
+        {id:'confirm_release',type:'must',format:'chatterbox_only',
+         title:'Confirm and release',
+         situation:'Nick tries: "So... could rain? Because all three are fine here, and could sounds more natural?" He\'s correct — and he\'s also developed a useful instinct. Confirm, acknowledge his reasoning, and release him back to the task.',
+         goal:'Nick continues independently. He feels his reasoning — not just his answer — was noticed.',
+         fullAssess:false,
+         chatterboxChars:['Nick']
+        }
+      ],
+      optSteps:[
+        {id:'just_tell_me',type:'opt',format:'chatterbox_only',
+         title:'Nick asks for the answer',
+         situation:'After your scaffold, Nick says: "I still don\'t really get it. Can you just tell me which one to write?" He\'s not being lazy — he\'s genuinely frustrated.',
+         goal:'You don\'t give the answer. You give one more scaffold from a different angle. Nick doesn\'t feel abandoned.',
+         fullAssess:false,
+         chatterboxChars:['Nick']
+        }
+      ],
+      achievementId:'a8',xp:80
+    }
+  ],
+  reflectQs:[
+    {score:[0,99],q:'Как вы решаете, сколько поддержки дать ученику — и когда поддержка начинает мешать?'},
+    {score:[0,99],q:'Чем «опора» (scaffold) отличается от подсказки? Приведите пример.'}
+  ],
+  achievementId:'a8', xp:80
+};
+
 function openScenario(id) {
   const sc = SCENARIO_DATA[id]; if (!sc) return;
   S.cur=id; S.mcqPhase=0; S.curTactic=null; S.curStepIdx=0; S.curSteps=[]; S.runningScore=0; S.runningMax=0; S.curStepScores=[];
@@ -3409,6 +3602,22 @@ function renderS7Step(wrap, step, tactic) {
     <div class="step-sit-lbl">What's happening</div>
     <div class="step-sit">${step.situation}</div>`;
   wrap.appendChild(card);
+
+  // Pre-written student bubbles (shown before user responds)
+  if(step.prewrittenBubbles && step.prewrittenBubbles.length>0){
+    const preBox=document.createElement('div'); preBox.className='chatterbox'; preBox.style.marginBottom='10px';
+    preBox.innerHTML=`<div class="cb-lbl">💬 What just happened</div><div class="cb-bubbles" id="pre-bubbles-${step.id}"></div>`;
+    wrap.appendChild(preBox);
+    const bubDiv=document.getElementById('pre-bubbles-'+step.id);
+    step.prewrittenBubbles.forEach(b=>{
+      const char=sc.chars.find(c=>c.name===b.name)||{emoji:'🧑‍🎓',color:'#8B6A4F'};
+      const bub=document.createElement('div');bub.className='cb-bubble';
+      bub.innerHTML=`<div class="cb-av" style="background:${char.color}22;color:${char.color}">${char.emoji}</div>
+      <div><div class="cb-name">${b.name} <span style="font-weight:400;color:var(--ink-ghost);font-style:italic">${b.nonverbal||''}</span></div>
+      <div class="cb-text">${b.response}</div></div>`;
+      bubDiv.appendChild(bub);
+    });
+  }
 
   // Response area
   const respDiv=document.createElement('div'); respDiv.className='case-card';
@@ -4247,7 +4456,11 @@ function renderTacticResult(wrap) {
   const b3=document.createElement('button');b3.className='tr-btn primary';b3.textContent='Continue to reflection →';
   b3.addEventListener('click',()=>{
     const sc2=SCENARIO_DATA[S.cur];
-    if(sc2.bonusTopics&&sc2.bonusTopics.length>0){
+    const tactic=S.curTactic;
+    // Check for tactic-level bonusStep (S8 style)
+    if(tactic.bonusStep){
+      renderBonusStepGate(wrap,tactic.bonusStep,sc2);
+    } else if(sc2.bonusTopics&&sc2.bonusTopics.length>0){
       renderScenarioPhase('bonus');
     } else {
       S.reflectIdx=0; buildReflectQs(sc2); renderScenarioPhase('reflect');
@@ -4555,6 +4768,11 @@ const COMPETENCES = {
     {name:'Individual contact',desc:'Making purposeful personal contact with students'},
     {name:'Error correction',desc:'Correcting without verdict — preserving dignity'},
     {name:'Affective-communicative',desc:'Reading what each student needs and responding accordingly'}
+  ],
+  s8: [
+    {name:'Concept checking',desc:'Verifying genuine understanding through CCQs'},
+    {name:'Procedure checking',desc:'Using ICQs to confirm students know what to do'},
+    {name:'Scaffolding',desc:'Building bridges to understanding without giving answers'}
   ]
 };
 
@@ -4665,6 +4883,75 @@ function finishScenario(sc) {
 // ═══════════════════════════════════════
 // BONUS PHASE
 // ═══════════════════════════════════════
+function renderBonusStepGate(wrap, bonusStep, sc) {
+  wrap.innerHTML=''; wrap.appendChild(makeBarsPanel());
+  const gate=document.createElement('div'); gate.className='bonus-gate';
+  gate.innerHTML=`
+    <div class="bonus-gate-star">⭐</div>
+    <div class="bonus-gate-title"><em>Bonus moment!</em></div>
+    <div class="bonus-gate-sub">${bonusStep.desc}</div>
+    <div class="bonus-xp-note">+${bonusStep.bonusXP||10} XP · written response · chatterbox reaction</div>
+    <button class="bonus-accept" id="bonus-step-accept">Accept →</button>
+    <button class="bonus-skip" id="bonus-step-skip">Skip — go to reflection</button>`;
+  wrap.appendChild(gate);
+
+  document.getElementById('bonus-step-accept').addEventListener('click',()=>{
+    wrap.innerHTML=''; wrap.appendChild(makeBarsPanel());
+    const card=document.createElement('div'); card.className='bonus-card';
+    card.innerHTML=`
+      <div class="bonus-card-badge">⭐ Bonus moment</div>
+      <div class="step-sit-lbl">The situation</div>
+      <div class="step-sit" style="margin-bottom:.8rem">${bonusStep.situation}</div>
+      <div class="english-notice" style="margin-bottom:8px">🇬🇧 Write in English</div>
+      <textarea class="resp-ta" id="bonus-step-ta" placeholder="Write your response..."></textarea>
+      <div class="wc-row"><span class="wc" id="bonus-step-wc">0 words</span></div>`;
+    wrap.appendChild(card);
+    document.getElementById('bonus-step-ta').addEventListener('input',function(){
+      const w=this.value.trim().split(/\s+/).filter(x=>x).length;
+      document.getElementById('bonus-step-wc').textContent=w+(w===1?' word':' words');
+    });
+    const subBtn=document.createElement('button'); subBtn.className='sub-btn'; subBtn.style.marginTop='6px'; subBtn.textContent='Submit';
+    const spinRow=document.createElement('div'); spinRow.className='spin-row'; spinRow.innerHTML='<div class="spin"></div>Assessing…';
+    const fbDiv=document.createElement('div'); fbDiv.style.display='none';
+    wrap.appendChild(subBtn); wrap.appendChild(spinRow); wrap.appendChild(fbDiv);
+
+    subBtn.addEventListener('click',async()=>{
+      const resp=document.getElementById('bonus-step-ta')?.value?.trim();
+      if(!resp||resp.length<3){alert('Write your response first.');return;}
+      subBtn.disabled=true; spinRow.className='spin-row on';
+      try{
+        const res=await fetch('/api/assess',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+          response:resp,situation:bonusStep.situation,
+          goal:bonusStep.goal||'Handle this classroom moment professionally.',
+          criteria:['Register appropriateness','Pedagogical quality','Warmth & tone'],
+          moduleId:'s8_bonus'
+        })});
+        const p=await res.json();
+        spinRow.className='spin-row'; subBtn.style.display='none';
+        S.xp+=bonusStep.bonusXP||10;
+        fbDiv.style.display='block';
+        const coachDiv=document.createElement('div');
+        coachDiv.style.cssText='background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:.9rem 1rem;font-size:12px;color:var(--ink-soft);line-height:1.7';
+        coachDiv.innerHTML=`<div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-faint);margin-bottom:.5rem">Coach's note</div>${p.coachNote||p.highlight||'Good response.'}`;
+        fbDiv.appendChild(coachDiv);
+        mkToast(`⭐ +${bonusStep.bonusXP||10} bonus XP!`,'good');
+        renderS7Chatterbox(fbDiv,sc,resp,bonusStep,p);
+      }catch(e){spinRow.className='spin-row';subBtn.disabled=false;}
+      const nxt=document.createElement('button');nxt.className='nxt-btn';nxt.style.marginTop='.8rem';
+      nxt.textContent='Go to reflection →';
+      nxt.addEventListener('click',()=>{
+        S.reflectIdx=0; buildReflectQs(sc); renderScenarioPhase('reflect');
+      });
+      fbDiv.appendChild(nxt);
+    });
+  });
+
+  document.getElementById('bonus-step-skip').addEventListener('click',()=>{
+    S.reflectIdx=0; buildReflectQs(sc); renderScenarioPhase('reflect');
+  });
+}
+
+
 function renderBonusPhase(wrap, sc) {
   const topics = sc.bonusTopics || [];
   const topic = topics[Math.floor(Math.random() * topics.length)];
