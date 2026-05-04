@@ -1456,7 +1456,8 @@ const ACHIEVEMENTS = [
   { id: 'a2', icon: '🤝', title: 'First Contact Established', desc: 'Completed Scenario 2 — Ice-breaking games', scenario: 'S2' },
   { id: 'a3', icon: '🔑', title: 'Every Lesson a New Beginning', desc: 'Completed Scenario 3 — Making contact at the start of the lesson', scenario: 'S3' },
   { id: 'a4', icon: '🎯', title: 'Clear Destination', desc: 'Completed Scenario 4 — Setting the lesson goals', scenario: 'S4' },
-  { id: 'a5', icon: '🗣️', title: 'Every Word in English', desc: 'Completed Scenario 5 — Using classroom language', scenario: 'S5' }
+  { id: 'a5', icon: '🗣️', title: 'Every Word in English', desc: 'Completed Scenario 5 — Using classroom language', scenario: 'S5' },
+  { id: 'a6', icon: '📋', title: 'Clear Instructions', desc: 'Completed Scenario 6 — Giving instructions to the task', scenario: 'S6' }
 ];
 
 const PED_CARDS = [
@@ -1580,6 +1581,42 @@ const PED_CARDS = [
     mistake:'Using only one register throughout the lesson — usually imperatives — which makes the teacher sound authoritarian even when they are not trying to be.'
   },
   {
+    id:'pc15',icon:'📋',title:'The Minimum Effective Instruction',unlockedBy:'a6',
+    mentor:"The goal of an instruction is not completeness — it is to get students started correctly. The minimum effective instruction gives the first step clearly. Everything else can follow once they've begun.",
+    principle:'Students process instructions in working memory. More than three steps before checking causes cognitive overload — not comprehension.',
+    practice:[
+      'Rule of three: give no more than three steps before checking understanding. If your task has five steps, split the instruction: give steps 1–3, check, then give steps 4–5.',
+      'First step must be the clearest. The first instruction sets the pattern for everything that follows — if it is vague, the whole sequence unravels.',
+      'Always model before asking for an ICQ. Students cannot answer "what will you do first?" if they haven\'t seen what doing it looks like.',
+      'Say the minimum that gets everyone moving. You can clarify once the task is running. You cannot un-confuse a class that has been overloaded before starting.'
+    ],
+    mistake:'Giving all five steps at once because "it\'s more efficient" — it produces five students who heard step one and twenty who heard nothing.'
+  },
+  {
+    id:'pc16',icon:'❓',title:'What Makes a Good ICQ',unlockedBy:'a6',
+    mentor:"\"Does everyone understand?\" is a social ritual, not a comprehension check. Every hand goes up, every head nods — and then half the class does the wrong thing. A real ICQ asks students to prove they understood by describing what they will do.",
+    principle:'An effective ICQ is closed (specific, answerable in a few words), targeted at the step most likely to be misunderstood, and asked after modelling — never before.',
+    practice:[
+      'Closed not open: "What will you do first?" not "What do you think about this task?" Closed questions require demonstration of understanding, not opinion.',
+      'Target the danger zone: identify the step where confusion is most likely and write your ICQ for that step specifically.',
+      'One ICQ per instruction set — two maximum. More than two feels like a test, which raises anxiety.',
+      'After a wrong answer: never repeat the instruction word for word. Find a different angle, a different example, or a visual. Repetition adds volume, not clarity.'
+    ],
+    mistake:'"Is that clear?" followed by silence taken as confirmation — the most common comprehension non-check in EFL teaching.'
+  },
+  {
+    id:'pc17',icon:'🎬',title:'Modelling as Communication',unlockedBy:'a6',
+    mentor:"When you model a task, you are not performing — you are making the invisible visible. Students need to see the thinking process, not just the output. The model answers the question they haven't asked yet: what does success look like here?",
+    principle:'A model shows students what success looks like before they attempt it. It reduces anxiety and clarifies the standard — but only if it shows the process, not just the product.',
+    practice:[
+      'Think aloud as you model: "I\'m looking at the first sentence — the key word is \'routine\' — so the heading must be about daily habits." Students hear the reasoning, not just the answer.',
+      'Use a realistic example: not too easy (trivialises the task), not too hard (intimidates). Model at the level you expect from students.',
+      'For speaking tasks: model the structure and the length — show students that 4–5 sentences covering facts AND feelings is the target.',
+      'Name what made the model good: "Notice I covered both what I do and how I feel about it — that\'s what I want from you." Make the standard explicit.'
+    ],
+    mistake:'Modelling too quickly or too perfectly — students see a fluent native-like performance and conclude the task is beyond them, rather than seeing a reachable standard.'
+  },
+  {
     id:'pc13', icon:'⭐', title:'What Specific Praise Actually Does', unlockedBy:'a5',
     mentor:"\"Good job\" is not praise — it is a reflex. Specific praise names what worked and why. It tells the student what to keep doing. That is worth four extra words on every correct answer.",
     principle:'Specific praise has three components: it names the action, explains why it worked, and signals what the student should continue doing. Generic praise does none of these things.',
@@ -1606,6 +1643,10 @@ const PED_CARDS = [
 ];
 
 const LANG_CARDS = [
+  {cat:'Giving instructions',title:'Sequenced instruction phrases',tip:'One step at a time. Mirror the order students will follow.',exs:['First… then… finally…','Your task is to…','You have [X] minutes for this.','Work in pairs / in groups of three.','When you finish, [do this].','Don\'t worry about every word — focus on the main idea.','You\'ll have a chance to check with your partner afterwards.']},
+  {cat:'Giving instructions',title:'Introducing task types',tip:'Name what kind of task it is before explaining how to do it.',exs:["We're going to do a substitution drill — I'll say the base, you transform it.","Your job is to match five headings to five paragraphs.","This is a structured group discussion — each of you has a different role.","We're going to practise [skill] — here's how it works.","This is a [task type] task — let me show you what it looks like."]},
+  {cat:'ICQs',title:'Instruction checking questions',tip:'Never "Does everyone understand?" — always ask them to describe what they will do.',exs:["So what will you do first?","How long do you have?","Are you working alone or with a partner?","What do you do when you've finished?","Are you going to read every word, or are you looking for the main idea?","What does your group need to agree on?","Do you change the whole sentence or just the adjective?","Are you showing your card to your group or keeping it private?"]},
+  {cat:'ICQs',title:'Re-explaining after a wrong ICQ answer',tip:'Never repeat the same words. Find a new angle, a visual, or a simpler example.',exs:["Let me explain that part differently.","Good try — let me show you what I mean.","Let me put it another way.","Watch me do it once more — this time look at [specific step].","Think of it this way: [new angle].","So [student name], if I say [example], what would you say?"]},
   { cat: 'Setting goals', title: 'Stating the lesson goal', tip: 'Use the three-part formula: activity + result + why it matters.', exs: ["By the end of the lesson, you will be able to…", "Today we're going to… and by the end you should be able to…", "Our goal today is to… — and here's why that matters for you.", "In this lesson you'll learn how to… so that you can…"] },
   { cat: 'Setting goals', title: 'Sequencing the lesson', tip: 'Give students a map of the lesson. Predictability reduces anxiety.', exs: ["First we'll… then we'll… and finally…", "We'll start with… move on to… and finish by…", "There are three parts to today's lesson…", "By the time we finish, you'll have practised… and produced…"] },
   { cat: 'Setting goals', title: 'Checking goal understanding', tip: 'Never use yes/no checks. Ask students to restate in their own words.', exs: ["Can someone tell me in their own words what we're going to do today?", "What will you be able to do by the end of this lesson?", "Turn to your partner — what's our goal today?", "In one sentence — what are we here to practise?"] },
@@ -1641,7 +1682,7 @@ const MODULES = [
       { id: 's3', title: 'Making Contact at the Beginning of the Lesson', desc: 'Opening every lesson well', xp: 90, icon: '🔑' },
       { id: 's4', title: 'Setting the Lesson Goals', desc: 'Communicating learning objectives clearly', xp: 85, icon: '🎯' },
       { id: 's5', title: 'Using Classroom Language', desc: 'Professional classroom communication', xp: 95, icon: '🗣️' },
-      { id: 's6', title: 'Giving Instructions to the Task', desc: 'Clear, sequenced task instructions', icon: '🔒' },
+      { id: 's6', title: 'Giving Instructions to the Task', desc: 'Clear, sequenced task instructions', xp: 90, icon: '📋' },
       { id: 's7', title: 'Addressing Students Personally', desc: 'Individual student communication', icon: '🔒' },
       { id: 's8', title: 'Scaffolding, ICQs and CCQs', desc: 'Supporting student understanding', icon: '🔒' },
       { id: 's9', title: 'Finishing the Lesson — Reflection Time', desc: 'Closing lessons effectively', icon: '🔒' }
@@ -2589,6 +2630,277 @@ const S5_SORT_ITEMS = [
   {situation:'You want to transition the whole class from individual work to a group discussion.',correct:'collective',options:['imperative','softened','collective'],why:'"Shall we move into groups?" invites rather than orders — the class feels like participants, not subjects.'},
   {situation:'You notice a student looks upset and hasn\'t started the task. You want to check in.',correct:'softened',options:['imperative','softened','collective'],why:'The student\'s emotional state requires care. A softened individual question opens a conversation without pressure.'}
 ];
+
+// ─── SCENARIO 6 ───────────────────────────────────────────────
+SCENARIO_DATA.s6 = {
+  title:'Giving Instructions to the Task',
+  desc:'Launching tasks clearly — drilling, reading, and speaking',
+  mentorLine:"The instruction is not the task. Your job is not to explain everything — it is to explain enough. Students who understand the first step can start. Students who hear five sentences before they start don't start at all. Say the minimum that gets everyone moving.",
+  initBars:{energy:88,motiv:66,involve:60,stress:26},
+  chars:[
+    {name:'Lena',mood:'ready',color:'#3B6D11',emoji:'😊'},
+    {name:'Nick',mood:'watching',color:'#185FA5',emoji:'😶'},
+    {name:'Paul',mood:'restless',color:'#C8622A',emoji:'😄'},
+    {name:'George',mood:'waiting',color:'#534AB7',emoji:'🧠'},
+    {name:'Tom',mood:'guarded',color:'#993C1D',emoji:'😤'},
+    {name:'Olya',mood:'curious',color:'#8B2250',emoji:'🎨'}
+  ],
+  situation:"The opening contact is done. The goal has been set. Now it's time to launch the main task. How you give this instruction determines whether the next 10 minutes are productive — or spent untangling confusion.",
+  goal:'Give clear, sequenced, well-modelled instructions that students can follow immediately — then check they understood before starting.',
+  criteria:['Instruction clarity','Sequencing','Modelling quality','ICQ quality','Register & transition'],
+  mcqs:[
+    {
+      q:'You are about to give instructions for a pair-speaking task. Before you explain anything, what should you do first?',
+      opts:[
+        {text:'Distribute all materials, write instructions on the board, then explain verbally.',why:'Wrong — front-loading creates cognitive overload before students know what they\'re doing.',correct:false},
+        {text:'Get the class\'s attention, then give instructions in the order students will follow them.',why:'✓ Correct — attention first, then sequenced instructions that mirror the task flow.',correct:true},
+        {text:'Ask students to read the instructions from the textbook themselves.',why:'Wrong — students reading independently is not the same as the teacher checking understanding.',correct:false},
+        {text:'Tell students the goal of the task, then let them figure out the steps.',why:'Wrong — motivation without procedure leaves students confused about what to actually do.',correct:false}
+      ]
+    },
+    {
+      q:'After giving instructions, you ask "Does everyone understand?" The whole class nods. Is this sufficient?',
+      opts:[
+        {text:'Yes — if students say they understand, they understand.',why:'Wrong — "Does everyone understand?" is a social question. Students nod to avoid seeming slow.',correct:false},
+        {text:'Yes — you can always correct misunderstandings once the task starts.',why:'Wrong — once Paul starts doing the wrong thing, the whole group loses momentum.',correct:false},
+        {text:'No — understanding should be checked with a specific question about what students will do.',why:'✓ Correct — an ICQ like "So what will you do first?" requires students to demonstrate understanding, not just claim it.',correct:true},
+        {text:'No — you should repeat the instructions twice before starting.',why:'Wrong — repetition doesn\'t check comprehension. It just adds volume.',correct:false}
+      ]
+    }
+  ],
+  tactics:[
+    {
+      id:'t1',
+      title:'Drilling exercise',
+      desc:'Comparative adjectives substitution drill — Grade 7',
+      grade:'Grade 7',taskType:'Drilling',topic:'Comparative adjectives',
+      criteria:['Instruction clarity','Sequencing','Modelling quality','ICQ quality','Register & transition'],
+      clicheGroups:[
+        {label:'Introducing the drill',phrases:["We're going to practise comparatives — I'll say a sentence, you transform it.","This is a substitution drill — listen, then give the comparative form.","Quick drill — I say the base, you give the comparative."]},
+        {label:'Modelling',phrases:["Watch — I'll show you first.","For example: 'This book is long' becomes 'This book is longer than that one.'","Notice we add -er to short adjectives.","Let's try one together first."]},
+        {label:'ICQ language',phrases:["What do you do when I say the base sentence?","Do you change the whole sentence or just the adjective?","Are we writing or saying the answer?"]}
+      ],
+      steps:[
+        {id:'introduce',type:'must',format:'mcq_choice',title:'Introduce the task',
+         situation:'The class is settled after the goal-setting. Nick is watching you. Paul has his pen ready. Which opening best introduces this drill to Grade 7 students?',
+         choices:[
+           {text:'Now we\'re going to drill comparative adjectives.',verdict:false,why:'Names the grammar, not what students will do. No procedure, no purpose.'},
+           {text:'We\'re going to practise comparatives — I\'ll say a sentence, you transform it. Quick and together.',verdict:true,why:'Names the activity, describes the procedure, signals the pace and format. Students know what to do.'},
+           {text:'Open your books to page 34 and do exercise 2.',verdict:false,why:'Task without introduction — students don\'t know what kind of exercise or why they\'re doing it.'}
+         ]
+        },
+        {id:'sequence',type:'must',format:'drag_order',title:'Give sequenced instructions',
+         situation:'Put these instruction sentences in the order a student would follow them.',
+         items:[
+           {text:'Listen to my sentence.',order:1,why:'First — students need to receive the input before they can do anything.'},
+           {text:'Change the adjective to the comparative form.',order:2,why:'Second — the transformation step. Students know what operation to perform.'},
+           {text:'Say your answer aloud.',order:3,why:'Third — the output. Students know the format (spoken, not written).'},
+           {text:'We\'ll do the first one together — then I\'ll call on individuals.',order:4,why:'Fourth — sets the participation structure. Reduces anxiety about being called on unprepared.'},
+           {text:'Ready? Let\'s try one.',order:5,why:'Fifth — the start signal. Only after everything else is clear.'}
+         ]
+        },
+        {id:'model',type:'must',format:'written',hasVoice:true,title:'Model the drill',
+         situation:'You\'re about to start the drill. Nick is watching, Paul has his pen ready. Model the complete drill cycle — say the base sentence, give the model answer, briefly explain the rule, and add one coaching note. Write exactly what you would say.',
+         goal:'Students see the full cycle: base sentence → transformation → model answer ("This book is long → This book is longer than that one") + rule reminder ("we add -er to short adjectives") + coaching note. They know exactly what to produce.',
+         criteria:['Base sentence stated clearly','Model answer produced in full','Rule briefly reminded','Coaching language present','Register warm and confident']
+        },
+        {id:'icq',type:'must',format:'icq_pick',title:'Check understanding with ICQs',
+         situation:'Choose the 2 most effective ICQs for this drill from the five below.',
+         icqItems:[
+           {q:'Does everyone understand?',good:false,why:'Social question — students say yes regardless. No comprehension demonstrated.'},
+           {q:'What do you do when I say the base sentence?',good:true,why:'Asks students to describe the procedure — genuine demonstration of understanding.'},
+           {q:'Is this exercise easy or hard?',good:false,why:'Emotional check, not a comprehension check. Doesn\'t reveal whether they know what to do.'},
+           {q:'Do you change the whole sentence or just the adjective?',good:true,why:'Targets the exact point most likely to be misunderstood. Specific and answerable.'},
+           {q:'Are you ready to start?',good:false,why:'Rhetorical — not a comprehension question at all.'}
+         ],
+         writtenPrompt:'Now write one ICQ of your own for this drill.',
+         writtenGoal:'Is it closed? Does it target the procedure — not the content or the student\'s feelings?'
+        },
+        {id:'start',type:'must',format:'quick',title:'Give the start signal',
+         situation:'Everything is clear. The class is ready. Give the start signal — make it clear and energising for a fast-paced drill.',
+         goal:'Students start immediately. The signal is in English, warm, and confident — not a question.',
+         criteria:['English only','Register warm and confident','Clear signal not a question']
+        }
+      ],
+      optSteps:[
+        {id:'paul_starts',type:'opt',title:'Paul starts before you finish',desc:'Paul has already started calling out answers while you\'re still explaining.',
+         situation:'You\'re on step 3 of your instructions. Paul shouts "longer!" at something you said. Three students laugh.',
+         goal:'Paul stops and listens. The class refocuses. The instruction continues without loss of momentum.',
+         criteria:['Calm warm response','Redirects without embarrassing','Instruction continues']},
+        {id:'write_or_say',type:'opt',title:'Student asks: write or say?',desc:'A student asks "Do we write this down or just say it?"',
+         situation:'After your instructions, a student raises their hand: "Do we write this down or just say it?"',
+         goal:'The question is answered clearly and warmly. One sentence. The class moves on.',
+         criteria:['Clear direct answer','Warm not impatient','No disruption to momentum']}
+      ],
+      bonusStep:{id:'bonus',type:'bonus',title:'Student answers ICQ incorrectly',
+        desc:'Nick says: "I write the adjective in the comparative form?" He\'s understood the grammar but missed that this is a spoken oral drill. Re-explain in different words without embarrassing him.',
+        situation:'Nick answers your ICQ: "I write the adjective?" The class is watching.',
+        goal:'Nick understands the spoken format. He is not embarrassed. Your re-explanation uses different words and a new angle — not a repetition.',
+        criteria:['Acknowledge without embarrassing','Re-explanation uses different words','New angle or example','Follow-up ICQ confirms understanding']
+      },
+      achievementId:'a6', xp:90
+    },
+    {
+      id:'t2',
+      title:'Reading exercise',
+      desc:'Heading-matching task — Grade 8',
+      grade:'Grade 8',taskType:'Reading',topic:'News and current events',
+      criteria:['Instruction clarity','Sequencing','Modelling quality','ICQ quality','Register & transition'],
+      clicheGroups:[
+        {label:'Introducing reading tasks',phrases:["We're going to read a short article and match headings to paragraphs.","Your task is to find the main idea of each paragraph.","Don't read every word — skim for the key topic.","This is a heading-matching task — each heading summarises one paragraph."]},
+        {label:'Modelling skimming',phrases:["Watch how I skim this paragraph.","I'm looking at the first and last sentence — not every word.","The key word here is… so the heading must be about…","I'm ignoring words I don't know — I'm looking for the topic."]},
+        {label:'ICQ language',phrases:["Are you going to read every word, or skim for the main idea?","What do you do when you've finished matching?","How long do you have?","Are you working alone or with a partner?"]}
+      ],
+      steps:[
+        {id:'introduce',type:'must',format:'mcq_choice',title:'Introduce the task',
+         situation:'Students have their books closed. They\'ve never done heading-matching before. Which opening best introduces this task?',
+         choices:[
+           {text:'Read the text on page 67 and match the headings.',verdict:false,why:'Task without context — no explanation of what heading-matching means or how to approach it.'},
+           {text:'We\'re going to read a short newspaper article. Your job is to match five headings to five paragraphs — each heading summarises one paragraph\'s main idea.',verdict:true,why:'Names the text type, explains what heading-matching means, states the goal. Students know what they\'re doing.'},
+           {text:'This is a reading comprehension exercise. Read carefully and answer.',verdict:false,why:'Vague — doesn\'t describe the task type, the strategy, or the expected output.'}
+         ]
+        },
+        {id:'sequence',type:'must',format:'drag_order',title:'Give sequenced instructions',
+         situation:'Put these instruction sentences in the order a student would follow them.',
+         items:[
+           {text:'Open your books to page 67 — look at the article and the five headings in the box.',order:1,why:'First — students need to see what they\'re working with before they hear the procedure.'},
+           {text:'Don\'t read every word — skim each paragraph for the main idea.',order:2,why:'Second — the strategy instruction. This is the most important step for this task type.'},
+           {text:'Match each heading to the paragraph it best summarises.',order:3,why:'Third — the actual task. Now they know the strategy, they can apply it.'},
+           {text:'You have six minutes. Work individually.',order:4,why:'Fourth — time limit and working format. Students know the parameters.'},
+           {text:'When you finish, compare your answers with your partner.',order:5,why:'Fifth — what to do after. A clear next step prevents students sitting idle.'}
+         ]
+        },
+        {id:'model',type:'must',format:'written',hasVoice:true,title:'Model skimming one paragraph',
+         situation:'Students have their books open to page 67. The article is about a teenager who swapped city life for a year on a farm. Paragraph 1 describes his daily routine: waking at 5am, feeding animals, working until dusk. The heading options include: "A new daily rhythm", "Learning the hard way", "Missing the city". Model skimming paragraph 1 — show your thinking aloud, identify the key topic, and select the matching heading.',
+         goal:'Students understand what skimming is and how to do it — not just that they should do it. They see: look at first and last sentence, identify key topic noun, ignore unknown words, match to heading. Students leave the model knowing the strategy, not just the answer.',
+         criteria:['Strategy named explicitly (skimming)','First and last sentence checked','Key topic noun identified','Reasoning for heading choice explained','Speed is realistic — not too slow, not too fast']
+        },
+        {id:'icq',type:'must',format:'icq_pick',title:'Check understanding with ICQs',
+         situation:'Choose the 2 most effective ICQs for this reading task from the five below.',
+         icqItems:[
+           {q:'Is everyone ready?',good:false,why:'Rhetorical — not a comprehension question. Reveals nothing about understanding.'},
+           {q:'Are you going to read every word, or are you looking for the main idea?',good:true,why:'Targets the exact strategy — distinguishes the right approach (skimming) from the wrong one (careful reading).'},
+           {q:'Do you like reading?',good:false,why:'Completely off-task — tests attitude, not understanding of the procedure.'},
+           {q:'What do you do when you\'ve finished matching?',good:true,why:'Checks knowledge of the full procedure — students often forget the compare-with-partner step.'},
+           {q:'Which paragraph do you think will be hardest?',good:false,why:'Predictive/opinion question — doesn\'t check procedural understanding at all.'}
+         ],
+         writtenPrompt:'Write one ICQ of your own for this reading task.',
+         writtenGoal:'Is it closed? Does it target the procedure or strategy — not the content of the article?'
+        },
+        {id:'start',type:'must',format:'quick',title:'Give the start signal',
+         situation:'Everything is clear. Give the start signal for an individual silent reading task. This needs a calm, focused tone — different from a drilling or speaking task.',
+         goal:'Students begin quietly. The signal is in English, calm, and focused.',
+         criteria:['English only','Calm register appropriate for silent work','Clear signal']
+        }
+      ],
+      optSteps:[
+        {id:'still_talking',type:'opt',title:'A group is still talking',desc:'When you give the start signal, three students near the window are still mid-conversation.',
+         situation:'You\'ve given the start signal. Most students have started. But three students near the window are still talking.',
+         goal:'The group refocuses without disrupting the students who have started reading.',
+         criteria:['Quiet individual approach','Doesn\'t interrupt the working students','Warm not punitive']},
+        {id:'skip_task',type:'opt',title:'Students ask to skip the task',desc:'"Do we have to read? It\'s hard."',
+         situation:'After your instructions, a student says: "Do we have to read? It\'s hard." Two others nod.',
+         goal:'The challenge is acknowledged genuinely. The task starts. Students feel heard, not dismissed.',
+         criteria:['Acknowledges without dismissing','Reframes rather than insists','Task begins']}
+      ],
+      bonusStep:{id:'bonus',type:'bonus',title:'Student answers ICQ incorrectly',
+        desc:'A student says: "We read carefully and translate everything so we understand." They\'ve understood the topic but missed the skimming strategy. Re-explain clearly — without making them feel wrong about wanting to understand.',
+        situation:'After your ICQ, a student says: "We read carefully and translate everything." The class is listening.',
+        goal:'The student understands why skimming is needed for this task. Your re-explanation validates their instinct (careful reading is usually good) while reframing the purpose of this specific task.',
+        criteria:['Validates the instinct','Reframes rather than corrects harshly','Strategy explained from a new angle','Follow-up ICQ confirms understanding']
+      },
+      achievementId:'a6', xp:90
+    },
+    {
+      id:'t3',
+      title:'Group speaking task',
+      desc:'Role-card lifestyle discussion — Grade 9',
+      grade:'Grade 9',taskType:'Speaking',topic:'Different lifestyles',
+      criteria:['Instruction clarity','Sequencing','Modelling quality','ICQ quality','Register & transition'],
+      clicheGroups:[
+        {label:'Introducing speaking tasks',phrases:["We're going to do a structured group discussion.","Each of you will get a role card — read it, then describe your lifestyle to your group.","Your group needs to agree on something at the end — so listen carefully to each other.","This is a speaking task — use English throughout."]},
+        {label:'Modelling',phrases:["Let me show you what describing a lifestyle sounds like.","I'll model Lifestyle A — watch for how I structure my description.","Notice I cover both facts and feelings — not just what I do, but how it makes me feel.","Keep it to 4–5 sentences — like this."]},
+        {label:'ICQ language',phrases:["What do you do first when you have your role card?","How long do you have to describe your lifestyle?","What does your group need to agree on at the end?","Are you showing your card to your group or keeping it private?"]}
+      ],
+      steps:[
+        {id:'introduce',type:'must',format:'mcq_choice',title:'Introduce the task',
+         situation:'Groups haven\'t formed yet. Tom is looking sceptical. Olya looks curious. Which opening best introduces this group discussion?',
+         choices:[
+           {text:'Get into groups of three and discuss different lifestyles.',verdict:false,why:'No role differentiation, no structure, no outcome. Students don\'t know what "discuss" means here.'},
+           {text:'We\'re going to do a structured group discussion. Each of you will get a role card describing a different lifestyle — your job is to describe it to your group, then agree on which lifestyle you\'d all prefer.',verdict:true,why:'Names the activity type, explains the role structure, states the outcome. Students know what they\'re doing and what they\'re producing.'},
+           {text:'This is a speaking activity. Talk about lifestyles for five minutes.',verdict:false,why:'Time limit without structure — no roles, no procedure, no outcome. Paul will talk for five minutes. Everyone else will wait.'}
+         ]
+        },
+        {id:'sequence',type:'must',format:'drag_order',title:'Give sequenced instructions',
+         situation:'Put these instruction sentences in the order a student would follow them.',
+         items:[
+           {text:'Get into groups of three — I\'ll tell you who\'s in each group.',order:1,why:'First — groups need to form before anything else can happen.'},
+           {text:'Each person takes one role card: Lifestyle A, B, or C.',order:2,why:'Second — students get their individual roles before reading.'},
+           {text:'Read your card for one minute — don\'t show it to your group.',order:3,why:'Third — preparation time. The "don\'t show" instruction creates the information gap.'},
+           {text:'Take turns to describe your lifestyle. You each have about two minutes.',order:4,why:'Fourth — the speaking task itself, with a time frame per student.'},
+           {text:'When everyone has shared, your group decides which lifestyle you\'d prefer — and gives two reasons.',order:5,why:'Fifth — the group outcome. Students know what they\'re working towards throughout.'}
+         ]
+        },
+        {id:'model',type:'must',format:'written',hasVoice:true,title:'Model describing a lifestyle',
+         situation:'Groups have formed. Students have their role cards. Before they start, model Lifestyle A — write exactly what you would say aloud as a student describing it to their group.\n\n📄 Lifestyle A — Urban minimalist: You live alone in a small flat in the city centre. You walk to work, cook simple meals, own very few things. You spend free time at galleries, parks, and coffee shops. No car, no TV. You feel free and focused, but sometimes lonely.',
+         goal:'Students hear a complete model (4–5 sentences, facts AND feelings). They understand the structure: describe what you do → describe how you feel. They leave the model knowing the expected length, vocabulary level, and format — not just the content of one card.',
+         criteria:['4–5 sentences covering facts AND feelings','Vocabulary accessible for Grade 9','Names what made it a complete description','Realistic pace — not reading word for word','Signals students should do the same with their own card']
+        },
+        {id:'icq',type:'must',format:'icq_pick',title:'Check understanding with ICQs',
+         situation:'Choose the 2 most effective ICQs for this group speaking task from the five below.',
+         icqItems:[
+           {q:'Do you understand?',good:false,why:'Social question — students say yes regardless of actual understanding.'},
+           {q:'What do you do first when you have your role card?',good:true,why:'Checks the opening procedure — the step most likely to cause confusion (read alone vs. share immediately).'},
+           {q:'Is this activity fun?',good:false,why:'Opinion question — completely off-task. Reveals nothing about procedural understanding.'},
+           {q:'What does your group need to agree on at the end?',good:true,why:'Checks knowledge of the outcome — students often start speaking without knowing what they\'re working towards.'},
+           {q:'Which lifestyle do you think is best?',good:false,why:'This is the task itself — asking it as an ICQ skips the procedure and jumps straight to the content.'}
+         ],
+         writtenPrompt:'Write one ICQ of your own for this group speaking task.',
+         writtenGoal:'Is it closed? Does it check a procedure or outcome — not content opinion or general readiness?'
+        },
+        {id:'start',type:'must',format:'quick',title:'Give the start signal',
+         situation:'Everything is clear. Groups are ready. Give the start signal for a group speaking task — energising and social.',
+         goal:'Groups start immediately. The signal is in English, warm, and energising — higher energy than a reading task.',
+         criteria:['English only','Register energising and warm','Clear signal to begin']
+        }
+      ],
+      optSteps:[
+        {id:'paul_early',type:'opt',title:'Paul starts before groups are formed',desc:'Paul has already started talking to his neighbour about lifestyles before you\'ve finished the instructions.',
+         situation:'You\'re mid-instruction. Paul turns to his neighbour and starts: "I think city life is better because—"',
+         goal:'Paul pauses. Groups form correctly. The instruction completes.',
+         criteria:['Warm redirect','Doesn\'t embarrass Paul','Instruction continues']},
+        {id:'tom_refusal',type:'opt',title:'Tom says: this is pointless',desc:'"I don\'t want to do this."',
+         situation:'After your instructions, Tom says quietly but clearly: "This is pointless. I don\'t want to do this." Olya is watching to see what you do.',
+         goal:'Tom\'s resistance is acknowledged genuinely — not dismissed, not escalated. The task begins.',
+         criteria:['Acknowledges without dismissing','Doesn\'t escalate or confront publicly','Task begins for the rest of the class']},
+        {id:'group_not_listening',type:'opt',title:'A group of three is not listening',desc:'Three students in the back haven\'t been following your instructions at all.',
+         situation:'You finish your instructions. A group of three students near the back look confused — they clearly weren\'t listening. They ask each other what they\'re supposed to do.',
+         goal:'The group is redirected efficiently. You don\'t repeat the full instruction to the whole class.',
+         criteria:['Addresses the group individually','Brief and clear re-explanation','Doesn\'t penalise or embarrass']}
+      ],
+      bonusStep:{id:'bonus',type:'bonus',title:'Student answers ICQ incorrectly',
+        desc:'Tom says: "Wait, so we all talk about the same lifestyle?" He\'s missed the role differentiation — the core structural feature.',
+        situation:'After your ICQ, Tom says: "So we all talk about the same lifestyle?" The class is watching.',
+        goal:'Tom understands the role differentiation. Your re-explanation is clear and visual — perhaps using your hands or naming the three roles explicitly. He is not embarrassed.',
+        criteria:['Clear re-explanation of roles','Uses a different approach — visual/naming/example','Tom\'s dignity preserved','Follow-up ICQ confirms understanding']
+      },
+      achievementId:'a6', xp:90
+    }
+  ],
+  reflectQs:[
+    {score:[0,99],q:'Что произойдёт с уроком, если инструкция окажется непонятной — и как вы это исправите?'},
+    {score:[0,99],q:'Как изменится ваша инструкция, если в классе есть ученики с разным уровнем языка?'}
+  ],
+  achievementId:'a6', xp:90
+};
+
+// S6 interactive step data
+const S6_DRAG_ORDERS = {
+  t1:{items:['Listen to my sentence.','Change the adjective to the comparative form.','Say your answer aloud.','We\'ll do the first one together — then I\'ll call on individuals.','Ready? Let\'s try one.']},
+  t2:{items:['Open your books to page 67 — look at the article and the five headings in the box.','Don\'t read every word — skim each paragraph for the main idea.','Match each heading to the paragraph it best summarises.','You have six minutes. Work individually.','When you finish, compare your answers with your partner.']},
+  t3:{items:['Get into groups of three — I\'ll tell you who\'s in each group.','Each person takes one role card: Lifestyle A, B, or C.','Read your card for one minute — don\'t show it to your group.','Take turns to describe your lifestyle. You each have about two minutes.','When everyone has shared, your group decides which lifestyle you\'d prefer — and gives two reasons.']}
+};
+
 function openScenario(id) {
   const sc = SCENARIO_DATA[id]; if (!sc) return;
   S.cur=id; S.mcqPhase=0; S.curTactic=null; S.curStepIdx=0; S.curSteps=[]; S.runningScore=0; S.runningMax=0; S.curStepScores=[];
@@ -2710,9 +3022,11 @@ function renderTacticChoice(wrap, sc) {
 function startTactic(tactic) {
   S.curTactic=tactic; S.runningScore=0; S.runningMax=0; S.curStepScores=[];
   const must=[...tactic.steps];
-  const pool=[...tactic.optSteps]; const nOpt=Math.floor(Math.random()*2)+1;
-  const selected=pool.sort(()=>0.5-Math.random()).slice(0,Math.min(nOpt,pool.length));
-  S.curSteps=[...must.slice(0,2),...selected,...must.slice(2)];
+  const pool=[...(tactic.optSteps||[])]; const nOpt=Math.min(Math.floor(Math.random()*2)+1,pool.length);
+  const selected=pool.sort(()=>0.5-Math.random()).slice(0,nOpt);
+  // Insert optional steps between step index 2 and 3 (after model, before ICQ)
+  const insertAt=Math.min(3,must.length);
+  S.curSteps=[...must.slice(0,insertAt),...selected,...must.slice(insertAt)];
   S.curStepIdx=0; renderScenarioPhase('step');
 }
 
@@ -2720,6 +3034,11 @@ function renderStepPhase(wrap) {
   const step=S.curSteps[S.curStepIdx];
   // Special case: sorting task step
   if(step.situation==='SORTING_TASK'){renderRegisterSort(wrap);return;}
+  // S6 interactive formats
+  if(step.format==='mcq_choice'){renderStepMCQChoice(wrap,step);return;}
+  if(step.format==='drag_order'){renderStepDragOrder(wrap,step);return;}
+  if(step.format==='icq_pick'){renderStepICQPick(wrap,step);return;}
+  if(step.format==='quick'){renderStepQuick(wrap,step);return;}
   const tactic=S.curTactic;
   const pct=Math.round((S.curStepIdx/S.curSteps.length)*100);
   const progDiv=document.createElement('div'); progDiv.className='progress-track-wrap';
@@ -2851,8 +3170,270 @@ function renderRegisterSort(wrap) {
   });
 }
 
-function buildSupportPanel(clicheGroups) {
-  const sup=document.createElement('div'); sup.className='support-panel';
+// ═══════════════════════════════════════
+// S6 INTERACTIVE STEP RENDERERS
+// ═══════════════════════════════════════
+
+function s6StepHeader(wrap, step, tacticTitle) {
+  const pct=Math.round((S.curStepIdx/S.curSteps.length)*100);
+  const prog=document.createElement('div'); prog.className='progress-track-wrap';
+  prog.innerHTML=`<div class="progress-track-meta"><span>${tacticTitle}</span><span>Step ${S.curStepIdx+1} / ${S.curSteps.length}</span></div><div class="progress-track"><div class="progress-fill" style="width:${pct}%"></div></div>`;
+  wrap.appendChild(prog);
+  const infoStrip=document.createElement('div');
+  infoStrip.style.cssText='display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px';
+  const t=S.curTactic;
+  if(t.grade)infoStrip.innerHTML+=`<span style="background:var(--terra-light);color:var(--terra-dark);border-radius:20px;padding:3px 10px;font-size:11px;font-weight:600">${t.grade}</span>`;
+  if(t.taskType)infoStrip.innerHTML+=`<span style="background:var(--sage-light);color:var(--sage);border-radius:20px;padding:3px 10px;font-size:11px;font-weight:600">${t.taskType}</span>`;
+  if(t.topic)infoStrip.innerHTML+=`<span style="background:var(--cream-deep);color:var(--ink-muted);border-radius:20px;padding:3px 10px;font-size:11px;font-weight:600">${t.topic}</span>`;
+  if(infoStrip.innerHTML)wrap.appendChild(infoStrip);
+}
+
+function s6AdvanceStep() {
+  S.curStepIdx++;
+  if(S.curStepIdx<S.curSteps.length) renderScenarioPhase('step');
+  else renderScenarioPhase('tactic_result');
+}
+
+// Step format: MCQ choice — pick best introduction
+function renderStepMCQChoice(wrap, step) {
+  s6StepHeader(wrap,step,S.curTactic.title);
+  const card=document.createElement('div'); card.className='step-card';
+  card.innerHTML=`
+    <div class="step-head"><span class="step-badge must-b">MUST</span><span class="step-title">${step.title}</span></div>
+    <div class="step-desc" style="margin-bottom:.8rem">${step.situation}</div>`;
+  wrap.appendChild(card);
+  let chosen=null, answered=false;
+  step.choices.forEach((c,i)=>{
+    const btn=document.createElement('div');
+    btn.style.cssText='background:var(--white);border:1.5px solid var(--border);border-radius:var(--r-md);padding:.85rem 1rem;cursor:pointer;margin-bottom:8px;transition:all .2s';
+    btn.innerHTML=`<div style="font-size:13px;color:var(--ink-soft);line-height:1.6">${String.fromCharCode(65+i)}) "${c.text}"</div>`;
+    btn.addEventListener('click',()=>{
+      if(answered)return;
+      wrap.querySelectorAll('[data-choice]').forEach(b=>{b.style.borderColor='var(--border)';b.style.background='var(--white)';});
+      btn.style.borderColor='var(--terra)';btn.style.background='var(--terra-light)';
+      chosen=i;
+      document.getElementById('choice-submit').disabled=false;
+    });
+    btn.dataset.choice=i;
+    wrap.appendChild(btn);
+  });
+  const submitBtn=document.createElement('button'); submitBtn.id='choice-submit'; submitBtn.className='sub-btn'; submitBtn.textContent='Submit my choice'; submitBtn.disabled=true;
+  wrap.appendChild(submitBtn);
+  submitBtn.addEventListener('click',()=>{
+    if(chosen===null)return;
+    answered=true; submitBtn.style.display='none';
+    const c=step.choices[chosen];
+    wrap.querySelectorAll('[data-choice]').forEach((b,i)=>{
+      const ch=step.choices[i];
+      if(ch.verdict){b.style.borderColor='var(--sage)';b.style.background='var(--sage-light)';}
+      else if(i===chosen){b.style.borderColor='#C5221F';b.style.background='#FEF0EE';}
+      else{b.style.opacity='.45';}
+      const why=document.createElement('div');
+      why.style.cssText=`font-size:11px;margin-top:5px;color:${ch.verdict?'var(--sage)':'#7A2020'}`;
+      why.textContent=(ch.verdict?'✓ ':'✗ ')+ch.why;
+      b.appendChild(why);
+    });
+    S.runningScore+=c.verdict?2:1; S.runningMax+=2;
+    const nxt=document.createElement('button');nxt.className='nxt-btn';nxt.style.marginTop='.8rem';
+    nxt.textContent='Next step →';
+    nxt.addEventListener('click',s6AdvanceStep);
+    wrap.appendChild(nxt);
+  });
+}
+
+// Step format: drag-to-order
+function renderStepDragOrder(wrap, step) {
+  s6StepHeader(wrap,step,S.curTactic.title);
+  const card=document.createElement('div'); card.className='step-card';
+  card.innerHTML=`<div class="step-head"><span class="step-badge must-b">MUST</span><span class="step-title">${step.title}</span></div>
+    <div class="step-desc" style="margin-bottom:.8rem">${step.situation}</div>`;
+  wrap.appendChild(card);
+  let attempts=0;
+  const correctOrder=step.items.map((_,i)=>i);
+  let shuffled=[...step.items.map((text,i)=>({text,order:i}))].sort(()=>Math.random()-.5);
+  let currentOrder=[...shuffled];
+
+  const listEl=document.createElement('div'); listEl.id='drag-list'; listEl.style.cssText='display:flex;flex-direction:column;gap:6px;margin-bottom:10px;user-select:none';
+  function renderList(){
+    listEl.innerHTML='';
+    currentOrder.forEach((item,pos)=>{
+      const d=document.createElement('div');
+      d.style.cssText='background:var(--white);border:1.5px solid var(--border);border-radius:var(--r-md);padding:.75rem 1rem;display:flex;align-items:center;gap:10px;cursor:grab;transition:all .2s';
+      d.draggable=true;
+      d.dataset.pos=pos;
+      d.innerHTML=`<span style="width:22px;height:22px;border-radius:50%;background:var(--terra-light);color:var(--terra-dark);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">${pos+1}</span><span style="font-size:13px;color:var(--ink-soft)">${item.text}</span>`;
+      d.addEventListener('dragstart',e=>{e.dataTransfer.setData('text',pos);d.style.opacity='.5';});
+      d.addEventListener('dragend',()=>{d.style.opacity='1';});
+      d.addEventListener('dragover',e=>{e.preventDefault();d.style.borderColor='var(--terra)';});
+      d.addEventListener('dragleave',()=>{d.style.borderColor='var(--border)';});
+      d.addEventListener('drop',e=>{
+        e.preventDefault();d.style.borderColor='var(--border)';
+        const from=parseInt(e.dataTransfer.getData('text'));
+        const to=parseInt(d.dataset.pos);
+        const temp=currentOrder[from];currentOrder[from]=currentOrder[to];currentOrder[to]=temp;
+        renderList();
+      });
+      listEl.appendChild(d);
+    });
+  }
+  renderList();
+  wrap.appendChild(listEl);
+  const checkBtn=document.createElement('button'); checkBtn.className='sub-btn'; checkBtn.textContent='Check order';
+  wrap.appendChild(checkBtn);
+  const feedback=document.createElement('div'); feedback.style.display='none'; wrap.appendChild(feedback);
+  checkBtn.addEventListener('click',()=>{
+    attempts++;
+    const isCorrect=currentOrder.every((item,i)=>item.order===i);
+    if(isCorrect||(attempts>=2)){
+      checkBtn.style.display='none';
+      if(!isCorrect){
+        currentOrder=[...step.items.map((text,i)=>({text,order:i}))];renderList();
+        listEl.querySelectorAll('div').forEach(d=>d.style.pointerEvents='none');
+      }
+      feedback.style.display='block';
+      feedback.innerHTML=`<div style="background:${isCorrect?'var(--sage-light)':'var(--terra-light)'};border:1px solid ${isCorrect?'#C0DD97':'var(--border)'};border-radius:var(--r-md);padding:.8rem 1rem;margin-bottom:10px">
+        <div style="font-size:12px;font-weight:700;color:${isCorrect?'var(--sage)':'var(--terra-dark)'};margin-bottom:.5rem">${isCorrect?'✓ Correct order!':'Here\'s the correct order — and why it works:'}</div>
+        ${step.items.map((text,i)=>`<div style="display:flex;gap:8px;margin-bottom:5px;font-size:12px"><span style="color:var(--terra);font-weight:700;flex-shrink:0">${i+1}.</span><div><div style="color:var(--ink-soft)">${text}</div><div style="color:var(--ink-muted);font-style:italic">${step.items[i]&&step.items.find((_,j)=>j===i)? step.items[i].why||'' : ''}</div></div></div>`).join('')}
+      </div>`;
+      // Build correct explanations from original data
+      feedback.innerHTML=`<div style="background:${isCorrect?'var(--sage-light)':'var(--terra-light)'};border:1px solid ${isCorrect?'#C0DD97':'var(--border)'};border-radius:var(--r-md);padding:.8rem 1rem;margin-bottom:10px">
+        <div style="font-size:12px;font-weight:700;color:${isCorrect?'var(--sage)':'var(--terra-dark)'};margin-bottom:.5rem">${isCorrect?'✓ Correct order!':'Here\'s the correct order:'}</div>
+        ${step.items.map((item,i)=>`<div style="display:flex;gap:8px;margin-bottom:6px;font-size:12px"><span style="color:var(--terra);font-weight:700;flex-shrink:0;min-width:16px">${i+1}.</span><div><div style="color:var(--ink-soft);margin-bottom:2px">"${item.text}"</div><div style="color:var(--ink-muted);font-style:italic">${item.why||''}</div></div></div>`).join('')}
+      </div>`;
+      S.runningScore+=isCorrect?2:1; S.runningMax+=2;
+      const nxt=document.createElement('button');nxt.className='nxt-btn';nxt.textContent='Next step →';
+      nxt.addEventListener('click',s6AdvanceStep);
+      feedback.appendChild(nxt);
+    } else {
+      // First failed attempt
+      feedback.style.display='block';
+      feedback.innerHTML=`<div style="background:var(--terra-light);border:1px solid var(--border);border-radius:var(--r-md);padding:.75rem 1rem;margin-bottom:8px;font-size:12px;color:var(--terra-dark)">Not quite — think about what students need to know before they can follow the next step. You have one more attempt.</div>`;
+    }
+  });
+}
+
+// Step format: ICQ pick (2 of 5) + write one own
+function renderStepICQPick(wrap, step) {
+  s6StepHeader(wrap,step,S.curTactic.title);
+  const card=document.createElement('div'); card.className='step-card';
+  card.innerHTML=`<div class="step-head"><span class="step-badge must-b">MUST</span><span class="step-title">${step.title}</span></div>
+    <div class="step-desc" style="margin-bottom:.8rem">${step.situation}</div>`;
+  wrap.appendChild(card);
+  const selected=new Set(); let submitted=false;
+  step.icqItems.forEach((item,i)=>{
+    const d=document.createElement('div');
+    d.style.cssText='background:var(--white);border:1.5px solid var(--border);border-radius:var(--r-md);padding:.8rem 1rem;cursor:pointer;margin-bottom:7px;transition:all .2s';
+    d.dataset.idx=i;
+    d.innerHTML=`<div style="font-size:13px;color:var(--ink-soft)">"${item.q}"</div>`;
+    d.addEventListener('click',()=>{
+      if(submitted)return;
+      if(selected.has(i)){selected.delete(i);d.style.borderColor='var(--border)';d.style.background='var(--white)';}
+      else if(selected.size<2){selected.add(i);d.style.borderColor='var(--terra)';d.style.background='var(--terra-light)';}
+      document.getElementById('icq-submit').disabled=selected.size!==2;
+    });
+    wrap.appendChild(d);
+  });
+  const subBtn=document.createElement('button');subBtn.id='icq-submit';subBtn.className='sub-btn';subBtn.textContent='Submit my 2 ICQs';subBtn.disabled=true;
+  wrap.appendChild(subBtn);
+  subBtn.addEventListener('click',()=>{
+    submitted=true;subBtn.style.display='none';
+    step.icqItems.forEach((item,i)=>{
+      const d=wrap.querySelector(`[data-idx="${i}"]`);
+      if(item.good){d.style.borderColor='var(--sage)';d.style.background='var(--sage-light)';}
+      else if(selected.has(i)){d.style.borderColor='#C5221F';d.style.background='#FEF0EE';}
+      else{d.style.opacity='.5';}
+      const why=document.createElement('div');
+      why.style.cssText=`font-size:11px;margin-top:4px;color:${item.good?'var(--sage)':'#7A2020'}`;
+      why.textContent=(item.good?'✓ ':'✗ ')+item.why;
+      d.appendChild(why);
+    });
+    const correct=[...selected].filter(i=>step.icqItems[i].good).length;
+    S.runningScore+=correct; S.runningMax+=2;
+    // Written ICQ
+    const writtenCard=document.createElement('div');writtenCard.className='step-card';
+    writtenCard.style.marginTop='10px';
+    writtenCard.innerHTML=`<div class="step-head"><span class="step-badge must-b">WRITE YOUR OWN</span></div>
+    <div class="step-desc" style="margin-bottom:.6rem">${step.writtenPrompt}</div>
+    <div style="font-size:11px;color:var(--ink-muted);margin-bottom:.6rem;font-style:italic">${step.writtenGoal}</div>
+    <textarea class="resp-ta" id="icq-ta" placeholder="Write your ICQ here..." style="min-height:55px"></textarea>`;
+    wrap.appendChild(writtenCard);
+    const wSubBtn=document.createElement('button');wSubBtn.className='sub-btn';wSubBtn.style.marginTop='6px';wSubBtn.textContent='Submit ICQ';
+    const wSpinRow=document.createElement('div');wSpinRow.className='spin-row';wSpinRow.innerHTML='<div class="spin"></div>Checking…';
+    wrap.appendChild(wSubBtn);wrap.appendChild(wSpinRow);
+    const wFb=document.createElement('div');wFb.style.display='none';wrap.appendChild(wFb);
+    wSubBtn.addEventListener('click',async()=>{
+      const resp=document.getElementById('icq-ta').value.trim();
+      if(resp.length<5){alert('Write your ICQ first.');return;}
+      wSubBtn.disabled=true;wSpinRow.className='spin-row on';
+      try{
+        const res=await fetch('/api/assess',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+          response:resp,
+          situation:`This is an ICQ (instruction checking question) for: ${step.writtenGoal}`,
+          goal:'Write a closed ICQ that targets procedure or strategy — not content opinion or general readiness.',
+          criteria:['Closed question','Targets procedure or strategy','Specific and answerable'],
+          moduleId:'s6_icq'
+        })});
+        const p=await res.json();
+        wSpinRow.className='spin-row';wSubBtn.style.display='none';
+        if(p.inappropriate){wFb.style.display='block';wFb.innerHTML='<div style="color:#C5221F;font-size:12px">Please rewrite your ICQ.</div>';wSubBtn.disabled=false;return;}
+        wFb.style.display='block';
+        const avg=p.scores?.reduce((a,s)=>a+s.score,0)/p.scores?.length||3;
+        const col=avg>=4?'var(--sage)':avg>=3?'#C8A020':'#C5221F';
+        wFb.innerHTML=`<div style="background:var(--sage-light);border:1px solid #C0DD97;border-radius:var(--r-md);padding:.8rem 1rem;font-size:12px;color:var(--sage)">${p.coachNote||p.highlight||'Good ICQ.'}</div>`;
+        S.runningScore+=avg>=4?2:avg>=3?1:0; S.runningMax+=2;
+      }catch(e){wSpinRow.className='spin-row';wSubBtn.disabled=false;}
+      const nxt=document.createElement('button');nxt.className='nxt-btn';nxt.style.marginTop='.8rem';
+      nxt.textContent='Next step →';
+      nxt.addEventListener('click',s6AdvanceStep);
+      wFb.appendChild(nxt);
+    });
+  });
+}
+
+// Step format: quick one-line response
+function renderStepQuick(wrap, step) {
+  s6StepHeader(wrap,step,S.curTactic.title);
+  const card=document.createElement('div'); card.className='step-card';
+  card.innerHTML=`<div class="step-head"><span class="step-badge must-b">MUST</span><span class="step-title">${step.title}</span></div>
+    <div class="step-sit-lbl">The situation</div>
+    <div class="step-sit">${step.situation}</div>
+    <div style="font-size:11px;color:var(--ink-muted);margin-bottom:.5rem">${step.goal}</div>
+    <div class="english-notice" style="margin-bottom:8px">🇬🇧 One sentence — write in English</div>
+    <textarea class="resp-ta" id="quick-ta" placeholder="Write your start signal..." style="min-height:50px"></textarea>`;
+  wrap.appendChild(card);
+  const subBtn=document.createElement('button');subBtn.className='sub-btn';subBtn.style.marginTop='6px';subBtn.textContent='Submit';
+  const spinRow=document.createElement('div');spinRow.className='spin-row';spinRow.innerHTML='<div class="spin"></div>Checking…';
+  wrap.appendChild(subBtn);wrap.appendChild(spinRow);
+  const fbDiv=document.createElement('div');fbDiv.style.display='none';wrap.appendChild(fbDiv);
+  subBtn.addEventListener('click',async()=>{
+    const resp=document.getElementById('quick-ta').value.trim();
+    if(resp.length<2){alert('Write your start signal first.');return;}
+    subBtn.disabled=true;spinRow.className='spin-row on';
+    try{
+      const res=await fetch('/api/assess',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+        response:resp,
+        situation:step.situation,
+        goal:step.goal,
+        criteria:step.criteria||['English only','Clear signal','Appropriate register'],
+        moduleId:'s6_quick'
+      })});
+      const p=await res.json();
+      spinRow.className='spin-row';subBtn.style.display='none';
+      if(p.inappropriate){fbDiv.style.display='block';fbDiv.innerHTML='<div style="color:#C5221F;font-size:12px;padding:.5rem">Please rewrite your response.</div>';subBtn.disabled=false;return;}
+      fbDiv.style.display='block';
+      const avg=p.scores?.reduce((a,s)=>a+s.score,0)/p.scores?.length||3;
+      fbDiv.innerHTML=`<div style="background:var(--cream);border:1px solid var(--border);border-radius:var(--r-md);padding:.8rem 1rem;font-size:12px;color:var(--ink-soft)">${p.coachNote||p.highlight||'Good start signal.'}</div>`;
+      S.runningScore+=Math.round(avg); S.runningMax+=5;
+    }catch(e){spinRow.className='spin-row';subBtn.disabled=false;}
+    const nxt=document.createElement('button');nxt.className='nxt-btn';nxt.style.marginTop='.8rem';
+    nxt.textContent=S.curStepIdx<S.curSteps.length-1?'Next step →':'See results →';
+    nxt.addEventListener('click',s6AdvanceStep);
+    fbDiv.appendChild(nxt);
+  });
+}
+
+
+function buildSupportPanel(clicheGroups) {  const sup=document.createElement('div'); sup.className='support-panel';
   const hdr=document.createElement('div'); hdr.className='support-hdr';
   hdr.innerHTML='<div class="support-hdr-l">💡 Helpful phrases — click to insert</div><span class="support-tog">▾ Show</span>';
   const body=document.createElement('div'); body.className='support-body';
@@ -3457,6 +4038,11 @@ const COMPETENCES = {
     {name:'Register awareness',desc:'Choosing the right register for each classroom moment'},
     {name:'Classroom language repertoire',desc:'Using accurate, varied English to manage the class'},
     {name:'Affective-communicative',desc:'Maintaining a positive atmosphere through language choices'}
+  ],
+  s6: [
+    {name:'Instruction design',desc:'Structuring clear, sequenced instructions students can follow'},
+    {name:'Modelling competence',desc:'Making the thinking process visible through demonstration'},
+    {name:'Comprehension checking',desc:'Using ICQs to verify understanding before students start'}
   ]
 };
 
