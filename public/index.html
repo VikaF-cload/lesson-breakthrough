@@ -1457,7 +1457,8 @@ const ACHIEVEMENTS = [
   { id: 'a3', icon: '🔑', title: 'Every Lesson a New Beginning', desc: 'Completed Scenario 3 — Making contact at the start of the lesson', scenario: 'S3' },
   { id: 'a4', icon: '🎯', title: 'Clear Destination', desc: 'Completed Scenario 4 — Setting the lesson goals', scenario: 'S4' },
   { id: 'a5', icon: '🗣️', title: 'Every Word in English', desc: 'Completed Scenario 5 — Using classroom language', scenario: 'S5' },
-  { id: 'a6', icon: '📋', title: 'Clear Instructions', desc: 'Completed Scenario 6 — Giving instructions to the task', scenario: 'S6' }
+  { id: 'a6', icon: '📋', title: 'Clear Instructions', desc: 'Completed Scenario 6 — Giving instructions to the task', scenario: 'S6' },
+  { id: 'a7', icon: '👁️', title: 'I See You', desc: 'Completed Scenario 7 — Addressing students personally', scenario: 'S7' }
 ];
 
 const PED_CARDS = [
@@ -1617,6 +1618,42 @@ const PED_CARDS = [
     mistake:'Modelling too quickly or too perfectly — students see a fluent native-like performance and conclude the task is beyond them, rather than seeing a reachable standard.'
   },
   {
+    id:'pc18',icon:'👁️',title:'The Difference Between Noticing and Watching',unlockedBy:'a7',
+    mentor:"Students feel the difference between a teacher who notices them and a teacher who monitors them. The former creates safety. The latter creates anxiety. They both involve looking — but students know immediately which one is happening.",
+    principle:'Individual contact works when it is warm, specific, and not attached to a visible agenda. The teacher who only approaches struggling students at the moment of visible failure teaches students to hide their struggles.',
+    practice:[
+      'Approach without a visible agenda: move around the room regularly, not only when something is wrong. Students who see you coming learn to associate your presence with support, not surveillance.',
+      'Crouch to eye level: physically lowering yourself signals safety and equality. It makes the interaction private rather than performative.',
+      'Use the student\'s name once — softly. Not as a command, as an acknowledgement. "Nick." (pause) "How\'s it going?"',
+      'Ask about process, not product: "What are you working on?" not "Why haven\'t you finished?"'
+    ],
+    mistake:'Approaching struggling students only when they\'re visibly failing — students notice the pattern and begin to associate teacher attention with failure and exposure.'
+  },
+  {
+    id:'pc19',icon:'💬',title:'Error Correction Without Verdict',unlockedBy:'a7',
+    mentor:"A correction that preserves dignity teaches twice — once the content, once how to respond to being wrong. Students who have been corrected well learn that mistakes are part of the process. Students who have been corrected badly learn to stop answering.",
+    principle:'Professional error correction names what was right, identifies the specific gap, and opens a path forward. It never begins with "No" and never ends with silence.',
+    practice:[
+      'Receive before correcting: "That\'s interesting — what made you think that?" This gives the student a moment and tells the class that answers are taken seriously, not just sorted.',
+      'Focus on the reasoning, not the result: a student who understands why they were wrong learns something. A student who is just told they\'re wrong learns to stay quiet.',
+      'Give the student the path to the correct answer: a hint, a question, a re-read of the source material. Arriving at the answer is more valuable than receiving it.',
+      'Acknowledge what was right before what was wrong: "You identified the right paragraph — now let\'s check which heading fits the main idea."'
+    ],
+    mistake:'"No. That\'s wrong. Who knows the right answer?" — this corrects the fact and destroys the relationship simultaneously. Students stop volunteering answers within three lessons.'
+  },
+  {
+    id:'pc20',icon:'🚪',title:'The Low-Barrier Entry Point',unlockedBy:'a7',
+    mentor:"A student who hasn't spoken can't start speaking unless the bar to entry is lower than their resistance. Your job is not to demand participation — it's to make the first word the easiest word they'll say today.",
+    principle:'Re-engagement works when the entry point is specific, low-stakes, and almost impossible to refuse. Open questions put disengaged students on the spot. Closed questions with one-word answers create a crack in the silence.',
+    practice:[
+      'Ask questions with one-word answers: "Option A or B — which one, Paul?" requires one word. "What do you think about this topic?" requires a paragraph.',
+      'Give the student a role that doesn\'t require them to be right: "Can you time us?" or "Can you read that sentence back?" creates participation without exposure.',
+      'Acknowledge proximity before demanding contribution: arriving at Paul\'s desk and simply checking in ("How\'s it going?") lowers the temperature before you ask for anything.',
+      'Respond to minimal participation with genuine warmth: "Good — that\'s a strong reason. Keep going." If the bar feels rewarded, students raise it themselves.'
+    ],
+    mistake:'Calling on a disengaged student with a hard question — this punishes the disengagement with public exposure, which deepens it. The student shuts down further and the class learns that disengagement is risky.'
+  },
+  {
     id:'pc13', icon:'⭐', title:'What Specific Praise Actually Does', unlockedBy:'a5',
     mentor:"\"Good job\" is not praise — it is a reflex. Specific praise names what worked and why. It tells the student what to keep doing. That is worth four extra words on every correct answer.",
     principle:'Specific praise has three components: it names the action, explains why it worked, and signals what the student should continue doing. Generic praise does none of these things.',
@@ -1643,7 +1680,10 @@ const PED_CARDS = [
 ];
 
 const LANG_CARDS = [
-  {cat:'Giving instructions',title:'Sequenced instruction phrases',tip:'One step at a time. Mirror the order students will follow.',exs:['First… then… finally…','Your task is to…','You have [X] minutes for this.','Work in pairs / in groups of three.','When you finish, [do this].','Don\'t worry about every word — focus on the main idea.','You\'ll have a chance to check with your partner afterwards.']},
+  {cat:'Addressing students',title:'Approaching a struggling student',tip:'Quiet, private, warm. Ask about process not product.',exs:["How's it going — is there a part you'd like to talk through?","What have you got so far? Let's start there.","Which part feels unclear — the task or the topic?","Let's try the first sentence together.","You don't need to have it all — just start with what you know.","What would you say if you weren't worried about being wrong?","What's one thing you do know about this topic?"]},
+  {cat:'Addressing students',title:'Re-engaging a disengaged student',tip:'Low-barrier. Specific. Almost impossible to refuse.',exs:["How's it going with you two?","Paul — option A or B, which one?","Just one word — which would you choose?","Can you give Lena one reason for your option?","What's your gut feeling on this?","Good — carry on.","That's a strong point — develop that."]},
+  {cat:'Error correction',title:'Receiving and correcting a wrong answer',tip:'Receive before correcting. Open a path — don\'t just close one.',exs:["That's interesting — what made you think that?","You're close — what if we look at [specific part] again?","Not quite — but you've got [this element] right.","Good try — let me give you a hint.","What does the first sentence of that paragraph actually say?","Can anyone add to that?","Let's look at that together.","You identified the right [X] — now let's check the [Y]."]},
+  {cat:'Giving instructions',title:'Sequenced instruction phrases',tip:'One step at a time. Mirror the order students will follow.',exs:['First… then… finally…','Your task is to…','You have [X] minutes for this.','Work in pairs / in groups of three.','When you finish, [do this].',"Don't worry about every word — focus on the main idea.","You'll have a chance to check with your partner afterwards."]},
   {cat:'Giving instructions',title:'Introducing task types',tip:'Name what kind of task it is before explaining how to do it.',exs:["We're going to do a substitution drill — I'll say the base, you transform it.","Your job is to match five headings to five paragraphs.","This is a structured group discussion — each of you has a different role.","We're going to practise [skill] — here's how it works.","This is a [task type] task — let me show you what it looks like."]},
   {cat:'ICQs',title:'Instruction checking questions',tip:'Never "Does everyone understand?" — always ask them to describe what they will do.',exs:["So what will you do first?","How long do you have?","Are you working alone or with a partner?","What do you do when you've finished?","Are you going to read every word, or are you looking for the main idea?","What does your group need to agree on?","Do you change the whole sentence or just the adjective?","Are you showing your card to your group or keeping it private?"]},
   {cat:'ICQs',title:'Re-explaining after a wrong ICQ answer',tip:'Never repeat the same words. Find a new angle, a visual, or a simpler example.',exs:["Let me explain that part differently.","Good try — let me show you what I mean.","Let me put it another way.","Watch me do it once more — this time look at [specific step].","Think of it this way: [new angle].","So [student name], if I say [example], what would you say?"]},
@@ -1683,7 +1723,7 @@ const MODULES = [
       { id: 's4', title: 'Setting the Lesson Goals', desc: 'Communicating learning objectives clearly', xp: 85, icon: '🎯' },
       { id: 's5', title: 'Using Classroom Language', desc: 'Professional classroom communication', xp: 95, icon: '🗣️' },
       { id: 's6', title: 'Giving Instructions to the Task', desc: 'Clear, sequenced task instructions', xp: 90, icon: '📋' },
-      { id: 's7', title: 'Addressing Students Personally', desc: 'Individual student communication', icon: '🔒' },
+      { id: 's7', title: 'Addressing Students Personally', desc: 'Individual student communication', xp: 85, icon: '👁️' },
       { id: 's8', title: 'Scaffolding, ICQs and CCQs', desc: 'Supporting student understanding', icon: '🔒' },
       { id: 's9', title: 'Finishing the Lesson — Reflection Time', desc: 'Closing lessons effectively', icon: '🔒' }
     ]
@@ -2901,6 +2941,212 @@ const S6_DRAG_ORDERS = {
   t3:{items:['Get into groups of three — I\'ll tell you who\'s in each group.','Each person takes one role card: Lifestyle A, B, or C.','Read your card for one minute — don\'t show it to your group.','Take turns to describe your lifestyle. You each have about two minutes.','When everyone has shared, your group decides which lifestyle you\'d prefer — and gives two reasons.']}
 };
 
+// ─── SCENARIO 7 ───────────────────────────────────────────────
+SCENARIO_DATA.s7 = {
+  title:'Addressing Students Personally',
+  desc:'Making individual contact when it matters most',
+  mentorLine:"A student who feels seen by their teacher will try harder than a student who feels watched. The difference is one sentence — said at the right moment, in the right tone, about the right thing. Not about them. About what they're doing, and what they can do next.",
+  initBars:{energy:87,motiv:68,involve:62,stress:24},
+  chars:[
+    {name:'Nick',mood:'withdrawn',color:'#185FA5',emoji:'😶'},
+    {name:'Paul',mood:'distracted',color:'#C8622A',emoji:'😄'},
+    {name:'Lena',mood:'working',color:'#3B6D11',emoji:'😊'},
+    {name:'George',mood:'confident',color:'#534AB7',emoji:'🧠'},
+    {name:'Tom',mood:'watching',color:'#993C1D',emoji:'😤'},
+    {name:'Olya',mood:'quiet',color:'#8B2250',emoji:'🎨'}
+  ],
+  situation:"The class is mid-task. You're moving around the room. Three students need something from you right now — and they each need something different. You have about thirty seconds with each one. What you say will either open something up or close it down.",
+  goal:'Make purposeful individual contact — reading what each student needs and responding in a way that supports without pressuring, corrects without humiliating, and re-engages without confronting.',
+  criteria:['Affective-communicative','Contact-establishing','Error correction technique','Dignity preservation','Register appropriateness'],
+  mcqs:[
+    {
+      q:'You approach a student who has been staring at a blank page for several minutes. What is your first move?',
+      opts:[
+        {text:'"Why haven\'t you started? We\'ve been working for ten minutes."',why:'Wrong — opens with accusation. The student is stuck, not defiant. This increases anxiety rather than reducing it.',correct:false},
+        {text:'Crouch down quietly and ask: "How\'s it going — is there a part you\'d like to talk through?"',why:'✓ Correct — low pressure, face-saving, individual. Invites rather than demands. Reduces anxiety before addressing the block.',correct:true},
+        {text:'"Let\'s all help Nick — he\'s not sure where to start."',why:'Wrong — public exposure. This is exactly the moment that makes students dread being stuck. It turns a private struggle into a class event.',correct:false},
+        {text:'Move on and come back later — he probably just needs more time.',why:'Wrong — avoidance. Nick has been stuck for several minutes. More silence is not support.',correct:false}
+      ]
+    },
+    {
+      q:'A student gives a confident but wrong answer in front of the class. What is the most professional response?',
+      opts:[
+        {text:'"No. That\'s wrong. Who knows the right answer?"',why:'Wrong — corrects the fact and damages the relationship simultaneously. Students learn to stop volunteering answers.',correct:false},
+        {text:'"That\'s interesting — what made you think that? Let\'s look at it together."',why:'✓ Correct — receives the answer, invites the student\'s reasoning, opens a path to the correct answer without verdict.',correct:true},
+        {text:'"Almost! You were so close."',why:'Wrong — softens the correction but gives the student nothing to work with. No path forward, no clarity about what was wrong.',correct:false},
+        {text:'Ignore the answer and ask someone else.',why:'Wrong — publicly abandons the student mid-contribution. The class notices. Trust drops.',correct:false}
+      ]
+    }
+  ],
+  tactics:[
+    {
+      id:'t1',
+      title:'Student struggling with the task',
+      desc:'Nick has written one word and stopped. Individual contact — Path 1.',
+      fullAssessStep:'step3',
+      criteria:['Affective-communicative','Scaffolding clarity','Face-saving','Warmth & tone','Instructional specificity'],
+      clicheGroups:[
+        {label:'Opening contact',phrases:["How's it going — is there a part you'd like to talk through?","What have you got so far? Let's start there.","Which part feels unclear — the task or the topic?"]},
+        {label:'Giving a next step',phrases:["Let's try the first sentence together.","You don't need to have it all — just start with what you know.","What would you say if you weren't worried about being wrong?","What's one thing you do know about this topic?"]}
+      ],
+      steps:[
+        {id:'open',type:'must',format:'chatterbox_only',
+         title:'Open the contact',
+         caseBlock:{
+           room:'Individual writing task. Students are writing 3–4 sentences describing their ideal lifestyle (Grade 9).',
+           task:'Students describe their ideal lifestyle in English — facts and feelings.',
+           student:'Nick has written one word and stopped. His pen is down. He\'s staring at the page. He hasn\'t asked for help — he looks like he\'s given up, not like he doesn\'t care.'
+         },
+         situation:'You\'ve moved to Nick\'s desk. He hasn\'t noticed you yet. Approach quietly and say something that opens the conversation — without drawing the class\'s attention, without making him feel exposed.',
+         goal:'Nick feels seen, not caught. The contact is warm and private.',
+         fullAssess:false,
+         chatterboxChars:['Nick']
+        },
+        {id:'identify',type:'must',format:'chatterbox_only',
+         title:'Identify the block',
+         situation:'Nick says: "I don\'t know what to write." Find out specifically where he\'s stuck — without interrogating him, without giving him the answer.',
+         goal:'You know whether Nick doesn\'t understand the task, the topic, or how to start. He doesn\'t feel stupid for not knowing.',
+         fullAssess:false,
+         chatterboxChars:['Nick']
+        },
+        {id:'next_step',type:'must',format:'chatterbox_written',
+         title:'Give one concrete next step',
+         situation:'Nick says he doesn\'t know how to start — he knows what a lifestyle is but can\'t get the first sentence out. Give him one concrete thing he can do right now. Not the answer. One step.',
+         goal:'Nick has something specific to do. He picks up his pen. Your intervention was private, practical, and didn\'t give him the answer.',
+         fullAssess:true,
+         chatterboxChars:['Nick']
+        }
+      ],
+      optSteps:[
+        {id:'nick_ignores',type:'opt',format:'chatterbox_only',
+         title:'Nick ignores you',
+         situation:'You approach, crouch down, say something warm — Nick doesn\'t respond. He stares at the page. The silence stretches.',
+         goal:'You don\'t escalate, don\'t force, don\'t walk away empty-handed. You leave one door open.',
+         fullAssess:false,
+         chatterboxChars:['Nick']
+        }
+      ],
+      achievementId:'a7',xp:85
+    },
+    {
+      id:'t2',
+      title:'Student losing focus',
+      desc:'Paul hasn\'t spoken in two minutes. Individual re-engagement — Path 2.',
+      fullAssessStep:'step2',
+      criteria:['Affective-communicative','Contact-establishing','Inclusion without pressure','Register appropriateness','Transition back to task'],
+      clicheGroups:[
+        {label:'Moving in naturally',phrases:["How's it going with you two?","Let me check in with this pair.","What have you decided so far?"]},
+        {label:'Low-barrier entry',phrases:["Paul, what do you think — A or B?","Just one word — which would you choose?","Paul, can you give Lena one reason for your option?","What's your gut feeling on this?"]},
+        {label:'Stepping back',phrases:["Good — keep going, you two.","Nice — carry on.","That's a strong point — develop that."]}
+      ],
+      steps:[
+        {id:'approach',type:'must',format:'chatterbox_only',
+         title:'Notice and approach',
+         caseBlock:{
+           room:'Pair speaking activity. Students are in pairs discussing a topic.',
+           task:'Students are comparing two options — school life and routines (Grade 8).',
+           student:'Paul\'s pair is Lena. Lena is talking. Paul is looking at the ceiling, spinning his pen. He hasn\'t said a word in two minutes. Not disruptive — just completely gone.'
+         },
+         situation:'Move to Paul\'s pair naturally — not as if you\'re policing, but as if you\'re checking in. What do you say as you arrive?',
+         goal:'You\'ve made contact. Lena doesn\'t feel interrupted. Paul doesn\'t feel targeted.',
+         fullAssess:false,
+         chatterboxChars:['Paul','Lena']
+        },
+        {id:'entry_point',type:'must',format:'chatterbox_written',
+         title:'Give Paul a low-barrier entry point',
+         situation:'Paul looks at you. He hasn\'t spoken. Create one specific, easy way for him to say something — make it almost impossible to stay silent. Lena is watching.',
+         goal:'Paul says something — even one word. The bar is low enough that silence would feel strange. He doesn\'t feel put on the spot.',
+         fullAssess:true,
+         chatterboxChars:['Paul','Lena']
+        },
+        {id:'step_back',type:'must',format:'chatterbox_only',
+         title:'Acknowledge and step back',
+         situation:'Paul says: "I think... option A is better. Because it\'s easier." It\'s minimal but he\'s said something. Respond warmly and give the pair space to continue without you.',
+         goal:'Paul feels his contribution was received. You\'ve stepped back. The pair continues.',
+         fullAssess:false,
+         chatterboxChars:['Paul','Lena']
+        }
+      ],
+      optSteps:[
+        {id:'paul_conflict',type:'opt',format:'chatterbox_only',
+         title:'Paul starts a conflict',
+         situation:'"Why do you always come to me? I\'m not doing anything wrong." He says it quietly but clearly. Lena looks uncomfortable.',
+         goal:'The moment doesn\'t escalate. Paul\'s feeling is acknowledged. The task continues.',
+         fullAssess:false,
+         chatterboxChars:['Paul','Lena']
+        }
+      ],
+      achievementId:'a7',xp:85
+    },
+    {
+      id:'t3',
+      title:'Student makes a mistake',
+      desc:'George is wrong. The class is watching. Error correction — Path 3.',
+      fullAssessStep:'step2',
+      criteria:['Error correction technique','Dignity preservation','Register appropriateness','Instructional clarity','Class atmosphere management'],
+      clicheGroups:[
+        {label:'Receiving the answer',phrases:["That's interesting — what made you think that?","Okay — let's look at that together.","You've got part of it — tell me more."]},
+        {label:'Guiding to correct',phrases:["What does the first sentence of that paragraph actually say?","If you look at the key word — what topic does it suggest?","Let's check — does that heading match the main idea?"]},
+        {label:'Confirming and closing',phrases:["Exactly — that's the one.","Yes — and notice why: [reason].","Good — so what made the other one not fit?"]}
+      ],
+      steps:[
+        {id:'receive',type:'must',format:'chatterbox_only',
+         title:'Receive the answer',
+         caseBlock:{
+           room:'Whole-class Q&A. Teacher is checking heading-matching answers.',
+           task:'Going through paragraph answers together (Grade 8, reading task).',
+           student:'George answers confidently: "Paragraph 3 — \'Learning the hard way\'." He is wrong. The correct heading is "A new daily rhythm". Tom is already smirking.'
+         },
+         situation:'George has just given his answer confidently. The class is watching — including Tom. Respond to George\'s answer without immediately correcting it and without pretending it\'s right.',
+         goal:'George feels his answer was received professionally. Tom\'s smirk gets no oxygen. The class sees a teacher who takes answers seriously.',
+         fullAssess:false,
+         chatterboxChars:['George','Tom']
+        },
+        {id:'guide',type:'must',format:'chatterbox_written',
+         title:'Guide to the correct answer',
+         situation:'George looks confident in his answer. Lead him — and the class — toward the correct answer without just telling them. Use a question, a hint, or a reframe. Don\'t let Tom\'s reaction shape yours.',
+         goal:'George finds (or is guided to) the correct answer through a question or hint. The correction feels like a conversation, not a verdict.',
+         fullAssess:true,
+         chatterboxChars:['George','Tom']
+        },
+        {id:'confirm',type:'must',format:'chatterbox_only',
+         title:'Confirm and close',
+         situation:'George says: "Oh — \'A new daily rhythm\'?" He sounds uncertain but correct. Confirm the answer, acknowledge his contribution, and move on naturally.',
+         goal:'George\'s dignity is intact. The correct answer is clear. Tom has nothing to work with. The class moves on.',
+         fullAssess:false,
+         chatterboxChars:['George','Tom']
+        }
+      ],
+      optSteps:[
+        {id:'george_defensive',type:'opt',format:'chatterbox_only',
+         title:'George reacts badly',
+         situation:'"That doesn\'t make sense. My answer fits perfectly." He\'s defensive, slightly confrontational. The class is watching.',
+         goal:'George\'s defensiveness is acknowledged without capitulating. The correct answer is maintained. The moment passes without confrontation.',
+         fullAssess:false,
+         chatterboxChars:['George','Tom']
+        }
+      ],
+      achievementId:'a7',xp:85
+    }
+  ],
+  reflectQs:[
+    {score:[0,99],variants:[
+      'Вспомните момент, когда вы сами боялись ответить неправильно на уроке иностранного языка. Что вы тогда чувствовали — и как это влияет на то, как вы сейчас обращаетесь к ученикам?',
+      'Вспомните момент, когда вас поправили публично на уроке или в другой ситуации. Как это на вас подействовало — и как это влияет на то, как вы сейчас исправляете чужие ошибки?'
+    ]},
+    {score:[0,99],variants:[
+      'Как вы отличаете момент, когда ученику нужна ваша помощь, от момента, когда ему нужно просто время?',
+      'Как изменится ваш подход к отстающему ученику, если вы знаете, что он боится ошибиться?',
+      'Как вы узнаете, что ученик потерял интерес — и чем это отличается от того, что он просто думает?'
+    ]},
+    {score:[0,99],variants:[
+      'Что для вас важнее в момент ошибки ученика: точность ответа или сохранение его желания отвечать?',
+      'Каким учителем вы хотите быть в трудный момент для ученика — и насколько ваши ответы сегодня отражают этот образ?'
+    ]}
+  ],
+  achievementId:'a7', xp:85
+};
+
 function openScenario(id) {
   const sc = SCENARIO_DATA[id]; if (!sc) return;
   S.cur=id; S.mcqPhase=0; S.curTactic=null; S.curStepIdx=0; S.curSteps=[]; S.runningScore=0; S.runningMax=0; S.curStepScores=[];
@@ -3039,6 +3285,8 @@ function renderStepPhase(wrap) {
   if(step.format==='drag_order'){renderStepDragOrder(wrap,step);return;}
   if(step.format==='icq_pick'){renderStepICQPick(wrap,step);return;}
   if(step.format==='quick'){renderStepQuick(wrap,step);return;}
+  // S7 chatterbox formats
+  if(step.format==='chatterbox_only'||step.format==='chatterbox_written'){renderS7Step(wrap,step,S.curTactic);return;}
   const tactic=S.curTactic;
   const pct=Math.round((S.curStepIdx/S.curSteps.length)*100);
   const progDiv=document.createElement('div'); progDiv.className='progress-track-wrap';
@@ -3084,6 +3332,265 @@ function renderStepPhase(wrap) {
     else renderScenarioPhase('tactic_result');
   });
 }
+
+// ═══════════════════════════════════════
+// S7 CHATTERBOX-ONLY STEP RENDERER
+// ═══════════════════════════════════════
+
+// S7 humiliation detection phrases
+const S7_HUMILIATION_PATTERNS = [
+  /why haven'?t you/i, /you still haven'?t/i, /everyone else/i,
+  /can'?t you/i, /again\?/i, /we'?ve been over this/i,
+  /be more like/i, /like .+ does/i, /like .+ can/i,
+  /what'?s wrong with you/i, /is that so hard/i,
+  /obviously/i, /clearly you/i, /you never/i, /you always/i,
+  /who knows the (right|correct) answer/i,
+  /no[,.]?\s+(that'?s wrong|incorrect|not right)/i,
+  /wrong[.!]/i
+];
+
+function checkHumiliation(text) {
+  const t = text.toLowerCase();
+  for (const p of S7_HUMILIATION_PATTERNS) {
+    if (p.test(t)) return true;
+  }
+  return false;
+}
+
+function getHumiliationBlockMessage(text) {
+  const t = text.toLowerCase();
+  if (/why haven'?t|still haven'?t|in ten minutes/.test(t))
+    return {type:'public_exposure', msg:'This response draws attention to the student\'s failure publicly. A struggling student who is noticed negatively shuts down — and the class learns that being stuck is something to hide.'};
+  if (/obviously|clearly you|is that so hard|can'?t you/.test(t))
+    return {type:'condescending', msg:'"No. That\'s wrong" tells a student nothing except that they failed. Professional error correction names what was right, identifies the gap, and opens a path forward.'};
+  if (/be more like|like .+ does|like .+ can/.test(t))
+    return {type:'comparison', msg:'Comparing students to each other is one of the most reliably damaging things a teacher can say. It doesn\'t motivate — it humiliates both the student named and the one used as the standard.'};
+  if (/again\?|we'?ve been over|you never|you always/.test(t))
+    return {type:'exasperation', msg:'Exasperation directed at a student communicates that their struggle is a burden on the teacher. It confirms what an anxious student already fears: that asking for help wasn\'t worth it.'};
+  if (/who knows the (right|correct)/.test(t))
+    return {type:'condescending_correction', msg:'"No. That\'s wrong. Who knows the right answer?" — this corrects the fact and destroys the relationship simultaneously. Students learn to stop volunteering answers.'};
+  return {type:'dismissive', msg:'This response signals that the student\'s difficulty doesn\'t matter. It doesn\'t help — it confirms what an anxious student already fears.'};
+}
+
+function renderS7Step(wrap, step, tactic) {
+  const sc = SCENARIO_DATA[S.cur];
+  const pct = Math.round((S.curStepIdx/S.curSteps.length)*100);
+
+  // Progress
+  const prog=document.createElement('div'); prog.className='progress-track-wrap';
+  prog.innerHTML=`<div class="progress-track-meta"><span>${tactic.title}</span><span>Step ${S.curStepIdx+1} / ${S.curSteps.length}</span></div><div class="progress-track"><div class="progress-fill" style="width:${pct}%"></div></div>`;
+  wrap.appendChild(prog);
+
+  // Case block (only on first step of each path)
+  if(step.caseBlock && S.curStepIdx===0){
+    const cb=document.createElement('div');
+    cb.style.cssText='display:flex;flex-direction:column;gap:6px;margin-bottom:10px';
+    const entries=[
+      {icon:'🏫',label:'The room',text:step.caseBlock.room},
+      {icon:'📚',label:'The task',text:step.caseBlock.task},
+      {icon:'👤',label:'The student',text:step.caseBlock.student}
+    ];
+    entries.forEach(e=>{
+      const d=document.createElement('div');
+      d.style.cssText='background:var(--white);border:0.5px solid var(--border);border-radius:var(--r-md);padding:.7rem .9rem;font-size:12px;color:var(--ink-soft);line-height:1.6';
+      d.innerHTML=`<span style="font-weight:700;color:var(--ink)">${e.icon} ${e.label}:</span> ${e.text}`;
+      cb.appendChild(d);
+    });
+    wrap.appendChild(cb);
+  }
+
+  // Step card
+  const card=document.createElement('div'); card.className='step-card';
+  card.innerHTML=`
+    <div class="step-head">
+      <span class="step-badge ${step.type==='must'?'must-b':'opt-b'}">${step.type==='must'?'MUST':'OPTIONAL'}</span>
+      <span class="step-title">${step.title}</span>
+    </div>
+    <div class="step-sit-lbl">What's happening</div>
+    <div class="step-sit">${step.situation}</div>`;
+  wrap.appendChild(card);
+
+  // Response area
+  const respDiv=document.createElement('div'); respDiv.className='case-card';
+  respDiv.innerHTML=`
+    <div class="english-notice" style="margin-bottom:8px">🇬🇧 Write what you would say — in English</div>
+    <textarea class="resp-ta" id="s7-ta" placeholder="Type your response..."></textarea>
+    <div class="wc-row"><span class="wc" id="s7-wc">0 words</span></div>`;
+  wrap.appendChild(respDiv);
+  document.getElementById('s7-ta').addEventListener('input',function(){
+    const w=this.value.trim().split(/\s+/).filter(x=>x).length;
+    document.getElementById('s7-wc').textContent=w+(w===1?' word':' words');
+  });
+
+  // Humiliation block box
+  const hBlock=document.createElement('div'); hBlock.className='block-box'; hBlock.id='s7-block';
+  hBlock.innerHTML=`<div class="block-title">👩‍🏫 Your Mentor needs a word with you</div>
+    <div class="block-mentor-quote">"Students remember for years the moment a teacher made them feel stupid in front of their classmates. They remember it long after they've forgotten the lesson. What you say in the next ten seconds either builds them up or takes something away. There is no neutral."</div>
+    <div class="block-body" id="s7-block-body"></div>
+    <button class="block-retry" id="s7-retry">✏️ Rewrite your response →</button>`;
+  wrap.appendChild(hBlock);
+
+  // Submit
+  const subRow=document.createElement('div'); subRow.className='sub-row';
+  const subBtn=document.createElement('button'); subBtn.className='sub-btn'; subBtn.id='s7-sub'; subBtn.textContent='Submit';
+  const spinRow=document.createElement('div'); spinRow.className='spin-row'; spinRow.id='s7-spin';
+  spinRow.innerHTML='<div class="spin"></div>Assessing…';
+  subRow.appendChild(subBtn); subRow.appendChild(spinRow);
+  wrap.appendChild(subRow);
+
+  // Feedback area (hidden initially)
+  const fbArea=document.createElement('div'); fbArea.id='s7-fb'; fbArea.style.display='none';
+  wrap.appendChild(fbArea);
+
+  document.getElementById('s7-retry').addEventListener('click',()=>{
+    document.getElementById('s7-ta').value='';
+    document.getElementById('s7-ta').classList.remove('bad');
+    document.getElementById('s7-block').className='block-box';
+    subBtn.disabled=false;
+  });
+
+  subBtn.addEventListener('click',async()=>{
+    const resp=document.getElementById('s7-ta')?.value?.trim();
+    if(!resp||resp.length<3){alert('Write your response first.');return;}
+
+    // Humiliation check (client-side first pass)
+    if(checkHumiliation(resp)){
+      const h=getHumiliationBlockMessage(resp);
+      document.getElementById('s7-ta').classList.add('bad');
+      document.getElementById('s7-block-body').innerHTML=`<p style="font-weight:600;color:var(--ink);margin-bottom:.5rem">${h.type==='public_exposure'?'This response exposes the student\'s struggle publicly.':h.type==='comparison'?'This response compares the student to others.':h.type==='exasperation'?'This response expresses frustration at the student.':'This response does not serve the student.'}</p><p style="color:var(--ink-soft);line-height:1.65">${h.msg}</p>`;
+      document.getElementById('s7-block').className='block-box on';
+      return;
+    }
+
+    subBtn.disabled=true; document.getElementById('s7-spin').className='spin-row on';
+
+    try{
+      const useFullAssess = step.fullAssess;
+      const res=await fetch('/api/assess',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+        response:resp,
+        situation:step.situation,
+        goal:step.goal||'Address the student professionally, warmly, and effectively.',
+        criteria:useFullAssess?(tactic.criteria||sc.criteria):['Affective-communicative','Dignity preservation','Register appropriateness'],
+        moduleId:'s7'
+      })});
+      const p=await res.json();
+      document.getElementById('s7-spin').className='spin-row';
+      subBtn.disabled=false;
+
+      if(p.inappropriate){
+        document.getElementById('s7-ta').classList.add('bad');
+        const msg=getHumiliationBlockMessage(resp);
+        document.getElementById('s7-block-body').innerHTML=`<p style="color:var(--ink-soft);line-height:1.65">${msg.msg}</p>`;
+        document.getElementById('s7-block').className='block-box on';
+        return;
+      }
+
+      applyDeltas(p.barDeltas);
+      S.runningScore+=(p.scores||[]).reduce((a,s)=>a+s.score,0);
+      S.runningMax+=(p.scores?.length||3)*5;
+      S.curStepScores.push({stepId:step.id,scores:p.scores||[]});
+      subBtn.style.display='none';
+
+      const fbArea=document.getElementById('s7-fb');
+      fbArea.style.display='block';
+
+      if(useFullAssess){
+        // Full NLP panel
+        const fbWrap=buildFeedbackPanel('-s7t');
+        fbArea.appendChild(fbWrap);
+        showFeedback(p,resp,'-s7t');
+        document.getElementById('nxt-btn-s7t').textContent=S.curStepIdx<S.curSteps.length-1?'Next step →':'Continue →';
+        document.getElementById('nxt-btn-s7t').addEventListener('click',()=>renderS7Chatterbox(wrap,sc,resp,step,p));
+      } else {
+        // Coach note only + chatterbox
+        const coachDiv=document.createElement('div');
+        coachDiv.style.cssText='background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:.9rem 1rem;font-size:12px;color:var(--ink-soft);line-height:1.7';
+        coachDiv.innerHTML=`<div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-faint);margin-bottom:.5rem">Coach's note</div>${p.coachNote||p.highlight||'Good response.'}`;
+        fbArea.appendChild(coachDiv);
+        renderS7Chatterbox(fbArea,sc,resp,step,p);
+      }
+    }catch(e){
+      document.getElementById('s7-spin').className='spin-row'; subBtn.disabled=false;
+      mkToast('Assessment failed — try again.','crit');
+    }
+  });
+}
+
+async function renderS7Chatterbox(container, sc, teacherText, step, assessData) {
+  const cb=document.createElement('div'); cb.className='chatterbox'; cb.style.marginTop='10px';
+  const chars=step.chatterboxChars||['Nick'];
+  const charObjs=chars.map(name=>sc.chars.find(c=>c.name===name)||{name,emoji:'🧑‍🎓',color:'#8B6A4F'});
+
+  cb.innerHTML=`<div class="cb-lbl">💬 ${chars[0]} responds</div>
+  <div class="cb-bubbles" id="s7-bubbles-${step.id}">
+    <div class="cb-bubble teacher">
+      <div><div class="cb-name" style="text-align:right">You</div>
+      <div class="cb-text">${teacherText.length>120?teacherText.slice(0,120)+'…':teacherText}</div></div>
+      <div class="cb-av" style="background:#FDE8D0">👩‍🏫</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:var(--ink-muted);font-style:italic;padding:4px 0"><div class="spin"></div>Processing…</div>
+  </div>`;
+  container.appendChild(cb);
+  cb.scrollIntoView({behavior:'smooth',block:'start'});
+
+  try{
+    const res=await fetch('/api/assess-voice',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+      transcript:teacherText,
+      situation:step.situation,
+      goal:step.goal||'Address the student professionally.',
+      scenarioId:'s7_'+step.id
+    })});
+    const v=await res.json();
+    if(v.barDeltas) setTimeout(()=>applyDeltas(v.barDeltas),600);
+
+    const bubblesDiv=document.getElementById('s7-bubbles-'+step.id);
+    const loader=bubblesDiv.querySelector('div:last-child');if(loader)loader.remove();
+
+    const cr=v.classReaction;
+    const reactions=cr?[
+      {name:cr.s1_name,resp:cr.s1_response,nonverbal:cr.s1_nonverbal,char:sc.chars.find(c=>c.name===cr.s1_name)||charObjs[0]},
+      ...(cr.s2_name?[{name:cr.s2_name,resp:cr.s2_response,nonverbal:cr.s2_nonverbal,char:sc.chars.find(c=>c.name===cr.s2_name)||charObjs[1]||charObjs[0]}]:[])
+    ]:[
+      {name:chars[0],resp:'…',nonverbal:'no reaction',char:charObjs[0]}
+    ];
+
+    reactions.forEach(r=>{
+      if(!r.name)return;
+      const col=r.char?.color||'#8B6A4F';const emoji=r.char?.emoji||'🧑‍🎓';
+      const bub=document.createElement('div');bub.className='cb-bubble';
+      bub.innerHTML=`<div class="cb-av" style="background:${col}22;color:${col}">${emoji}</div>
+      <div><div class="cb-name">${r.name} <span style="font-weight:400;color:var(--ink-ghost);font-style:italic">${r.nonverbal||''}</span></div>
+      <div class="cb-text">${r.resp||'…'}</div></div>`;
+      bubblesDiv.appendChild(bub);
+    });
+
+    if(v.voiceInsight){
+      const ins=document.createElement('div');
+      ins.style.cssText='font-size:11px;color:var(--ink-muted);font-style:italic;margin-top:8px;padding:6px 10px;background:var(--cream-deep);border-radius:var(--r-sm)';
+      ins.textContent='💬 '+v.voiceInsight;
+      cb.appendChild(ins);
+    }
+  }catch(e){
+    const bubblesDiv=document.getElementById('s7-bubbles-'+step.id);
+    const loader=bubblesDiv.querySelector('div:last-child');if(loader)loader.remove();
+    const bub=document.createElement('div');bub.className='cb-bubble';
+    const char=charObjs[0];
+    bub.innerHTML=`<div class="cb-av" style="background:${char.color}22;color:${char.color}">${char.emoji}</div>
+    <div><div class="cb-name">${char.name}</div><div class="cb-text">…</div></div>`;
+    bubblesDiv.appendChild(bub);
+  }
+
+  // Next button
+  const nxt=document.createElement('button');nxt.className='nxt-btn';nxt.style.marginTop='.8rem';
+  nxt.textContent=S.curStepIdx<S.curSteps.length-1?'Next step →':'Continue →';
+  nxt.addEventListener('click',()=>{
+    S.curStepIdx++;
+    if(S.curStepIdx<S.curSteps.length) renderScenarioPhase('step');
+    else renderScenarioPhase('tactic_result');
+  });
+  cb.appendChild(nxt);
+}
+
 
 function renderRegisterSort(wrap) {
   const items = S5_SORT_ITEMS;
@@ -4043,6 +4550,11 @@ const COMPETENCES = {
     {name:'Instruction design',desc:'Structuring clear, sequenced instructions students can follow'},
     {name:'Modelling competence',desc:'Making the thinking process visible through demonstration'},
     {name:'Comprehension checking',desc:'Using ICQs to verify understanding before students start'}
+  ],
+  s7: [
+    {name:'Individual contact',desc:'Making purposeful personal contact with students'},
+    {name:'Error correction',desc:'Correcting without verdict — preserving dignity'},
+    {name:'Affective-communicative',desc:'Reading what each student needs and responding accordingly'}
   ]
 };
 
