@@ -1459,7 +1459,8 @@ const ACHIEVEMENTS = [
   { id: 'a5', icon: '🗣️', title: 'Every Word in English', desc: 'Completed Scenario 5 — Using classroom language', scenario: 'S5' },
   { id: 'a6', icon: '📋', title: 'Clear Instructions', desc: 'Completed Scenario 6 — Giving instructions to the task', scenario: 'S6' },
   { id: 'a7', icon: '👁️', title: 'I See You', desc: 'Completed Scenario 7 — Addressing students personally', scenario: 'S7' },
-  { id: 'a8', icon: '🔍', title: 'No Assumptions', desc: 'Completed Scenario 8 — Scaffolding, ICQs and CCQs', scenario: 'S8' }
+  { id: 'a8', icon: '🔍', title: 'No Assumptions', desc: 'Completed Scenario 8 — Scaffolding, ICQs and CCQs', scenario: 'S8' },
+  { id: 'a9', icon: '🔄', title: 'Full Circle', desc: 'Completed Scenario 9 — Finishing the lesson', scenario: 'S9' }
 ];
 
 const PED_CARDS = [
@@ -1691,6 +1692,42 @@ const PED_CARDS = [
     mistake:'Scaffolding by simplifying the rule until it breaks: "just use could when you\'re not sure" works until the student tries a sentence where might is more natural — and the scaffold becomes a new source of error.'
   },
   {
+    id:'pc24',icon:'🔄',title:'Why the Lesson Close Matters',unlockedBy:'a9',
+    mentor:"The last two minutes of a lesson are disproportionately powerful. Students form their impression of what they learned — and whether it mattered — in the closing. Not in the middle, not during the hardest activity. At the end.",
+    principle:'A strong lesson close does three things: it returns to the opening goal (completing the arc), names the achievement concretely, and leaves students with something forward-looking.',
+    practice:[
+      'Return to the goal by name: "At the start we said you were going to be able to... — and you did." Don\'t assume students have made this connection themselves.',
+      'Make the achievement concrete: "You produced ten sentences using a structure you didn\'t know this morning." Specific is more powerful than general.',
+      'One forward-looking line: "Notice whether you use any of today\'s language before we meet again." This extends the lesson beyond the room.',
+      'Time it: a close takes two minutes. It doesn\'t need more. What it needs is intention.'
+    ],
+    mistake:'Ending the lesson when the last activity ends — no close, no return to the goal, no recognition. Students leave with the last exercise, not the lesson.'
+  },
+  {
+    id:'pc25',icon:'🪞',title:'Reflection Techniques: Choosing the Right One',unlockedBy:'a9',
+    mentor:"Structured reflection prompts produce richer responses than open questions. The structure lowers the cognitive barrier — but the content is still genuinely the student's. The technique gives them a ladder. What they climb is their own.",
+    principle:'Different reflection techniques serve different purposes. Choosing the right one for the lesson type and the time available makes the difference between genuine reflection and a ritual.',
+    practice:[
+      '3-2-1 (3 new words/phrases · 2 things enjoyed · 1 question remaining): best for lessons with multiple activities. Takes two minutes. Reveals what actually landed.',
+      'Plus-Delta (What went well? / What would you change?): best for project or process-focused lessons. Invites genuine self-evaluation, not just positive feedback.',
+      'Sentence starters (Today I can... / I was surprised that... / I still feel confused about...): best for emotional or evaluative reflection. Works in thirty seconds. Scales to any lesson type.',
+      'I Am / I Can / I Wonder: best for metacognitive depth. "I can now... even though it was hard." — this is the highest form of learning self-awareness.'
+    ],
+    mistake:'Using the same reflection technique every lesson — students produce the same answers every lesson, and both teacher and students stop believing the reflection means anything.'
+  },
+  {
+    id:'pc26',icon:'👂',title:'Receiving Student Reflection',unlockedBy:'a9',
+    mentor:"How you receive the first student response determines whether the rest of the class follows or stays silent. A teacher who hears 'I was surprised I could speak for two minutes' and responds with 'great!' has closed the conversation. A teacher who says 'what surprised you most?' has opened it.",
+    principle:'Genuine reception of student reflection means responding to the content — what the student actually said — not just to the fact that they said something.',
+    practice:[
+      'Respond to content not effort: "You said you were surprised by your own vocabulary — what specifically surprised you?" vs "Well done for sharing."',
+      'Avoid evaluative responses to reflections: "Great answer!" makes reflection feel like a quiz with right and wrong responses. Students stop being honest.',
+      'Include without pressuring: after receiving one response, open to others without naming anyone — "anyone else?" Then name someone you think has something to say, quietly.',
+      'Let the student\'s voice close the lesson: if you summarise after every student reflection, the lesson ends with the teacher\'s voice. Let the last word belong to a student.'
+    ],
+    mistake:'Asking for reflection and then doing your own summary regardless of what students said. The message: your reflection was a warm-up for what I was going to say anyway.'
+  },
+  {
     id:'pc13', icon:'⭐', title:'What Specific Praise Actually Does', unlockedBy:'a5',
     mentor:"\"Good job\" is not praise — it is a reflex. Specific praise names what worked and why. It tells the student what to keep doing. That is worth four extra words on every correct answer.",
     principle:'Specific praise has three components: it names the action, explains why it worked, and signals what the student should continue doing. Generic praise does none of these things.',
@@ -1742,6 +1779,9 @@ const LANG_CARDS = [
   { cat: 'Transitions', title:'Closing an activity', tip:"Close clearly before moving on. Don't let activities die.", exs:["Let's wrap that up.","Okay, that's enough time for that.","Let's hear one more answer and then we'll move on.","Good — let's leave it there.","Time's up — good work."]},
   { cat: 'Transitions', title:'Bridging between activities', tip:'Connect what came before to what comes next.', exs:["Now we're going to move on to something different.","The next activity links to what we just did.","Right — the next part is…","This connects to what you practised just now.","Keep that thought — it'll be useful in a moment."]},
   { cat: 'Energisers', title:'Call-and-response & stand-up energisers', tip:'Use to restore energy and refocus. Works best mid-lesson.', exs:["One, two, three — eyes on me!","English time — ready, set, go!","Stand up if you have a pet at home.","Stand up if you did something interesting this weekend.","Sit down if you can name three English words for food.","Clap once if you can hear me. Clap twice if you're ready to go."]},
+  {cat:'Lesson closure',title:'Returning to the goal',tip:'Make the achievement visible — the lesson as a complete arc.',exs:["Do you remember the goal we set at the beginning?","Let's look back at where we started.","By the end of today, you were going to be able to... — let's see if that happened.","Look what you can do now that you couldn't do an hour ago.","You started this lesson not knowing... and now you do.","That was genuinely difficult — and you did it."]},
+  {cat:'Lesson closure',title:'Warm closing lines',tip:'The last words set the emotional memory of the lesson.',exs:["I want to leave you with one thought...","Thank you for today — I mean that.","See you next lesson — notice whether you use any of today's language before then.","Take that confidence with you.","We didn't finish everything — but what we did was real.","Same time next lesson — I'm looking forward to it."]},
+  {cat:'Reflection prompts',title:'Structured reflection techniques',tip:'Give the structure — the content is theirs.',exs:["Today I can...","Today I learned...","I was surprised that...","I still feel confused about...","I felt proud of myself when...","Next time I will try to...","3 things I used · 2 things I enjoyed · 1 question I still have.","Plus: what went well? / Delta: what would you change?","I am proud of... but...","I can now... even though it was hard.","I wonder whether..."]},
   { cat: 'Greeting & opening', title: 'Accessibility & tone-setting', tip: 'Signal that you are approachable from the first moment.', exs: ['You can call me … — whichever feels more comfortable.', "I know the first lesson with a new teacher can feel a bit strange, so I'll go first.", "I hope we'll have a productive and comfortable course together.", 'This is your classroom too — I want you to feel comfortable speaking here.'] },
   { cat: 'Lesson opening', title: 'Greeting rituals', tip: 'Use a stable, warm formula every lesson. Predictability creates safety.', exs: ["Good morning, everyone — great to see you.", "Hello, class! How's everyone doing today?", "I'm glad you're here. Let's get started.", "Good to see you all — let's have a good lesson today."] },
   { cat: 'Lesson opening', title: 'Mood and energy check', tip: 'A simple whole-class question shows you see them as people, not just learners.', exs: ["How are you today on a scale of one to five?", "Quick check — thumbs up if you're ready to go.", "How's everyone feeling today? Good? Tired? Somewhere in between?", "Before we start — is everyone here mentally as well as physically?"] },
@@ -1766,7 +1806,7 @@ const MODULES = [
       { id: 's6', title: 'Giving Instructions to the Task', desc: 'Clear, sequenced task instructions', xp: 90, icon: '📋' },
       { id: 's7', title: 'Addressing Students Personally', desc: 'Individual student communication', xp: 85, icon: '👁️' },
       { id: 's8', title: 'Scaffolding, ICQs and CCQs', desc: 'Supporting student understanding', xp: 80, icon: '🔍' },
-      { id: 's9', title: 'Finishing the Lesson — Reflection Time', desc: 'Closing lessons effectively', icon: '🔒' }
+      { id: 's9', title: 'Finishing the Lesson — Reflection Time', desc: 'Closing lessons effectively', xp: 85, icon: '🔄' }
     ]
   },
   { id: 'mod2', title: 'Module 2', subtitle: 'Coming soon', locked: true },
@@ -3340,6 +3380,126 @@ SCENARIO_DATA.s8 = {
   achievementId:'a8', xp:80
 };
 
+// ─── SCENARIO 9 ───────────────────────────────────────────────
+SCENARIO_DATA.s9 = {
+  title:'Finishing the Lesson — Reflection Time',
+  desc:'Closing every lesson with purpose and genuine recognition',
+  mentorLine:"The last two minutes of a lesson are worth as much as the first forty. Students leave with whatever was last. If the last thing is a rushed 'that's all, goodbye' — they leave with noise. If the last thing is a moment of genuine recognition — 'look what you can do now that you couldn't do an hour ago' — they leave with something that sticks. The lesson isn't over until they know it happened.",
+  initBars:{energy:80,motiv:70,involve:65,stress:22},
+  chars:[
+    {name:'Lena',mood:'winding down',color:'#3B6D11',emoji:'😊'},
+    {name:'Nick',mood:'quiet',color:'#185FA5',emoji:'😶'},
+    {name:'Paul',mood:'already packing',color:'#C8622A',emoji:'😄'},
+    {name:'George',mood:'reflective',color:'#534AB7',emoji:'🧠'}
+  ],
+  situation:"Three minutes left. The speaking activity has just finished. Students are beginning to relax — Paul is already reaching for his bag. The goal was on the board at the start. Most students have forgotten it. You have one chance to make the lesson feel complete.",
+  goal:'Return to the lesson goal, make the achievement visible, and elicit genuine student reflection using a structured technique — before the last student has mentally left the room.',
+  criteria:['Goal return clarity','Reflection technique quality','Student engagement','Warm closure','Forward-looking close'],
+  mcqs:[
+    {
+      q:'Why is returning to the lesson goal at the end important?',
+      opts:[
+        {text:'To make sure students copied it into their notebooks.',why:'Wrong — copying is administrative. The goal return is a learning frame, not a clerical task.',correct:false},
+        {text:'To show students the distance they have travelled — what they can do now that they couldn\'t at the start.',why:'✓ Correct — the goal return creates closure and metacognitive awareness. Students experience the lesson as a complete arc.',correct:true},
+        {text:'To check whether the teacher achieved what they planned.',why:'Wrong — lesson self-evaluation is the teacher\'s work, not a public moment. The goal return is for students.',correct:false},
+        {text:'Because the syllabus requires a closing stage.',why:'Wrong — formal compliance without pedagogical value. Students feel the difference immediately.',correct:false}
+      ]
+    },
+    {
+      q:'You ask "What did we learn today?" and the class goes silent. What is the most effective response?',
+      opts:[
+        {text:'Answer the question yourself — tell them what they learned.',why:'Wrong — you\'ve closed the reflection loop before it opened. Students have no ownership of the learning.',correct:false},
+        {text:'Use a sentence starter: "Today I can... / Today I learned..." to lower the barrier.',why:'✓ Correct — sentence starters scaffold the reflection. They lower the bar from open production to completion. One prompt becomes a whole thought.',correct:true},
+        {text:'Ask something easier: "Did you enjoy the lesson?"',why:'Wrong — enjoyment is not reflection. Students can enjoy a lesson and learn nothing, or find it hard and learn a great deal.',correct:false},
+        {text:'Leave the silence — they are thinking.',why:'Partially true but professionally incomplete. After five seconds, silence means the question needs reformatting.',correct:false}
+      ]
+    }
+  ],
+  tactics:[
+    {
+      id:'t1',
+      title:'Return to Goal + Reflection',
+      desc:'Close the lesson with purpose — return to the goal, show the achievement, elicit genuine reflection.',
+      criteria:['Goal return clarity','Reflection technique quality','Student engagement','Warm closure','Forward-looking close'],
+      clicheGroups:[
+        {label:'Returning to the goal',phrases:["Do you remember the goal we set at the beginning of the lesson?","Let's look back at where we started.","By the end of today, you were going to be able to... — let's see if that happened.","Look what you can do now that you couldn't do an hour ago."]},
+        {label:'Reflection prompts',phrases:["Today I can...","Today I learned...","I was surprised that...","I still feel confused about...","I felt proud of myself when...","3 things I used today, 2 things I enjoyed, 1 question I still have.","Plus: what went well? Delta: what would you change?"]},
+        {label:'Warm close',phrases:["You've done something today that was genuinely difficult — and you did it.","I want to leave you with one thought...","See you next lesson — notice whether you use any of today's language before then.","Thank you for today — I mean that."]}
+      ],
+      steps:[
+        {
+          id:'return_goal',type:'must',format:'written',hasVoice:true,
+          title:'Return to the lesson goal',
+          caseBlock:{
+            room:'End of lesson. Three minutes remain. The speaking activity has just finished.',
+            task:'Students have been doing a structured discussion — comparing lifestyles. They spoke English throughout. Paul is reaching for his bag.',
+            student:'Most students have forgotten the goal that was set at the start. Nick is quiet. Paul is half-packed. Lena is still looking at you. George is watching to see what happens next.'
+          },
+          situation:'Bring the class back. Return to the goal — make it visible and concrete. Students should feel the lesson as a complete arc: they started somewhere, and now they are somewhere different. Don\'t read the goal off the board — make it feel like a genuine moment of recognition.',
+          goal:'Students hear the goal return as a moment of recognition, not administration. At least one student shows a visible sign of awareness — the lesson has a shape.',
+          criteria:['Goal return clarity','Warm closure','Student engagement','Register appropriate for the end of a lesson','Forward-looking close']
+        },
+        {
+          id:'bridge_reflection',type:'must',format:'written',hasVoice:true,
+          title:'Bridge to reflection',
+          situation:'The class is with you. Now introduce a reflection technique — give students a structure so they know what they\'re being asked to produce. Choose one technique and frame it clearly. You have about ninety seconds.',
+          goal:'Students understand what kind of reflection they\'re being asked for. The technique is introduced warmly — not as a test, as an invitation.',
+          criteria:['Reflection technique clearly introduced','Structure makes the task accessible','Tone inviting not demanding','Register','Time awareness — brief and focused']
+        },
+        {
+          id:'elicit_receive',type:'must',format:'written',hasVoice:true,
+          title:'Elicit and receive student reflection',
+          situation:'You\'ve introduced the technique. Now invite responses. Lena offers something immediately. Nick says nothing. George gives a thoughtful but unexpected answer — he says he\'s surprised he managed to speak for two minutes without stopping. Receive what students offer, respond specifically, and close the lesson with one genuine forward-looking line.',
+          goal:'At least one student reflection is received and responded to specifically — not generically. The lesson ends with the students\' voice, not the teacher\'s summary. Nick feels included even without speaking.',
+          criteria:['Genuine reception — not generic praise','Responds to content not just effort','Nick included without pressure','Forward-looking closing line','Warm final impression']
+        }
+      ],
+      optSteps:[
+        {
+          id:'energy_gone',type:'opt',format:'written',hasVoice:true,
+          title:'The class has already left mentally',
+          situation:'You start your goal return. Paul has his bag on his shoulder. Two students are whispering. Nick is staring out of the window. The lesson lost its energy before the close. You have ninety seconds.',
+          goal:'You close with dignity. The students who were still with you leave with something. You don\'t pretend the energy was there.',
+          criteria:['Calm and grounded — not panicked','Minimal but genuine','Closes rather than chases','Register']
+        }
+      ],
+      bonusTopics:[
+        {
+          id:'goal_not_met',
+          label:'The goal wasn\'t fully achieved',
+          badge:'Unfinished lesson',
+          situation:'You reach the end of the lesson and realise: the goal as stated at the beginning was not fully achieved. Students completed the discussion activity and spoke English throughout — genuinely well. But the written follow-up task that was part of the goal didn\'t happen. You ran out of time.',
+          task:'Acknowledge what was achieved honestly. Name what will carry over. Close without excessive apology and without pretending the goal was met.',
+          goal:'Students feel the lesson had value even though it was incomplete. You are honest about what happened without undermining what they did achieve.',
+          criteria:['Honest acknowledgement of what was and wasn\'t achieved','Names the genuine achievement specifically','No excessive apology','Forward-looking — what carries over to next lesson','Professional and warm']
+        },
+        {
+          id:'student_challenges',
+          label:'"We didn\'t learn anything today"',
+          badge:'Student challenges the lesson',
+          situation:'After your goal return, a student says quietly but clearly: "We didn\'t really learn anything today." Everyone goes silent. You don\'t know who said it.',
+          task:'Take the comment seriously without capitulating. Reframe what learning looked like in this lesson. Close without defensiveness.',
+          goal:'The comment is received professionally. The class sees that the teacher can handle honest feedback without shutting down or becoming defensive. The lesson\'s value is reframed concretely.',
+          criteria:['Takes the comment seriously — not dismissed','Reframes with concrete evidence from the lesson','No defensiveness or over-explanation','Class atmosphere recovers','Warm but honest close']
+        }
+      ],
+      achievementId:'a9',xp:85
+    }
+  ],
+  reflectQs:[
+    {score:[0,99],q:'Как вы сами обычно рефлексируете после сложной учебной задачи — спонтанно или вам нужен структурированный вопрос?'},
+    {score:[0,99],variants:[
+      'Как вы отличите настоящую рефлексию ученика от «эталонного, социально приемлемого» ответа?',
+      'Что важнее в финале урока: закрыть тему или оставить ученика с вопросом?'
+    ]},
+    {score:[0,99],variants:[
+      'Что значит для вас «хорошо завершить урок» — и совпадает ли это с тем, что означало бы для ваших учеников?',
+      'Должен ли учитель всегда закрывать урок на позитивной ноте — или иногда честнее сказать «мы не справились сегодня, и это нормально»?'
+    ]}
+  ],
+  achievementId:'a9', xp:85
+};
+
 function openScenario(id) {
   const sc = SCENARIO_DATA[id]; if (!sc) return;
   S.cur=id; S.mcqPhase=0; S.curTactic=null; S.curStepIdx=0; S.curSteps=[]; S.runningScore=0; S.runningMax=0; S.curStepScores=[];
@@ -4457,9 +4617,10 @@ function renderTacticResult(wrap) {
   b3.addEventListener('click',()=>{
     const sc2=SCENARIO_DATA[S.cur];
     const tactic=S.curTactic;
-    // Check for tactic-level bonusStep (S8 style)
     if(tactic.bonusStep){
       renderBonusStepGate(wrap,tactic.bonusStep,sc2);
+    } else if(tactic.bonusTopics&&tactic.bonusTopics.length>0){
+      renderS9BonusGate(wrap,tactic,sc2);
     } else if(sc2.bonusTopics&&sc2.bonusTopics.length>0){
       renderScenarioPhase('bonus');
     } else {
@@ -4773,6 +4934,11 @@ const COMPETENCES = {
     {name:'Concept checking',desc:'Verifying genuine understanding through CCQs'},
     {name:'Procedure checking',desc:'Using ICQs to confirm students know what to do'},
     {name:'Scaffolding',desc:'Building bridges to understanding without giving answers'}
+  ],
+  s9: [
+    {name:'Lesson closure',desc:'Closing every lesson with purpose and recognition'},
+    {name:'Reflection facilitation',desc:'Eliciting genuine student reflection — not performance'},
+    {name:'Metacommunicative awareness',desc:'Reading what students need at the end of a lesson'}
   ]
 };
 
@@ -4883,7 +5049,90 @@ function finishScenario(sc) {
 // ═══════════════════════════════════════
 // BONUS PHASE
 // ═══════════════════════════════════════
-function renderBonusStepGate(wrap, bonusStep, sc) {
+function renderS9BonusGate(wrap, tactic, sc) {
+  wrap.innerHTML=''; wrap.appendChild(makeBarsPanel());
+  const topics=tactic.bonusTopics||[];
+  const chosen=topics[Math.floor(Math.random()*topics.length)];
+  S.curBonusTopic=chosen;
+
+  const gate=document.createElement('div'); gate.className='bonus-gate';
+  gate.innerHTML=`
+    <div class="bonus-gate-star">⭐</div>
+    <div class="bonus-gate-title"><em>One more moment…</em></div>
+    <div class="bonus-topic-badge">${chosen.badge}</div>
+    <div class="bonus-gate-sub" style="margin-top:.6rem">${chosen.situation}</div>
+    <div class="bonus-xp-note">+15 XP · full NLP assessment · chatterbox reaction</div>
+    <button class="bonus-accept" id="s9-bonus-accept">Accept the challenge →</button>
+    <button class="bonus-skip" id="s9-bonus-skip">Skip — go to reflection</button>`;
+  wrap.appendChild(gate);
+
+  document.getElementById('s9-bonus-accept').addEventListener('click',()=>{
+    renderS9BonusTask(wrap,chosen,sc);
+  });
+  document.getElementById('s9-bonus-skip').addEventListener('click',()=>{
+    S.reflectIdx=0; buildReflectQs(sc); renderScenarioPhase('reflect');
+  });
+}
+
+function renderS9BonusTask(wrap, bonus, sc) {
+  wrap.innerHTML=''; wrap.appendChild(makeBarsPanel());
+
+  const card=document.createElement('div'); card.className='bonus-card';
+  card.innerHTML=`
+    <div class="bonus-card-badge">⭐ ${bonus.badge}</div>
+    <div class="step-sit-lbl">The situation</div>
+    <div class="step-sit" style="margin-bottom:.5rem">${bonus.situation}</div>
+    <div style="font-size:12px;color:var(--ink-muted);margin-bottom:.8rem;font-style:italic">Your task: ${bonus.task}</div>
+    <div class="english-notice" style="margin-bottom:8px">🇬🇧 Write in English</div>
+    <textarea class="resp-ta" id="s9-bonus-ta" placeholder="Write what you would say..." style="min-height:80px"></textarea>
+    <div class="wc-row"><span class="wc" id="s9-bonus-wc">0 words</span></div>`;
+  wrap.appendChild(card);
+  document.getElementById('s9-bonus-ta').addEventListener('input',function(){
+    const w=this.value.trim().split(/\s+/).filter(x=>x).length;
+    document.getElementById('s9-bonus-wc').textContent=w+(w===1?' word':' words');
+  });
+
+  const fbWrap=buildFeedbackPanel('-s9b');
+  const subRow=document.createElement('div'); subRow.className='sub-row';
+  const subBtn=document.createElement('button'); subBtn.className='sub-btn'; subBtn.textContent='Submit';
+  const spinRow=document.createElement('div'); spinRow.className='spin-row'; spinRow.innerHTML='<div class="spin"></div>Assessing…';
+  subRow.appendChild(subBtn); subRow.appendChild(spinRow);
+  wrap.appendChild(subRow); wrap.appendChild(fbWrap);
+
+  document.getElementById('nxt-btn-s9b').textContent='Continue →';
+  document.getElementById('nxt-btn-s9b').addEventListener('click',()=>{
+    S.reflectIdx=0; buildReflectQs(sc); renderScenarioPhase('reflect');
+  });
+
+  subBtn.addEventListener('click',async()=>{
+    const resp=document.getElementById('s9-bonus-ta')?.value?.trim();
+    if(!resp||resp.length<3){alert('Write your response first.');return;}
+    subBtn.disabled=true; spinRow.className='spin-row on';
+    try{
+      const res=await fetch('/api/assess',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+        response:resp,
+        situation:bonus.situation,
+        goal:bonus.goal,
+        criteria:bonus.criteria,
+        moduleId:'s9_bonus'
+      })});
+      const p=await res.json();
+      spinRow.className='spin-row'; subBtn.style.display='none';
+      if(p.inappropriate){alert('Please rewrite your response.');subBtn.disabled=false;return;}
+      S.xp+=15; applyDeltas(p.barDeltas);
+      showFeedback(p,resp,'-s9b');
+      mkToast('⭐ +15 bonus XP!','good');
+      // Chatterbox after feedback
+      const nxtBtn=document.getElementById('nxt-btn-s9b');
+      nxtBtn.style.display='none';
+      const stepProxy={id:'s9_bonus_'+bonus.id,situation:bonus.situation,goal:bonus.goal,chatterboxChars:['Lena','George','Nick'],fullAssess:false};
+      renderS7Chatterbox(fbWrap,sc,resp,stepProxy,p);
+    }catch(e){spinRow.className='spin-row';subBtn.disabled=false;mkToast('Assessment failed.','crit');}
+  });
+}
+
+
+function renderS9BonusGate(wrap, tactic, sc) {
   wrap.innerHTML=''; wrap.appendChild(makeBarsPanel());
   const gate=document.createElement('div'); gate.className='bonus-gate';
   gate.innerHTML=`
