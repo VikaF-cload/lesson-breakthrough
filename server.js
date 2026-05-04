@@ -289,36 +289,35 @@ function getDemoFeedback(criteria, stepId, situation, modId) {
 // ═══════════════════════════════════════
 // SAVE PROGRESS
 // ═══════════════════════════════════════
-// ── BIN ID CACHE (in-memory, survives restarts via index bin) ──
+// ── BIN ID CACHE (in-memory, persisted via env JSONBIN_INDEX_ID) ──
 const binIdCache = {};
-const INDEX_BIN_NAME = 'lb_index';
-let indexBinId = null;
-
-async function getIndexBin() {
-  if (indexBinId) return indexBinId;
-  // Try to find existing index bin by fetching a known-named bin
-  // We store the index bin ID in an environment variable fallback
-  indexBinId = process.env.JSONBIN_INDEX_ID || null;
-  return indexBinId;
-}
+let indexBinId = process.env.JSONBIN_INDEX_ID || null;
 
 async function ensureIndexBin() {
-  if (indexBinId) return;
-  // Create the index bin
+  // Already have it from env var — do nothing
+  if (indexBinId) {
+    console.log('Index bin loaded from env:', indexBinId);
+    return;
+  }
+  // No env var set — create a new index bin once
   try {
     const res = await fetch(JSONBIN_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'X-Master-Key': JSONBIN_KEY,
-        'X-Bin-Name': INDEX_BIN_NAME,
+        'X-Bin-Name': 'lb_index',
         'X-Bin-Private': 'false'
       },
       body: JSON.stringify({ bins: {} })
     });
     const data = await res.json();
     indexBinId = data.metadata?.id;
-    console.log('Created index bin:', indexBinId);
+    console.log('═══════════════════════════════════════════════');
+    console.log('NEW INDEX BIN CREATED:', indexBinId);
+    console.log('ACTION REQUIRED: Set this as JSONBIN_INDEX_ID');
+    console.log('in your Render environment variables NOW.');
+    console.log('═══════════════════════════════════════════════');
   } catch(e) {
     console.error('Index bin creation failed:', e.message);
   }
@@ -326,7 +325,6 @@ async function ensureIndexBin() {
 
 async function getBinId(pid) {
   if (binIdCache[pid]) return binIdCache[pid];
-  // Try loading from index bin
   if (!indexBinId) return null;
   try {
     const res = await fetch(`${JSONBIN_URL}/${indexBinId}/latest`, {
@@ -345,14 +343,12 @@ async function setBinId(pid, binId) {
   binIdCache[pid] = binId;
   if (!indexBinId) return;
   try {
-    // Read current index
     const res = await fetch(`${JSONBIN_URL}/${indexBinId}/latest`, {
       headers: { 'X-Master-Key': JSONBIN_KEY }
     });
     const data = await res.json();
     const record = data.record || { bins: {} };
     record.bins[pid] = binId;
-    // Write updated index
     await fetch(`${JSONBIN_URL}/${indexBinId}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json', 'X-Master-Key': JSONBIN_KEY },
@@ -363,7 +359,7 @@ async function setBinId(pid, binId) {
   }
 }
 
-// Initialise index bin on startup
+// Initialise on startup
 (async () => {
   await ensureIndexBin();
   console.log('Index bin ready:', indexBinId);
