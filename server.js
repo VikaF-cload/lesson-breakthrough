@@ -543,6 +543,52 @@ Lesson transition clarity:
   4: Explicit forward-looking statement — first step of the lesson named
   5: Smooth and motivating bridge — students feel pulled into the lesson`,
 
+    s6_icq: `
+ICQ ASSESSMENT — Student has written one instruction checking question.
+Evaluate only: is it a CLOSED question? Does it target PROCEDURE or STRATEGY (not content opinion or general readiness)?
+Score 4-5 if: closed, targets procedure/strategy, specific and answerable in a few words.
+Score 3 if: attempts a check but slightly vague or could be answered yes/no.
+Score 1-2 if: "Does everyone understand?", "Are you ready?", or a content/opinion question.
+Keep coachNote to 2 sentences.`,
+    s6_quick:`
+QUICK RESPONSE ASSESSMENT — Student has written a one-sentence start signal.
+Evaluate: Is it in English? Is the register warm and confident (not a question, not aggressive)? Is it a clear signal to begin?
+Score 4-5 if: English, warm, confident, unambiguous start signal.
+Score 3 if: correct but flat or slightly hesitant.
+Score 1-2 if: in Russian, a question, or unclear.
+Keep coachNote to 1 sentence.`,
+    s6:`
+SCENARIO 6 RUBRIC — Giving instructions (written modelling step only):
+
+Instruction clarity:
+  1-2: Students would not know what to do — steps missing, contradictory, or confusing
+  3: Main steps present but at least one important element unclear or implied
+  4: All steps clear and in logical order — students can start immediately
+  5: All steps clear, explicitly sequenced, with anticipation of likely confusion points
+
+Sequencing:
+  1-2: Steps not in the order students would follow them
+  3: Mostly correct order but one step misplaced
+  4: Correct order matching the task flow
+  5: Perfect sequence with explicit connectors (first/then/finally)
+
+Modelling quality (written step):
+  Path 1 drill: 1-2 = no base sentence or no model answer; 3 = cycle present but no coaching; 4 = full cycle + rule reminder; 5 = cycle + rule + coaching note
+  Path 2 reading: 1-2 = no strategy named or wrong strategy; 3 = strategy named but thinking not shown; 4 = first+last sentence + topic noun + heading choice; 5 = all of the above + explicit "why this heading" reasoning
+  Path 3 speaking: 1-2 = reads card aloud; 3 = description present but facts only; 4 = facts + feelings, realistic pace; 5 = facts + feelings + explicit naming of structure
+
+ICQ quality:
+  1-2: "Does everyone understand?" or similar social question
+  3: Attempts a check but closed-ended or vague
+  4: Closed, targets procedure, specific and answerable
+  5: Closed + targets the exact danger zone for this task type
+
+Register & transition:
+  1-2: Instruction is cold, robotic, or confusing in tone
+  3: Functional but flat — students would follow but not feel invited
+  4: Warm, clear, appropriate for the age group and task type
+  5: Warm, purposeful, energises students for the task`,
+
     s5: `
 SCENARIO 5 RUBRIC — Using classroom language:
 
