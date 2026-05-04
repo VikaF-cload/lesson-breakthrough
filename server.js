@@ -589,7 +589,40 @@ Score 4-5 if: English, warm, confident, unambiguous start signal.
 Score 3 if: correct but flat or slightly hesitant.
 Score 1-2 if: in Russian, a question, or unclear.
 Keep coachNote to 1 sentence.`,
-    s8:`
+    s9:`
+SCENARIO 9 RUBRIC — Finishing the lesson and reflection:
+
+Goal return clarity:
+  1-2: Goal not mentioned, or stated so abstractly it could apply to any lesson
+  3: Goal named but not connected to what students actually did
+  4: Goal named AND connected concretely to the lesson's activities and achievements
+  5: Goal return creates a visible moment of recognition — students see the arc from start to finish
+
+Reflection technique quality:
+  1-2: "What did you learn today?" with no structure — question fails, silence follows
+  3: A technique is introduced but not explained clearly enough for students to know what to produce
+  4: One technique introduced clearly, with an example or starter — students know what to do
+  5: Technique introduced warmly and purposefully — feels like an invitation, not an assessment
+
+Student engagement:
+  1-2: Close happens at students, not with them — no invitation to participate
+  3: Reflection invited but no student is specifically included or their response received genuinely
+  4: At least one student response elicited and received specifically — teacher responds to the content
+  5: Multiple students included, one response received with genuine follow-up, class closes with a student voice
+
+Warm closure:
+  1-2: Abrupt end — lesson stops, no close
+  3: Polite close but generic — could apply to any lesson on any day
+  4: Warm, lesson-specific close — references something real that happened today
+  5: Close is specific, warm, and leaves a lasting impression — the last words of this lesson
+
+Forward-looking close:
+  1-2: Nothing forward-looking — lesson ends where it ends
+  3: Vague forward reference ("see you next time")
+  4: Specific forward reference — connects today's learning to what comes next or to life outside the classroom
+  5: Forward-looking line that students will actually think about after they leav`,
+
+    s8: `
 SCENARIO 8 RUBRIC — Scaffolding, ICQs and CCQs (full assessment steps only):
 
 CCQ/ICQ quality:
@@ -802,6 +835,10 @@ app.post('/api/assess-voice', async (req, res) => {
   if (!transcript || !situation) return res.status(400).json({ error: 'Missing fields' });
 
   const DEMO_VOICE = {
+
+    s9_return: {voiceScores:[{dimension:'Pragmatics & content',score:4,comment:'Goal return is concrete and connected to what students actually did.'},{dimension:'Tone',score:4,comment:'Warm and genuine — sounds like recognition, not administration.'},{dimension:'Clarity',score:4,comment:'Clear and direct — students immediately understand what is being acknowledged.'},{dimension:'Delivery',score:4,comment:'Unhurried — gives the moment the space it deserves.'}],overallVoice:4,voiceInsight:'A genuine moment of recognition that completes the lesson arc.',barDeltas:{energyDelta:3,motivDelta:8,involveDelta:6,stressDelta:-5},classReaction:{s1_name:'Lena',s1_response:'Oh — I actually did say something I couldn\'t say before.',s1_nonverbal:'looks at her notes, something clicking',s2_name:'George',s2_response:'That\'s true.',s2_nonverbal:'puts his bag down',s3_name:'Nick',s3_response:'',s3_nonverbal:'stops packing, looks up'}},
+    s9_reflect: {voiceScores:[{dimension:'Pragmatics & content',score:4,comment:'Reflection technique is introduced clearly with a concrete starter.'},{dimension:'Tone',score:4,comment:'Inviting not demanding — students feel asked, not tested.'},{dimension:'Clarity',score:4,comment:'Students know exactly what to produce.'},{dimension:'Delivery',score:4,comment:'Warm pacing — gives students a moment to think.'}],overallVoice:4,voiceInsight:'A well-framed reflection invitation that lowers the barrier without lowering the standard.',barDeltas:{energyDelta:2,motivDelta:5,involveDelta:7,stressDelta:-4},classReaction:{s1_name:'Lena',s1_response:"Today I can describe a lifestyle in English without stopping to think.",s1_nonverbal:'smiling, writes it down',s2_name:'George',s2_response:"I'm surprised I had more to say than I thought.",s2_nonverbal:'thoughtful',s3_name:'Nick',s3_response:'',s3_nonverbal:'listening, pen in hand'}},
+
 
     s8_step_icq: { voiceScores:[{dimension:'Pragmatics & content',score:4,comment:'ICQ is specific and closed — targets the procedure not the concept.'},{dimension:'Tone',score:4,comment:'Warm and matter-of-fact — checking without interrogating.'},{dimension:'Clarity',score:4,comment:'One clear question, answerable in a few words.'},{dimension:'Delivery',score:4,comment:'Paced well — students have time to process the question.'}],overallVoice:4,voiceInsight:'A well-formed ICQ that verifies readiness without creating anxiety.',barDeltas:{energyDelta:-1,motivDelta:5,involveDelta:6,stressDelta:-5},classReaction:{s1_name:'Nick',s1_response:'We choose one word for each gap?',s1_nonverbal:'uncertain but engaged',s2_name:'Paul',s2_response:"Yeah I got it, can we start?",s2_nonverbal:'impatient, ready',s3_name:'Lena',s3_response:'Yes — one modal for each sentence.',s3_nonverbal:'nods, notebook open'}},
     s8_step_scaffold: { voiceScores:[{dimension:'Pragmatics & content',score:4,comment:'The scaffold connects the new problem to something already understood.'},{dimension:'Tone',score:4,comment:'Patient and warm — Nick doesn\'t feel interrogated.'},{dimension:'Clarity',score:4,comment:'Concrete and accessible for an A2 learner.'},{dimension:'Delivery',score:4,comment:'Unhurried — gives Nick time to process each step.'}],overallVoice:4,voiceInsight:'A diagnostic scaffold that builds a bridge without crossing it.',barDeltas:{energyDelta:-1,motivDelta:7,involveDelta:5,stressDelta:-6},classReaction:{s1_name:'Nick',s1_response:'Oh... so could, may and might are all fine here?',s1_nonverbal:'looks at the sentence again, something clicking',s2_name:'Lena',s2_response:'',s2_nonverbal:'continues working, hasn\'t noticed',s3_name:'Paul',s3_response:'',s3_nonverbal:'already on sentence 6'}},
