@@ -589,41 +589,38 @@ Score 4-5 if: English, warm, confident, unambiguous start signal.
 Score 3 if: correct but flat or slightly hesitant.
 Score 1-2 if: in Russian, a question, or unclear.
 Keep coachNote to 1 sentence.`,
-    s7:`
-SCENARIO 7 RUBRIC — Addressing students personally (full assessment steps only):
+    s8:`
+SCENARIO 8 RUBRIC — Scaffolding, ICQs and CCQs (full assessment steps only):
 
-Affective-communicative:
-  1-2: Response increases student anxiety, embarrassment, or disengagement
-  3: Neutral — doesn't worsen but doesn't improve the student's state
-  4: Actively reduces anxiety or increases engagement — student feels seen not watched
-  5: Precisely calibrated to this student's emotional state — warm, private, purposeful
+CCQ/ICQ quality:
+  1-2: "Does everyone understand?" or a question that can be answered by nodding — no diagnostic value
+  3: Attempts a check but the question is too broad or can be answered from memory rather than understanding
+  4: Closed, specific, targets the concept or procedure at its most likely confusion point
+  5: Precisely targeted at the exact misunderstanding most likely to be hidden — reveals the gap immediately if it exists
 
-Error correction technique (Path 3 only):
-  1-2: "No. That's wrong." or public correction with no path forward
-  3: Softens the correction but gives no information — "Almost!" with nothing to work with
-  4: Receives the answer, identifies the gap, gives the student a path (question or hint)
-  5: Receives → identifies → paths → acknowledges what was right — full professional sequence
+Diagnostic clarity:
+  1-2: The teacher's question or response reveals nothing about what the student understands or doesn't
+  3: Some diagnostic intent but the follow-up misses the actual gap
+  4: Teacher identifies the gap and responds to it specifically
+  5: Teacher names the exact misconception, explains why it's a natural error, and provides the correct framing
 
-Dignity preservation:
-  1-2: Response draws attention to failure, compares to others, or expresses exasperation
-  3: Avoids obvious humiliation but student still feels exposed or dismissed
-  4: Student's dignity is actively protected — private, specific, forward-looking
-  5: Student feels acknowledged and supported — their mistake or struggle becomes a learning moment
+Scaffolding technique (Path 2 only):
+  1-2: Gives the answer, or gives a scaffold that is either too vague or too simple to hold
+  3: Scaffold present but not connected to what the student already knows
+  4: Bridges from what the student knows to what they need to understand — student could find the answer from it
+  5: Minimum effective scaffold — one question or analogy that builds the bridge without crossing it
 
-Register appropriateness:
-  1-2: Wrong register — too formal, too aggressive, or inappropriate for the moment
-  3: Appropriate register but flat — lacks warmth or personal touch
-  4: Warm, appropriate, natural — sounds like a teacher who sees this student as a person
-  5: Register is precisely matched to the student and the emotional weight of the moment
+Face-saving:
+  1-2: Publicly names the student's confusion or makes the error visible to the class
+  3: Avoids explicit embarrassment but student still feels the correction
+  4: Individual, private, warm — student feels supported not exposed
+  5: Student's wrong answer is treated as a contribution — their reasoning is acknowledged before the correction
 
-Scaffolding clarity / Instructional specificity (Path 1 only):
-  1-2: No concrete next step given — student still doesn't know what to do
-  3: A direction is given but vague — "just try something"
-  4: One concrete, specific, immediately actionable next step
-  5: One step + brief scaffolding note + implied belief that the student can do it`,
-    s7_step_open: { voiceScores:[{dimension:'Pragmatics & content',score:4,comment:'Quiet, warm, face-saving approach — no accusation, no public attention.'},{dimension:'Tone',score:4,comment:'Genuinely concerned and supportive — student would feel seen rather than caught.'},{dimension:'Clarity',score:4,comment:'Simple and clear — Nick knows he\'s being offered help, not interrogated.'},{dimension:'Delivery',score:4,comment:'Calm and unhurried — gives the student space to respond.'}],overallVoice:4,voiceInsight:'A warm, private approach that opens rather than demands.',barDeltas:{energyDelta:-1,motivDelta:4,involveDelta:5,stressDelta:-6},classReaction:{s1_name:'Nick',s1_response:'',s1_nonverbal:'looks up briefly, slight relief',s2_name:'Lena',s2_response:'',s2_nonverbal:'continues working, didn\'t notice',s3_name:'Paul',s3_response:'',s3_nonverbal:'glances over briefly'}},
-    s7_step_receive: { voiceScores:[{dimension:'Pragmatics & content',score:4,comment:'Receives the answer professionally without verdict — George feels heard, not judged.'},{dimension:'Tone',score:4,comment:'Curious and calm — the class sees a teacher who takes answers seriously.'},{dimension:'Clarity',score:4,comment:'Clear question that opens the conversation rather than closing it.'},{dimension:'Delivery',score:4,comment:'Even pacing — no sign of disappointment or impatience.'}],overallVoice:4,voiceInsight:'Professional and warm — George\'s dignity is intact and Tom has nothing to work with.',barDeltas:{energyDelta:-1,motivDelta:6,involveDelta:4,stressDelta:-5},classReaction:{s1_name:'George',s1_response:'Well... I thought the paragraph was about difficulties.',s1_nonverbal:'looking at the text, reconsidering',s2_name:'Tom',s2_response:'',s2_nonverbal:'smirk fades slightly',s3_name:'Lena',s3_response:'',s3_nonverbal:'looks at her own answer, checking'}},
-
+Language accessibility:
+  1-2: Uses metalanguage or grammatical terms an A2 learner would not understand
+  3: Mostly accessible but one term or concept assumes more language than the student has
+  4: Language is fully accessible — concepts explained through examples and context, not grammar terms
+  5: Language is calibrated precisely to A1+/A2 — simple, concrete, exemplified, never condescending`,
     s5: `
 SCENARIO 5 RUBRIC — Using classroom language:
 
@@ -805,6 +802,44 @@ app.post('/api/assess-voice', async (req, res) => {
   if (!transcript || !situation) return res.status(400).json({ error: 'Missing fields' });
 
   const DEMO_VOICE = {
+
+    s8_step_icq: { voiceScores:[{dimension:'Pragmatics & content',score:4,comment:'ICQ is specific and closed — targets the procedure not the concept.'},{dimension:'Tone',score:4,comment:'Warm and matter-of-fact — checking without interrogating.'},{dimension:'Clarity',score:4,comment:'One clear question, answerable in a few words.'},{dimension:'Delivery',score:4,comment:'Paced well — students have time to process the question.'}],overallVoice:4,voiceInsight:'A well-formed ICQ that verifies readiness without creating anxiety.',barDeltas:{energyDelta:-1,motivDelta:5,involveDelta:6,stressDelta:-5},classReaction:{s1_name:'Nick',s1_response:'We choose one word for each gap?',s1_nonverbal:'uncertain but engaged',s2_name:'Paul',s2_response:"Yeah I got it, can we start?",s2_nonverbal:'impatient, ready',s3_name:'Lena',s3_response:'Yes — one modal for each sentence.',s3_nonverbal:'nods, notebook open'}},
+    s8_step_scaffold: { voiceScores:[{dimension:'Pragmatics & content',score:4,comment:'The scaffold connects the new problem to something already understood.'},{dimension:'Tone',score:4,comment:'Patient and warm — Nick doesn\'t feel interrogated.'},{dimension:'Clarity',score:4,comment:'Concrete and accessible for an A2 learner.'},{dimension:'Delivery',score:4,comment:'Unhurried — gives Nick time to process each step.'}],overallVoice:4,voiceInsight:'A diagnostic scaffold that builds a bridge without crossing it.',barDeltas:{energyDelta:-1,motivDelta:7,involveDelta:5,stressDelta:-6},classReaction:{s1_name:'Nick',s1_response:'Oh... so could, may and might are all fine here?',s1_nonverbal:'looks at the sentence again, something clicking',s2_name:'Lena',s2_response:'',s2_nonverbal:'continues working, hasn\'t noticed',s3_name:'Paul',s3_response:'',s3_nonverbal:'already on sentence 6'}},
+
+    s7: `
+SCENARIO 7 RUBRIC — Addressing students personally (full assessment steps only):
+
+Affective-communicative:
+  1-2: Response increases student anxiety, embarrassment, or disengagement
+  3: Neutral — doesn't worsen but doesn't improve the student's state
+  4: Actively reduces anxiety or increases engagement — student feels seen not watched
+  5: Precisely calibrated to this student's emotional state — warm, private, purposeful
+
+Error correction technique (Path 3 only):
+  1-2: "No. That's wrong." or public correction with no path forward
+  3: Softens the correction but gives no information — "Almost!" with nothing to work with
+  4: Receives the answer, identifies the gap, gives the student a path (question or hint)
+  5: Receives → identifies → paths → acknowledges what was right — full professional sequence
+
+Dignity preservation:
+  1-2: Response draws attention to failure, compares to others, or expresses exasperation
+  3: Avoids obvious humiliation but student still feels exposed or dismissed
+  4: Student's dignity is actively protected — private, specific, forward-looking
+  5: Student feels acknowledged and supported — their mistake or struggle becomes a learning moment
+
+Register appropriateness:
+  1-2: Wrong register — too formal, too aggressive, or inappropriate for the moment
+  3: Appropriate register but flat — lacks warmth or personal touch
+  4: Warm, appropriate, natural — sounds like a teacher who sees this student as a person
+  5: Register is precisely matched to the student and the emotional weight of the moment
+
+Scaffolding clarity / Instructional specificity (Path 1 only):
+  1-2: No concrete next step given — student still doesn't know what to do
+  3: A direction is given but vague — "just try something"
+  4: One concrete, specific, immediately actionable next step
+  5: One step + brief scaffolding note + implied belief that the student can do it`,
+    s7_step_open: { voiceScores:[{dimension:'Pragmatics & content',score:4,comment:'Quiet, warm, face-saving approach — no accusation, no public attention.'},{dimension:'Tone',score:4,comment:'Genuinely concerned and supportive — student would feel seen rather than caught.'},{dimension:'Clarity',score:4,comment:'Simple and clear — Nick knows he\'s being offered help, not interrogated.'},{dimension:'Delivery',score:4,comment:'Calm and unhurried — gives the student space to respond.'}],overallVoice:4,voiceInsight:'A warm, private approach that opens rather than demands.',barDeltas:{energyDelta:-1,motivDelta:4,involveDelta:5,stressDelta:-6},classReaction:{s1_name:'Nick',s1_response:'',s1_nonverbal:'looks up briefly, slight relief',s2_name:'Lena',s2_response:'',s2_nonverbal:'continues working, didn\'t notice',s3_name:'Paul',s3_response:'',s3_nonverbal:'glances over briefly'}},
+    s7_step_receive: { voiceScores:[{dimension:'Pragmatics & content',score:4,comment:'Receives the answer professionally without verdict — George feels heard, not judged.'},{dimension:'Tone',score:4,comment:'Curious and calm — the class sees a teacher who takes answers seriously.'},{dimension:'Clarity',score:4,comment:'Clear question that opens the conversation rather than closing it.'},{dimension:'Delivery',score:4,comment:'Even pacing — no sign of disappointment or impatience.'}],overallVoice:4,voiceInsight:'Professional and warm — George\'s dignity is intact and Tom has nothing to work with.',barDeltas:{energyDelta:-1,motivDelta:6,involveDelta:4,stressDelta:-5},classReaction:{s1_name:'George',s1_response:'Well... I thought the paragraph was about difficulties.',s1_nonverbal:'looking at the text, reconsidering',s2_name:'Tom',s2_response:'',s2_nonverbal:'smirk fades slightly',s3_name:'Lena',s3_response:'',s3_nonverbal:'looks at her own answer, checking'}},
     s1: { voiceScores:[{dimension:'Pragmatics & content',score:4,comment:'The greeting and self-introduction are well-structured and appropriate for a first meeting with teenagers.'},{dimension:'Tone',score:4,comment:'Warm and accessible — "you can call me" signals approachability without losing authority.'},{dimension:'Clarity',score:4,comment:'Message clearly structured: name, role, forward-looking statement.'},{dimension:'Delivery',score:3,comment:'Pacing appears natural. A deliberate pause after the name introduction would add presence.'}],overallVoice:4,voiceInsight:'A warm, well-structured introduction that makes students feel welcome.',barDeltas:{energyDelta:-2,motivDelta:10,involveDelta:8,stressDelta:-8},classReaction:{s1_name:'Nick',s1_response:'Hello.',s1_nonverbal:'looks up briefly',s2_name:'Lena',s2_response:'Good morning, Ekaterina Sergeevna!',s2_nonverbal:'smiles and sits up straight',s3_name:'Paul',s3_response:'Hi! Are we doing anything fun today?',s3_nonverbal:'raises his hand immediately'}},
     s4_step_formulate: { voiceScores:[{dimension:'Pragmatics & content',score:4,comment:'The goal statement contains the key elements — activity and result are clear.'},{dimension:'Tone',score:4,comment:'Warm and direct — sounds like a teacher, not a lesson plan.'},{dimension:'Clarity',score:4,comment:'Straightforward sentence structure, students would understand immediately.'},{dimension:'Delivery',score:3,comment:'Pacing appears natural. A brief pause before the personal connection would add emphasis.'}],overallVoice:4,voiceInsight:'A clear, purposeful goal statement that orients the class.',barDeltas:{energyDelta:-2,motivDelta:9,involveDelta:7,stressDelta:-6},classReaction:{s1_name:'Lena',s1_response:'Got it.',s1_nonverbal:'nods and opens notebook',s2_name:'Nick',s2_response:'',s2_nonverbal:'looks up from desk',s3_name:'George',s3_response:'Fine.',s3_nonverbal:'still sceptical but listening'}},
     s4_step_check_personal: { voiceScores:[{dimension:'Pragmatics & content',score:4,comment:'The question invites genuine personal connection rather than a simple yes/no.'},{dimension:'Tone',score:4,comment:'Curious and open — students feel invited rather than tested.'},{dimension:'Clarity',score:4,comment:'Question is direct and accessible.'},{dimension:'Delivery',score:3,comment:'Good pacing. A longer pause after asking would give more students time to respond.'}],overallVoice:4,voiceInsight:'An effective personal connection question that makes the goal feel relevant.',barDeltas:{energyDelta:-1,motivDelta:12,involveDelta:10,stressDelta:-8},classReaction:{s1_name:'Lena',s1_response:"I've actually needed to explain where I've been before. This will help!",s1_nonverbal:'leaning forward',s2_name:'Nick',s2_response:'Maybe for social media?',s2_nonverbal:'quiet but responds',s3_name:'George',s3_response:"I guess it's useful for writing emails.",s3_nonverbal:'softens slightly'}},
