@@ -742,7 +742,7 @@ GENERAL SCORING PRINCIPLES:
 
 Each criterion comment: 1-2 sentences — quote the student's actual words, explain why that specific score using the rubric.
 
-COACH NOTE: Maximum 5 sentences. (1) Name one specific thing that worked — quote it. (2) Name the single most important gap. (3) One concrete actionable suggestion with example phrasing. Do not repeat criterion comments. Do not be vague.`;
+COACH NOTE: Maximum 2 sentences. One specific thing that worked (quote a phrase). One concrete gap with a single actionable suggestion. Be direct, no padding.`;
 
   const userPrompt = `SITUATION: ${situation}
 GOAL: ${goal}
@@ -759,12 +759,13 @@ Reply ONLY with valid JSON:
       headers: {
         'Content-Type': 'application/json',
         'x-api-key': ANTHROPIC_KEY,
-        'anthropic-version': '2023-06-01'
+        'anthropic-version': '2023-06-01',
+        'anthropic-beta': 'prompt-caching-2024-07-31'
       },
       body: JSON.stringify({
         model: 'claude-haiku-4-5-20251001',
-        max_tokens: 1200,
-        system: systemPrompt,
+        max_tokens: 700,
+        system: [{ type: 'text', text: systemPrompt, cache_control: { type: 'ephemeral' } }],
         messages: [{ role: 'user', content: userPrompt }]
       })
     });
@@ -791,21 +792,29 @@ app.post('/api/assess-reflection', async (req, res) => {
   const { question, answer, scenarioId } = req.body;
   if (!answer || answer.trim().length < 5) return res.json({ qualityScore: 1, qualityLabel: 'minimal' });
 
-  const systemPrompt = `You are assessing the quality of a pre-service EFL teacher's written reflection on a classroom simulation. Score using this rubric:
+  try {
+    const aiRes = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': ANTHROPIC_KEY,
+        'anthropic-version': '2023-06-01',
+        'anthropic-beta': 'prompt-caching-2024-07-31'
+      },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-6',
+        max_tokens: 150,
+        system: [{
+          type: 'text',
+          text: `You are assessing the quality of a pre-service EFL teacher's written reflection on a classroom simulation. The reflection is in Russian or English. Score using this rubric:
 1 — One word or irrelevant answer, no engagement with the question
 2 — Very brief, surface-level, no specific reference to own experience
 3 — Adequate — answers the question but stays general, no analysis
 4 — Good — references specific actions or choices, shows awareness of why something worked or didn't
-5 — Excellent — analytical, connects theory to practice, shows metacommunicative awareness, specific examples
-Reply ONLY with valid JSON: {"qualityScore":3,"qualityLabel":"adequate","qualityNote":"one sentence"}`;
-
-  try {
-    const aiRes = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'x-api-key': ANTHROPIC_KEY, 'anthropic-version': '2023-06-01' },
-      body: JSON.stringify({
-        model: 'claude-haiku-4-5-20251001', max_tokens: 150,
-        system: systemPrompt,
+5 — Excellent — analytical, connects theory to practice, shows metacommunicative awareness, specific examples from their own experience as a learner or teacher
+Reply ONLY with valid JSON: {"qualityScore":3,"qualityLabel":"adequate","qualityNote":"one sentence in the same language as the answer"}`,
+          cache_control: { type: 'ephemeral' }
+        }],
         messages: [{ role: 'user', content: `QUESTION: ${question}\nANSWER: "${answer}"` }]
       })
     });
@@ -817,7 +826,6 @@ Reply ONLY with valid JSON: {"qualityScore":3,"qualityLabel":"adequate","quality
     res.json(JSON.parse(match[0]));
   } catch(e) {
     console.log('Reflection quality AI failed:', e.message);
-    // Simple heuristic fallback based on length and content
     const len = answer.trim().split(/\s+/).length;
     const score = len < 5 ? 1 : len < 15 ? 2 : len < 40 ? 3 : len < 80 ? 4 : 5;
     const labels = ['','minimal','brief','adequate','good','excellent'];
