@@ -388,7 +388,7 @@ app.post('/api/save', async (req, res) => {
         headers: {
           'Content-Type': 'application/json',
           'X-Master-Key': JSONBIN_KEY,
-          'X-Bin-Name': 'lb_' + pid,
+          'X-Bin-Name': 'lb_' + encodeURIComponent(pid).replace(/%/g,'_'),
           'X-Bin-Private': 'false'
         },
         body: JSON.stringify(data)
