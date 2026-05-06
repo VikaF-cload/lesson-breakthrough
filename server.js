@@ -585,7 +585,15 @@ Score 4-5 if: English, warm, confident, unambiguous start signal.
 Score 3 if: correct but flat or slightly hesitant.
 Score 1-2 if: in Russian, a question, or unclear.
 Keep coachNote to 1 sentence.`,
-    s9:`
+    s10_m1:`SCENARIO 10 MOMENT 1 — Opening contact with new class 6A. Use S1/S3 rubric criteria: Register appropriateness, Affective climate management, Contact-establishing behaviour, Linguistic accuracy & clarity. This is a CONTROL scenario — no hints were given to the user. Assess what they produced independently.`,
+    s10_m2:`SCENARIO 10 MOMENT 2 — Setting the lesson goal (user formulated it themselves from topic only). Use S4 rubric criteria: Goal clarity & completeness (three-part: activity + result + personal), Personal/meaningful connection, Register appropriateness, Linguistic accuracy & clarity.`,
+    s10_m3:`SCENARIO 10 MOMENT 3 — Giving instructions. Use S6 rubric criteria: Instruction clarity, Sequencing, Modelling quality, ICQ quality. The task type varies by topic — assess accordingly.`,
+    s10_m4:`SCENARIO 10 MOMENT 4 — Addressing a student individually. Use S7 rubric criteria: Affective-communicative, Dignity preservation, Scaffolding / next step, Register appropriateness. The student may be silent, confused, or emotionally vulnerable depending on topic.`,
+    s10_m5:`SCENARIO 10 MOMENT 5 — Checking understanding / scaffolding. Use S8 rubric criteria: CCQ/ICQ quality, Diagnostic clarity, Scaffolding technique, Face-saving. Student's exact words are shown in the situation.`,
+    s10_m6:`SCENARIO 10 MOMENT 6 — Lesson closure and reflection. Use S9 rubric criteria: Goal return clarity, Reflection technique quality, Warm closure, Forward-looking close. User should return to the goal they formulated in moment 2.`,
+    s10_recovery:`Recovery step assessment. Criteria: Affective-communicative, Dignity preservation, Register appropriateness. Keep coachNote to 1 sentence.`,
+
+    s9: `
 SCENARIO 9 RUBRIC — Finishing the lesson and reflection:
 
 Goal return clarity:
