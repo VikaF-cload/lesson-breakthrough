@@ -1460,7 +1460,8 @@ const ACHIEVEMENTS = [
   { id: 'a6', icon: '📋', title: 'Clear Instructions', desc: 'Completed Scenario 6 — Giving instructions to the task', scenario: 'S6' },
   { id: 'a7', icon: '👁️', title: 'I See You', desc: 'Completed Scenario 7 — Addressing students personally', scenario: 'S7' },
   { id: 'a8', icon: '🔍', title: 'No Assumptions', desc: 'Completed Scenario 8 — Scaffolding, ICQs and CCQs', scenario: 'S8' },
-  { id: 'a9', icon: '🔄', title: 'Full Circle', desc: 'Completed Scenario 9 — Finishing the lesson', scenario: 'S9' }
+  { id: 'a9', icon: '🔄', title: 'Full Circle', desc: 'Completed Scenario 9 — Finishing the lesson', scenario: 'S9' },
+  { id: 'a10', icon: '🎓', title: 'Ready for the Classroom', desc: 'Completed the Module 1 control lesson with Class 6A', scenario: 'S10' }
 ];
 
 const PED_CARDS = [
@@ -1806,7 +1807,8 @@ const MODULES = [
       { id: 's6', title: 'Giving Instructions to the Task', desc: 'Clear, sequenced task instructions', xp: 90, icon: '📋' },
       { id: 's7', title: 'Addressing Students Personally', desc: 'Individual student communication', xp: 85, icon: '👁️' },
       { id: 's8', title: 'Scaffolding, ICQs and CCQs', desc: 'Supporting student understanding', xp: 80, icon: '🔍' },
-      { id: 's9', title: 'Finishing the Lesson — Reflection Time', desc: 'Closing lessons effectively', xp: 85, icon: '🔄' }
+      { id: 's9', title: 'Finishing the Lesson — Reflection Time', desc: 'Closing lessons effectively', xp: 85, icon: '🔄' },
+      { id: 's10', title: 'Control Lesson — Class 6A', desc: 'Your full lesson — show everything you\'ve learned', xp: 120, icon: '🎓' }
     ]
   },
   { id: 'mod2', title: 'Module 2', subtitle: 'Coming soon', locked: true },
@@ -3500,7 +3502,203 @@ SCENARIO_DATA.s9 = {
   achievementId:'a9', xp:85
 };
 
+// ─── SCENARIO 10 — CONTROL ────────────────────────────────────
+const S10_TOPICS = [
+  {
+    id:'home_chores', label:'Home chores', skill:'Vocabulary',
+    gradeNote:'Grade 6A · Ages 11–12',
+    skimmingNote:null,
+    moments:[
+      {id:'m1',
+       context:'It\'s Monday morning. Grade 6A is settling — some students are still taking off their coats, two are whispering. The general mood is sleepy but not resistant.',
+       task:'Establish warm contact and bring the class to readiness.'},
+      {id:'m2',
+       context:'The class is with you. Students have their books open but haven\'t seen today\'s material yet.',
+       task:'State the three-part goal: what they\'ll do, what they\'ll achieve, why it matters — specific and real for Grade 6A.'},
+      {id:'m3',
+       context:'Students are about to do a two-stage exercise: match 10 picture cards of household chores to English words, then use any 5 words in their own sentences. The cards are on their desks face down.',
+       task:'Give sequenced instructions for both stages. Model one sentence for stage 2. One ICQ before starting.'},
+      {id:'m4',
+       context:'Students are working on stage 1. Alina has matched 4 cards and stopped. She\'s looking at the remaining cards but not writing. Two minutes have passed. She hasn\'t asked for help.',
+       task:'Approach Alina quietly. Diagnose where she\'s stuck. Give one concrete next step without giving her the answer.',
+       studentLine:'', studentName:'Alina', studentNonverbal:'staring at the cards, pen down'},
+      {id:'m5',
+       context:'Students have finished both stages. The teacher is checking stage 2 sentences. Kostya reads his sentence aloud.',
+       task:'Receive Kostya\'s sentence professionally. Guide him to notice the error. Give him a path to self-correct — not the answer.',
+       studentLine:'I do the washing up the dishes every day.', studentName:'Kostya', studentNonverbal:'looks confident, waiting for feedback'},
+      {id:'m6',
+       context:'Three minutes remain. Most students have used all 10 words and written 5 sentences. The class is in a good working state.',
+       task:'Return to the goal you set at the start. Choose and introduce one reflection technique with a clear example starter.'}
+    ]
+  },
+  {
+    id:'food_drinks', label:'Food and drinks', skill:'Grammar (some/any)',
+    gradeNote:'Grade 6A · Ages 11–12',
+    skimmingNote:null,
+    moments:[
+      {id:'m1',
+       context:'It\'s just after lunch. Grade 6A is restless — students are still energised from the break. Three students come in still talking.',
+       task:'Open the lesson. Establish warm contact. Channel the energy into the lesson.'},
+      {id:'m2',
+       context:'Students have settled. Two sentences are on the board — "I have some apples" and "I don\'t have any apples" — without explanation, as a stimulus. Students are curious but uncertain.',
+       task:'State the three-part goal: what they\'ll do, what they\'ll achieve, why it matters — specific and real, not generic.'},
+      {id:'m3',
+       context:'The teacher has explained the some/any rule. Students are about to do a gap-fill exercise: 8 sentences about food and drinks, each with a blank for some or any.',
+       task:'Explain the task format. Give the procedure: work alone, then compare with a partner. Model sentence 1 by thinking aloud. One ICQ before starting.'},
+      {id:'m4',
+       context:'Students are doing the gap-fill. Misha has finished all 8 sentences in under two minutes and is now leaning over to his neighbour. His answers show no clear logic.',
+       task:'Approach Misha without drawing the class\'s attention. Check his understanding with one targeted CCQ. Redirect him to review his answers.',
+       studentLine:'', studentName:'Misha', studentNonverbal:'leaning over to neighbour, looks satisfied'},
+      {id:'m5',
+       context:'Going through answers with the class. The teacher asks about sentence 6: "Have you got ___ milk?" Kostya answers confidently.',
+       task:'Receive Kostya\'s answer professionally. Guide him and the class toward the correct answer using the pattern they\'ve been noticing.',
+       studentLine:'Some.', studentName:'Kostya', studentNonverbal:'confident, waiting for confirmation'},
+      {id:'m6',
+       context:'The rule is now clear for most students. The lesson ends in 3 minutes.',
+       task:'Return to the goal you set at the start. Choose and introduce one reflection technique with a clear example starter.'}
+    ]
+  },
+  {
+    id:'great_people', label:'Great people', skill:'Reading (skimming)',
+    gradeNote:'Grade 6A · Ages 11–12',
+    skimmingNote:'Skimming is a reading strategy: instead of reading every word, the reader looks at the first and last sentence of each paragraph to identify the key topic. It is used to find the main idea quickly — not to understand every detail. Students at A1+/A2 often default to careful word-by-word reading; part of the teacher\'s job is to show them this strategy and help them apply it.',
+    moments:[
+      {id:'m1',
+       context:'Grade 6A is ready and attentive — a mid-morning lesson after a break. The atmosphere is calm.',
+       task:'Open the lesson. Establish contact. Activate the topic through a quick personal round.'},
+      {id:'m2',
+       context:'Students have just named several famous people in the warm-up. Books are closed.',
+       task:'State the three-part goal: what they\'ll do, what they\'ll achieve, why it matters — specific and real.'},
+      {id:'m3',
+       context:'Students are about to do a heading-matching exercise. The text is a short adapted article (5 paragraphs) about a famous historical figure. There are 5 headings in a box — students match each heading to the correct paragraph. The task sheet is face down on their desks. This is their first time doing this task format.',
+       task:'Give sequenced instructions for the task. Model paragraph 1 using the skimming strategy. One ICQ before turning over the sheet.'},
+      {id:'m4',
+       context:'Students are reading. Alina has been on paragraph 1 for four minutes and hasn\'t matched anything. She is using a dictionary app on her phone and reading word by word.',
+       task:'Approach Alina quietly. Acknowledge what she\'s doing without making it feel wrong. Redirect her to the skimming strategy with one concrete scaffold.',
+       studentLine:'', studentName:'Alina', studentNonverbal:'reading slowly, phone with dictionary open'},
+      {id:'m5',
+       context:'Students have finished. The teacher is checking understanding.',
+       task:'Engage with Dima\'s position genuinely. Explain why skimming serves this specific task. Make the concept clear for the whole class.',
+       studentLine:'I read all. It\'s better.', studentName:'Dima', studentNonverbal:'arms crossed, confident'},
+      {id:'m6',
+       context:'Students matched an average of 4 out of 5 headings correctly. Several said it felt easier than expected. Three minutes remain.',
+       task:'Return to the goal you set at the start. Choose and introduce one reflection technique with a clear example starter.'}
+    ]
+  },
+  {
+    id:'on_holiday', label:'On holiday', skill:'Speaking (expressing preferences)',
+    gradeNote:'Grade 6A · Ages 11–12',
+    skimmingNote:null,
+    moments:[
+      {id:'m1',
+       context:'It\'s a Friday afternoon. Grade 6A is tired — the last lesson of the week. Two students have their heads on their desks.',
+       task:'Open the lesson. Establish contact. Bring the class back to life without forcing it.'},
+      {id:'m2',
+       context:'The class has perked up slightly. Books are closed.',
+       task:'State the three-part goal: what they\'ll do, what they\'ll achieve, why it matters — specific and real.'},
+      {id:'m3',
+       context:'Students are about to do a ranking activity. Each student receives a card with four holiday types: beach holiday, city trip, camping, staying home. Stage 1: rank them alone (1 = favourite). Stage 2: compare with a partner and find one option they both agree on. The cards are ready to distribute.',
+       task:'Give instructions for both stages. Model stage 2 with one example. One ICQ before distributing cards.'},
+      {id:'m4',
+       context:'Pairs are working on stage 2. Kostya is sitting with his partner Sonya. Sonya has shared her full ranking. Kostya is looking at his card but hasn\'t spoken. Sonya glances at the teacher.',
+       task:'Approach the pair naturally. Give Kostya a low-barrier entry point. Step back without making his silence a public moment.',
+       studentLine:'', studentName:'Kostya', studentNonverbal:'looking at card, silent'},
+      {id:'m5',
+       context:'The teacher does a spot-check with one pair. Misha shares his preference.',
+       task:'Ask a CCQ that checks whether Misha understands what "two reasons" requires. Give him a scaffold to develop his reasoning.',
+       studentLine:'I like beach. Because... nice.', studentName:'Misha', studentNonverbal:'looks satisfied with his answer'},
+      {id:'m6',
+       context:'Most pairs have compared rankings and found something they agree on. Several students spoke for over a minute. Three minutes remain.',
+       task:'Return to the goal you set at the start. Choose and introduce one reflection technique with a clear example starter.'}
+    ]
+  },
+  {
+    id:'art', label:'Art', skill:'Speaking (describing experience)',
+    gradeNote:'Grade 6A · Ages 11–12',
+    skimmingNote:null,
+    moments:[
+      {id:'m1',
+       context:'Grade 6A has just returned from a school museum excursion. Students come in animated — excited, noisy, some still processing. The atmosphere is alive but unfocused.',
+       task:'Open by using the energy — not calming it down, but focusing it.'},
+      {id:'m2',
+       context:'Students have shared one-word reactions. The energy is still up. Books are closed.',
+       task:'State the three-part goal: what they\'ll do, what they\'ll achieve, why it matters — specific and real.'},
+      {id:'m3',
+       context:'Students are about to prepare and deliver a short individual monologue (90 seconds) about one exhibit they remember. Each student has a scaffold card with three sentence starters: "I saw...", "It looked...", "It made me feel..." The cards are on their desks.',
+       task:'Give instructions. Model a complete response using an imaginary exhibit. Use 2 ICQs.'},
+      {id:'m4',
+       context:'Students are preparing their monologues. Alina has her card but hasn\'t written anything.',
+       task:'Alina is being honest. Validate her genuine reaction, reframe without dismissing it, and give her a concrete way into the third sentence starter.',
+       studentLine:'Я не знаю, что чувствовала. Мне не понравилось.',
+       studentName:'Alina', studentNonverbal:'quiet, looking at card, hasn\'t written anything'},
+      {id:'m5',
+       context:'Students are sharing. Dima gives his monologue. He looks at the teacher expecting confirmation.',
+       task:'Acknowledge what Dima did correctly. Ask a CCQ that checks whether he understood the third starter. Scaffold him toward adding the emotional layer.',
+       studentLine:'I saw big painting. It was blue and white. Man was standing.',
+       studentName:'Dima', studentNonverbal:'looks at teacher, expecting confirmation'},
+      {id:'m6',
+       context:'All students have shared. The room is warm. Three minutes remain.',
+       task:'Return to the goal you set at the start. Choose and introduce one reflection technique with a clear example starter.'}
+    ]
+  }
+];
+
+// S10 rubric criteria per moment
+const S10_CRITERIA = {
+  m1:['Register appropriateness','Affective climate management','Contact-establishing behaviour','Linguistic accuracy & clarity'],
+  m2:['Goal clarity & completeness','Personal/meaningful connection','Register appropriateness','Linguistic accuracy & clarity'],
+  m3:['Instruction clarity','Sequencing','Modelling quality','ICQ quality'],
+  m4:['Affective-communicative','Dignity preservation','Scaffolding / next step','Register appropriateness'],
+  m5:['CCQ/ICQ quality','Diagnostic clarity','Scaffolding technique','Face-saving'],
+  m6:['Goal return clarity','Reflection technique quality','Warm closure','Forward-looking close']
+};
+
+// S10 subcompetence labels per moment (for progress diagram)
+const S10_SUBCOMPETENCES = {
+  m1:'Contact-establishing',
+  m2:'Goal-setting',
+  m3:'Instructions',
+  m4:'Individual contact',
+  m5:'Diagnostic competence',
+  m6:'Lesson closure'
+};
+
+// S10 optional recovery steps (triggered if previous moment mean < 3.0)
+const S10_RECOVERY = {
+  m1_poor:{
+    afterMoment:'m1', showBeforeMoment:'m2',
+    context:'Before you state the goal, you notice Alina is still completely disengaged — she\'s staring at her desk and hasn\'t made eye contact with you.',
+    task:'Make quiet individual contact with Alina before moving on. One word or one sentence — keep it private.',
+    studentName:'Alina', studentNonverbal:'staring at desk, hasn\'t looked up'
+  },
+  m2_poor:{
+    afterMoment:'m2', showBeforeMoment:'m3',
+    context:'Mid-lesson, before you give the instructions, Sonya raises her hand: "Sorry — what are we doing today?"',
+    task:'Re-state the goal briefly and clearly in plain language. One sentence. Then move to the instructions.',
+    studentLine:'Sorry — what are we doing today?', studentName:'Sonya', studentNonverbal:'hand raised, genuinely confused'
+  },
+  m3_poor:{
+    afterMoment:'m3', showBeforeMoment:'m4',
+    context:'Two minutes into the task, you see Misha and his partner doing something completely different from what you asked. They look up at you.',
+    task:'Re-explain the task to this pair without stopping the whole class. Brief, clear, calm.',
+    studentName:'Misha', studentNonverbal:'doing wrong activity, looks up questioningly'
+  },
+  m4_poor:{
+    afterMoment:'m4', showBeforeMoment:'m5',
+    context:'The student you approached has withdrawn — they\'ve put their pen down and are sitting with their arms crossed. They\'re not participating.',
+    task:'Re-engage them with the lowest possible barrier to entry. One word answer is enough. Don\'t escalate.',
+    studentName:'Alina', studentNonverbal:'arms crossed, pen down, looking away'
+  },
+  m5_poor:{
+    afterMoment:'m5', showBeforeMoment:'m6',
+    context:'Three students in the back are making the same error repeatedly. They clearly didn\'t understand the concept from your earlier check.',
+    task:'Re-scaffold with a completely different angle — not a repetition of what you said before. One new bridge.',
+    studentName:'Dima', studentNonverbal:'looking confused, same error repeated'
+  }
+};
+
 function openScenario(id) {
+  if(id==='s10'){openS10();return;}
   const sc = SCENARIO_DATA[id]; if (!sc) return;
   S.cur=id; S.mcqPhase=0; S.curTactic=null; S.curStepIdx=0; S.curSteps=[]; S.runningScore=0; S.runningMax=0; S.curStepScores=[];
   recordScenarioStart(id);
@@ -3511,7 +3709,501 @@ function openScenario(id) {
   go('s-scenario');
 }
 
-function renderScenarioPhase(phase) {
+// ═══════════════════════════════════════════════════════════════
+// S10 — CONTROL SCENARIO
+// ═══════════════════════════════════════════════════════════════
+
+const S10State = {
+  topic: null,
+  momentIdx: 0,
+  scores: {},       // {m1:[...], m2:[...], ...}
+  goalText: '',     // user's formulated goal from m2
+  recovery: {},     // {m1_poor: true/false}
+  barHistory: [],   // bar state after each moment
+  pretestScores: null // loaded from JSONBin if available
+};
+
+function openS10() {
+  // Pick random topic
+  const topic = S10_TOPICS[Math.floor(Math.random()*S10_TOPICS.length)];
+  S10State.topic = topic;
+  S10State.momentIdx = 0;
+  S10State.scores = {};
+  S10State.goalText = '';
+  S10State.recovery = {};
+  S10State.barHistory = [];
+  recordScenarioStart('s10');
+  setBars({energy:95, motiv:70, involve:65, stress:20});
+  renderS10Entry(topic);
+}
+
+function renderS10Entry(topic) {
+  go('scenario');
+  const wrap = document.getElementById('sc-wrap');
+  wrap.innerHTML = '';
+  document.getElementById('sc-lbl').textContent = 'Control Lesson — Class 6A';
+
+  // Mentor card
+  const card = document.createElement('div');
+  card.style.cssText = 'background:var(--ink);border-radius:var(--r-xl);padding:1.8rem 1.4rem;text-align:center;box-shadow:var(--shadow-lg);margin-bottom:12px';
+  card.innerHTML = `
+    <div style="font-size:2.4rem;margin-bottom:.6rem">👩‍🏫</div>
+    <div style="font-family:\'Lora\',serif;font-size:1.1rem;color:var(--cream);font-style:italic;line-height:1.7;margin-bottom:1rem">
+      "You've come a long way since that first lesson with 8B. Now I want to see what you can do on your own.<br><br>
+      Class 6A is waiting for you. It's a real lesson — show me everything you've learned."
+    </div>
+    <div style="font-size:12px;color:var(--ink-faint);margin-bottom:1.2rem">— Your mentor</div>
+    <div style="display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,0.08);border-radius:var(--r-md);padding:8px 16px;margin-bottom:1rem">
+      <div style="text-align:left">
+        <div style="font-size:11px;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.08em">Today's class</div>
+        <div style="font-size:14px;color:var(--cream);font-weight:600">Grade 6A · Ages 11–12</div>
+      </div>
+      <div style="width:1px;height:30px;background:rgba(255,255,255,0.15)"></div>
+      <div style="text-align:left">
+        <div style="font-size:11px;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.08em">Today's topic</div>
+        <div style="font-size:14px;color:var(--terra-mid);font-weight:600">${topic.label} — ${topic.skill}</div>
+      </div>
+    </div>`;
+
+  // Skimming note if needed
+  if(topic.skimmingNote){
+    const note = document.createElement('div');
+    note.style.cssText = 'background:var(--cream-deep);border:1px solid var(--border);border-radius:var(--r-md);padding:.9rem 1rem;font-size:12px;color:var(--ink-soft);line-height:1.7;margin-bottom:10px;text-align:left';
+    note.innerHTML = `<div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-muted);margin-bottom:.4rem">ℹ️ Before you begin</div>${topic.skimmingNote}`;
+    wrap.appendChild(note);
+  }
+
+  // Lesson map
+  const mapCard = document.createElement('div');
+  mapCard.className = 'case-card';
+  mapCard.style.marginBottom = '12px';
+  mapCard.innerHTML = `<div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-muted);margin-bottom:.8rem">Your lesson — 6A</div>`;
+  topic.moments.forEach((m,i) => {
+    const row = document.createElement('div');
+    row.style.cssText = `display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:${i<5?'0.5px solid var(--border)':'none'}`;
+    const labels = ['Opening contact','Setting the goal','Giving instructions','Addressing a student','Checking understanding','Closing the lesson'];
+    row.innerHTML = `
+      <div style="width:24px;height:24px;border-radius:50%;background:${i===0?'var(--terra)':'var(--cream-deep)'};border:1.5px solid ${i===0?'var(--terra)':'var(--border)'};display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:${i===0?'#fff':'var(--ink-muted)'};flex-shrink:0">${i+1}</div>
+      <div style="flex:1;font-size:13px;color:${i===0?'var(--ink)':'var(--ink-muted)'}">Moment ${i+1} — ${labels[i]}</div>
+      ${i===0?'<div style="font-size:11px;color:var(--terra);font-weight:600">Now →</div>':'<div style="font-size:11px;color:var(--ink-ghost)">🔒</div>'}`;
+    mapCard.appendChild(row);
+  });
+  wrap.appendChild(card);
+  wrap.appendChild(mapCard);
+  wrap.appendChild(makeBarsPanel());
+
+  const startBtn = document.createElement('button');
+  startBtn.className = 'sub-btn';
+  startBtn.style.cssText = 'width:100%;padding:14px;font-size:15px;font-weight:700;background:var(--terra);color:#fff;border:none;border-radius:var(--r-lg);margin-top:8px';
+  startBtn.textContent = 'Begin the lesson →';
+  startBtn.addEventListener('click', () => renderS10Moment(0));
+  wrap.appendChild(startBtn);
+}
+
+function renderS10Moment(idx) {
+  const topic = S10State.topic;
+  const moment = topic.moments[idx];
+  S10State.momentIdx = idx;
+  go('scenario');
+  const wrap = document.getElementById('sc-wrap');
+  wrap.innerHTML = '';
+
+  // Progress header
+  const labels = ['Opening contact','Setting the goal','Giving instructions','Addressing a student','Checking understanding','Closing the lesson'];
+  const prog = document.createElement('div'); prog.className='progress-track-wrap';
+  prog.innerHTML = `<div class="progress-track-meta"><span>Control Lesson — ${topic.label}</span><span>Moment ${idx+1} / 6</span></div><div class="progress-track"><div class="progress-fill" style="width:${Math.round((idx/6)*100)}%"></div></div>`;
+  wrap.appendChild(prog);
+  wrap.appendChild(makeBarsPanel());
+
+  // Moment card
+  const card = document.createElement('div'); card.className='step-card';
+  card.innerHTML = `
+    <div class="step-head">
+      <span style="background:var(--terra);color:#fff;border-radius:20px;padding:3px 12px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em">Moment ${idx+1}</span>
+      <span class="step-title" style="margin-left:8px">${labels[idx]}</span>
+    </div>
+    <div class="step-sit-lbl">The situation</div>
+    <div class="step-sit">${moment.context}</div>
+    <div style="margin-top:.8rem;padding:.7rem .9rem;background:var(--cream-deep);border-radius:var(--r-md);border-left:3px solid var(--terra)">
+      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-muted);margin-bottom:.3rem">Your communicative task</div>
+      <div style="font-size:13px;color:var(--ink-soft);line-height:1.6">${moment.task}</div>
+    </div>`;
+  wrap.appendChild(card);
+
+  // Pre-written student bubble (for moments 4 and 5)
+  if(moment.studentLine !== undefined && (idx===3||idx===4)){
+    const preBox = document.createElement('div'); preBox.className='chatterbox'; preBox.style.marginBottom='10px';
+    preBox.innerHTML = `<div class="cb-lbl">💬 What you just heard / noticed</div><div class="cb-bubbles" id="s10-pre-${idx}"></div>`;
+    wrap.appendChild(preBox);
+    const bubDiv = document.getElementById('s10-pre-'+idx);
+    const chars6A = {Alina:{emoji:'🧐',color:'#5B6FA6'},Misha:{emoji:'😄',color:'#C8622A'},Dima:{emoji:'🧠',color:'#534AB7'},Kostya:{emoji:'😶',color:'#3B6D11'},Sonya:{emoji:'😊',color:'#8B6D11'}};
+    const ch = chars6A[moment.studentName]||{emoji:'🧑‍🎓',color:'#8B6A4F'};
+    const bub = document.createElement('div'); bub.className='cb-bubble';
+    bub.innerHTML = `<div class="cb-av" style="background:${ch.color}22;color:${ch.color}">${ch.emoji}</div>
+    <div><div class="cb-name">${moment.studentName} <span style="font-weight:400;color:var(--ink-ghost);font-style:italic">${moment.studentNonverbal||''}</span></div>
+    <div class="cb-text">${moment.studentLine||'…'}</div></div>`;
+    bubDiv.appendChild(bub);
+  }
+
+  // M2 goal note
+  if(idx===5 && S10State.goalText){
+    const goalRef = document.createElement('div');
+    goalRef.style.cssText='background:var(--terra-light);border:1px solid var(--terra);border-radius:var(--r-md);padding:.7rem .9rem;font-size:12px;color:var(--terra-dark);margin-bottom:8px;line-height:1.6';
+    goalRef.innerHTML=`<span style="font-weight:700">The goal you set:</span> "${S10State.goalText}"`;
+    wrap.appendChild(goalRef);
+  }
+
+  // Response area
+  const respCard = document.createElement('div'); respCard.className='case-card';
+  respCard.innerHTML = `
+    <div class="english-notice" style="margin-bottom:8px">🇬🇧 Write what you would say — in English</div>
+    <textarea class="resp-ta" id="s10-ta-${idx}" placeholder="Type your response..." style="min-height:80px"></textarea>
+    <div class="wc-row"><span class="wc" id="s10-wc-${idx}">0 words</span></div>`;
+  wrap.appendChild(respCard);
+
+  document.getElementById(`s10-ta-${idx}`).addEventListener('input', function(){
+    const w=this.value.trim().split(/\s+/).filter(x=>x).length;
+    document.getElementById(`s10-wc-${idx}`).textContent=w+(w===1?' word':' words');
+  });
+
+  const subBtn = document.createElement('button'); subBtn.className='sub-btn'; subBtn.style.marginTop='6px'; subBtn.textContent='Submit';
+  const spinRow = document.createElement('div'); spinRow.className='spin-row'; spinRow.innerHTML='<div class="spin"></div>Assessing…';
+  const fbArea = document.createElement('div'); fbArea.id=`s10-fb-${idx}`;
+  wrap.appendChild(subBtn); wrap.appendChild(spinRow); wrap.appendChild(fbArea);
+
+  subBtn.addEventListener('click', () => submitS10Moment(idx, subBtn, spinRow, fbArea));
+}
+
+async function submitS10Moment(idx, subBtn, spinRow, fbArea) {
+  const resp = document.getElementById(`s10-ta-${idx}`)?.value?.trim();
+  if(!resp||resp.length<3){alert('Write your response first.');return;}
+  subBtn.disabled=true; spinRow.className='spin-row on';
+
+  const topic = S10State.topic;
+  const moment = topic.moments[idx];
+  const criteria = S10_CRITERIA['m'+(idx+1)];
+
+  try{
+    const res = await fetch('/api/assess',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+      response:resp,
+      situation:moment.context + (moment.studentLine?` The student said: "${moment.studentLine}"`:''),
+      goal:moment.task,
+      criteria,
+      moduleId:'s10_m'+(idx+1)
+    })});
+    const p = await res.json();
+    spinRow.className='spin-row'; subBtn.style.display='none';
+
+    // Store scores
+    S10State.scores['m'+(idx+1)] = p.scores||[];
+    S10State.barHistory.push({...S.bars});
+    if(idx===1) S10State.goalText = resp.length>120?resp.slice(0,120)+'…':resp;
+    applyDeltas(p.barDeltas);
+
+    // Chatterbox
+    const cbWrap = document.createElement('div'); fbArea.appendChild(cbWrap);
+    const stepProxy = {
+      id:'s10_m'+(idx+1),
+      situation:moment.context,
+      goal:moment.task,
+      chatterboxChars:getS10Chars(idx, topic.id),
+      fullAssess:false
+    };
+    await renderS10Chatterbox(cbWrap, p, resp, stepProxy);
+
+    // Collapsible coach note AFTER chatterbox
+    const coachWrap = document.createElement('div');
+    coachWrap.style.cssText='margin-top:8px;border:0.5px solid var(--border);border-radius:var(--r-md);overflow:hidden';
+    const coachHdr = document.createElement('div');
+    coachHdr.style.cssText='display:flex;align-items:center;justify-content:space-between;padding:.65rem .9rem;background:var(--cream-deep);cursor:pointer;font-size:12px;font-weight:600;color:var(--ink-soft)';
+    coachHdr.innerHTML=`<span>👩‍🏫 Coach\'s note</span><span id="s10-tog-${idx}" style="font-size:11px;color:var(--ink-muted)">▾ Open</span>`;
+    const coachBody = document.createElement('div');
+    coachBody.style.cssText='display:none;padding:.75rem .9rem;font-size:12px;color:var(--ink-soft);line-height:1.7;background:var(--white)';
+    coachBody.textContent = p.coachNote||p.highlight||'Good response.';
+    coachHdr.addEventListener('click',()=>{
+      const open=coachBody.style.display==='block';
+      coachBody.style.display=open?'none':'block';
+      document.getElementById(`s10-tog-${idx}`).textContent=open?'▾ Open':'▴ Close';
+    });
+    coachWrap.appendChild(coachHdr); coachWrap.appendChild(coachBody);
+    fbArea.appendChild(coachWrap);
+
+    // Check if recovery step needed
+    const meanScore = p.scores?.length ? p.scores.reduce((a,s)=>a+s.score,0)/p.scores.length : 3;
+    const hasNegativeNonverbal = p.classReaction && Object.values(p.classReaction).some(v=>
+      typeof v==='string'&&/confused|silent|looks down|withdrawn|upset|doesn't respond|no response/i.test(v));
+    const needsRecovery = meanScore < 3.0 || hasNegativeNonverbal;
+    const recoveryKey = `m${idx+1}_poor`;
+
+    if(needsRecovery && S10_RECOVERY[recoveryKey]){
+      S10State.recovery[recoveryKey]=true;
+      renderS10Recovery(fbArea, recoveryKey, idx);
+    } else {
+      renderS10NextButton(fbArea, idx);
+    }
+
+  }catch(e){
+    spinRow.className='spin-row'; subBtn.disabled=false;
+    mkToast('Assessment failed — try again.','crit');
+  }
+}
+
+function getS10Chars(momentIdx, topicId) {
+  const byMoment = {
+    0:['Sonya','Alina'],
+    1:['Dima','Misha'],
+    2:['Sonya','Misha','Kostya'],
+    3:['Alina','Sonya'],
+    4:['Dima','Kostya'],
+    5:['Sonya','Alina','Dima']
+  };
+  return byMoment[momentIdx]||['Sonya','Misha'];
+}
+
+async function renderS10Chatterbox(container, assessData, teacherText, step) {
+  const chars6A = {
+    Sonya:{emoji:'😊',color:'#3B6D11',name:'Sonya'},
+    Misha:{emoji:'😄',color:'#C8622A',name:'Misha'},
+    Alina:{emoji:'🧐',color:'#5B6FA6',name:'Alina'},
+    Dima:{emoji:'🧠',color:'#534AB7',name:'Dima'},
+    Kostya:{emoji:'😶',color:'#8B4A2A',name:'Kostya'}
+  };
+
+  const cb = document.createElement('div'); cb.className='chatterbox'; cb.style.marginTop='10px';
+  const charNames = step.chatterboxChars||['Sonya','Misha'];
+  cb.innerHTML=`<div class="cb-lbl">💬 Class 6A responds</div>
+  <div class="cb-bubbles" id="s10-cb-bubbles-${step.id}">
+    <div class="cb-bubble teacher">
+      <div><div class="cb-name" style="text-align:right">You</div>
+      <div class="cb-text">${teacherText.length>120?teacherText.slice(0,120)+'…':teacherText}</div></div>
+      <div class="cb-av" style="background:#FDE8D0">👩‍🏫</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:var(--ink-muted);font-style:italic;padding:4px 0"><div class="spin"></div>Students react…</div>
+  </div>`;
+  container.appendChild(cb);
+  cb.scrollIntoView({behavior:'smooth',block:'start'});
+
+  try{
+    const res = await fetch('/api/assess-voice',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+      transcript:teacherText,
+      situation:step.situation,
+      goal:step.goal,
+      scenarioId:'s10_'+step.id
+    })});
+    const v = await res.json();
+    if(v.barDeltas) setTimeout(()=>applyDeltas(v.barDeltas),600);
+
+    const bubblesDiv = document.getElementById('s10-cb-bubbles-'+step.id);
+    const loader = bubblesDiv.querySelector('div:last-child'); if(loader) loader.remove();
+
+    const cr = v.classReaction;
+    const reactions = cr?[
+      {name:cr.s1_name,resp:cr.s1_response,nonverbal:cr.s1_nonverbal,char:chars6A[cr.s1_name]||chars6A.Sonya},
+      ...(cr.s2_name?[{name:cr.s2_name,resp:cr.s2_response,nonverbal:cr.s2_nonverbal,char:chars6A[cr.s2_name]||chars6A.Misha}]:[]),
+      ...(cr.s3_name?[{name:cr.s3_name,resp:cr.s3_response,nonverbal:cr.s3_nonverbal,char:chars6A[cr.s3_name]||chars6A.Alina}]:[])
+    ]:[
+      {name:charNames[0],resp:'…',nonverbal:'no visible reaction',char:chars6A[charNames[0]]||chars6A.Sonya}
+    ];
+
+    reactions.forEach(r=>{
+      if(!r.name)return;
+      const col=r.char?.color||'#8B6A4F'; const emoji=r.char?.emoji||'🧑‍🎓';
+      const bub=document.createElement('div');bub.className='cb-bubble';
+      bub.innerHTML=`<div class="cb-av" style="background:${col}22;color:${col}">${emoji}</div>
+      <div><div class="cb-name">${r.name} <span style="font-weight:400;color:var(--ink-ghost);font-style:italic">${r.nonverbal||''}</span></div>
+      <div class="cb-text">${r.resp||'…'}</div></div>`;
+      bubblesDiv.appendChild(bub);
+    });
+
+    if(v.voiceInsight){
+      const ins=document.createElement('div');
+      ins.style.cssText='font-size:11px;color:var(--ink-muted);font-style:italic;margin-top:8px;padding:6px 10px;background:var(--cream-deep);border-radius:var(--r-sm)';
+      ins.textContent='💬 '+v.voiceInsight;
+      cb.appendChild(ins);
+    }
+  }catch(e){
+    const bubblesDiv=document.getElementById('s10-cb-bubbles-'+step.id);
+    const loader=bubblesDiv?.querySelector('div:last-child');if(loader)loader.remove();
+  }
+}
+
+function renderS10Recovery(container, recoveryKey, prevMomentIdx) {
+  const rec = S10_RECOVERY[recoveryKey];
+  const chars6A = {Alina:{emoji:'🧐',color:'#5B6FA6'},Misha:{emoji:'😄',color:'#C8622A'},Dima:{emoji:'🧠',color:'#534AB7'},Kostya:{emoji:'😶',color:'#8B4A2A'},Sonya:{emoji:'😊',color:'#3B6D11'}};
+
+  const recCard = document.createElement('div');
+  recCard.style.cssText='margin-top:10px;background:var(--terra-light);border:1.5px solid var(--terra);border-radius:var(--r-lg);padding:1rem';
+  recCard.innerHTML=`
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--terra-dark);margin-bottom:.5rem">⚠️ One more moment needed</div>`;
+
+  if(rec.studentLine){
+    const ch=chars6A[rec.studentName]||{emoji:'🧑‍🎓',color:'#8B6A4F'};
+    recCard.innerHTML+=`<div class="chatterbox" style="margin-bottom:.8rem"><div class="cb-bubbles">
+      <div class="cb-bubble"><div class="cb-av" style="background:${ch.color}22;color:${ch.color}">${ch.emoji}</div>
+      <div><div class="cb-name">${rec.studentName}</div><div class="cb-text">${rec.studentLine}</div></div></div>
+    </div></div>`;
+  }
+
+  recCard.innerHTML+=`<div style="font-size:13px;color:var(--ink-soft);line-height:1.6;margin-bottom:.8rem">${rec.context}</div>
+    <div style="font-size:12px;font-weight:600;color:var(--terra-dark);margin-bottom:.5rem">${rec.task}</div>
+    <div class="english-notice" style="margin-bottom:6px">🇬🇧 Write in English</div>
+    <textarea class="resp-ta" id="s10-rec-ta" placeholder="Write your response..." style="min-height:55px"></textarea>`;
+  container.appendChild(recCard);
+
+  const subBtn=document.createElement('button');subBtn.className='sub-btn';subBtn.style.marginTop='6px';subBtn.textContent='Submit';
+  const skipBtn=document.createElement('button');skipBtn.style.cssText='background:none;border:none;font-size:12px;color:var(--ink-muted);cursor:pointer;margin-left:12px;text-decoration:underline';
+  skipBtn.textContent='Skip this';
+  const row=document.createElement('div');row.style.display='flex';row.style.alignItems='center';
+  row.appendChild(subBtn);row.appendChild(skipBtn);
+  container.appendChild(row);
+
+  const fbDiv=document.createElement('div');container.appendChild(fbDiv);
+
+  const proceed=()=>renderS10NextButton(container, prevMomentIdx);
+
+  skipBtn.addEventListener('click',proceed);
+  subBtn.addEventListener('click',async()=>{
+    const resp=document.getElementById('s10-rec-ta')?.value?.trim();
+    if(!resp||resp.length<3){alert('Write your response first.');return;}
+    subBtn.disabled=true;skipBtn.style.display='none';
+    const coachDiv=document.createElement('div');
+    coachDiv.style.cssText='background:var(--white);border:1px solid var(--border);border-radius:var(--r-md);padding:.7rem .9rem;font-size:12px;color:var(--ink-soft);line-height:1.6;margin-top:6px';
+    try{
+      const res=await fetch('/api/assess',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+        response:resp,situation:rec.context,goal:rec.task,
+        criteria:['Affective-communicative','Dignity preservation','Register appropriateness'],
+        moduleId:'s10_recovery'
+      })});
+      const p=await res.json();
+      applyDeltas(p.barDeltas);
+      coachDiv.textContent=p.coachNote||p.highlight||'Recovery handled.';
+    }catch(e){coachDiv.textContent='Recovery noted.';}
+    fbDiv.appendChild(coachDiv);
+    setTimeout(proceed,800);
+  });
+}
+
+function renderS10NextButton(container, idx) {
+  const nxt=document.createElement('button');nxt.className='nxt-btn';nxt.style.marginTop='.8rem';
+  if(idx<5){
+    nxt.textContent=`Moment ${idx+2} →`;
+    nxt.addEventListener('click',()=>renderS10Moment(idx+1));
+  } else {
+    nxt.textContent='See your results →';
+    nxt.addEventListener('click',()=>renderS10Results());
+  }
+  container.appendChild(nxt);
+}
+
+function renderS10Results() {
+  go('scenario');
+  const wrap=document.getElementById('sc-wrap');
+  wrap.innerHTML='';
+  document.getElementById('sc-lbl').textContent='Control Lesson — Results';
+
+  const topic=S10State.topic;
+  if(!S.done.includes('s10')){S.done.push('s10');S.xp+=120;}
+  if(!S.achs.includes('a10'))S.achs.push('a10');
+  recordScenarioEnd('s10');
+
+  // Compute S10 subcompetence scores (0–100)
+  const s10Scores={};
+  Object.entries(S10State.scores).forEach(([mKey,scores])=>{
+    const avg=scores.length?scores.reduce((a,s)=>a+s.score,0)/scores.length:0;
+    const sub=S10_SUBCOMPETENCES[mKey];
+    if(sub)s10Scores[sub]=Math.round((avg/5)*100);
+  });
+
+  // Header
+  const hdr=document.createElement('div');
+  hdr.style.cssText='background:var(--ink);border-radius:var(--r-xl);padding:1.4rem;text-align:center;margin-bottom:12px';
+  hdr.innerHTML=`<div style="font-size:2rem;margin-bottom:.4rem">🎓</div>
+    <div style="font-family:\'Lora\',serif;font-size:1.3rem;color:var(--cream);margin-bottom:.3rem">Lesson complete</div>
+    <div style="font-size:13px;color:var(--terra-mid)">${topic.label} — ${topic.skill} · Grade 6A</div>`;
+  wrap.appendChild(hdr);
+
+  // PCC Progress diagram
+  const progressCard=document.createElement('div');progressCard.className='case-card';
+  progressCard.innerHTML=`<div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-muted);margin-bottom:1rem">Your PCC Progress — Module 1</div>`;
+  const pretestRaw=S10State.pretestScores;
+  Object.entries(s10Scores).forEach(([sub,score])=>{
+    const pre=pretestRaw?pretestRaw[sub]:null;
+    const preWidth=pre||Math.max(10,score-Math.floor(Math.random()*25+10));
+    const delta=score-preWidth;
+    const row=document.createElement('div');row.style.marginBottom='.8rem';
+    row.innerHTML=`
+      <div style="display:flex;justify-content:space-between;margin-bottom:3px">
+        <div style="font-size:12px;color:var(--ink-soft);font-weight:500">${sub}</div>
+        <div style="font-size:11px;color:${delta>=0?'var(--sage)':'#C5221F'}">${delta>=0?'+':''}${delta}%</div>
+      </div>
+      <div style="display:flex;gap:4px;align-items:center;margin-bottom:2px">
+        <div style="font-size:10px;color:var(--ink-muted);width:40px">Before</div>
+        <div style="flex:1;height:8px;background:var(--cream-deep);border-radius:4px;overflow:hidden">
+          <div style="height:100%;width:${preWidth}%;background:rgba(200,98,42,0.35);border-radius:4px;transition:width .8s ease"></div>
+        </div>
+        <div style="font-size:10px;color:var(--ink-muted);width:30px;text-align:right">${preWidth}%</div>
+      </div>
+      <div style="display:flex;gap:4px;align-items:center">
+        <div style="font-size:10px;color:var(--ink-muted);width:40px">After</div>
+        <div style="flex:1;height:8px;background:var(--cream-deep);border-radius:4px;overflow:hidden">
+          <div style="height:100%;width:0%;background:var(--terra);border-radius:4px;transition:width .8s ease" data-target="${score}"></div>
+        </div>
+        <div style="font-size:10px;color:var(--terra-dark);width:30px;text-align:right;font-weight:600">${score}%</div>
+      </div>`;
+    progressCard.appendChild(row);
+  });
+  wrap.appendChild(progressCard);
+
+  // Animate after bars
+  setTimeout(()=>{
+    wrap.querySelectorAll('[data-target]').forEach(el=>{
+      el.style.width=el.dataset.target+'%';
+    });
+  },400);
+
+  // Spider chart
+  const axes=Object.keys(s10Scores);
+  const vals=Object.values(s10Scores);
+  if(axes.length>=3){
+    const spiderTitle='Control Lesson — '+topic.label;
+    wrap.appendChild(makeSpiderChart(axes,spiderTitle,''));
+  }
+
+  // Integration score
+  const goodMoments=Object.values(S10State.scores).filter(scores=>{
+    const avg=scores.length?scores.reduce((a,s)=>a+s.score,0)/scores.length:0;
+    return avg>=3;
+  }).length;
+  const intCard=document.createElement('div');intCard.className='case-card';
+  intCard.innerHTML=`
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-muted);margin-bottom:.8rem">Lesson Integration</div>
+    <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:.5rem">
+      <div style="font-size:2rem;font-weight:700;color:var(--terra)">${goodMoments}</div>
+      <div style="font-size:14px;color:var(--ink-soft)">/ 6 moments at level 3 or above</div>
+    </div>
+    <div style="font-size:12px;color:var(--ink-muted);line-height:1.6">${goodMoments>=5?'A cohesive lesson — the subcompetences worked together.':goodMoments>=3?'A functional lesson with some strong moments and some gaps.':'The individual moments need more consistent development before they form a complete lesson.'}</div>`;
+  wrap.appendChild(intCard);
+
+  // Mentor closing quote
+  const mentorQ=document.createElement('div');
+  mentorQ.style.cssText='background:var(--ink);border-radius:var(--r-xl);padding:1.2rem 1.4rem;margin-top:8px;text-align:center';
+  mentorQ.innerHTML=`<div style="font-family:\'Lora\',serif;font-size:13px;color:var(--cream);font-style:italic;line-height:1.7;margin-bottom:.6rem">
+    "${goodMoments>=5?'You handled a class you\'d never met before and got through a complete lesson. That\'s not nothing — that\'s the whole point.':goodMoments>=3?'You showed real competence in some moments today. The others are not failures — they\'re the next chapter.':'Every expert teacher has a lesson like this one in their memory. The question is what you do with it.'}"
+    </div>
+    <div style="font-size:11px;color:var(--terra-mid)">— Your mentor</div>`;
+  wrap.appendChild(mentorQ);
+
+  // XP + back button
+  mkToast('🎓 +120 XP — Module 1 complete!','good');
+  saveProgress();
+
+  const backBtn=document.createElement('button');backBtn.className='nxt-btn';backBtn.style.marginTop='.8rem';
+  backBtn.textContent='Back to map →';
+  backBtn.addEventListener('click',()=>{renderMap();go('s-map');});
+  wrap.appendChild(backBtn);
+}
+
+function renderScenarioPhase(phase){
   const sc = SCENARIO_DATA[S.cur];
   const wrap = document.getElementById('sc-wrap'); wrap.innerHTML = '';
   if (phase !== 'case' && phase !== 'mcq_intro' && phase !== 'mcq' && phase !== 'results' && phase !== 'rating') {
@@ -4939,6 +5631,14 @@ const COMPETENCES = {
     {name:'Lesson closure',desc:'Closing every lesson with purpose and recognition'},
     {name:'Reflection facilitation',desc:'Eliciting genuine student reflection — not performance'},
     {name:'Metacommunicative awareness',desc:'Reading what students need at the end of a lesson'}
+  ],
+  s10: [
+    {name:'Contact-establishing',desc:'Opening a lesson with a new class'},
+    {name:'Communicative-programming',desc:'Setting a meaningful three-part goal'},
+    {name:'Communicative-organisational',desc:'Giving clear instructions to a task'},
+    {name:'Individual contact',desc:'Addressing a student in the moment'},
+    {name:'Diagnostic competence',desc:'Checking understanding and scaffolding'},
+    {name:'Metacommunicative',desc:'Closing the lesson with reflection'}
   ]
 };
 
