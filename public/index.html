@@ -4838,8 +4838,7 @@ function renderStepDragOrder(wrap, step) {
     <div class="step-desc" style="margin-bottom:.8rem">${step.situation}</div>`;
   wrap.appendChild(card);
   let attempts=0;
-  const correctOrder=step.items.map((_,i)=>i);
-  let shuffled=[...step.items.map((text,i)=>({text,order:i}))].sort(()=>Math.random()-.5);
+  let shuffled=[...step.items.map((item,i)=>({text:item.text,why:item.why||'',order:i}))].sort(()=>Math.random()-.5);
   let currentOrder=[...shuffled];
 
   const listEl=document.createElement('div'); listEl.id='drag-list'; listEl.style.cssText='display:flex;flex-direction:column;gap:6px;margin-bottom:10px;user-select:none';
@@ -4876,15 +4875,11 @@ function renderStepDragOrder(wrap, step) {
     if(isCorrect||(attempts>=2)){
       checkBtn.style.display='none';
       if(!isCorrect){
-        currentOrder=[...step.items.map((text,i)=>({text,order:i}))];renderList();
+        currentOrder=[...step.items.map((item,i)=>({text:item.text,why:item.why||'',order:i}))];
+        renderList();
         listEl.querySelectorAll('div').forEach(d=>d.style.pointerEvents='none');
       }
       feedback.style.display='block';
-      feedback.innerHTML=`<div style="background:${isCorrect?'var(--sage-light)':'var(--terra-light)'};border:1px solid ${isCorrect?'#C0DD97':'var(--border)'};border-radius:var(--r-md);padding:.8rem 1rem;margin-bottom:10px">
-        <div style="font-size:12px;font-weight:700;color:${isCorrect?'var(--sage)':'var(--terra-dark)'};margin-bottom:.5rem">${isCorrect?'✓ Correct order!':'Here\'s the correct order — and why it works:'}</div>
-        ${step.items.map((text,i)=>`<div style="display:flex;gap:8px;margin-bottom:5px;font-size:12px"><span style="color:var(--terra);font-weight:700;flex-shrink:0">${i+1}.</span><div><div style="color:var(--ink-soft)">${text}</div><div style="color:var(--ink-muted);font-style:italic">${step.items[i]&&step.items.find((_,j)=>j===i)? step.items[i].why||'' : ''}</div></div></div>`).join('')}
-      </div>`;
-      // Build correct explanations from original data
       feedback.innerHTML=`<div style="background:${isCorrect?'var(--sage-light)':'var(--terra-light)'};border:1px solid ${isCorrect?'#C0DD97':'var(--border)'};border-radius:var(--r-md);padding:.8rem 1rem;margin-bottom:10px">
         <div style="font-size:12px;font-weight:700;color:${isCorrect?'var(--sage)':'var(--terra-dark)'};margin-bottom:.5rem">${isCorrect?'✓ Correct order!':'Here\'s the correct order:'}</div>
         ${step.items.map((item,i)=>`<div style="display:flex;gap:8px;margin-bottom:6px;font-size:12px"><span style="color:var(--terra);font-weight:700;flex-shrink:0;min-width:16px">${i+1}.</span><div><div style="color:var(--ink-soft);margin-bottom:2px">"${item.text}"</div><div style="color:var(--ink-muted);font-style:italic">${item.why||''}</div></div></div>`).join('')}
@@ -4894,12 +4889,12 @@ function renderStepDragOrder(wrap, step) {
       nxt.addEventListener('click',s6AdvanceStep);
       feedback.appendChild(nxt);
     } else {
-      // First failed attempt
       feedback.style.display='block';
       feedback.innerHTML=`<div style="background:var(--terra-light);border:1px solid var(--border);border-radius:var(--r-md);padding:.75rem 1rem;margin-bottom:8px;font-size:12px;color:var(--terra-dark)">Not quite — think about what students need to know before they can follow the next step. You have one more attempt.</div>`;
     }
   });
 }
+
 
 // Step format: ICQ pick (2 of 5) + write one own
 function renderStepICQPick(wrap, step) {
