@@ -2083,7 +2083,7 @@ function renderMap() {
       const ml = document.createElement('div'); ml.className = 'mod-list';
       mod.scenarios.forEach((sc, i) => {
         const done = S.done.includes(sc.id);
-        const hasData = !!SCENARIO_DATA[sc.id];
+        const hasData = sc.id === 's10' ? (typeof S10_TOPICS !== 'undefined' && S10_TOPICS.length > 0) : !!SCENARIO_DATA[sc.id];
         const prevDone = i === 0 || S.done.includes(mod.scenarios[i-1].id);
         const unlocked = hasData && prevDone; // true once previous is done, stays true forever
         const d = document.createElement('div');
