@@ -5749,6 +5749,72 @@ function finishScenario(sc) {
 // ═══════════════════════════════════════
 // BONUS PHASE
 // ═══════════════════════════════════════
+function renderBonusStepGate(wrap, bonusStep, sc) {
+  wrap.innerHTML=''; wrap.appendChild(makeBarsPanel());
+  const gate=document.createElement('div'); gate.className='bonus-gate';
+  gate.innerHTML=`
+    <div class="bonus-gate-star">⭐</div>
+    <div class="bonus-gate-title"><em>Bonus moment!</em></div>
+    <div class="bonus-gate-sub">${bonusStep.desc}</div>
+    <div class="bonus-xp-note">+${bonusStep.bonusXP||10} XP · written response · chatterbox reaction</div>
+    <button class="bonus-accept" id="bonus-step-accept">Accept →</button>
+    <button class="bonus-skip" id="bonus-step-skip">Skip — go to reflection</button>`;
+  wrap.appendChild(gate);
+  document.getElementById('bonus-step-accept').addEventListener('click',()=>{
+    wrap.innerHTML=''; wrap.appendChild(makeBarsPanel());
+    const card=document.createElement('div'); card.className='bonus-card';
+    card.innerHTML=`
+      <div class="bonus-card-badge">⭐ Bonus moment</div>
+      <div class="step-sit-lbl">The situation</div>
+      <div class="step-sit" style="margin-bottom:.8rem">${bonusStep.situation}</div>
+      <div class="english-notice" style="margin-bottom:8px">🇬🇧 Write in English</div>
+      <textarea class="resp-ta" id="bonus-step-ta" placeholder="Write your response..."></textarea>
+      <div class="wc-row"><span class="wc" id="bonus-step-wc">0 words</span></div>`;
+    wrap.appendChild(card);
+    document.getElementById('bonus-step-ta').addEventListener('input',function(){
+      const w=this.value.trim().split(/\s+/).filter(x=>x).length;
+      document.getElementById('bonus-step-wc').textContent=w+(w===1?' word':' words');
+    });
+    const subBtn=document.createElement('button'); subBtn.className='sub-btn'; subBtn.style.marginTop='6px'; subBtn.textContent='Submit';
+    const spinRow=document.createElement('div'); spinRow.className='spin-row'; spinRow.innerHTML='<div class="spin"></div>Assessing…';
+    const fbDiv=document.createElement('div'); fbDiv.style.display='none';
+    wrap.appendChild(subBtn); wrap.appendChild(spinRow); wrap.appendChild(fbDiv);
+    subBtn.addEventListener('click',async()=>{
+      const resp=document.getElementById('bonus-step-ta')?.value?.trim();
+      if(!resp||resp.length<3){alert('Write your response first.');return;}
+      subBtn.disabled=true; spinRow.className='spin-row on';
+      try{
+        const res=await fetch('/api/assess',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+          response:resp,situation:bonusStep.situation,
+          goal:bonusStep.goal||'Handle this classroom moment professionally.',
+          criteria:['Register appropriateness','Pedagogical quality','Warmth & tone'],
+          moduleId:'s8_bonus'
+        })});
+        const p=await res.json();
+        spinRow.className='spin-row'; subBtn.style.display='none';
+        S.xp+=bonusStep.bonusXP||10;
+        fbDiv.style.display='block';
+        const coachDiv=document.createElement('div');
+        coachDiv.style.cssText='background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:.9rem 1rem;font-size:12px;color:var(--ink-soft);line-height:1.7';
+        coachDiv.innerHTML=`<div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-faint);margin-bottom:.5rem">Coach's note</div>${p.coachNote||p.highlight||'Good response.'}`;
+        fbDiv.appendChild(coachDiv);
+        mkToast(`⭐ +${bonusStep.bonusXP||10} bonus XP!`,'good');
+        renderS7Chatterbox(fbDiv,sc,resp,bonusStep,p);
+      }catch(e){spinRow.className='spin-row';subBtn.disabled=false;}
+      const nxt=document.createElement('button');nxt.className='nxt-btn';nxt.style.marginTop='.8rem';
+      nxt.textContent='Go to reflection →';
+      nxt.addEventListener('click',()=>{
+        S.reflectIdx=0; buildReflectQs(sc); renderScenarioPhase('reflect');
+      });
+      fbDiv.appendChild(nxt);
+    });
+  });
+  document.getElementById('bonus-step-skip').addEventListener('click',()=>{
+    S.reflectIdx=0; buildReflectQs(sc); renderScenarioPhase('reflect');
+  });
+}
+
+
 function renderS9BonusGate(wrap, tactic, sc) {
   wrap.innerHTML=''; wrap.appendChild(makeBarsPanel());
   const topics=tactic.bonusTopics||[];
