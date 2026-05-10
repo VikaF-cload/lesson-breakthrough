@@ -3697,6 +3697,27 @@ const S10_RECOVERY = {
   }
 };
 
+// ── DEV UNLOCK (URL param: ?dev=unlock&sc=s6) ──────────────
+function checkDevUnlock() {
+  const params = new URLSearchParams(window.location.search);
+  if(params.get('dev') !== 'unlock') return;
+  const targetSc = params.get('sc') || 's6';
+  const pid = params.get('pid') || 'DEV-TEST';
+  // Auto-set participant ID
+  S.pid = pid;
+  // Mark all scenarios before target as done
+  const order = ['s1','s2','s3','s4','s5','s6','s7','s8','s9','s10'];
+  const targetIdx = order.indexOf(targetSc);
+  if(targetIdx < 0) return;
+  for(let i=0; i<targetIdx; i++) {
+    if(!S.done.includes(order[i])) S.done.push(order[i]);
+  }
+  S.xp = targetIdx * 80;
+  console.log('[DEV] Unlocked up to', targetSc, 'for pid:', pid);
+  mkToast(`🛠 Dev unlock: S1–S${targetIdx} marked done. Opening ${targetSc.toUpperCase()}…`, 'good');
+  setTimeout(() => openScenario(targetSc), 800);
+}
+
 function openScenario(id) {
   if(id==='s10'){openS10();return;}
   const sc = SCENARIO_DATA[id]; if (!sc) return;
@@ -5309,8 +5330,11 @@ function renderTacticResult(wrap) {
   b3.addEventListener('click',()=>{
     const sc2=SCENARIO_DATA[S.cur];
     const tactic=S.curTactic;
+    console.log('[S6 debug] b3 clicked. tactic:', tactic?.id, 'bonusStep:', !!tactic?.bonusStep, 'S.cur:', S.cur);
     if(tactic.bonusStep){
-      renderBonusStepGate(wrap,tactic.bonusStep,sc2);
+      console.log('[S6 debug] calling renderBonusStepGate');
+      try{ renderBonusStepGate(wrap,tactic.bonusStep,sc2); }
+      catch(e){ console.error('[S6 debug] renderBonusStepGate failed:', e); }
     } else if(tactic.bonusTopics&&tactic.bonusTopics.length>0){
       renderS9BonusGate(wrap,tactic,sc2);
     } else if(sc2.bonusTopics&&sc2.bonusTopics.length>0){
@@ -6154,6 +6178,9 @@ document.getElementById('begin-btn').addEventListener('click',async()=>{
   renderMap();renderCards(CATS[0]);go('s-map');
 });
 document.getElementById('pid').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('begin-btn').click();});
+
+// Dev unlock — runs on page load if ?dev=unlock in URL
+window.addEventListener('load', () => { checkDevUnlock(); });
 
 // ═══════════════════════════════════════
 // NAVIGATION
