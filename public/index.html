@@ -3759,7 +3759,7 @@ function openS10() {
 }
 
 function renderS10Entry(topic) {
-  go('scenario');
+  go('s-scenario');
   const wrap = document.getElementById('sc-wrap');
   wrap.innerHTML = '';
   document.getElementById('sc-lbl').textContent = 'Control Lesson — Class 6A';
@@ -3825,7 +3825,7 @@ function renderS10Moment(idx) {
   const topic = S10State.topic;
   const moment = topic.moments[idx];
   S10State.momentIdx = idx;
-  go('scenario');
+  go('s-scenario');
   const wrap = document.getElementById('sc-wrap');
   wrap.innerHTML = '';
 
@@ -4117,7 +4117,7 @@ function renderS10NextButton(container, idx) {
 }
 
 function renderS10Results() {
-  go('scenario');
+  go('s-scenario');
   const wrap=document.getElementById('sc-wrap');
   wrap.innerHTML='';
   document.getElementById('sc-lbl').textContent='Control Lesson — Results';
